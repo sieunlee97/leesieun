@@ -1,0 +1,8 @@
+---
+applications:
+- name: leesieun
+  memory: 1024M
+  disk_quota: 1024M
+  instances: 1
+  host: leesieun
+  domain: paas-ta.org
