@@ -11,6 +11,7 @@ span {
 display:block;height:10px;width:50px;background-color:red;
 margin-bottom: 5px;
 }
+#wrap .slider img {width:100%;} /*계단식 */
 /* 모바일용 스타일 지정 끝 */
 </style>
 <script>
@@ -24,21 +25,28 @@ margin-bottom: 5px;
 <header>
 <!-- 상단 로고와 햄버거 메뉴 영역 시작 -->
 <h1>LOGO</h1> <!-- 헤드라인 글자를 표시 h1~h6 -->
-
 <span></span>
 <span></span>
 <span></span>
-햄버거 메뉴 이미지
-HOME
-WE ARE
-WORK
-BLOG
-CONTACT US
+<!-- 리스트를 보여주는 태그 ul, ol -->
+<!-- ul(Unordered List) / ol(Ordered List) : 1.~ 2.~ 3.~ -->
+<ul>
+<li>HOME</li>
+<li>WE ARE</li>
+<li>WORK</li>
+<li>BLOG</li>
+<li>CONTACT US</li>
+</ul>
 <!-- 상단 로고와 햄버거 메뉴 영역 끝 -->
 </header>
 <section> <!-- division 이라는 div 영역표시 태그 대신 사용 -->
 <!-- 본문 슬라이드 영역 시작 -->
-슬라이드이미지1
+<!-- 이미지를 불러오는 태그 img -->
+<!-- 경로 : 상대경로(./img), 절대경로(/resources/sample/img/...) -->
+<!-- 태그 안쪽에 지정한 스타일을 인라인 스타일 -->
+<div class="slider">
+	<img src="/resources/sample/img/monitor.jpg" alt="모니터 사진입니다.">
+</div>
 <!-- 본문 슬라이드 영역 끝  -->
 </section>
 <footer>
