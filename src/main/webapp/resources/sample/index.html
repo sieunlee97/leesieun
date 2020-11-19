@@ -3,15 +3,34 @@
 <head> <!-- 문서 내용과는 관계 없는 문서 정보가 들어있고, 메타데이터가 존재 -->
 <meta charset="UTF-8"> <!-- 문서의 언어 인코딩 설정, 지금은 유니코드로 됨 -->
 <title>반응형 홈페이지</title> <!-- 문서의 제목을 브라우저 상단 왼쪽에 표시 -->
+<!-- 외부 CSS파일 불러오는 대그(아래) -->
+<link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
 <style>
 /* 모바일용 스타일 지정 시작 */
 /* span 태그 : 자리를 차지하지 않는 영역, 한뼘 */
 /* : 콜론(속성:값, Key:Value), ; 세미콜론(문장의 끝), px : 픽셀, 화면에 표시되는 크기의 단위 */
-span {
+/* 헤더영역 시작 */
+.header {
+position:relative;/* 상대적인 위치, 다른 예) absolute : 절대적인 위치 = fixed(붙박이) */
+padding:18px 5%; /*안쪽 여백 (바깥쪽여백 : margin), 18px(상하여백), 5%(좌우여백) */
+/* padding:18px 5% 18px 5% 의 약자. 위처럼 표시 (시계방향으로 진행. 12시 3시 6시 9시) */
+/* padding:18px 5% 18px - 18px(상여백), 5%(좌우여백) 18px(하여백)*/
+/* 위 3가지 모두 동일 */
+}
+.header .logo {
+float:left; /* float : 떠다니는 영역, 역할 - 세로배치를 가로배치로 변경처리에 사용*/
+}
+.header .menu-toggle-btn { /* toggle : 똑딱이버튼 */
+float:right;
+}
+.header span {
 display:block;height:10px;width:50px;background-color:red;
 margin-bottom: 5px;
 }
-#wrap .slider img {width:100%;} /*계단식 */
+/* 헤더영역 끝 */
+/* 본문 section 슬라이드 영역 시작 */
+#wrap .slider img {width:100%;} /* Cascade Style Sheet, 특징 : 계단형 스타일지정 */
+/* 본문 section 슬라이드 영역 끝 */
 /* 모바일용 스타일 지정 끝 */
 </style>
 <script>
@@ -22,12 +41,16 @@ margin-bottom: 5px;
 </head>
 <body> <!-- 문서 내용이 들어가는 영역 -->
 <div id="wrap"> <!-- 랩핑시킨 영역 -->
-<header>
+<header class="header">
 <!-- 상단 로고와 햄버거 메뉴 영역 시작 -->
-<h1>LOGO</h1> <!-- 헤드라인 글자를 표시 h1~h6 -->
+<h1 class="logo">LOGO</h1> <!-- 헤드라인 글자를 표시 h1~h6 -->
+<div class="menu-toggle-btn">
 <span></span>
 <span></span>
 <span></span>
+</div>
+<!-- html5 시멘틱 웹 = 의미가 있는 태그를 사용하게 해서 AI가 인식하게 된다. nav태그 -->
+<nav class="gnb"> <!-- gnb : global navigation, 전체영역메뉴 -->
 <!-- 리스트를 보여주는 태그 ul, ol -->
 <!-- ul(Unordered List) / ol(Ordered List) : 1.~ 2.~ 3.~ -->
 <ul>
@@ -37,6 +60,7 @@ margin-bottom: 5px;
 <li>BLOG</li>
 <li>CONTACT US</li>
 </ul>
+</nav>
 <!-- 상단 로고와 햄버거 메뉴 영역 끝 -->
 </header>
 <section> <!-- division 이라는 div 영역표시 태그 대신 사용 -->

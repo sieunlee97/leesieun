@@ -5,6 +5,21 @@
 - index.html에 태블릿용 CSS 적용 예정
 - index.html에 PC용 CSS 적용 예정
 
+실습1 : index.html 더미 데이터에 모바일용 CSS 적용하기
+- html(jsp)영역지정방식 : tag방식, class방식, id방식
+- id방식 : 현재 html 문서에서 1개만 존재해야함.(로그인 시 사용하는 ID와 같은 기능, 고유값)
+- class방식 : 현재 html 문서에서 여러개 존재해도 가능함.
+- reset.css를 불러오게 될 예정 (만드는것 X, 가져다가씀O)s
+- reset.css : 크로스 부라우징 사전처리 역할
+- * 크로스브라우징 : IE, 크롬, 파이어폭스, 사파리 등 다양한 웹브라우저 콘텐츠가 같은 크기로 보이게 하는 역할
+
+/*
+*, :after, :before { /* 콜론 : 의 의미 - 가상요소 */
+    -webkit-box-sizing: border-box; /* 크롬, 사파리용 크로스브라우징 때문에 추가  */
+    -moz-box-sizing: border-box; /* 파이어폭스용 크로스브라우징 때문에 추가  */
+    box-sizing: border-box; /* IE용 박스크기를 지정하는데 테두리 포함하겠다. */
+}
+*/
 
 ### 20201118(수)
 - v1.0.0 시험 리뷰
