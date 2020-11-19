@@ -5,6 +5,8 @@
 <title>반응형 홈페이지</title> <!-- 문서의 제목을 브라우저 상단 왼쪽에 표시 -->
 <!-- 외부 CSS파일 불러오는 대그(아래) -->
 <link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
+<!-- 외부 자바스크립트 불러오는 태그(아래) -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <style>
 /* 모바일용 스타일 지정 시작 */
 /* span 태그 : 자리를 차지하지 않는 영역, 한뼘 */
@@ -30,7 +32,7 @@ text-indent:-9999%; /*들여쓰기(글자없애기)*/
 display:block;
 height:80px;
 background:url(./img/circle.png) no-repeat; /*배경이미지 기본이 반복 repeat*/
-background-size:80%;
+background-size:90%;
 background-position: 0px center;/* 배경위치는 center(가로) center(세로)*/
 }
 
@@ -63,6 +65,12 @@ border-bottom:1px solid rgb(30, 180, 200);
 .header .gnb li:first-child{
 border-top:1px solid rgb(30, 180, 200);
 }
+.header .gnb li a{
+display:block; /* 1줄 전체자리를 차지하는 영역, inline-block : 본인 크기만큼만 자리 차지*/
+padding:14px 0px 14px 5%;
+font-size:14px;
+color:rgb(4, 37, 78);
+}
 /* 헤더영역 끝 */
 /* 본문 section 슬라이드 영역 시작 */
 #wrap .slider img {width:100%;} /* Cascade Style Sheet, 특징 : 계단형 스타일지정 */
@@ -71,7 +79,22 @@ border-top:1px solid rgb(30, 180, 200);
 </style>
 <script>
 /* 자바스크립트 시작 */
+// 네이티브(오리지널) 자바 스크립트로 햄버거 메뉴 액션 구현
+// document.getElementById("css 아이디영역");
+// 함수의 기본형은 아래와 같다.
+function Add(a,b){ // a, b 받아서 매개변수=인자=파라미터
+	var sum = a+b;
+	alert(a + "더하기" + b + "는" + sum + "입니다.");
+};
+// Add(3,5); // 함수 실행하기
 
+// jQuery 기본 형식 사용
+$(document).ready(function(){
+// $제이쿼리 시작한다는 의미(index.html).ready(자동콜백함수실행)
+	$(".menu-toggle-btn").click(function(){
+		alert('햄버거 메뉴를 클릭하였습니다.');
+	});
+});
 /* 자바스크립트 끝 */
 </script>
 </head>
