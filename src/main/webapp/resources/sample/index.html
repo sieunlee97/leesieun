@@ -89,12 +89,13 @@ function Add(a,b){ // a, b 받아서 매개변수=인자=파라미터
 // Add(3,5); // 함수 실행하기
 
 // jQuery 기본 형식 사용
-$(document).ready(function(){
+/* $(document).ready(function(){
 // $제이쿼리 시작한다는 의미(index.html).ready(자동콜백함수실행)
 	$(".menu-toggle-btn").click(function(){
 		alert('햄버거 메뉴를 클릭하였습니다.');
 	});
 });
+ */
 /* 자바스크립트 끝 */
 </script>
 </head>
@@ -110,6 +111,15 @@ $(document).ready(function(){
 <span></span>
 <span></span>
 </div>
+<script>
+//native 자바스크립트로 햄버거메뉴 제어하기 : 위에서부터 아래로 실행된다. 
+//document.getElementById : 1개의 값만 리턴(촐력)
+//document.getElementsByClassName : 배열값을 리턴(출력)
+var menu_toggle_btn = document.getElementsByClassName("menu-toggle-btn");
+menu_toggle_btn[0].onclick = function() {
+	alert('햄버거메뉴를 클릭하였습니다.');
+}
+</script>
 <!-- html5 시멘틱 웹 = 의미가 있는 태그를 사용하게 해서 AI가 인식하게 된다. nav태그 -->
 <nav class="gnb"> <!-- gnb : global navigation, 전체영역메뉴 -->
 <!-- 리스트를 보여주는 태그 ul, ol -->
