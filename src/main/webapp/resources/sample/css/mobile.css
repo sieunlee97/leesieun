@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/* 모바일용 스타일 지정 시작 */
+/* 헤더영역 시작 */
+.header {
+height:80px;
+position:relative;/* 상대적인 위치, 다른 예) absolute : 절대적인 위치 = fixed(붙박이) */
+padding:0px 2%; /*안쪽 여백 (바깥쪽여백 : margin), 18px(상하여백), 2%(좌우여백) */
+/* padding:18px 5% 18px 5% 의 약자. 위처럼 표시 (시계방향으로 진행. 12시 3시 6시 9시) */
+/* padding:18px 5% 18px - 18px(상여백), 5%(좌우여백) 18px(하여백)*/
+/* 위 3가지 모두 동일 */
+}
+.header .logo {
+float:left; /* float : 떠다니는 영역, 역할 - 세로배치를 가로배치로 변경처리에 사용*/
+}
+
+.header .logo a{
+font-size:26px; /*글자크기*/
+color:rgb(4, 37, 78);/*글자색상*/
+font-weight:normal; /*글자두께 */
+text-indent:-9999%; /*들여쓰기(글자없애기)*/ 
+display:block;
+height:80px;
+background:url(./img/circle.png) no-repeat; /*배경이미지 기본이 반복 repeat*/
+background-size:90%;
+background-position: 0px center;/* 배경위치는 center(가로) center(세로)*/
+}
+
+.header .menu-toggle-btn { /* toggle : 똑딱이버튼 */
+float:right;
+width:20px;
+margin-top:35px;
+cursor:pointer; /*마우스 커서모양을 손모양으로 변경 */
+}
+.menu-toggle-btn span {
+/* span 태그 : 자리를 차지하지 않는 영역, 한뼘 */
+/* : 콜론(속성:값, Key:Value), ; 세미콜론(문장의 끝), px : 픽셀, 화면에 표시되는 크기의 단위 */
+display:block;height:2px;
+width:100%; /* 여기서 100% = .menu-toggle-btn영역의 가로크기*/
+background-color:rgb(4, 37, 78);
+margin-bottom: 5px;
+}
+.header .gnb {
+display:none; /* 페이지로딩할 때, 숨겨야하기 때문에 none으로 처리. */
+position:absolute; /* gnb영역의 위치를 절대위치로 지정, 따라서 위치정보 필요 */
+top:80px; /* 화면 상단에서 얼만큼 떨어지게 배치할지 지정 */
+left:0px;
+width:100%;
+background:rgb(167, 219, 235);
+z-index:21; /* 화면에서 컨텐츠가 겹치는 경우 z인덱스를 이용해서 어느게 앞으로 나올지 결정*/
+}
+.header .gnb li{
+/* border는 테두리, bottom :아래, top:위, left-right:좌-우, 1px(두께), solid(실선), 색상*/
+border-bottom:1px solid rgb(30, 180, 200);
+}
+/*가상선택자 사용*/
+.header .gnb li:first-child{
+border-top:1px solid rgb(30, 180, 200);
+}
+.header .gnb li a{
+display:block; /* 1줄 전체자리를 차지하는 영역, inline-block : 본인 크기만큼만 자리 차지*/
+padding:14px 0px 14px 5%;
+font-size:14px;
+color:rgb(4, 37, 78);
+}
+/* 헤더영역 끝 */
+/* 본문 section 슬라이드 영역 시작 */
+#wrap .slider img {width:100%;} /* Cascade Style Sheet, 특징 : 계단형 스타일지정 */
+/* 본문 section 슬라이드 영역 끝 */
+/* 푸터 영역 시작 */
+.footer {
+margin-top:30px;
+}
+.footer p {
+margin:21px 0px;
+color:#3f51b5;
+text-align:center; /*문장 내용을 가운데 정렬*/
+}
+/* 푸터 영역 끝 */
+/* 모바일용 스타일 지정 끝 */
