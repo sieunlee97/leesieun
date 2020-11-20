@@ -20,7 +20,7 @@ font-weight:normal; /*글자두께 */
 text-indent:-9999%; /*들여쓰기(글자없애기)*/ 
 display:block;
 height:80px;
-background:url(./img/circle.png) no-repeat; /*배경이미지 기본이 반복 repeat*/
+background:url(/resources/sample/img/circle.png) no-repeat; /*배경이미지 기본이 반복 repeat*/
 background-size:90%;
 background-position: 0px center;/* 배경위치는 center(가로) center(세로)*/
 }
