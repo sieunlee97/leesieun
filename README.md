@@ -1,5 +1,15 @@
 ## v2.0.0 화면설계
 ### 20201119(금)
+- 페이지 제작 순서
+- 1. 이클립스에서 파일생성 후, html 립숨데이터 만들기
+- *로렘 입숨(lorem impsu, 줄여서 립숨,lipsum)
+- 한글입숨 : http://hangul.thefron.me
+- 영문입숨 : https://www.websiteplanet.com/ko/webtools/lorem-ipsum/
+- 2. 영역분리하기: 클래스이름 지정하기
+- 3. CSS 적용하기 (자바스크립트 작업 포함)
+- 4. CSS 분리하기 -> test 후 마무리
+
+- 페이지 강력새로고침 단축키 : Ctrl+Shift+R
 
 - 작업순서7 : 자바스크립트로 햄버거 메뉴의 토글 기능 구현
 - 작업순서8 : 본문 section영역 세부 디자인(슬라이드부분). 

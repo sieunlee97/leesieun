@@ -1,0 +1,66 @@
+<!DOCTYPE html> <!-- 현재 문서의 형태 선언 -->
+<html> <!-- html 문서는 태그열고 ... 태그닫고 -->
+<head> <!-- 문서 내용과는 관계 없는 문서 정보가 들어있고, 메타데이터가 존재 -->
+<meta charset="UTF-8"> <!-- 문서의 언어 인코딩 설정, 지금은 유니코드로 됨 -->
+<title>반응형 홈페이지</title> <!-- 문서의 제목을 브라우저 상단 왼쪽에 표시 -->
+<!-- 외부 CSS파일 불러오는 태그(아래) -->
+<link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
+<link rel="stylesheet" href="/resources/sample/css/mobile.css" type="text/css">
+<!-- 외부 자바스크립트 불러오는 태그(아래) -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="/resources/sample/js/user.js"></script>
+<style>
+/* work 영역 시작 */
+
+/* work 영역 끝 */
+</style>
+<script>
+/* 자바스크립트 시작 */
+/* 자바스크립트 끝 */
+</script>
+</head>
+<body> <!-- 문서 내용이 들어가는 영역 -->
+<div id="wrap"> <!-- 랩핑시킨 영역 -->
+<header class="header">
+<!-- 상단 로고와 햄버거 메뉴 영역 시작 -->
+<h1 class="logo">
+<a href="index.html">LOGO</a><!-- a태그는 페이지 이동 역할, href(헤르프 속성값에 URL을 입력해서 이동 -->
+</h1> <!-- 헤드라인 글자를 표시 h1~h6 -->
+<div class="menu-toggle-btn">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<!-- html5 시멘틱 웹 = 의미가 있는 태그를 사용하게 해서 AI가 인식하게 된다. nav태그 -->
+<nav class="gnb"> <!-- gnb : global navigation, 전체영역메뉴 -->
+<!-- 리스트를 보여주는 태그 ul, ol -->
+<!-- ul(Unordered List) / ol(Ordered List) : 1.~ 2.~ 3.~ -->
+<ul>
+<li><a href="index.html">HOME</a></li>
+<li><a href="weare.html">WE ARE</a></li>
+<li><a href="work.html">WORK</a></li>
+<li><a href="blog.html">BLOG</a></li>
+<li><a href="contact.html">CONTACT US</a></li>
+</ul>
+</nav>
+<!-- 상단 로고와 햄버거 메뉴 영역 끝 -->
+</header>
+<section> <!-- division 이라는 div 영역표시 태그 대신 사용 -->
+<h1 class="section-title">WORK</h1>
+<img alt="갤러리게시판2이미지1" src="/resources/sample/img/computer.jpg">
+<img alt="갤러리게시판2이미지2" src="/resources/sample/img/ai2.jpg">
+<img alt="갤러리게시판2이미지3" src="/resources/sample/img/computer.jpg">
+<img alt="갤러리게시판2이미지4" src="/resources/sample/img/ai2.jpg">
+<img alt="갤러리게시판2이미지5" src="/resources/sample/img/computer.jpg">
+<img alt="갤러리게시판2이미지6" src="/resources/sample/img/ai2.jpg">
+<img alt="갤러리게시판2이미지7" src="/resources/sample/img/computer.jpg">
+<img alt="갤러리게시판2이미지8" src="/resources/sample/img/ai2.jpg">
+</section>
+<footer class="footer">
+<!-- 하단 로고 영역 시작 -->
+<p>LOGO</p> <!-- paragraph(문단) 태그 -->
+<!-- 하단 로고 영역 끝 -->
+</footer>
+</div>
+</body>
+</html>

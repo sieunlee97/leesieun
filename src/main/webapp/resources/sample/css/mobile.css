@@ -12,7 +12,6 @@ padding:0px 2%; /*안쪽 여백 (바깥쪽여백 : margin), 18px(상하여백), 
 .header .logo {
 float:left; /* float : 떠다니는 영역, 역할 - 세로배치를 가로배치로 변경처리에 사용*/
 }
-
 .header .logo a{
 font-size:26px; /*글자크기*/
 color:rgb(4, 37, 78);/*글자색상*/
@@ -24,7 +23,6 @@ background:url(/resources/sample/img/circle.png) no-repeat; /*배경이미지 �
 background-size:90%;
 background-position: 0px center;/* 배경위치는 center(가로) center(세로)*/
 }
-
 .header .menu-toggle-btn { /* toggle : 똑딱이버튼 */
 float:right;
 width:20px;
@@ -76,4 +74,42 @@ color:#3f51b5;
 text-align:center; /*문장 내용을 가운데 정렬*/
 }
 /* 푸터 영역 끝 */
+/* we are 페이지 영역 시작 */
+.weare-header {
+margin-top:30px;
+text-align:center;
+}
+.section-title {
+margin-bottom:30px;
+font-size:42px;
+color:rgb(4, 37, 78);
+font-weight:normal;
+letter-spacing:5px;/*글자사이간격주기*/
+}
+.weare-header p {
+color:#616161;
+line-height:1.9; /*줄간격 단위 1.9, 글자크기의 1.9배수*/
+font-size:14px;
+}
+.weare-body {
+margin-top:68px;
+}
+.weare-body li {
+text-align:center;
+margin-top:50px; /*게시물사이 간격 li태그 4개 사이간격주기*/
+}
+.weare-body li img {
+height:220px; /*이미지는 가로든 세로든 한 쪽 크기를 지정하면 비율유지하며 크기 조정.*/
+}
+.weare-body li h2 {
+margin:20px 0px 10px;
+font-size:20px;
+font-weight:normal;
+color:rgb(4, 37, 78);
+}
+.weare-body li p {
+font-size:14px;
+}
+/* we are 페이지 영역 끝 */
 /* 모바일용 스타일 지정 끝 */
+
