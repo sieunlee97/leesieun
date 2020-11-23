@@ -10,7 +10,16 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="/resources/sample/js/user.js"></script>
 <style>
+/*contact 영역 시작*/
+.contact-section {
+margin-top:30px;
+text-align:center;
+}
 
+.contact-section form {
+margin-top:30px;
+}
+/*contact 영역 끝*/
 </style>
 <script>
 /* 자바스크립트 시작 */
@@ -43,68 +52,35 @@
 </nav>
 <!-- 상단 로고와 햄버거 메뉴 영역 끝 -->
 </header>
-<section class="package-section"> <!-- division 이라는 div 영역표시 태그 대신 사용 -->
-<h1 class="section-title">PACKAGE</h1>
-<ul>
-<!-- 아래 a링크의 title 속성은 시각장애인들의 웹접근성을 위한 코딩 -->
-<li><a href="javascript:;", title="갤러리게시판2의 이미지1번입니다.">
-<div class="info">
-<h2>Japan Package</h2>
-<p>일본 인기 패지키 여행입니다...</p>
+<section class="contact-section"> <!-- division 이라는 div 영역표시 태그 대신 사용 -->
+<h1 class="section-title">CONTACT</h1>
+<div class="container">
+<!-- 폼태그의 필수 속성 : name, action-데이터를 전송할 대상, method-데이터를 전송하는 방법 -->
+<form name="message_form" action="contact.html" method="get">
+<!-- 필드셋은 폼이 DB테이블에 필드와 1:1 매칭되는 관계-->
+<fieldset>
+<legend>현재폼의 타이틀영역입니다.</legend>
+<label for="name">이름</label><!-- label은 이름표, 입력태그에 대한 라벨은 1:1매칭되는 관계 -->
+<!-- placeholder:공간에 자리를 차지하지 않으면서 입력힌트를 보여주는 역할 -->
+<input name="name" id="name" type="text" placeholder="이름을 입력해주세요"><!-- input태그는 한줄입력태그, textarea태그는 여러줄입력태그 -->
+
+<label for="phone">연락처</label>
+<input name="phone" id="phone" type="text" placeholder="연락처를 입력해주세요">
+
+<label for="email">E-mail</label>
+<input name="e-mail" id="email" type="email" placeholder="이메일을 입력해주세요">
+
+<label for="message">메세지</label>
+<textarea name="message" id="message" placeholder="메세지를 입력해주세요"></textarea>
+</fieldset>
+<button type="submit">SEND</button>
+</form>
+<!-- form태그의 목적은 input, textarea, checkbox, radio, select 데이터를 submit하는 것이 목적. -->
+<!-- form전송은 get(비보안용), post(보안용-입력/수정/삭제) -->
+<!-- get방식은 유일하게 검색할 때 사용한다. -->
 </div>
-<img alt="갤러리게시판2이미지1" src="/resources/sample/img/japan.jpg">
-</a></li>
-<li><a href="javascript:;">
-<div class="info">
-<h2>Polynesia Package</h2>
-<p>폴리네시아 인기 패지키 여행입니다...</p>
-</div>
-<img alt="갤러리게시판2이미지2" src="/resources/sample/img/polynesia.jpg">
-</a></li>
-<li><a href="javascript:;">
-<div class="info">
-<h2>Hongkong Package</h2>
-<p>홍콩 인기 패지키 여행입니다...</p>
-</div>
-<img alt="갤러리게시판2이미지3" src="/resources/sample/img/hongkong.jpg">
-</a></li>
-<li><a href="javascript:;">
-<div class="info">
-<h2>Japan Package</h2>
-<p>일본 인기 패지키 여행입니다...</p>
-</div>
-<img alt="갤러리게시판2이미지4" src="/resources/sample/img/japan.jpg">
-</a></li>
-<li><a href="javascript:;">
-<div class="info">
-<h2>Polynesia Package</h2>
-<p>폴리네시아 인기 패지키 여행입니다...</p>
-</div>
-<img alt="갤러리게시판2이미지5" src="/resources/sample/img/polynesia.jpg">
-</a></li>
-<li><a href="javascript:;">
-<div class="info">
-<h2>Hongkong Package</h2>
-<p>홍콩 인기 패지키 여행입니다...</p>
-</div>
-<img alt="갤러리게시판2이미지6" src="/resources/sample/img/hongkong.jpg">
-</a></li>
-<li><a href="javascript:;">
-<div class="info">
-<h2>Japan Package</h2>
-<p>일본 인기 패지키 여행입니다...</p>
-</div>
-<img alt="갤러리게시판2이미지7" src="/resources/sample/img/japan.jpg">
-</a></li>
-<li><a href="javascript:;">
-<div class="info">
-<h2>Polynesia Package</h2>
-<p>폴리네시아 인기 패지키 여행입니다...</p>
-</div>
-<img alt="갤러리게시판2이미지8" src="/resources/sample/img/polynesia.jpg">
-</a></li>
-</ul>
 </section>
+
 <footer class="footer">
 <!-- 하단 로고 영역 시작 -->
 <p>LOGO</p> <!-- paragraph(문단) 태그 -->

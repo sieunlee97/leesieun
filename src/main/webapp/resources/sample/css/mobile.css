@@ -173,7 +173,9 @@ margin-top:30px;
 }
 .review-section h1 {
 text-align:center;
-font-size:30px;
+font-size:42px;
+font-weight:normal;
+letter-spacing:5px;
 color:#b33903;
 }
 .review-section .container {
