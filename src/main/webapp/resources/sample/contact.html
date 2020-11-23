@@ -15,9 +15,45 @@
 margin-top:30px;
 text-align:center;
 }
-
-.contact-section form {
+.contact-section .container {
+width:90%;
+margin:0px auto;
 margin-top:30px;
+}
+.contact-section label {
+display:none; /* 모바일에서는 숨기지만, 태블릿+PC용에서는 보이게 할 것이다. */
+}
+.contact-section form input {
+width:100%;
+line-height:1.2;
+padding:0px 2px;
+height:40px;
+border:none; /*테두리 삭제*/
+border-bottom:2px solid #fbc62d; /*테두리 선 설정: 2px 굵기, solid(실선)(dotted 점선), 선 색*/
+background:transparent;
+}
+.contact-section form textarea {
+width:100%;
+background:transparent;
+line-height:1.2;
+border:none;
+border-bottom:2px solid #fbc62d;
+min-height:100px; /*최소높이를 지정하는 이유는 내용이 없더라도, 높이를 150px로 고정한다는 의미*/
+padding-top:10px;
+padding-bottom:10px;
+}
+.contact-section form button {
+padding:15px;/*여백이 있는 버튼을 만든다.*/
+font-size:14px;
+background:#fbc62d;
+color:#fff;
+border:0px;
+font-weight:bold;
+letter-spacing:2px;
+}
+.submit-btn {
+margin-top:10px;
+text-align:right; /*div영역 안 쪽의 내용을 수평 중앙 정렬 시키는 명령*/
 }
 /*contact 영역 끝*/
 </style>
@@ -60,20 +96,22 @@ margin-top:30px;
 <!-- 필드셋은 폼이 DB테이블에 필드와 1:1 매칭되는 관계-->
 <fieldset>
 <legend>현재폼의 타이틀영역입니다.</legend>
-<label for="name">이름</label><!-- label은 이름표, 입력태그에 대한 라벨은 1:1매칭되는 관계 -->
+<label for="name">Name</label><!-- label은 이름표, 입력태그에 대한 라벨은 1:1매칭되는 관계 -->
 <!-- placeholder:공간에 자리를 차지하지 않으면서 입력힌트를 보여주는 역할 -->
 <input name="name" id="name" type="text" placeholder="이름을 입력해주세요"><!-- input태그는 한줄입력태그, textarea태그는 여러줄입력태그 -->
 
-<label for="phone">연락처</label>
+<label for="phone">Phone</label>
 <input name="phone" id="phone" type="text" placeholder="연락처를 입력해주세요">
 
 <label for="email">E-mail</label>
 <input name="e-mail" id="email" type="email" placeholder="이메일을 입력해주세요">
 
-<label for="message">메세지</label>
-<textarea name="message" id="message" placeholder="메세지를 입력해주세요"></textarea>
+<label for="message">Message</label>
+<textarea name="message" id="message" placeholder="내용을 입력해주세요"></textarea>
 </fieldset>
+<div class="submit-btn">
 <button type="submit">SEND</button>
+</div>
 </form>
 <!-- form태그의 목적은 input, textarea, checkbox, radio, select 데이터를 submit하는 것이 목적. -->
 <!-- form전송은 get(비보안용), post(보안용-입력/수정/삭제) -->
