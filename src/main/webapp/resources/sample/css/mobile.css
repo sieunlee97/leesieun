@@ -14,12 +14,12 @@ float:left; /* float : 떠다니는 영역, 역할 - 세로배치를 가로배�
 }
 .header .logo a{
 font-size:26px; /*글자크기*/
-color:rgb(4, 37, 78);/*글자색상*/
+color:#b33903;/*글자색상*/
 font-weight:normal; /*글자두께 */
 text-indent:-9999%; /*들여쓰기(글자없애기)*/ 
 display:block;
 height:80px;
-background:url(/resources/sample/img/circle.png) no-repeat; /*배경이미지 기본이 반복 repeat*/
+background:url(/resources/sample/img/balloon.png) no-repeat; /*배경이미지 기본이 반복 repeat*/
 background-size:90%;
 background-position: 0px center;/* 배경위치는 center(가로) center(세로)*/
 }
@@ -34,7 +34,7 @@ cursor:pointer; /*마우스 커서모양을 손모양으로 변경 */
 /* : 콜론(속성:값, Key:Value), ; 세미콜론(문장의 끝), px : 픽셀, 화면에 표시되는 크기의 단위 */
 display:block;height:2px;
 width:100%; /* 여기서 100% = .menu-toggle-btn영역의 가로크기*/
-background-color:rgb(4, 37, 78);
+background-color:#b33903;
 margin-bottom: 5px;
 }
 .header .gnb {
@@ -43,22 +43,23 @@ position:absolute; /* gnb영역의 위치를 절대위치로 지정, 따라서 �
 top:80px; /* 화면 상단에서 얼만큼 떨어지게 배치할지 지정 */
 left:0px;
 width:100%;
-background:rgb(167, 219, 235);
+background:#fce05b;
 z-index:21; /* 화면에서 컨텐츠가 겹치는 경우 z인덱스를 이용해서 어느게 앞으로 나올지 결정*/
 }
 .header .gnb li{
 /* border는 테두리, bottom :아래, top:위, left-right:좌-우, 1px(두께), solid(실선), 색상*/
-border-bottom:1px solid rgb(30, 180, 200);
+border-bottom:1px solid #fbc62d;
 }
 /*가상선택자 사용*/
 .header .gnb li:first-child{
-border-top:1px solid rgb(30, 180, 200);
+border-top:1px solid #fbc62d
+;
 }
 .header .gnb li a{
 display:block; /* 1줄 전체자리를 차지하는 영역, inline-block : 본인 크기만큼만 자리 차지*/
 padding:14px 0px 14px 5%;
 font-size:14px;
-color:rgb(4, 37, 78);
+color:#b33903;
 }
 /* 헤더영역 끝 */
 /* 본문 section 슬라이드 영역 시작 */
@@ -70,46 +71,132 @@ margin-top:30px;
 }
 .footer p {
 margin:21px 0px;
-color:#3f51b5;
+color:#b33903;
 text-align:center; /*문장 내용을 가운데 정렬*/
 }
 /* 푸터 영역 끝 */
-/* we are 페이지 영역 시작 */
-.weare-header {
+
+/* booking 페이지 영역 시작 */
+.booking-header {
 margin-top:30px;
 text-align:center;
 }
 .section-title {
 margin-bottom:30px;
 font-size:42px;
-color:rgb(4, 37, 78);
+color:#b33903;
 font-weight:normal;
 letter-spacing:5px;/*글자사이간격주기*/
 }
-.weare-header p {
+.booking-header p {
 color:#616161;
 line-height:1.9; /*줄간격 단위 1.9, 글자크기의 1.9배수*/
 font-size:14px;
 }
-.weare-body {
+.booking-body {
 margin-top:68px;
 }
-.weare-body li {
+.booking-body li {
 text-align:center;
 margin-top:50px; /*게시물사이 간격 li태그 4개 사이간격주기*/
 }
-.weare-body li img {
+.booking-body li img {
 height:220px; /*이미지는 가로든 세로든 한 쪽 크기를 지정하면 비율유지하며 크기 조정.*/
 }
-.weare-body li h2 {
+.booking-body li h2 {
 margin:20px 0px 10px;
 font-size:20px;
 font-weight:normal;
-color:rgb(4, 37, 78);
+color:#b33903;
 }
-.weare-body li p {
+.booking-body li p {
 font-size:14px;
 }
-/* we are 페이지 영역 끝 */
+/* booking 페이지 영역 끝 */
+
+/* package 영역 시작 */
+.package-section {
+text-align:center;
+margin-top:30px;
+}
+.package-section li img {width:100%;}
+.package-section li a { /*이부분이 실제 a링크 영역*/
+ /*a태그는 자리를 차지하지 않는 영역, block을 이용해서 자리를 차지하는 영역으로 변경*/
+display:block;
+width:100%;
+height:100%;
+position:relative; /*a태그에서 위치를 상대위치로 지정*/
+}
+/*마우스를 풀오버했을 때 나오는 배경색상, before가상요소 영역*/
+.package-section li a::before {
+display:block;
+background:#fbc62d;
+/*absolute 위치는 위 a태그에서 지정한 relative 위치에 한정해서 절대위치로 지정*/
+position:absolute; 
+width:100%;
+height:100%; 
+top:0px; /*화면의 세로로 상단 0px 위치*/
+left:0px; /*화면의 가로로 왼쪽 0px 위치*/
+content:"";
+opacity:0; /*투명도 0%로 지정*/
+}
+.package-section li a:hover::before {
+opacity:0.7;
+}
+.package-section .info {
+display:block;
+position:absolute;
+left:10px;
+color:#000;
+text-align:left;
+opacity:0;
+/*화면전환옵션 transform 모양변화에 대한 화면전환옵션, width, height 등등 all... */
+transition:all 0.3s;
+}
+.package-section li a:hover .info {
+opacity:1;
+transform:translateY(20px); /*모양이 변화할 때 Y세로축으로 20px 이동한다.*/
+}
+.info h2 {
+font-size:28px;
+font-weight:noraml;
+}
+.info p {
+font-size:14px;
+padding:10px 0px;
+}
+/* package 영역 끝 */
+
+/* review 영역 시작 */
+.review-section {
+margin-top:30px;
+}
+.review-section h1 {
+text-align:center;
+font-size:30px;
+color:#b33903;
+}
+.review-section .container {
+width:80%;
+margin:0 auto;/*현재 영역을 수평 가운데 정렬시 margin:0 auto*/
+}
+.review-section li {
+margin-top:30px;
+}
+.review-section li img{width:100%;}
+.review-section li time {
+display:block;
+margin:10px 0px;
+font-size:12px;
+color:#888;
+}
+.review-section li h2 {
+color:#424242;
+font-weight:normal;
+line-height:1.6;
+}
+/*reset.css에서 hr태그를 display:none; 적용했기 때문에, 특별히 .reivew영역에서만 hr 적용*/
+.review-section hr {display:block; height:2px; background:#b33903;}
+/* review 영역 끝 */
 /* 모바일용 스타일 지정 끝 */
 
