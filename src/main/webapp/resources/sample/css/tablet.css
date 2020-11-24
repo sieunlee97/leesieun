@@ -1,5 +1,33 @@
 @charset "UTF-8";
 /*미디어쿼리:미디어의 가로크기가 768px이상이면 아래 스타일 적용*/
 @media all and (min-width:768px) {
-		
+/*헤더영역시작*/
+.menu-toggle-btn {display:none;}
+.header .gnb {
+display:block;
+position:static; /*absolute에서 static으로 변경*/
+background:none;
+width:auto;
+float:right; /*가로 위치를 오른쪽으로 변경*/	
 }
+.header .gnb li {
+float:left;
+border:none;
+width:95px;
+text-align:center;
+margin-top:15px;
+}
+.header .gnb li:first-child{border:none;}
+.header .gnb li a {
+display:inline-block; /*컨텐츠 내용 크기만큼만 자리를 차지하는 영역*/
+}
+.header .gnb li a:hover {
+text-decoration: none;
+}
+/*헤더영역끝*/
+
+/*슬라이드 영역 시작*/
+.carousel-item, .carousel-item img {height:500px;}
+/*슬라이드영역 끝*/
+}
+/* 태플릿용 스타일 끝 */
