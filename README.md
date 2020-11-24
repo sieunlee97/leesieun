@@ -8,6 +8,9 @@
 - index.html 파일에서 슬라이드부분 적용(부트스트랩-외부j쿼리라이브러리이용)
 - 반응형 사용에 대한 이론설명
 - 태블릿용, PC용 화면처리 작업 시작
+- 반응형에 필수인 메타태그(아래)
+- <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scaleable=no">
+
 
 ### 20201123(월)
 

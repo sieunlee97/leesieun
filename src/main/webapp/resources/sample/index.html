@@ -2,6 +2,8 @@
 <html> <!-- html 문서는 태그열고 ... 태그닫고 -->
 <head> <!-- 문서 내용과는 관계 없는 문서 정보가 들어있고, 메타데이터가 존재 -->
 <meta charset="UTF-8"> <!-- 문서의 언어 인코딩 설정, 지금은 유니코드로 됨 -->
+<!-- 반응형을 작동하기 위해서 사용하는 메타태그 뷰 포트는 모니터, 모바일액정, 프린터 -->
+<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scaleable=no">
 <title>반응형 홈페이지</title> <!-- 문서의 제목을 브라우저 상단 왼쪽에 표시 -->
 <!-- 외부 자바스크립트 불러오는 태그(아래) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -14,10 +16,16 @@
 <link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
 <link rel="stylesheet" href="/resources/sample/css/mobile.css" type="text/css">
 <style>
-.carousel-item, .carousel-item img {height:300px;}
-/*여기까지는 모바일용-아래부터는 반응형(태블릿용, pc용)*/
 /* 태플릿용 스타일 시작 */
+/*@미디어쿼리사용-메타태그 viewport값 필수*/
+/*미디어쿼리:미디어의 가로크기가 768px이상이면 아래 스타일 적용*/
+@media all and (min-width:768px) {
+/*헤더영역시작*/
 
+/*헤더영역끝*/
+/*슬라이드 영역*/
+.carousel-item, .carousel-item img {height:500px;}
+}
 /* 태플릿용 스타일 끝 */
 </style>
 <script>
