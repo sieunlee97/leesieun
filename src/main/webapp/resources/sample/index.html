@@ -14,10 +14,20 @@
 <link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
 <link rel="stylesheet" href="/resources/sample/css/mobile.css" type="text/css">
 <style>
+.carousel-item, .carousel-item img {height:300px;}
+/*여기까지는 모바일용-아래부터는 반응형(태블릿용, pc용)*/
+/* 태플릿용 스타일 시작 */
 
+/* 태플릿용 스타일 끝 */
 </style>
 <script>
 /* 자바스크립트 시작 */
+$(document).ready(function(){
+	$(".carousel").carousel({
+		interval:1000, //이미지가 좌우로 움직이는 대기시간 지점1초, 파이어폭스에서 작동X
+		pause:false
+	});
+})
 /* 자바스크립트 끝 */
 </script>
 </head>
