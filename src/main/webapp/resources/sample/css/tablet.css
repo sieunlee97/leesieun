@@ -65,4 +65,17 @@ margin-left:0px; /*마지막 li가 아래로 떨어지는 것을 방지하는 �
 
 .review-section hr{display:none;}
 /*review영역 끝---------------------------------------------------*/
+
+/*contact영역 시작*/
+.input-class, .textarea-class {
+float:left; /*세로배치를 가로배치로 변경*/
+width:48%; /*2개로 나누는 가로크기 50%로 지정*/
+}
+.input-class {
+margin-right:4%;
+}
+.contact-section form textarea {
+min-height: 120px;
+}
+/*contact영역 끝---------------------------------------------------*/
 }
