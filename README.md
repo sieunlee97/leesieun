@@ -1,4 +1,18 @@
 ## v2.0.0 화면설계
+### 20201125(수)
+- NCS학습모듈(화면구현) 1단원
+- HTML(Hyper-Text-Markup-Language)+CSS(Cascade- Style-Sheet)+JS(JavaScript)
+- 위 3가지 작업으로 결과물을 만드는 사람 = 퍼블리셔, 프론트엔드 개발자
+- 웹접근성(WebAccessbility): 사회적약자의 이용가능성 체크(프로젝트 제안요청서에 항상 포함됨)
+- 크로스브라우징(Cross Browsing):다양한 웹브라우저에서 콘텐츠가 깨지는지 확인.(제안요청서에 항상 포함됨)
+- CLI(Command Line Interface):예)cf cli프로그램 설치했었음(파스타)
+- GUI(Graphical User Interface):예)이클립스에서 파스타 서버 사용
+- HTML5표준으로 만들어야한다:제약조건
+- 11, 12번째 과목에서 화면설계서 작성ppt(강사제공), 아키텍쳐구조도엑셀파일(학생), 사용메뉴얼ppt(학생) 제출 (이력서제출시 포트폴리오로 위 2가지 문서 제출하게 된다.)
+- 6번째 과목 마치면(내년2월초) 이 프로젝트를 가지고, 위 문서 3가지 만듦 -> 완료보고서 가능
+- 이력서 제출시 프로젝트 클라우드 URL(헤로쿠, 클라우드)도 제출.
+
+
 ### 20201124(화)
 - 실행파일 확장자 .jar(java archive실행파일), .war(web archive),.apk(android package실행), .aab(android app bundle실행파일)
 - 스프링웹프로그램, 안드로이드앱 제작 후 테스트 2가지 후 운영배포(구글플레이스토어기준)
