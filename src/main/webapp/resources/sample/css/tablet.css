@@ -31,6 +31,7 @@ text-decoration: none;
 /*슬라이드영역 끝------------------------------------------------------*/
 
 /* booking영역 시작*/
+@media all and (min-width:768px) {
 .float-clear {clear:both;} /*clear속성은 float작동을 없애는 역할*/
 .booking-section li {
 float:left; /*세로정렬을 가로정렬로 변경*/
