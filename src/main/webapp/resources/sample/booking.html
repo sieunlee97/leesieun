@@ -2,6 +2,8 @@
 <html> <!-- html 문서는 태그열고 ... 태그닫고 -->
 <head> <!-- 문서 내용과는 관계 없는 문서 정보가 들어있고, 메타데이터가 존재 -->
 <meta charset="UTF-8"> <!-- 문서의 언어 인코딩 설정, 지금은 유니코드로 됨 -->
+<!-- 반응형을 작동하기 위해서 사용하는 메타태그 뷰 포트는 모니터, 모바일액정, 프린터 -->
+<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scaleable=no">
 <title>반응형 홈페이지</title> <!-- 문서의 제목을 브라우저 상단 왼쪽에 표시 -->
 <!-- 외부 CSS파일 불러오는 태그(아래) -->
 <link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
@@ -13,19 +15,7 @@
 <style>
 /*태블릿용 스타일 시작*/
 @media all and (min-width:768px) {
-/* booking영역 시작 */
-.float-clear {clear:both;} /*clear속성은 float작동을 없애는 역할*/
-.booking-section li {
-float:left; /*세로정렬을 가로정렬로 변경*/
-/*부트스트랩의 그리드시스템 (col-12(!00%), col-3,col-3,col-3,col-3)의 원형*/
-width: 23.046875%; /* (177(포토샵레이아웃의가로값)/768)*100 = ~ %*/
-margin-left:2.604166%; /* (20(포토샵레이아웃의여백값)/768)*100 */
-overflow:hidden;/*반응형 li박스에서 가로크기를 벗어나는 이미지 내용은 숨김처리*/
-}
-.booking-body li:first-child{
-margin-left:0px;
-}
-/* booking영역 끝 */
+
 }
 /*태블릿용 스타일 끝*/
 </style>

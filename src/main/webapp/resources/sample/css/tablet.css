@@ -24,10 +24,26 @@ display:inline-block; /*컨텐츠 내용 크기만큼만 자리를 차지하는 
 .header .gnb li a:hover {
 text-decoration: none;
 }
-/*헤더영역끝*/
+/*헤더영역끝---------------------------------------------------------*/
 
 /*슬라이드 영역 시작*/
 .carousel-item, .carousel-item img {height:500px;}
-/*슬라이드영역 끝*/
+/*슬라이드영역 끝------------------------------------------------------*/
+
+/* booking영역 시작*/
+.float-clear {clear:both;} /*clear속성은 float작동을 없애는 역할*/
+.booking-section li {
+float:left; /*세로정렬을 가로정렬로 변경*/
+/*부트스트랩의 그리드시스템 (col-12(!00%), col-3,col-3,col-3,col-3)의 원형*/
+width: 23.046875%; /* (177(포토샵레이아웃의가로값)/768)*100 = ~ %*/
+margin-left:2.604166%; /* (20(포토샵레이아웃의여백값)/768)*100 */
+overflow:hidden;/*반응형 li박스에서 가로크기를 벗어나는 이미지 내용은 숨김처리*/
+}
+.booking-body {margin:10px 3%;}
+.booking-body img {width:100%;height:auto;}
+.booking-body li:first-child{margin-left:0px;}
+/* booking영역 끝------------------------------------------------ */
+
+
 }
 /* 태플릿용 스타일 끝 */
