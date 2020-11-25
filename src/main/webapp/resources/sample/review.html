@@ -2,15 +2,22 @@
 <html> <!-- html 문서는 태그열고 ... 태그닫고 -->
 <head> <!-- 문서 내용과는 관계 없는 문서 정보가 들어있고, 메타데이터가 존재 -->
 <meta charset="UTF-8"> <!-- 문서의 언어 인코딩 설정, 지금은 유니코드로 됨 -->
+<!-- 반응형을 작동하기 위해서 사용하는 메타태그 뷰 포트는 모니터, 모바일액정, 프린터 -->
+<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scaleable=no">
 <title>반응형 홈페이지</title> <!-- 문서의 제목을 브라우저 상단 왼쪽에 표시 -->
 <!-- 외부 CSS파일 불러오는 태그(아래) -->
 <link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
 <link rel="stylesheet" href="/resources/sample/css/mobile.css" type="text/css">
+<link rel="stylesheet" href="/resources/sample/css/tablet.css" type="text/css">
 <!-- 외부 자바스크립트 불러오는 태그(아래) -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="/resources/sample/js/user.js"></script>
 <style>
+/*태블릿용 스타일 시작*/
+@media all and (min-width:468px){
 
+}
+/*태블릿용 스타일 끝*/
 </style>
 <script>
 /* 자바스크립트 시작 */
@@ -68,7 +75,7 @@
 </div>
 </section>
 
-<footer class="footer">
+<footer class="footer float-clear">
 <!-- 하단 로고 영역 시작 -->
 <p>LOGO</p> <!-- paragraph(문단) 태그 -->
 <!-- 하단 로고 영역 끝 -->

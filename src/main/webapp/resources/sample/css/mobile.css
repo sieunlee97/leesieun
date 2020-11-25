@@ -1,7 +1,11 @@
 @charset "UTF-8";
 /* 모바일용 스타일 지정 시작 */
-/*부트스트랩  css 영향을 받은 것을 무효화 시키고, 시용자 css로 적용*/
-body{font-size:14px;}
+/*부트스트랩  css 영향을 받은 것을 무효화 시키고, 사용자 css로 적용*/
+body{
+font-size:14px;
+background:#fff;
+line-height:1.4; /* inherit :상속 바로전에 적용한 값을 초기화(initial)시키는 역할*/
+}
 /* 헤더영역 시작 */
 .header {
 height:80px;
