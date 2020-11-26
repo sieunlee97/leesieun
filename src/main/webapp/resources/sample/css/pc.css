@@ -48,6 +48,20 @@ margin-left:3%;
 .package-section li {width:25%;} /* 100%/4=25% */
 /* package 영역 끝  ---------------------------------------------------------------------*/
 
+/* review영역 시작 */
+.review-section {
+margin-left:3%;
+margin-right:3%;
+}
+.review-section .section-title {
+float:left;
+margin-top:30px;
+}
+.review-section .container {
+float:right;/*li 태그에 적용했던 방식이라면 모두 float:left;*/
+width:80%;
+} 
+/* review영역 끝 ----------------------------------------------------------------------- */
 
 }
 
