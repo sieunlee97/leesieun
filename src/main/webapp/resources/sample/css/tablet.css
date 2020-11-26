@@ -61,10 +61,13 @@ margin-left:2.60416666666%;/* 1개의 여백 구하기 (20px/768)*100=2.60416666
 height:300px;
 border:1px solid #ccc;
 }
-.review-section li div{
+.review-section li .preview {
 height:200px;
 overflow:hidden;
 /*디버그용코드 border:1px solid red; */
+}
+.review-section li .review-info{
+padding:10px;
 }
 
 .review-section li:first-child {
@@ -75,7 +78,6 @@ margin-left:0px; /*마지막 li가 아래로 떨어지는 것을 방지하는 �
 /* 1,4, 7, 10, 13...번째 컨텐츠는 모두 margin-left:0px; 이어야함*/
 margin-left:0px;
 }
-
 
 .review-section hr{display:none;}
 /*review영역 끝---------------------------------------------------*/
