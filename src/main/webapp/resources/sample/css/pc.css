@@ -63,6 +63,26 @@ width:80%;
 } 
 /* review영역 끝 ----------------------------------------------------------------------- */
 
+/*contact영역시작*/
+.contact-section {
+margin-left:3%;
+margin-right:3%;
+}
+.contact-section h1{
+float:left;
+margin-top:30px;
+}
+.contact-section .container {
+float:right;
+width:75%;
+}
+.contact-section form input {
+min-height:60px;
+}
+.contact-section form textarea {
+min-height:180px;
+}
+/*contact영역끝*/
 }
 
 /* pc용 스타일 끝 */
