@@ -22,8 +22,8 @@ float:left;
 width:50%;
 }
 
-.booking-header p{
-float:right;
+.booking-header p {
+float:right; 
 width:50%;
 position:relative;/*p태그 영역을 상대위치로 배치*/
 padding-left:20px;/*아래 before 가상요소가 나타날 영역을 넓히는 역할*/
