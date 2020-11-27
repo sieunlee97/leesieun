@@ -7,7 +7,9 @@
 <h1 class="section-title">CONTACT</h1>
 <div class="container">
 <!-- 폼태그의 필수 속성 : name, action-데이터를 전송할 대상, method-데이터를 전송하는 방법 -->
-<form name="message_form" action="contact.html" method="get">
+<form name="message_form" action="/contact" method="post">
+<!-- 스프링에서는 action으로 폼 데이터를 전송할 위치를 지정할 때, contact.html처럼 직접 접근X,
+	/contact처럼 controller를 통해 접근O -->
 <!-- 필드셋은 폼이 DB테이블에 필드와 1:1 매칭되는 관계-->
 <fieldset>
 <legend>현재폼의 타이틀영역입니다.</legend>
@@ -21,6 +23,7 @@
 
 <label for="email">E-mail</label>
 <input name="e-mail" id="email" type="email" placeholder="이메일을 입력해주세요">
+<!-- 입력제약조건: html5에서 지원하는 기능 type에 꼭 email이라고 지정해야하지만 제약조건 작동 -->
 </div>
 <div class="textarea-class">
 <label for="message">Message</label>
