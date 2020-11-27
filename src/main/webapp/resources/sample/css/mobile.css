@@ -6,6 +6,10 @@ font-size:14px;
 background:#fff;
 line-height:1.4; /* inherit :상속 바로전에 적용한 값을 초기화(initial)시키는 역할*/
 }
+/*부트스트랩css영향을 받는 부분을 무효화 시키기*/
+ul {
+margin-bottom:inherit !important; /* !important: css위치와 상관없이 무조건 강제로 적용*/
+}
 /* 헤더영역 시작 */
 .header {
 height:80px;
