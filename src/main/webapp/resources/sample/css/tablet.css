@@ -40,7 +40,7 @@ margin-left:2.604166%; /* (20(포토샵레이아웃의여백값)/768)*100 */
 overflow:hidden;/*반응형 li박스에서 가로크기를 벗어나는 이미지 내용은 숨김처리*/
 }
 .booking-body {margin:10px 3%;}
-.booking-body img {width:100%;height:auto;}
+.booking-body li img {width:100%;height:200px;}
 .booking-body li:first-child{margin-left:0px;}
 /* booking영역 끝------------------------------------------------ */
 
