@@ -2,14 +2,27 @@
 ### 20201127(금)
 - 반응형 웹페이지 작업 결과를 스프링MVC프로젝트에서 home.jsp로 변환.
 - 위 home.jsp결과물 헤로크 클라우드에 올릴 예정.
-- 최종 결과ㅣ: https://kimilguk.herokuapp.com(반응형 홈페이지 나오게 한다)
-- 파스타 클라우드 초기화 따른 파스타 재신청 처리 예정.t
+- 최종 결과 : https://leesieun.herokuapp.com(반응형 홈페이지 나오게 한다)
+- 파스타 클라우드 초기화 따른 파스타 재신청 처리 예정.t- =====================================================================
 - /resources/sample/반응형페이지 : 실제 서비스되는 내용 아님. 퍼블리셔가 만들어서 준 것을 개발자가 여기에 배치하는 공간.
+- 위와 같은 콘텐츠를 static콘텐츠라고 한다.(static은 고정적인 내용-html, css, js, img)
+- static반대 Dynamic콘턴츠(jsp 프로그램으로 콘턴츠 내용이 수시로 변경되는 영역)
+- 대표적인 dynamic콘텐츠 영역: 게시판(게시물 등록하면, 콘텐츠가 동적으로 늘어난다)
 - 실제 개발은 WEB-INF/views 폴더에 개발한 결과를 배치한다.
-- 헤로쿠 클라우드에서 서비스되는 페이지가 WEB-INF/viewss 폴더에 위치하게 된다.
+- 헤로쿠 클라우드에서 서비스되는 페이지가 WEB-INF/views 폴더에 위치하게 된다.
+- 컨트롤러 자바클래스에서 외부에서 /접근시 index.jsp로 매핑시킴
+- 퍼블리셔가 만든 index.html 복사에서 index.jsp 붙여넣기
+- jsp 분리 작업 : include 폴더 생성 후 그 안에 header.jsp, footer.jsp 만듦
+- index.jsp에서 header.jsp에 들어갈 영역 cut해서 paste 후 확인
+- index.jsp에서 footer.jsp에 들어갈 영역 cut해서 paste 후 확인
+- booking.jsp, packaging.jsp, review.jsp, contact.jsp 만들기
+- 스프링부트 버전2.0 (조그만 동생) : 소규모 프로젝트(스타트업)-조달청에 올라가는 프로젝트X
+- > 스프링부트 자동으로 생성되는 코드가 많아서 사용하기 편리. But 커스터마이징 안됨.
+- 스프링프레임워크 버전4.3.22 (큰 형) : 중대형프로젝트 - 조달청에 올라가느 프로젝트O
+- > 스프링프레임워크는 커스터마이징하는 프로젝트에 유용.
 
 
-### 20201125(수)
+### 20201125(수))
 - NCS학습모듈(화면구현) 1단원
 - HTML(Hyper-Text-Markup-Language)+CSS(Cascade- Style-Sheet)+JS(JavaScript)
 - 위 3가지 작업으로 결과물을 만드는 사람 = 퍼블리셔, 프론트엔드 개발자

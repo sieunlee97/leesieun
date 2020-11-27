@@ -28,9 +28,16 @@ public class HomeController {
 	 * 그래서 저장 시 콘솔에 보면, Reloading Context with...is completed 재실행되었다고 나온다.
 	 * 그래서 .java 클래스는 수정 후 약간 기다린 후 Reloading... 메시지 후 결과 확인 가능하다.
 	 */
+	@RequestMapping(value="/contact", method=RequestMethod.GET)
+	public String contact() {
+		return "sample/contact";
+	}
+	@RequestMapping(value="/review", method=RequestMethod.GET)
+	public String review() {
+		return "sample/review";
+	}
 	@RequestMapping(value="/packaging", method=RequestMethod.GET)
 	public String packaging() {
-		
 		return "sample/packaging";
 	}
 	@RequestMapping(value="/booking", method=RequestMethod.GET)
