@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
 <link rel="stylesheet" href="/resources/sample/css/mobile.css" type="text/css">
 <link rel="stylesheet" href="/resources/sample/css/tablet.css" type="text/css">
-<link rel="stylesheet" href="/resources/sample/css/pc.css" type=text/css">
+<link rel="stylesheet" href="/resources/sample/css/pc.css" type="text/css">
 
 <style>
 /* pc용 스타일 시작 */
