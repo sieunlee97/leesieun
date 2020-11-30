@@ -52,20 +52,19 @@ margin-bottom: 5px;
 .header .gnb {
 display:none; /* 페이지로딩할 때, 숨겨야하기 때문에 none으로 처리. */
 position:absolute; /* gnb영역의 위치를 절대위치로 지정, 따라서 위치정보 필요 */
-top:80px; /* 화면 상단에서 얼만큼 떨어지게 배치할지 지정 */
+top:82px; /* 화면 상단에서 얼만큼 떨어지게 배치할지 지정 */
 left:0px;
 width:100%;
-background:#a0cede;
+background:#c4deee;
 z-index:21; /* 화면에서 컨텐츠가 겹치는 경우 z인덱스를 이용해서 어느게 앞으로 나올지 결정*/
 }
 .header .gnb li{
 /* border는 테두리, bottom :아래, top:위, left-right:좌-우, 1px(두께), solid(실선), 색상*/
-border-bottom:1px solid #0064A2;
+border-bottom:1px solid #a0cede;
 }
 /*가상선택자 사용*/
 .header .gnb li:first-child{
-border-top:1px solid #0064A2
-;
+border-top:1px solid #a0cede;
 }
 .header .gnb li a{
 display:block; /* 1줄 전체자리를 차지하는 영역, inline-block : 본인 크기만큼만 자리 차지*/
