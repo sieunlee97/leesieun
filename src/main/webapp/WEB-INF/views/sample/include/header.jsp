@@ -26,8 +26,8 @@
 @media all and (min-width:1132px) {
 
 }
-
 </style>
+
 <script>
 /* 자바스크립트 시작 */
 $(document).ready(function(){

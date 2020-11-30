@@ -1,10 +1,12 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 /* 모바일용 스타일 지정 시작 */
 /*부트스트랩  css 영향을 받은 것을 무효화 시키고, 사용자 css로 적용*/
 body{
 font-size:14px;
 background:#fff;
-line-height:1.4; /* inherit :상속 바로전에 적용한 값을 초기화(initial)시키는 역할*/
+line-height:1.4 !important; /* inherit :상속 바로전에 적용한 값을 초기화(initial)시키는 역할*/
+font-family:'Nanum Gothic' 'NanumGothic' !important;
 }
 /*부트스트랩css영향을 받는 부분을 무효화 시키기*/
 ul {
@@ -24,7 +26,7 @@ float:left; /* float : 떠다니는 영역, 역할 - 세로배치를 가로배�
 }
 .header .logo a{
 font-size:26px; /*글자크기*/
-color:#b33903;/*글자색상*/
+color:#0064A2;/*글자색상*/
 font-weight:normal; /*글자두께 */
 text-indent:-9999%; /*들여쓰기(글자없애기)*/ 
 display:block;
@@ -44,7 +46,7 @@ cursor:pointer; /*마우스 커서모양을 손모양으로 변경 */
 /* : 콜론(속성:값, Key:Value), ; 세미콜론(문장의 끝), px : 픽셀, 화면에 표시되는 크기의 단위 */
 display:block;height:2px;
 width:100%; /* 여기서 100% = .menu-toggle-btn영역의 가로크기*/
-background-color:#b33903;
+background-color:#0064A2;
 margin-bottom: 5px;
 }
 .header .gnb {
@@ -53,23 +55,23 @@ position:absolute; /* gnb영역의 위치를 절대위치로 지정, 따라서 �
 top:80px; /* 화면 상단에서 얼만큼 떨어지게 배치할지 지정 */
 left:0px;
 width:100%;
-background:#fce05b;
+background:#a0cede;
 z-index:21; /* 화면에서 컨텐츠가 겹치는 경우 z인덱스를 이용해서 어느게 앞으로 나올지 결정*/
 }
 .header .gnb li{
 /* border는 테두리, bottom :아래, top:위, left-right:좌-우, 1px(두께), solid(실선), 색상*/
-border-bottom:1px solid #fbc62d;
+border-bottom:1px solid #0064A2;
 }
 /*가상선택자 사용*/
 .header .gnb li:first-child{
-border-top:1px solid #fbc62d
+border-top:1px solid #0064A2
 ;
 }
 .header .gnb li a{
 display:block; /* 1줄 전체자리를 차지하는 영역, inline-block : 본인 크기만큼만 자리 차지*/
 padding:14px 0px 14px 5%;
 font-size:14px;
-color:#b33903;
+color:#0064A2;
 }
 /* 헤더영역 끝 */
 
@@ -81,10 +83,11 @@ color:#b33903;
 /* 푸터 영역 시작 */
 .footer {
 padding-top:30px; /*원래 margin-top이었는데 작동하지 않아서 padding으로 바꿈*/
+background-color: #a0cede
 }
 .footer p {
 margin:21px 0px;
-color:#b33903;
+color:#0064A2;
 text-align:center; /*문장 내용을 가운데 정렬*/
 }
 /* 푸터 영역 끝 */
@@ -97,7 +100,7 @@ text-align:center;
 .section-title {
 margin-bottom:30px;
 font-size:42px;
-color:#b33903;
+color:#00b9ce;
 font-weight:normal;
 letter-spacing:5px;/*글자사이간격주기*/
 }
@@ -120,7 +123,7 @@ height:220px; /*이미지는 가로든 세로든 한 쪽 크기를 지정하면 
 margin:20px 0px 10px;
 font-size:20px;
 font-weight:normal;
-color:#b33903;
+color:#0064a2;
 }
 .booking-body li p {
 font-size:14px;
@@ -143,7 +146,7 @@ position:relative; /*a태그에서 위치를 상대위치로 지정*/
 /*마우스를 풀오버했을 때 나오는 배경색상, before가상요소 영역*/
 .package-section li a::before {
 display:block;
-background:#fbc62d;
+background:#a0cede;
 /*absolute 위치는 위 a태그에서 지정한 relative 위치에 한정해서 절대위치로 지정*/
 position:absolute; 
 width:100%;
@@ -189,7 +192,7 @@ text-align:center;
 font-size:42px;
 font-weight:normal;
 letter-spacing:5px;
-color:#b33903;
+color:#00b9ce;
 }
 .review-section .container {
 width:80%;
@@ -249,7 +252,7 @@ padding-bottom:10px;
 .contact-section form button {
 padding:15px;/*여백이 있는 버튼을 만든다.*/
 font-size:14px;
-background:#fbc62d;
+background:#0064A2;
 color:#fff;
 border:0px;
 font-weight:bold;

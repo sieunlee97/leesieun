@@ -8,74 +8,74 @@
 <div class="container">
 <ul>
 	<li><a href="javascript:;">
-	<div class="preview"><img alt="홍콩사진입니다." src="/resources/sample/img/hongkong.jpg"></div>
+	<div class="preview"><img alt="갤러리이미지1입니다." src="/resources/sample/img/mosque.jpg"></div>
 	<div class="review-info">
 	<time datetime="2020-11-23">2020-11-23</time>
-	<h2>홍콩 여행 패키지 후기</h2>
+	<h2>갤러리이미지1</h2>
 	</div>
 	</a></li>
 	<hr><!-- horizontal 수평선 태그 -->
 	<li><a href="javascript:;">
-	<div class="preview"><img alt="폴리네시아사진입니다." src="/resources/sample/img/polynesia.jpg"></div>
+	<div class="preview"><img alt="갤러리이미지2입니다." src="/resources/sample/img/hamburg.jpg"></div>
 	<div class="review-info">
 	<time datetime="2020-11-23">2020-09-23</time>
-	<h2>폴리네시아 여행 패키지 후기</h2>
+	<h2>갤러리이미지2</h2>
 	</div>
 	</a></li>
 	<hr><!-- 수평선 태그 -->
 	<li><a href="javascript:;">
-	<div class="preview"><img alt="일본사진입니다." src="/resources/sample/img/japan.jpg"></div>
+	<div class="preview"><img alt="갤러리이미지3입니다." src="/resources/sample/img/canal.jpg"></div>
 	<div class="review-info">
 	<time datetime="2020-11-23">2019-10-03</time>
-	<h2>일본 여행 패키지 후기</h2>
+	<h2>갤러리이미지3</h2>
 	</div>
 	</a></li>
 	<hr><!-- 수평선 태그 -->
 	<li><a href="javascript:;">
-	<div class="preview"><img alt="홍콩사진입니다." src="/resources/sample/img/hongkong.jpg"></div>
+	<div class="preview"><img alt="갤러리이미지1입니다." src="/resources/sample/img/mosque.jpg"></div>
 	<div class="review-info">
 	<time datetime="2020-11-23">2020-11-23</time>
-	<h2>홍콩 여행 패키지 후기</h2>
+	<h2>갤러리이미지1</h2>
 	</div>
 	</a></li>
 	<hr><!-- horizontal 수평선 태그 -->
 	<li><a href="javascript:;">
-	<div class="preview"><img alt="폴리네시아사진입니다." src="/resources/sample/img/polynesia.jpg"></div>
+	<div class="preview"><img alt="갤러리이미지2입니다." src="/resources/sample/img/hamburg.jpg"></div>
 	<div class="review-info">
 	<time datetime="2020-11-23">2020-09-23</time>
-	<h2>폴리네시아 여행 패키지 후기</h2>
+	<h2>갤러리이미지2</h2>
 	</div>
 	</a></li>
 	<hr><!-- 수평선 태그 -->
 	<li><a href="javascript:;">
-	<div class="preview"><img alt="일본사진입니다." src="/resources/sample/img/japan.jpg"></div>
+	<div class="preview"><img alt="갤러리이미지3입니다." src="/resources/sample/img/canal.jpg"></div>
 	<div class="review-info">
 	<time datetime="2020-11-23">2019-10-03</time>
-	<h2>일본 여행 패키지 후기</h2>
+	<h2>갤러리이미지3</h2>
 	</div>
 	</a></li>
 	<hr><!-- 수평선 태그 -->
 	<li><a href="javascript:;">
-	<div class="preview"><img alt="홍콩사진입니다." src="/resources/sample/img/hongkong.jpg"></div>
+	<div class="preview"><img alt="갤러리이미지1입니다." src="/resources/sample/img/mosque.jpg"></div>
 	<div class="review-info">
 	<time datetime="2020-11-23">2020-11-23</time>
-	<h2>홍콩 여행 패키지 후기</h2>
+	<h2>갤러리이미지1</h2>
 	</div>
 	</a></li>
 	<hr><!-- horizontal 수평선 태그 -->
 	<li><a href="javascript:;">
-	<div class="preview"><img alt="폴리네시아사진입니다." src="/resources/sample/img/polynesia.jpg"></div>
+	<div class="preview"><img alt="갤러리이미지2입니다." src="/resources/sample/img/hamburg.jpg"></div>
 	<div class="review-info">
 	<time datetime="2020-11-23">2020-09-23</time>
-	<h2>폴리네시아 여행 패키지 후기</h2>
+	<h2>갤러리이미지2</h2>
 	</div>
 	</a></li>
 	<hr><!-- 수평선 태그 -->
 	<li><a href="javascript:;">
-	<div class="preview"><img alt="일본사진입니다." src="/resources/sample/img/japan.jpg"></div>
+	<div class="preview"><img alt="갤러리이미지3입니다." src="/resources/sample/img/canal.jpg"></div>
 	<div class="review-info">
 	<time datetime="2020-11-23">2019-10-03</time>
-	<h2>일본 여행 패키지 후기</h2>
+	<h2>갤러리이미지3</h2>
 	</div>
 	</a></li>
 </ul>

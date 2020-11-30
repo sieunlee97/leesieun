@@ -50,7 +50,7 @@ overflow:hidden;/*반응형 li박스에서 가로크기를 벗어나는 이미�
 
 /*package 영역 시작*/
 .float-clear {clear:both;} /*clear속성은 float작동을 없애는 역할*/
-.package-section li{
+.package-section li {
 float:left;/*세로배치를 가로배치로 변경*/
 width:50%;
 max-height:300px;
