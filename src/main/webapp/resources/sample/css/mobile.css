@@ -52,7 +52,7 @@ margin-bottom: 5px;
 .header .gnb {
 display:none; /* 페이지로딩할 때, 숨겨야하기 때문에 none으로 처리. */
 position:absolute; /* gnb영역의 위치를 절대위치로 지정, 따라서 위치정보 필요 */
-top:82px; /* 화면 상단에서 얼만큼 떨어지게 배치할지 지정 */
+top:80px; /* 화면 상단에서 얼만큼 떨어지게 배치할지 지정 */
 left:0px;
 width:100%;
 background:#c4deee;
@@ -82,7 +82,7 @@ color:#0064A2;
 /* 푸터 영역 시작 */
 .footer {
 padding-top:30px; /*원래 margin-top이었는데 작동하지 않아서 padding으로 바꿈*/
-background-color: #a0cede
+/* background-color: #a0cede 푸터 배경색 지정*/
 }
 .footer p {
 margin:21px 0px;
@@ -174,7 +174,7 @@ transform:translateY(20px); /*모양이 변화할 때 Y세로축으로 20px 이�
 }
 .info h2 {
 font-size:28px;
-font-weight:noraml;
+font-weight:normal;
 }
 .info p {
 font-size:14px;
