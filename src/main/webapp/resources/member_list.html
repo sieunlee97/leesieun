@@ -136,12 +136,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">회원리스트</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item active">회원리스트</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -153,6 +153,72 @@
     <section class="content">
       <div class="container-fluid">
        
+       <div class="row"> <!-- 부트스트랩의 디자인클래스 row -->
+          <div class="col-12"> <!-- 부트스트랩의 그리드시스템 중 12 가로칼럼 (width:100%와 같은 뜻) -->
+            <div class="card"> <!-- 부트스트랩의 카드클래스 : 네모난 디자인 -->
+              <div class="card-header">
+                <h3 class="card-title">회원 검색</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>user_id</th> <!-- 테이블 헤드 타이틀태그 th -->
+                      <th>user_name[point]</th>
+                      <th>email</th>
+                      <th>Use</th>
+                      <th>REGDATE</th>
+                      <th>levels</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    <tr onclick="javascript:location.href='#';" style="cursor:pointer;">
+                      <td><a href="#">admin</a></td> <!-- table data 태그 -->
+                      <td>관리자</td>
+                      <td>admin@abc.com</td>
+                      <td>true</td>
+                      <td>2020-12-01</td>
+                      <td><span class="badge bg-danger">ROLE_ADMIN</span></td> <!-- span은 자리를 차지하지 않음. 텍스트에 배지만 적용하기 위해 -->
+                      <!-- 권한표시는 부트스트랩 배지 클래스 사용 -->
+                    </tr>
+                    <tr>
+                      <td><a href="#">user</a></td> <!-- table data 태그 -->
+                      <td>사용자</td>
+                      <td>user@abc.com</td>
+                      <td>false</td>
+                      <td>2020-12-01</td>
+                      <td><span class="badge bg-success">ROLE_USER</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+              <!-- 버튼영역 시작 -->
+              <div class="card-header text-center" style="border-top:1px solid #ccc">
+              	<a href="member_write.html" class="btn btn-primary float-right">CREATE</a>
+              	<!-- 부트스트랩 디자인 버튼클래스를 이용해서 a태그를 버튼모양 만들기 -->
+              	<!-- btn클래스명이 버튼모양을 변경, btn-primary클래스명의 버튼색상 변경 -->
+              </div>
+              <!-- 버튼영역 끝 -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
