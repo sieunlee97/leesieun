@@ -8,7 +8,7 @@
 - =====================================================================
 - 상대경로를 절대경로로 변경
 - html lang="en" 이 부분은 pc가 영문 윈도우면 정상이지만, 우리 pc는 한글 윈도우이기 때문에, html lang="ko"로 변경하면 편리.
-- member_list.html에 respoinsive hover table 소스 붙이기 (/resources/pages/tables/simple.html)
+- member_list.html에 responsive hover table 소스 붙이기 (/resources/pages/tables/simple.html)
 
 
 ### 20201130(월)
