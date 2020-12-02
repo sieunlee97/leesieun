@@ -61,7 +61,7 @@ $(document).ready(function(){
 <li><a href="/packaging">PACKAGE</a></li>
 <li><a href="/review">REVIEW</a></li>
 <li><a href="/contact">CONTACT US</a></li>
-<li><a href="javascript:;alert('관리자페이지 준비중입니다.')">AdminLTE</a></li>
+<li><a href="/admin">AdminLTE</a></li>
 </ul>
 </nav>
 <!-- 상단 로고와 햄버거 메뉴 영역 끝 -->
