@@ -110,14 +110,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/admin/member_list" class="nav-link">
+                <a href="/admin/member/member_list" class="nav-link">
                   <!-- 메뉴 선택 시 활성화 active 되는 것은 jquery로 만들 예정 -->
                   <i class="far fa-circle nav-icon"></i>
                   <p>관리자 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/admin/board_list" class="nav-link">
+                <a href="/admin/board/board_list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>게시물 관리</p>
                 </a>

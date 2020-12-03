@@ -56,15 +56,28 @@
 <!-- 왼쪽메뉴 선택된 부분 active클래스 주는 jquery 명령어 -->
 <script>
 $(document).ready(function() {
-	//현재 선택된 URL 값을 가져오는 명령(아래)
-	var current = location.pathname;
-	var current_2 = current.split("/",2)[1];// split 함수로 current에 있는 문자를 분리.
-	alert(current_2);
-	//alert(current); admin(관리자홈), admin/member_list(관리자관리), admin/board_list(게시물관리)
+	//현재 선택된 URL 값을 가져오는 명령(아래) 
+	var current = location.pathname;//current 변수저장소에서 board, member 클릭한 내용 확인
+	var current_2 = current.split("/")[2];// split 함수로 current에 있는 문자를 분리한 배열값 반환
+	//alert(current_2);
+	//alert(current); // admin(대시보드-undfined), admin/member_list(관리자관리), admin/board_list(게시물관리)
 	//active 클래스명을 동적으로 추가할 영역은 nav-item 내부 a태그의 클래스
-	$(".nav-treeview li a").each(function(){
-		
-	}) //each 함수로 a태그 2개를 찾는 명령
+	$(".nav-treeview li a").each(function(){ 
+	// nave-treeview클래스의 li 안의 a태그에서 each반복함수 사용
+	//each 반복함수로 a태그를 찾는 명령, 결과는 2개이기 때문에 2번 반복
+		 //$(this) 현재 함수의 구현 대상 본인을 가리킨다.
+		 // 2개의 값을 비교: - a 태그의 값 /admin/member_list, /admin/board_list
+		 // 2개의 값을 비교: - 비교대상 current_2(현재 웹브라우저의 URL값 중 제일 마지막 값)
+		 // -> a태그의 href(=/admin/member_list, /admin/board_list)에 current_2값이 포함되어있다면,~
+		 //if( $(this).attr('href').includes(current_2) == true ){}
+		 // - includes 포함하고 있는 문자열 비교
+		 // - 위에서 사용한 includes 함수는 Chrome에서만 작동		 
+		 if( $(this).attr('href').indexOf(current_2) != -1 ){ //위 문제를 처리하는 대체 함수 indexOf 사용
+			 $(this).addClass("active");//선택한 메뉴의 배경색상 흰색 추가 처리
+		 } else { 
+			 $(this).removeClass("active");//선택하지 않은 메뉴의 배경색상 흰색을 제거 처리
+		 }
+	});
 });
 </script>
 </body>

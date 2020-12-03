@@ -1,4 +1,20 @@
 ## v3.0.0 화면구현
+### 20201203(목)
+
+실습
+- 스프링관리자단 화면구현에서 왼쪽메뉴 active시키는 것 마무리
+- > footer.jsp에 script 추가
+- > current 변수에 location.pathname 값 반환.
+- > *location.pathname 은 현재 선택된 URL 값을 가져오는 명령
+- > current_2 변수 생성 -> 현재 URL 주소 중 맨 마지막 문자가 무엇인지 반환하여 배열에 저장
+- > if문과 indexOf함수 사용해서 현재 URL주소에 current_2값이 포함되어 있다면 active 클래스 추가
+- > indexOf 말고 includes 함수 사용해도 되지만, includes는 Chrome에서만 인식.
+- > *active 클래스 : 선택한 메뉴의 배경 색상을 흰색으로 처리
+- > *addClass, removeClass (클래스 추가, 클래스 제거)
+
+- jsp화면에서 데이터 전송하기->admin컨트롤러로 데이터 수신받고 전송하기->jsp화면에서 데이터수신받기
+- 헤로쿠 배포처리
+
 ### 20201202(수)
 - 저장소 이름 : 변수(내용에 변하는 값을 java로 불러움) / 상수(내용에 정해진 값을 불러옴)
 - 게시판 html화면 구현하기 전, 관리자관리 부분 제어용 컨트롤러 클래스 만듦
