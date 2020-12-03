@@ -33,7 +33,7 @@ public class AdminController {
 	public String member_view(@RequestParam("user_id") String user_ID, Model model ) {
 		//member_list.jsp에서 받은 "user_id"를 model 클래스를 이용해서 "user_id2"라는 내용으로 user_ID에 저장한다.
 		//위에서 수신한 user_id를 member_view.jsp로 보낸다(아래)
-		model.addAttribute("user_id2", user_ID);
+		model.addAttribute("user_id2", user_ID + "<script>alert('메롱');</script> 님");
 		//member_view.jsp에서 model로부터 받은 데이터 user_id2를 출력하는 방법-점심이후
 		return "admin/member/member_view";		
 	}
