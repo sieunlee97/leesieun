@@ -45,6 +45,7 @@ public class AdminController {
 				{"admin", "관리자", "admin@abc.com", "true", "2020-12-02", "ROLE_ADMIN"},
 				{"user", "사용자", "user@abc.com", "false", "2020-12-04", "ROLE_USER"}
 		};
+		//{"user_id":"admin", "user_name":"관리자", ...} // #해시 데이터
 		model.addAttribute("memberss", members);
 		return "admin/member/member_list";//member_list.jsp로 members 변수명으로 데이터를 전송
 	}
