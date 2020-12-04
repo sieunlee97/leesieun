@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/header.jsp" %>
 
 <!-- Content Wrapper. Contains page content, 대시보드 본문 -->
@@ -72,25 +72,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                    <tr onclick="javascript:location.href='/admin/member/member_view?user_id=admin';" style="cursor:pointer;">
-                      <td><a href="/admin/member/member_view?user_id=admin">admin</a></td> <!-- table data 태그 -->
+                  <c:forEach items="${memberss}" var="member">
+                  	 <tr>
+                      <td><a href="/admin/member/member_view?user_id=${member[0]}">${member[0]}</a></td> <!-- table data 태그 -->
                       <!-- 위의 링크a 값은 리스트가 늘어날수록 동적으로 user_id값이 변하게 된다. 개발자가 jsp처리 -->
-                      <td>관리자</td>
-                      <td>admin@abc.com</td>
-                      <td>true</td>
-                      <td>2020-12-01</td>
-                      <td><span class="badge bg-danger">ROLE_ADMIN</span></td> <!-- span은 자리를 차지하지 않음. 텍스트에 배지만 적용하기 위해 -->
+                      <td>${member[1]}</td>
+                      <td>${member[2]}</td>
+                      <td>${member[3]}</td>
+                      <td>${member[4]}</td>
+                      <td><span class="badge bg-danger">>${member[5]}</span></td> <!-- span은 자리를 차지하지 않음. 텍스트에 배지만 적용하기 위해 -->
                       <!-- 권한표시는 부트스트랩 배지 클래스 사용 -->
                     </tr>
-                    <tr>
-                      <td><a href="/admin/member/member_view?user_id=user">user</a></td> <!-- table data 태그 -->
-                      <td>사용자</td>
-                      <td>user@abc.com</td>
-                      <td>false</td>
-                      <td>2020-12-01</td>
-                      <td><span class="badge bg-success">ROLE_USER</span></td>
-                    </tr>
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>

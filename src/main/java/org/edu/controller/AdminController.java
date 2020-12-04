@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
 	@RequestMapping(value="/admin/board/board_list", method=RequestMethod.GET)
 	public String board_list() {
-		return "admin/board/board_list";
+		
+		return "admin/board/board_list"; 
 	}
 	
 	@RequestMapping(value="/admin/member/member_write", method=RequestMethod.POST)
@@ -31,16 +32,21 @@ public class AdminController {
 	//자료 흐름 : member_list.jsp -> (@RequestParam("user_id")-수신, Model-송신 -> member_view.jsp
 	@RequestMapping(value="/admin/member/member_view", method=RequestMethod.GET)
 	public String member_view(@RequestParam("user_id") String user_ID, Model model ) {
-		//member_list.jsp에서 받은 "user_id"를 model 클래스를 이용해서 "user_id2"라는 내용으로 user_ID에 저장한다.
+		//member_list.jsp에서 받은 "user_id"를 user_ID에 저장한다. -> user_ID값을 user_id2에 넣어서 출력.
 		//위에서 수신한 user_id를 member_view.jsp로 보낸다(아래)
 		model.addAttribute("user_id2", user_ID + "<script>alert('메롱');</script> 님");
 		//member_view.jsp에서 model로부터 받은 데이터 user_id2를 출력하는 방법-점심이후
-		return "admin/member/member_view";		
+		return "admin/member/member_view";	
 	}
 	
 	@RequestMapping(value="/admin/member/member_list", method=RequestMethod.GET)
-	public String member_list() {
-		return "admin/member/member_list";
+	public String member_list(Model model) {
+		String[][] members = {
+				{"admin", "관리자", "admin@abc.com", "true", "2020-12-02", "ROLE_ADMIN"},
+				{"user", "사용자", "user@abc.com", "false", "2020-12-04", "ROLE_USER"}
+		};
+		model.addAttribute("memberss", members);
+		return "admin/member/member_list";//member_list.jsp로 members 변수명으로 데이터를 전송
 	}
 	
 	//bind:묶는다는 의미, /admin 요청경로와 admin/home.jsp를 묶는다.
