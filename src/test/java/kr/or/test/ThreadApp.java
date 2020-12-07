@@ -24,6 +24,7 @@ class MyThread extends Thread {
 	public MyThread(String szName) {
 		super(szName);		
 	}
+	@Override
 	public void run() { //MyThread를 start() 호출해야지만 자동 실행되는 메소드
 		for(int cnt=0;cnt<50;cnt++) {
 			System.out.print(this.getName()+" ");
