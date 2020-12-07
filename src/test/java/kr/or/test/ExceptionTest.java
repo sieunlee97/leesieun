@@ -11,24 +11,26 @@ import java.io.IOException;
 public class ExceptionTest {
 
 	public static void main(String[] args) throws IOException{
-		// 진입(실행) 메소드 구현내용
-		// 멤버변수(전역변수) 
-		int number=0;
-		// 클래스형 멤버변수(전역변수) 
-		// InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-		System.out.print("키보드로 0부터 9까지 숫자를 입력해주세요. ");
-		try {
-			number=System.in.read(); //키보드로 한개의 문자만 입력받아서 바이트데이터 반환
-			//number=inputStreamReader.read();//키보드로 한개의 문자만 입력받아서 char형으로 반환
-			//number=1l number=a;
-		} catch (IOException e) {
-			System.out.println("숫자를 입력하지 않으셨습니다.");
-			e.printStackTrace();
+		// 진입 실행 메소드 main()
+		// 메소드 내부변수
+		String[] stringArray = {"10", "2a"};
+		int indexValue = 0;
+		for(int cnt=0; cnt<2; cnt++) {
+			/*
+			indexValue = Integer.parseInt(stringArray[cnt]);//배열의 문자값을 int형변환
+			System.out.println(cnt+ "번째 배열에 저장된 숫자는 = " + indexValue);
+			*/
+			try {
+				indexValue = Integer.parseInt(stringArray[cnt]);//배열의 문자값을 int형변환
+				System.out.println(cnt+ "번째 배열에 저장된 숫자는 = " + indexValue);
+			}catch(NumberFormatException e) {
+				System.out.println("에러메세지 출력 : " + e.toString());
+				System.out.println("개발자가 지정한 에러메세지 : 숫자 변환 시 에러가 발생되었음.");
+			}finally {
+				System.out.println("finally는 try~catch 결과와 상관 없이 항상 실행");
+			}
 		}
-		System.out.println("키보드로 입력받은 바이트 문자 = "+ number);
-		System.out.println("바이트로 반환받은 수를 문자형으로 변환 = "+ (char)number);
-		// int형 number변수를 문자형 char형으로 변환하는 방법 (char)number
-		// ex) 숫자 1을 입력하면, byte형 문자는 49, char형으로 변환하면 1로 출력
+		
 	}
 
 }
