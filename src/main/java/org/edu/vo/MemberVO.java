@@ -18,7 +18,13 @@ public class MemberVO {
 	private String levels;
 	private Date reg_date; // Date클래스형 변수 사용할 때, java.util 패키지 import
 	private Date update_date;
-	
+
+	@Override
+	public String toString() {
+	return "디버그 MemberVO [user_id=" + user_id + ", user_pw=" + user_pw + ", user_name=" + user_name + ", email=" + email
+			+ ", point=" + point + ", enabled=" + enabled + ", levels=" + levels + ", reg_date=" + reg_date
+			+ ", update_date=" + update_date + "]";
+	}
 	//get,set 메소드 필요한 이유: jsp<-get/set메소드->컨트롤러<-get/set메소드->DB
 	public String getUser_id() {
 		return user_id;

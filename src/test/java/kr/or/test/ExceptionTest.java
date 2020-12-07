@@ -1,6 +1,8 @@
 package kr.or.test;
 
 import java.io.IOException;
+
+import org.edu.vo.MemberVO;
 //import java.io.InputStreamReader;
 
 /**
@@ -11,6 +13,15 @@ import java.io.IOException;
 public class ExceptionTest {
 
 	public static void main(String[] args) throws IOException{
+		// toString메소드에 대해서...
+		MemberVO memberVO = new MemberVO(); //jsp폼데이터를 set으로 저장->get으로 출력
+		// 멤버클래스에 값을 입력해 본다. 메모리DB에 입력
+		memberVO.setUser_id("leesieun");
+		memberVO.setUser_name("이시은");
+		memberVO.setEmail("tldms0137@naver.com");
+		System.out.println("회원정보 클래스의 멤버변수 값들 출력하기 = "+memberVO.getUser_name());
+		System.out.println("회원정보 클래스의 멤버변수 값들 출력하기 = "+memberVO.toString());
+		System.out.println("");
 		// 진입 실행 메소드 main()
 		// 메소드 내부변수
 		String[] stringArray = {"10", "2a","100"}; //2a는 강제로 예외사항 발생시키기 위해서
