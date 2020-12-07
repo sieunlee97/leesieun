@@ -13,17 +13,22 @@ public class ExceptionTest {
 	public static void main(String[] args) throws IOException{
 		// 진입 실행 메소드 main()
 		// 메소드 내부변수
-		String[] stringArray = {"10", "2a"};
+		String[] stringArray = {"10", "2a","100"}; //2a는 강제로 예외사항 발생시키기 위해서
 		int indexValue = 0;
-		for(int cnt=0; cnt<2; cnt++) {
+		for(int cnt=0; cnt<=2; cnt++) {
 			/*
 			indexValue = Integer.parseInt(stringArray[cnt]);//배열의 문자값을 int형변환
 			System.out.println(cnt+ "번째 배열에 저장된 숫자는 = " + indexValue);
 			*/
+			// 아래처럼 예외처리를 하면, 프로그램 종료되지 않고, 예외에 대한 메세지만 출력하고 게속 실행됨.
 			try {
 				indexValue = Integer.parseInt(stringArray[cnt]);//배열의 문자값을 int형변환
-				System.out.println(cnt+ "번째 배열에 저장된 숫자는 = " + indexValue);
-			}catch(NumberFormatException e) {
+				System.out.println((cnt+1) + "번째 배열에 저장된 숫자는 = " + indexValue);
+			}catch(ArrayIndexOutOfBoundsException e) {
+				System.out.println("에러메세지 출력 : " + e.toString());
+				System.out.println("개발자가 지정한 에러메세지 : 배열의 크기가 올바르지 않음.");
+			}
+			catch(NumberFormatException e) {
 				System.out.println("에러메세지 출력 : " + e.toString());
 				System.out.println("개발자가 지정한 에러메세지 : 숫자 변환 시 에러가 발생되었음.");
 			}finally {
