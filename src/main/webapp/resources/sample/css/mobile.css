@@ -75,7 +75,7 @@ color:#0064A2;
 /* 헤더영역 끝 */
 
 /* 본문 section 슬라이드 영역 시작 */
-#wrap .slider img {width:100%;} /* Cascade Style Sheet, 특징 : 계단형 스타일지정 */
+#wrap .slide img {width:100%;} /* Cascade Style Sheet, 특징 : 계단형 스타일지정 */
 .carousel-item, .carousel-item img {height:300px;}
 /* 본문 section 슬라이드 영역 끝 */
 

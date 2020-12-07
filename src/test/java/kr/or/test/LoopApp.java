@@ -4,7 +4,7 @@ public class LoopApp {
 
 	public static void main(String[] args) {
 		// 반복문 중에 for문
-		int[] numbers = {11,21,31,41,51,61,71,81,91,101}; //배열변수 선언
+		int[] numbers = {1,2,3,4,5,6,7,8,9,10}; //배열변수 선언
 		int cnt; //반복횟수 카운트하는 역할 변수 선언
 		//for문(반복의 시작 값 정의; 반복의 종료 값 정의; 반복할 때 증가하는 값;) { 반복할 때 구현내용 }
 		for(cnt=0; cnt<10; cnt++) {//cnt++은 cnt=cnt+1과 같은 의미
@@ -28,10 +28,10 @@ public class LoopApp {
 		};
 		//배열타입[][] 2차원배열 = 표 1row, 2row 리스트
 		System.out.println("=========회원리스트=========");
-		System.out.println("user_id | user_name | mail | use | REGdate | levels");
+		System.out.println("user_id | user_name |    mail    | use | REGdate | levels");
 		for(String[] member:members) {
-			System.out.println(member[0]+" "+member[1]+" "+member[2]
-					+" "+member[3]+" "+member[4]+" "+member[5]);
+			System.out.println(member[0]+" | "+member[1]+" | "+member[2]
+					+" | "+member[3]+" | "+member[4]+" | "+member[5]);
 		}
 	}
 
