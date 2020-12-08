@@ -1,4 +1,5 @@
 package kr.or.test;
+
 /**
  * 클래스자료형 사용
  * @author 이시은
@@ -32,12 +33,22 @@ class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [name=" + name + ", age=" + age + ", phoneNum=" + phoneNum + "]";
+		return "디버그용 MemberVO [name=" + name + ", age=" + age + ", phoneNum=" + phoneNum + "]";
 	}
-	
+}
+
+class MemberService { //이 서비스 클래스에 회원 출력에 관련된 메소드를 모아 놓는다.
+	public void printMember(MemberVO[] members_) { //members는 레코드가 여러개=여러줄
+		//서비스 구현 메소드 내용 , 향상된 for반복문 사용
+		int cnt=0;
+		for(MemberVO member:members_) { //members 여러 레코드 중 한 개의 레코드를 member오브젝트로 대입
+			++cnt;
+			System.out.println(cnt+"번째 레코드는 "+member.toString());
+		}
+	}
 }
 public class Step2 {
-
+	
 	public static void main(String[] args) {
 		// 실행 메소드
 		// 멤버변수 name이 public String name; 으로 선언되었다면
@@ -62,6 +73,10 @@ public class Step2 {
 		members[0] = memberVO;
 		members[1] = memberVO2;
 		members[2] = memberVO3;
+		
+		//이전에 사용했던 출력보다는 개선된 방식으로 출력 - MemberService 서비스 전용 클래스 만들어서 처리.
+		MemberService memberService = new MemberService();//자바 오브젝트 객체 생성 방법
+		memberService.printMember(members); // 서비스 클래스의 메소드 호출
 	}
 
 }
