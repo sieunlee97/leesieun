@@ -66,21 +66,22 @@
                       <th>user_id</th> <!-- 테이블 헤드 타이틀태그 th -->
                       <th>user_name[point]</th>
                       <th>email</th>
-                      <th>Use</th>
-                      <th>REGDATE</th>
+                      <th>enabled</th>
+                      <th>reg_date</th>
                       <th>levels</th>
                     </tr>
                   </thead>
                   <tbody>
+                  <!-- jstl 표준 core 태그  사용해서  반복문으로 AdminController에서 가져온 members Object 값을 출력 -->
                   <c:forEach items="${memberss}" var="member">
                   	 <tr>
-                      <td><a href="/admin/member/member_view?user_id=${member[0]}">${member[0]}</a></td> <!-- table data 태그 -->
+                      <td><a href="/admin/member/member_view?user_id=${member.user_id}">${member.user_id}</a></td> <!-- table data 태그 -->
                       <!-- 위의 링크a 값은 리스트가 늘어날수록 동적으로 user_id값이 변하게 된다. 개발자가 jsp처리 -->
-                      <td>${member[1]}</td>
-                      <td>${member[2]}</td>
-                      <td>${member[3]}</td>
-                      <td>${member[4]}</td>
-                      <td><span class="badge bg-danger">>${member[5]}</span></td> <!-- span은 자리를 차지하지 않음. 텍스트에 배지만 적용하기 위해 -->
+                      <td>${member.user_name}[${member.point}]</td>
+                      <td>${member.email}</td>
+                      <td>${member.enabled}</td>
+                      <td>${member.reg_date}</td>
+                      <td><span class="badge bg-danger">>${member.levels}</span></td> <!-- span은 자리를 차지하지 않음. 텍스트에 배지만 적용하기 위해 -->
                       <!-- 권한표시는 부트스트랩 배지 클래스 사용 -->
                     </tr>
                   </c:forEach>
