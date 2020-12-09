@@ -127,7 +127,7 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  <!-- 관리자단 헤더 끝 -->
+  <!-- 관리자단 헤더 끝 header.jsp --> 
 
   <!-- Content Wrapper. Contains page content, 대시보드 본문 -->
   <div class="content-wrapper">
@@ -136,12 +136,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">회원리스트</h1>
+            <h1 class="m-0">게시판리스트</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">회원리스트</li>
+              <li class="breadcrumb-item active">게시판리스트</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -157,7 +157,7 @@
           <div class="col-12"> <!-- 부트스트랩의 그리드시스템 중 12 가로칼럼 (width:100%와 같은 뜻) -->
             <div class="card"> <!-- 부트스트랩의 카드클래스 : 네모난 디자인 -->
               <div class="card-header">
-                <h3 class="card-title">회원 검색</h3>
+                <h3 class="card-title">게시물 검색</h3>
                 <div class="card-tools">
                   
                   <form name="search_form" action="member_list.html" method="get">
@@ -166,8 +166,8 @@
                     <div>
                        <select class="form-control">
                             <option value="" selected>-전체-</option>
-                            <option value="user_id" data-select2-id="8">ID</option>
-                            <option value="user_name" data-select2-id="24">이름</option>
+                            <option value="user_id" data-select2-id="8">제목</option>
+                            <option value="user_name" data-select2-id="24">내용</option>
                        </select>
                     </div>
                     <div>
@@ -188,32 +188,31 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>user_id</th> <!-- 테이블 헤드 타이틀태그 th -->
-                      <th>user_name[point]</th>
-                      <th>email</th>
-                      <th>use</th>
+                      <th>bno</th> <!-- 테이블 헤드 타이틀태그 th -->
+                      <th>title[replycnt]</th>
+                      <th>writer</th>
                       <th>regdate</th>
-                      <th>levels</th>
+                      <th>viewcnt</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr onclick="javascript:location.href='member_view.html?user_id=admin';" style="cursor:pointer;">
-                      <td><a href="member_view.html?user_id=admin">admin</a></td> <!-- table data 태그 -->
-                      <!-- 위의 링크a 값은 리스트가 늘어날수록 동적으로 user_id값이 변하게 된다. 개발자가 jsp처리 -->
-                      <td>관리자</td>
-                      <td>admin@abc.com</td>
-                      <td>true</td>
-                      <td>2020-12-01</td>
-                      <td><span class="badge bg-danger">ROLE_ADMIN</span></td> <!-- span은 자리를 차지하지 않음. 텍스트에 배지만 적용하기 위해 -->
+                    <tr>
+                      <td>1</td> <!-- table data 태그 -->
+                      <!-- 아래의 링크a 값은 리스트가 늘어날수록 동적으로  bno값이 변하게 된다. 개발자가 jsp처리 -->
+                      <td><a href="board_view.html?bno=1">첫번째 게시물 제목[2]</a></td>
+                      <td>admin</td>
+                      <td>2020-12-09</td>
+                      <td><span class="badge bg-danger">3</span></td>
                       <!-- 권한표시는 부트스트랩 배지 클래스 사용 -->
                     </tr>
                     <tr>
-                      <td><a href="member_view.html?user_id=user">user</a></td> <!-- table data 태그 -->
-                      <td>사용자</td>
-                      <td>user@abc.com</td>
-                      <td>false</td>
-                      <td>2020-12-01</td>
-                      <td><span class="badge bg-success">ROLE_USER</span></td>
+                      <td>2</td> <!-- table data 태그 -->
+                      <!-- 아래의 링크a 값은 리스트가 늘어날수록 동적으로  bno값이 변하게 된다. 개발자가 jsp처리 -->
+                      <td><a href="board_view.html?bno=1">두번째 게시물 제목[0]</a></td>
+                      <td>user02</td>
+                      <td>2020-12-09</td>
+                      <td><span class="badge bg-danger">0</span></td>
+                      <!-- 권한표시는 부트스트랩 배지 클래스 사용 -->
                     </tr>
                   </tbody>
                 </table>
@@ -225,7 +224,7 @@
             
             <!-- 버튼영역 시작 -->
             <div class="card-body">
-            	<a href="member_write.html" class="btn btn-primary float-right">CREATE</a>
+            	<a href="board_write.html" class="btn btn-primary float-right">CREATE</a>
             	<!-- 부트스트랩 디자인 버튼클래스를 이용해서 a태그를 버튼모양 만들기 -->
             	<!-- btn클래스명이 버튼모양을 변경, btn-primary클래스명의 버튼색상 변경 -->
             </div>
