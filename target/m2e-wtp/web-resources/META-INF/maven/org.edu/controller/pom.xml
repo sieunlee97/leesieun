@@ -118,6 +118,12 @@
 		</dependency>        
 		
 		<!-- 앞으로 추가되는 프로그램 외부모듈은 아래에 추가 예정입니다. -->
+		<!-- 서버시간 가져오는 모듈 -->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.6</version>
+		</dependency>
 		
 	</dependencies>
     <build>
