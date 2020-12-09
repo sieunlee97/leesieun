@@ -2,7 +2,32 @@
 ### 20201200(수)
 - 서버시간 가져오기 미션 MainController클래스 수정
 - pom.xml 외부라이브러리를 관리하는 메이븐설정파일을 이용해서 외부모듈 가져와 사용하는 목적. 스프링프로젝트에서 메이븐 기본작업 테스트용
-- Step3
+- Step3(열거형-Enum형 자료형클래스 사용) 를 생성
+- 전체 틀 : 자바이론, 아래 데이터 흐름을 제어하는데 사용.
+- > 여러명의 회원 정보(MemberVO-자료형클래스를이용부분)를
+- > 전달주고받고(MainControler-메서드,URL호출부분),
+- > 출력(MemberService-비지니스로직부분)하는 메소드 선언하기
+- > 미지의 부분 -----------------------------------------
+- > 데이터베이스CRUD처리부분(MemberDAO-데이터베이스엑세스부분)
+- ====================================================================
+- prefix(jstl), suffix(servlet-context.xml)
+- 아래에서 사용된 prefix는 생략 가능하다.
+- <beans:property name="prefix" value="/WEB-INF/views/" />
+- 아래에서 사용된 suffix는 생략 가능하다.
+- <beans:property name="suffix" value=".jsp" />
+- @RequestMapping ... 반환값에서 prefix(/WEB-INF/views/)가 사용,suffix(.jsp)사용
+-	...
+-		return "{prefix}admin/board/board_list{sufflix};
+-	...
+- =====================================================================
+- 스프링 관리자단에서 [게시물 관리]메뉴 만들기
+- webapp/resources/html 만들고 jsp 변환 작업
+- Rest API 방식으로 화면처리하는 것이 트렌드(빅데이터를 시각화하는데 RestAPI+Ajax 기술 사용)
+- Rest: Representation 기존 데이터를 가지고, 화면 깜빡임 없이 데이터를 재가공하는 처리
+- Rest API 사용되는 기술 : 데이터 전송/수신을 Ajax기술(프론트-개발자)로 처리. API(서버단기술)
+- Ajax : Asyncronized Javascript and Xml, 비동기통신으로 자바스크립트로 JSON(text)를 재처리하는 기술
+
+
 
 ### 20201208(화)
 - 파일입출력 처리 마무리
