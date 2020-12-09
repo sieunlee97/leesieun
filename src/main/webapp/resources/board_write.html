@@ -1,0 +1,276 @@
+<!-- 관리자단 헤더 시작 header.jsp -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>관리자 | Dashboard</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="/resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="/resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="/resources/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/resources/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="/resources/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="/resources/plugins/summernote/summernote-bs4.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- 관리자화면 최상단 아이콘2개 Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- 관리자화면 왼쪽메뉴부분 Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- 관리자 상단로고 Brand Logo -->
+    <a href="home.html" class="brand-link">
+      <img src="/resources/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Spring 프로젝트</span>
+    </a>
+
+    <!-- 왼쪽메뉴 Sidebar -->
+    <div class="sidebar">
+      <!-- 로그인한 사용자표시 Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="/resources/dist/img/default-150x150.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">관리자</a>
+        </div>
+      </div>
+
+      <!-- 검색폼 SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 사용자 홈과 대시보드 메뉴 Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="/" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                	사용자 홈
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./member_list.html" class="nav-link">
+                <!-- 위 메뉴선택시 활성화active 되는 것은 j쿼리로 만들예정입니다. -->
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>관리자 관리</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./board_list.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>게시물 관리</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+<!-- 관리자단 헤더 끝 header.jsp-->
+
+  <!-- 대시보드 본문 Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- 본문헤더 Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">게시물등록</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">게시물등록</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- 본문내용 Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        
+        <div class="row"><!-- 부트스트랩의 디자인 클래스 row -->
+          <div class="col-12"><!-- 그리드시스템중 12가로칼럼 width:100% -->
+          
+          <!-- form start -->
+          <form name="write_form" action="member_list.html" method="post">
+          <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">CREATE Board</h3>
+              </div>
+              <!-- /.card-header -->
+              
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="user_id">title</label>
+                    <input type="text" class="form-control" name="user_id" id="user_id" placeholder="제목 입력해주세요." required>
+                  <!-- form에서 input같은 입력태그에는 name 속성이 반드시 필요.name 속성값 = DB 필드 속성명
+                  DB에 입력할 때 값을 전송하게 되는데 전송값을 저장하는 이름이 name이 되고,위에서는 user_id이다.-->
+                  </div>
+                  <div class="form-group">
+                  <!-- label for과 textarea id는 같게 설정 -->
+                    <label for="content">Content</label>
+					<textarea row="5" name="content" id="content" class="form-control"></textarea>
+                  </div>
+                  <div class="form-group">
+                  	<label for="email">writer</label>
+                  	<input type="text" class="form-control" name="email" id="email" placeholder="작성자을 입력해주세요." required>
+                  	<!-- 필수 입력값은 html5에서 지원하는 유효성 검사 중 required 속성 사용해서 null값을 체크한다.(유효성검사) -->
+                  </div>
+                  <div class="form-group">
+                  	<label for="customFile">attach</label>
+                  	<div class="custom-file">
+                      <input type="file" name="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">파일을 선택해주세요</label>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+             </div> <!-- /.card card-primary -->
+          
+          <!-- 버튼영역 시작 -->
+            <div class="card-body">
+              	<a href="member_list.html" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
+              	<button type="submit" class="btn btn-warning float-right mr-1 text-white">SUBMIT</button>
+              	<!-- a태그는 링크이동은 되지만, post값을 전송하지 못한다. 그래서 button태그를 사용. -->
+              </div>
+          <!-- 버튼영역 끝 -->
+          
+          </form>
+          <!-- 폼내부에 버튼이 있어야지만, submit버튼이 작동한다. -->
+          
+          </div>
+        </div>
+        
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+<!-- 관리자단 푸터 시작 footer.jsp -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.1.0-rc
+    </div>
+  </footer>
+  
+
+  <!-- 로그아웃 영역 Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="/resources/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/resources/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="/resources/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="/resources/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="/resources/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="/resources/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="/resources/plugins/moment/moment.min.js"></script>
+<script src="/resources/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/resources/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="/resources/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/resources/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/resources/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="/resources/dist/js/pages/dashboard.js"></script>
+<!-- 첨부파일 부트스트랩 디자인JS -->
+<script src="/resources/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- 첨부파일 선택한 내용 출력 실행 -->
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>
+</body>
+</html>
+<!-- 관리자단 푸터 끝 -->
