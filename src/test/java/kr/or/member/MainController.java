@@ -2,9 +2,9 @@ package kr.or.member;
 
 import java.io.IOException;
 import java.net.InetAddress;
+//아래 두 예외처리는 IOException에 포함
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -21,8 +21,8 @@ public class MainController {
 		// 실행 메소드
 
 		MemberVO memberVO = new MemberVO();
-		memberVO.setName("홍길동");
-		memberVO.setAge(45);
+		memberVO.setName("이시은");
+		memberVO.setAge(25);
 		memberVO.setPhoneNum("010-0000-0000");
 
 		MemberVO memberVO2 = new MemberVO();
@@ -47,6 +47,8 @@ public class MainController {
 		
 		
 		//서버시간 가져오기
+		System.out.println();
+		System.out.println("========================= 서버시간 출력 =========================");
 		//서버시간을 가져올 수 있는 commons-net Maven Dependencies 사용해서 외부라이브러리 추가
 		NTPUDPClient timeClient = new NTPUDPClient();
 		timeClient.setDefaultTimeout(2000); //네트워크로 서버시간을 가져올 때, 응답 시간이 1초를 넘기면 재접속해라.
