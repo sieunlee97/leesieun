@@ -225,8 +225,46 @@
               	  	<!-- 게시판에서는 폼을 전송할때 submit타입을 사용하지만, 댓글은 Ajax로 전송하기 땜누에 button타입으로 지정 -->
               	  </div>
               	  </form>
+              	  
+					<div class="timeline ml-3">
+						<div class="time-label">
+							<span class="bg-red">Reply List[1]&nbsp;</span>
+						</div>
+						<div>
+							<i class="fas fa-envelope bg-blue"></i>
+							<div class="timeline-item">
+								<h3 class="timeline-header">작성자</h3>
 
-					
+								<div class="timeline-body">댓글 입력 테스트</div>
+								<div class="timeline-footer">
+									<a class="btn btn-primary btn-sm">수정</a> 
+								</div>
+							</div>
+						</div>
+						<div>
+							<i class="fas fa-envelope bg-blue"></i>
+							<div class="timeline-item">
+								<h3 class="timeline-header">작성자2</h3>
+
+								<div class="timeline-body">댓글 입력 테스트2</div>
+								<div class="timeline-footer">
+									<a class="btn btn-primary btn-sm">수정</a> 
+								</div>
+							</div>
+						</div>
+					</div><!-- ./timeline  -->
+					<!-- 페이징처리 시작 -->
+		            <div class="pagination justify-content-center">
+			          	 <ul class="pagination">
+			              <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">&laquo;</a></li>
+			              <!-- previous (위) -->
+			              <li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+			              <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+			              <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+			              <!-- next (아래) -->
+			              <li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">&raquo;</a></li>
+			             </ul>
+		            </div><!-- 페이징처리 끝 -->
 
 			</div><!-- 댓글영역 끝 -->
           </div> <!-- col-12 끝 -->
