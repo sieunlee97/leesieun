@@ -207,7 +207,7 @@
 	              <div class="card-header">
 	                <h5 class="card-title">Add New Reply</h5>
               	  </div>
-              	  <form action="#" name="reply_form" method="post">
+              	  <form action="board_view.html" name="reply_form" method="post">
               	   <div class="card-body">
               	   <div class="form-group">
                     <label for="writer">Writer</label>
@@ -221,15 +221,17 @@
                   <!-- form에서 input같은 입력태그에는 name 속성이 반드시 필요.name 속성값 = DB 필드 속성명
                   DB에 입력할 때 값을 전송하게 되는데 전송값을 저장하는 이름이 name이 되고,위에서는 reply_text이다.-->
                   </div>
-                  	<button type="button" class="btn btn-warning float-left mr-1 text-white">댓글등록</button>
+                  	<button type="button" class="btn btn-warning float-left mr-1 text-white" id="insertReplyBtn">댓글등록</button>
               	  	<!-- 게시판에서는 폼을 전송할때 submit타입을 사용하지만, 댓글은 Ajax로 전송하기 땜누에 button타입으로 지정 -->
               	  </div>
               	  </form>
               	  
 					<div class="timeline ml-3">
+						<!-- .time-label의 before -->
 						<div class="time-label">
 							<span class="bg-red">Reply List[1]&nbsp;</span>
 						</div>
+						<!-- .time-label의 after -->
 						<div>
 							<i class="fas fa-envelope bg-blue"></i>
 							<div class="timeline-item">
@@ -238,22 +240,8 @@
 								<div class="timeline-body">댓글 입력 테스트</div>
 								<div class="timeline-footer">
 									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
 									 	수정
-									</button>
-								</div>
-							</div>
-						</div>
-						<div>
-							<i class="fas fa-envelope bg-blue"></i>
-							<div class="timeline-item">
-								<h3 class="timeline-header">작성자2</h3>
-
-								<div class="timeline-body">댓글 입력 테스트2</div>
-								<div class="timeline-footer">
-									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-									  	수정
 									</button>
 								</div>
 							</div>
@@ -333,26 +321,91 @@
 <script src="/resources/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/resources/dist/js/pages/dashboard.js"></script>
+
+<!-- 자바스크립트용 #template element 제작  jstl 향상된 for문과 같은 역할 
+	 화면을 재구현Representation하는 함수 
+	 jstl 사용하려면, jsp에서 <%@ taglib uri=... %>처럼 외부 core를 가져와서 사용한 것처럼
+	 자바스크립트에서도 외부 core를 가져와야한다. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+
+<!-- 댓글템플릿(빵틀) 만들기 -->
+<script id="template" type="text/x-handlebars-template">
+{{#each .}}
+<div>
+	<i class="fas fa-envelope bg-blue"></i>
+	<div class="timeline-item">
+		<h3 class="timeline-header">{{replyer}}</h3>
+		<div class="timeline-body">
+			{{replytext}}
+		</div>
+		<div class="timeline-footer">
+			<button type="button" class="btn btn-primary" data-toggle="modal"data-target="#replyModal">
+				수정
+			</button>
+		</div>
+	</div>
+</div>
+{{/each}}
+</script>
+
+<script>
+var printReplyList = function(data, target, templateObject) {
+	var template = Handlebars.compile(templateObject.html()); //html태그로 변환
+	var html = template(data); //빅데이터를 리스트탬플릿에 바인딩(데이터결합,묶음) 역할
+	target.after(html); //target은 .time-label 클래스 영역을 가리킨다.
+};
+</script>
+
+<!-- 댓글 등록 버튼 액션 처리 -->
+<script>
+	$(document).ready(function(){	
+		$("#insertReplyBtn").on("click", function() { //댓글등록버튼 클릭했을 때 구현 내용
+			// alert("디버그");
+			// Ajax 이용해서, 화면을 Representation (REST-API방식) 부분 화면을 재구현
+			$.ajax({
+				//여기서부터는 프론트엔드 개발자 영역
+				type:'get', //지금은 html이라서 get방식이지만, jsp로 가면 post방식으로 바꿔야한다.(보안)
+				url:'board_view.html', //jsp로 가면, ReplyController에서 지정한 url로 변경
+				dataType:'text', //ReplyController로부터 데이터를 text형식으로 받겠다고 명시.
+				success:function(result){ //응답이 성공하면(상태값 200 OK), 위 경로에서 반환받은 result(JSON 텍스트 데이터) 이용해서 화면 재구현
+					//지금은 html이라서 result값을 이용할 수 없기 대문에 댓글더미데이터를 만든다.
+					result=[
+						//{rno:댓글번호, bno:게시믈번호, replytext:"첫번째댓글", replyer:"admin", regdate:타임스탬프}
+						{rno:1,bno:15,replytext:"첫번째댓글",replyer:"admin",regate:1601234512345}, //첫번째 댓글 데이터
+						{rno:2,bno:15,replytext:"두번째댓글",replyer:"user02",regate:1601234512345} //두번째 댓글 데이터
+					];// 위 url이 공공데이터라고 생각하면, 위 데이터를 화면에 구현함녀 빅데이터의 시각화로 불리게 된다.
+					
+					//printReplyList(빅데이터, 출력할 타겟 위치, 빅데이터를 가지고 바인딩된-묶인 템플릿화면))
+					printReplyList(result, $(".time-label"), $("#template"));//화면에 출려하는 구현함수를 호출하면 실행.
+					//result값을 받아서 #template으로 가공시켜서 time-label 위치에 출력한다.
+				} 
+			});
+		});
+	});
+</script>
+
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">작성자</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+		<input type="text" class="form-control" name="modal_text" id="modal_text" placeholder="내용 입력해주세요." required> 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary">수정</button>
+        <button type="button" class="btn btn-danger">삭제</button>
       </div>
     </div>
   </div>
 </div>
+
 </body>
 </html>
 <!-- 관리자단 푸터 끝 -->
