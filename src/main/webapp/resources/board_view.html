@@ -232,20 +232,20 @@
 							<span class="bg-red">Reply List[1]&nbsp;</span>
 						</div>
 						<!-- .time-label의 after -->
-						<div>
+						<!-- <div>
 							<i class="fas fa-envelope bg-blue"></i>
 							<div class="timeline-item">
 								<h3 class="timeline-header">작성자</h3>
 
 								<div class="timeline-body">댓글 입력 테스트</div>
 								<div class="timeline-footer">
-									<!-- Button trigger modal -->
+									Button trigger modal
 									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
 									 	수정
 									</button>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div><!-- ./timeline  -->
 					<!-- 페이징처리 시작 -->
 		            <div class="pagination justify-content-center">
@@ -331,13 +331,11 @@
 <!-- 댓글템플릿(빵틀) 만들기 -->
 <script id="template" type="text/x-handlebars-template">
 {{#each .}}
-<div>
+<div class="template-div" data-rno="{{rno}}">
 	<i class="fas fa-envelope bg-blue"></i>
 	<div class="timeline-item">
 		<h3 class="timeline-header">{{replyer}}</h3>
-		<div class="timeline-body">
-			{{replytext}}
-		</div>
+		<div class="timeline-body">{{replytext}}</div>
 		<div class="timeline-footer">
 			<button type="button" class="btn btn-primary" data-toggle="modal"data-target="#replyModal">
 				수정
@@ -351,7 +349,8 @@
 <script>
 var printReplyList = function(data, target, templateObject) {
 	var template = Handlebars.compile(templateObject.html()); //html태그로 변환
-	var html = template(data); //빅데이터를 리스트탬플릿에 바인딩(데이터결합,묶음) 역할
+	var html = template(data); //빅데이터를 리스트탬플릿에 바인딩(데이터결합,묶음) 역할. 변수 html에 저장되었음.
+	$(".template-div").remove(); // 화면에 보이는 댓글리스트만 지우기
 	target.after(html); //target은 .time-label 클래스 영역을 가리킨다.
 };
 </script>
@@ -384,18 +383,31 @@ var printReplyList = function(data, target, templateObject) {
 	});
 </script>
 
+<!-- 댓글 수정 버튼을 클릭했을 때, 팝업창의 내용을 동적으로 변경시키기 구현 -->
+<script>
+$(document).ready(function() {
+	$(".timeline").on("click", ".template-div", function(event){ //.template-div 는 댓글리스트 영역
+		//$(this); 클릭한 댓글에 따라서 this는 첫번째 댓글일 수도 있고, 두번째 댓글일 수도 있다.
+		$("#rno").val($(this).attr("data-rno"));
+		$(".modal-title").html($(this).find(".timeline-header").text());
+		$("#replytext").val($(this).find(".timeline-body").text());
+		// 클릭으로 선택한 댓글의 .thimeline-body영역의 text문자를 모달창의 #replytext영역에 입력하겠다.
+	});
+});
+</script>
 <!-- Modal -->
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">작성자</h5>
+        <h5 class="modal-title" id="exampleModalLabel">작성자</h5><!-- 작성자는 동적으로 값이 바뀐다. -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-		<input type="text" class="form-control" name="modal_text" id="modal_text" placeholder="내용 입력해주세요." required> 
+      	<input type="hidden" name="rno" id="rno" value=""> <!-- $(".timeline").on("click", 액션으로 value값이 채워집니다. -->
+		<input type="text" class="form-control" name="replytext" id="replytext" placeholder="내용 입력해주세요." required> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
