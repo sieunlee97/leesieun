@@ -1,12 +1,18 @@
 package org.edu.controller;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
+import org.edu.util.SecurityCode;
+import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +22,56 @@ import org.springframework.web.bind.annotation.RequestParam;
 // 스프링에서 사용가능한 클래스를 빈(bean)이라고 하고, @Controller 클래스를 사용하면 된다.
 @Controller
 public class AdminController {
+	//@inject방식으로 외부 라이브러리(모듈, 클래스, 인스턴스) 가져와쓰기(아래)
+	@Inject
+	SecurityCode secCode;
+
+	@RequestMapping(value="/admin/board/board_view", method=RequestMethod.GET)
+	public String board_view(Model model) throws Exception {
+		//jsp로 보낼 더미데이터 memberVO에 담아서 보낸다.
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBno(1);
+		boardVO.setTitle("첫번째 게시물입니다.");
+		String xss_data="첫번째 내용입니다.<br>줄바꿈 자리입니다.<script>alert('메롱')</script>";
+		boardVO.setContent(secCode.unscript(xss_data));
+		boardVO.setWriter("admin");
+		Date regdate = new Date();
+		boardVO.setRegdate(regdate);
+		boardVO.setView_count(2);
+		boardVO.setReply_count(0);
+		model.addAttribute("boardVO", boardVO);
+		return "admin/board/board_view";
+	}
 	@RequestMapping(value="/admin/board/board_list", method=RequestMethod.GET)
 	public String board_list(Model model) throws Exception {
+		
+		//테스트용 더미 게시판 데이터 만들기
+		BoardVO board_input = new BoardVO();
+		board_input.setBno(1);
+		board_input.setTitle("첫번째 게시물입니다.");
+		board_input.setContent("첫번째 게시물 내용입니다.<br>줄바꿈했습니다.");
+		board_input.setWriter("admin");
+		Date regdate = new Date();
+		board_input.setRegdate(regdate);
+		board_input.setView_count(2);
+		board_input.setReply_count(0);
+		
+		BoardVO[] board_array = new BoardVO[2];
+		board_array[0] = board_input;
+		// ----------------------------------------------
+		BoardVO board_input2 = new BoardVO();
+		board_input2.setBno(2);
+		board_input2.setTitle("두번째 게시물입니다.");
+		board_input2.setContent("두번째 게시물 내용입니다.<br>줄바꿈했습니다.");
+		board_input2.setWriter("user02");
+		board_input2.setRegdate(regdate);
+		board_input2.setView_count(2);
+		board_input2.setReply_count(0);
+		// board_input.setBno(2); // 게시물번호만 2로 변경, 나머지값들은 변경없이 board_array[1]에 저장
+		board_array[1] = board_input2;
+	
+		List<BoardVO> board_list = Arrays.asList(board_array); //배열타입을 List타입으로 변경 절차.
+		model.addAttribute("board_list", board_list);
 		
 		return "admin/board/board_list"; 
 	}
@@ -62,6 +116,7 @@ public class AdminController {
 		paramMap.put("age",40);
 		System.out.println("해시데이터타입 출력 " + paramMap);
 		
+		
 		//members 2차원 배열 변수를 MemberVO 클래스형 오브젝트 members_input로 변경(아래)
 		MemberVO members_input = new MemberVO();
 		members_input.setUser_id("admin");
@@ -77,13 +132,16 @@ public class AdminController {
 		MemberVO[] members_array = new MemberVO[2]; // 클래스형 배열 오브젝트 생성
 		members_array[0]=members_input;
 		members_array[1]=members_input;
+		
 		//-----------------------------------------------------------------------------
+		
 		//실제 코딩에서는 배열타입으로 보내지 않고, List타입(목록)으로 model이용해서 jsp로 보낸다.
 		List<MemberVO> members_list = Arrays.asList(members_array);
 		//위에서 만든 members_arrya배열오브젝트를 Arrays.asList메소드로 리스트타입으로 변경
 		//위에서 데이터타입연습으로 총 3가지 데이터타입 확인했음.
 		System.out.println("List타입의 오브젝트 클래스 내용을 출력 " + members_list.toString());
 		model.addAttribute("memberss", members_list);//members 2차원 배열을 members_array 클래스 오브젝트로 변경
+		
 		return "admin/member/member_list";//member_list.jsp로 members 변수명으로 데이터를 전송
 	}
 	

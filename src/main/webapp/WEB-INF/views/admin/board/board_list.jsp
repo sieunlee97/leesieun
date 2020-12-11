@@ -83,7 +83,7 @@
                       <c:out value="${boardVO.title}"></c:out>[<c:out value="${boardVO.reply_count}"></c:out>]
                       </a></td>
                       <td><c:out value="${boardVO.writer}"></c:out></td>
-                      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO_regdate}"/></td>
+                      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}"/></td>
                       <td><span class="badge bg-danger">${boardVO.view_count}</span></td>
                       <!-- 권한표시는 부트스트랩 배지 클래스 사용 -->
                     </tr>

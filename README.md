@@ -1,4 +1,31 @@
 ## v4.0.0 프로그램언어 활용
+###20201211(금)
+- BoardVO 클래스 만들기
+- > AdminController에서 model클래스를 이용해서 jsp로 board_list 데이터 세트를 보낼 때 필요한 클래스
+- AdminController에서 board_list, board_view, board_write 바인드 매핑 만들기
+- board_list.jsp, board_view.jsp, board_jsp 만들기
+
+------------------------------------------------------------------
+- 앞으로 작업예정 내용
+- 스프링 테스트 pom.xml dependency 의존성 추가
+- junit(JavaUnit)테스트 설정 후 기본 unit(단위)테스트
+- jdbc(Java DB Connection) 사용 pom.xml 의존성 추가
+- Hsql 사용 pom.xml 의존성 추가
+- MyBatis(CRUD쿼리 관리툴) 사용 pom.xml 의존성 추가 - DB 디버그용 드라이버 사용 pom.xml 의존성 추가
+- junit으로 DB접근 후 관리자단 회원관리 CRUD unit 테스트 
+- 스프링 AOP(관점지향프로그래밍-OOP의 확장)기능으로 개발용 디버그출력환경 만들기
+- 실제 회원관리 화면 CRUD 적용
+- 실제 게시판 화면 CRUD 적용
+- 파일 업로드 라이브러리 사용 pom.xml 의존성 추가
+- 게시판 업로드 화면 구현
+- Json데이터 사용 pom.xml 의존성 추가
+- 실제 댓글 화면 CRUD 적용(우리가 만들어서 제공 REST-API 백엔드단)
+- 사용자단 화면 html 소스를 jsp로 만들기
+- 스프링시큐리티 로그인 구현 pom.xml 의존성 추가
+- 사용자단 CRUD 구현
+- 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공REST-API 백엔드단) 사용 등등. pom.xml 의존성 추가
+- 오라클로 마이그레이션 작업
+
 ### 20201210(목)
 - 모달(Modal) : 이용자가 팝업 대화상자 내용을 작업하기 전에는 다른 화면으로 이동하지 못하는 방식의 팝업창
 - 모달리스(Modeless) : 이용자가 팝업 대화상자 내용을 작업하기 전이라도 팝업창을 띄운 상태에서 다른 창으로 이동 가능
