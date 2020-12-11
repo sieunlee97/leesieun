@@ -70,9 +70,9 @@
           
           <!-- 버튼영역 시작 -->
             <div class="card-body">
-              	<a href="board_list.html" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
-              	<a href="board_list.html" class="btn btn-danger float-right mr-1">DELETE</a>
-              	<a href="board_write.html" class="btn btn-warning float-right mr-1 text-white">UPDATE</a>
+              	<a href="/admin/board/board_list" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
+              	<button class="btn btn-danger float-right mr-1">DELETE</button>
+              	<a href="/admin/board/board_update?bno=${boardVO.bno}" class="btn btn-warning float-right mr-1 text-white">UPDATE</a>
               	<!-- 부트스트랩 디자인 버튼클래스를 이용해서 a태그를 버튼모양 만들기(위) -->
               	<!-- btn클래스명이 버튼모양으로 변경, btn-primary클래스명은 버튼색상을 변경하는역할 -->
               	<!-- 
@@ -92,20 +92,19 @@
               	  <form action="board_view.html" name="reply_form" method="post">
               	   <div class="card-body">
               	   <div class="form-group">
-                    <label for="writer">Writer</label>
-                    <input type="text" class="form-control" name="writer" id="writer" placeholder="작성자를 입력해주세요." required>
+                    <label for="replyer">Replyer</label>
+                    <input type="text" class="form-control" name="replyer" id="replyer" placeholder="작성자를 입력해주세요." required>
                   <!-- form에서 input같은 입력태그에는 name 속성이 반드시 필요.name 속성값 = DB 필드 속성명
-                  DB에 입력할 때 값을 전송하게 되는데 전송값을 저장하는 이름이 name이 되고,위에서는 writer이다.-->
                   </div>
                   <div class="form-group">
-                    <label for="reply_text">Reply Text</label>
-                    <input type="text" class="form-control" name="reply_text" id="reply_text" placeholder="내용 입력해주세요." required>
+                    <label for="replytext">Reply Text</label>
+                    <input type="text" class="form-control" name="replytext" id="replytext" placeholder="내용 입력해주세요." required>
                   <!-- form에서 input같은 입력태그에는 name 속성이 반드시 필요.name 속성값 = DB 필드 속성명
-                  DB에 입력할 때 값을 전송하게 되는데 전송값을 저장하는 이름이 name이 되고,위에서는 reply_text이다.-->
+                  DB에 입력할 때 값을 전송하게 되는데 전송값을 저장하는 이름이 name이 되고,위에서는 replytext이다.-->
                   </div>
                   	<button type="button" class="btn btn-warning float-left mr-1 text-white" id="insertReplyBtn">댓글등록</button>
               	  	<!-- 게시판에서는 폼을 전송할때 submit타입을 사용하지만, 댓글은 Ajax로 전송하기 땜누에 button타입으로 지정 -->
-              	  </div>
+              	  	</div>
               	  </form>
               	  
 					<div class="timeline ml-3">
@@ -129,6 +128,7 @@
 							</div>
 						</div> -->
 					</div><!-- ./timeline  -->
+					
 					<!-- 페이징처리 시작 -->
 		            <div class="pagination justify-content-center">
 			          	 <ul class="pagination">
@@ -171,7 +171,7 @@
 		<h3 class="timeline-header">{{replyer}}</h3>
 		<div class="timeline-body">{{replytext}}</div>
 		<div class="timeline-footer">
-			<button type="button" class="btn btn-primary" data-toggle="modal"data-target="#replyModal">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
 				수정
 			</button>
 		</div>
@@ -197,10 +197,11 @@ var printReplyList = function(data, target, templateObject) {
 			// Ajax 이용해서, 화면을 Representation (REST-API방식) 부분 화면을 재구현
 			$.ajax({
 				//여기서부터는 프론트엔드 개발자 영역
-				type:'get', //지금은 html이라서 get방식이지만, jsp로 가면 post방식으로 바꿔야한다.(보안)
-				url:'board_view.html', //jsp로 가면, ReplyController에서 지정한 url로 변경
+				type:'post', //지금은 html이라서 get방식이지만, jsp로 가면 post방식으로 바꿔야한다.(보안)
+				url:'/reply/reply_write', //jsp로 가면, ReplyController에서 지정한 url로 변경
 				dataType:'text', //ReplyController로부터 데이터를 text형식으로 받겠다고 명시.
 				success:function(result){ //응답이 성공하면(상태값 200 OK), 위 경로에서 반환받은 result(JSON 텍스트 데이터) 이용해서 화면 재구현
+					alert(result);
 					//지금은 html이라서 result값을 이용할 수 없기 대문에 댓글더미데이터를 만든다.
 					result=[
 						//{rno:댓글번호, bno:게시믈번호, replytext:"첫번째댓글", replyer:"admin", regdate:타임스탬프}
@@ -220,7 +221,7 @@ var printReplyList = function(data, target, templateObject) {
 <!-- 댓글 수정 버튼을 클릭했을 때, 팝업창의 내용을 동적으로 변경시키기 구현 -->
 <script>
 $(document).ready(function() {
-	$(".timeline").on("click", ".template-div", function(event){ //.template-div 는 댓글리스트 영역
+	$(".timeline").on("click", ".template-div", function(){ //.template-div 는 댓글리스트 영역
 		//$(this); 클릭한 댓글에 따라서 this는 첫번째 댓글일 수도 있고, 두번째 댓글일 수도 있다.
 		$("#rno").val($(this).attr("data-rno"));
 		$(".modal-title").html($(this).find(".timeline-header").text());
@@ -245,8 +246,8 @@ $(document).ready(function() {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary">수정</button>
-        <button type="button" class="btn btn-danger">삭제</button>
+        <button type="button" class="btn btn-primary" id="updateReplyBtn">수정</button>
+        <button type="button" class="btn btn-danger" id="deleteReplyBtn">삭제</button>
       </div>
     </div>
   </div>

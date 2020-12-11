@@ -5,6 +5,11 @@
 - AdminController에서 board_list, board_view, board_write 바인드 매핑 만들기
 - board_list.jsp, board_view.jsp, board_jsp 만들기
 
+- 게시판 로직 핵심 : CRUD기본, 검색기능, 페이징처리로직, 첨부파일기능
+- 게시판 로직 확장 : 댓글기능(Rest-API)
+- Rest-API 확장기능 : 네이버아이디로그인(수업시간에 할 것), SNS(페이스북, 트위터, 구글) 로그인 API
+- RestAPI 컨트롤러 1개 만든다. - 네이버에서 RestAPI서버를 1개 만드는 것과 같음
+
 - =========================================================================
 - 쿼리스트링 : 쿼리(질의)시트링(문자열) URL에서 쿼리스트링이라고 하면, ?키1=값1&z키2=value2
 - /admin/member/member_view?user_id=${member.user_id}
