@@ -24,16 +24,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
 	//@inject방식으로 외부 라이브러리(모듈, 클래스, 인스턴스) 가져와쓰기(아래)
 	@Inject
-	SecurityCode secCode;
+	SecurityCode securityCode;
 
 	@RequestMapping(value="/admin/board/board_view", method=RequestMethod.GET)
-	public String board_view(Model model) throws Exception {
+	public String board_view(@RequestParam("bno") Integer bno, Model model) throws Exception {
 		//jsp로 보낼 더미데이터 memberVO에 담아서 보낸다.
+		// 실제로는 아래처럼 더미데이터를 만드는 것이 아닌, 쿼리스트링(질의문자열)로 받아온 bno(게시물고유번호)를 이용해서
+		// DB에서  SELECT * FROM tbl_board WHERE bno=? 실행이 된 결과값을 BoardVO형으로 받아서 jsp로 보내줌
 		BoardVO boardVO = new BoardVO();
 		boardVO.setBno(1);
 		boardVO.setTitle("첫번째 게시물입니다.");
 		String xss_data="첫번째 내용입니다.<br>줄바꿈 자리입니다.<script>alert('메롱')</script>";
-		boardVO.setContent(secCode.unscript(xss_data));
+		boardVO.setContent(securityCode.unscript(xss_data));
 		boardVO.setWriter("admin");
 		Date regdate = new Date();
 		boardVO.setRegdate(regdate);
@@ -75,6 +77,9 @@ public class AdminController {
 		
 		return "admin/board/board_list"; 
 	}
+	
+//==============================================================================================================================
+	
 	// 메소드 오버로딩(ex. 동영상 로딩중.., 로딩된 매개변수가 다르면, 메소드 이름 중복가능하다. 대표적인 다형성 구현)
 	@RequestMapping(value="/admin/member/member_write", method=RequestMethod.POST)
 	public String member_write(@RequestParam("user_name") String user_name) throws Exception{

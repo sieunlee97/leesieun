@@ -5,7 +5,26 @@
 - AdminController에서 board_list, board_view, board_write 바인드 매핑 만들기
 - board_list.jsp, board_view.jsp, board_jsp 만들기
 
+- =========================================================================
+- 쿼리스트링 : 쿼리(질의)시트링(문자열) URL에서 쿼리스트링이라고 하면, ?키1=값1&z키2=value2
+- /admin/member/member_view?user_id=${member.user_id}
+- =========================================================================
+- java에서 인스턴스 오브젝트를 만들 때, ClassName className = new ClassName(); 방식으로 만들었음
+- 스프링에서는 오브젝트를 생성하지 않고, 오브제트를 "주입"한다고 한다. 기술용어로 DI(Dependency Injection) 의존성 주입
+- 의존성주입(DI, 외부모듈주입)할 떄, @Inject=@Autowired(어노테이션 사용) 줄바꿈 후 ClassName className;
+- 위와 같은 DI방식으로 SecurityCode 클래스 주입받아서 unscript메소드 사용했음
+
 ------------------------------------------------------------------
+
+- 스프링 빈(등록되어 사용가능한 클래스)이 등록되는 절차.
+- 톰캣 서버(WAS)가 실행될 때, 로딩해서 실행되는 파일 순서(아래)
+- web.xml 최초 실행
+- 1. root-context.xml 실행.
+- 2. servlet(SERVer + LET = 서버프로그램): servlet-context.xml 실행
+- > servlet-context 안에 있는 component-scan이 지정한 package경로에 존재하는 @Controller, @Service, @Repository, @RestController(Rest-API) 어노테이션 클래스를  자동으로  읽어들여서 빈으로 등록. => 실행가능
+
+------------------------------------------------------------------
+
 - 앞으로 작업예정 내용
 - 스프링 테스트 pom.xml dependency 의존성 추가
 - junit(JavaUnit)테스트 설정 후 기본 unit(단위)테스트
