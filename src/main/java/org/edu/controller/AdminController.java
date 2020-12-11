@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AdminController {
 	@RequestMapping(value="/admin/board/board_list", method=RequestMethod.GET)
-	public String board_list() throws Exception {
-	
+	public String board_list(Model model) throws Exception {
+		
 		return "admin/board/board_list"; 
 	}
 	// 메소드 오버로딩(ex. 동영상 로딩중.., 로딩된 매개변수가 다르면, 메소드 이름 중복가능하다. 대표적인 다형성 구현)
