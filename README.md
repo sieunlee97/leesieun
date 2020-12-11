@@ -10,6 +10,8 @@
 - Rest-API 확장기능 : 네이버아이디로그인(수업시간에 할 것), SNS(페이스북, 트위터, 구글) 로그인 API
 - RestAPI 컨트롤러 1개 만든다. - 네이버에서 RestAPI서버를 1개 만드는 것과 같음
 
+- 첨부파일 설정 : servlet-context.xml에 파일업로드 경로, 업로드 용량제한 설정 필요
+
 - =========================================================================
 - 쿼리스트링 : 쿼리(질의)시트링(문자열) URL에서 쿼리스트링이라고 하면, ?키1=값1&z키2=value2
 - /admin/member/member_view?user_id=${member.user_id}
@@ -35,7 +37,8 @@
 - junit(JavaUnit)테스트 설정 후 기본 unit(단위)테스트
 - jdbc(Java DB Connection) 사용 pom.xml 의존성 추가
 - Hsql 사용 pom.xml 의존성 추가
-- MyBatis(CRUD쿼리 관리툴) 사용 pom.xml 의존성 추가 - DB 디버그용 드라이버 사용 pom.xml 의존성 추가
+- MyBatis(CRUD쿼리 관리툴) 사용 pom.xml 의존성 추가 
+- DB 디버그용 드라이버 사용 pom.xml 의존성 추가
 - junit으로 DB접근 후 관리자단 회원관리 CRUD unit 테스트 
 - 스프링 AOP(관점지향프로그래밍-OOP의 확장)기능으로 개발용 디버그출력환경 만들기
 - 실제 회원관리 화면 CRUD 적용
