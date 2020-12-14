@@ -1,11 +1,6 @@
 ## v4.0.0 프로그램언어 활용
-<<<<<<< HEAD
-
-### 20201214(월)
-=======
 ### 20201214(월)
 
->>>>>>> refs/remotes/origin/master
 - =================<개발시작 전 준비 단계>==============================
 - JUnit 테스트 (자바단위테스트) 목적: jsp,contorller 하기 전 CRUD 테스트 
 - jsp -> controller -> service -> dao -> mapper.xml -> DB(Mysql, Oracle)
@@ -44,12 +39,7 @@ DataSource(커넥션) - sqlSessionFactory(쿼리생성) - sqlSessionTemplate(쿼
 - ibatis(아이바티스 - 쿼리생성 불편) -> mybatis(마이바티스 - 쿼리생성 편리)
 - > 클래스 이름은 ibatis 이지만 우리가 쓰는건 mybatis이다.
 
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> refs/remotes/origin/master
 ### 20201211(금)
 - BoardVO 클래스 만들기
 - > AdminController에서 model클래스를 이용해서 jsp로 board_list 데이터 세트를 보낼 때 필요한 클래스
