@@ -1,6 +1,11 @@
 ## v4.0.0 프로그램언어 활용
-###20201214(월)
+
+### 20201214(월)
 - =================<개발시작 전 준비 단계>==============================
+- JUnit 테스트 (자바단위테스트) 목적: jsp,contorller 하기 전 CRUD 테스트 
+- jsp -> controller -> service -> dao -> mapper.xml -> DB(Mysql, Oracle)
+- 자바단위테스트(JUnit) -> service -> dao -> mapper.xml -> DB(Mysql, Oracle)
+
 - 톰캣/JUnit 실행해야만 DB가 연동된다.
 - 톰캣이 종료되거나 JUnit 테스트가 끝나면, DB연동 끊어진다.
 - JUnit 테스트 준비 OK
@@ -13,22 +18,28 @@
 - > -> 위 2가지로 스프링에서 데이터베이스 커넥션 처리, DriverManagerDataSource(DB커넥션)
 - > ===============================================================
 - > 의존성추가 3. jdbc와 Mysql DB 중간에 쿼리를 사용하는 역할인 MyBatis 모듈 추가 후 설정 필수
-- > *Mybatis : SELECT, INSERT, UPDATE, DELETE 쿼리를 수행하는 역할
+- > * Mybatis : SELECT, INSERT, UPDATE, DELETE 쿼리를 수행하는 메소드들 존재
 - > -> 위 1가지(MyBatis)로 스프링에서 쿼리를 관리하는 처리, sqlSessionFactory(쿼리생성)
-- > -> 위 1가지(MyBatis)로 스프링에서 쿼리를 호출하는 메소드명(인터페이스)을 처리, sqlSessionTemplate(쿼리호출메소드명)
+- > -> 위 1가지(MyBatis)로 스프링에서 쿼리를 호출하는 메소드명(인터페이스)을 처리, sqlSessionTemplate(쿼리호출)
 
-DataSource(커넥션) - sqlSessionFactory(쿼리생성) - sqlSessionTemplate(쿼리호출메소드)
+DataSource(커넥션) - sqlSessionFactory(쿼리생성) - sqlSessionTemplate(쿼리호출)
+
+- MyBatis에서는 sqlSession을 생성하기 위해 sqlSessionFactory사용
+- 마이바티스 스프링 연동모듈을 사용하면 sqlSessionFactory 직접 사용할 필요 X
+- > 스프링 트랜잭션 설정에 따라 자동으로 커밋 혹은 롤백을 수행하고 닫혀지는, 쓰레드에 안전한 SqlSession 개체가 스프링 빈에 주입될 수 있기 때문
+- sqlSessionTemplate은 마이바티스 스프링 연동모듈의 핵심
+- > sqlSession 구현, sqlSession대체 역할. SqlSessionTemplate 은 쓰레드에 안전하고 여러개의 DAO나 매퍼에서 공유 가능
+- sqlSessionTemplate은 생성자 인자로 SqlSessionFactory를 사용해서 생성 
 
 --------------------------------------------------------------------------------------
 - 외부 라이브러리가 있어야 커넥션 가능
 - junit(JavaUnit) 테스트 설정 후 기본 unit(유닛) 단위 테스트
 - 단위테스트(junit)를 하는 이유는 실행환경에서 테스트하기 전에 미리 예행연습 하는 역할이다.
 - 주로 CRUD 테스트 후에 jsp 프로그램 작업이 들어간다.
+- ibatis(아이바티스 - 쿼리생성 불편) -> mybatis(마이바티스 - 쿼리생성 편리)
+- > 클래스 이름은 ibatis 이지만 우리가 쓰는건 mybatis이다.
 
-
-
-
-###20201211(금)
+### 20201211(금)
 - BoardVO 클래스 만들기
 - > AdminController에서 model클래스를 이용해서 jsp로 board_list 데이터 세트를 보낼 때 필요한 클래스
 - AdminController에서 board_list, board_view, board_write 바인드 매핑 만들기

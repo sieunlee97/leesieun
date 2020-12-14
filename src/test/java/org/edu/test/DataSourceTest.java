@@ -4,10 +4,13 @@ import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.edu.dao.IF_MemberDAO;
+import org.edu.vo.MemberVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,6 +30,16 @@ public class DataSourceTest {
 	
 	@Inject
 	private DataSource dataSource; // 자바에서처럼 new 키워드로 객체 생성X, 스프링에서는 @Inject로 객체 생성	
+	
+	@Inject 
+	IF_MemberDAO memberDAO;
+	
+	@Test
+	public void selectMember() throws Exception {
+		List<MemberVO> memberList =	memberDAO.selectMember();
+		System.out.println("회원리스트 테스트입니다.");
+		System.out.println(memberList.toString());
+	}
 	
 	@Test
 	public void dbConnectinoTest() throws Exception{

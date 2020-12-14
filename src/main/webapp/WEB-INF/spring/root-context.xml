@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	
+	
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
@@ -18,8 +23,21 @@
 	 -->		 		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	   
 	 	<property name="dataSource" ref="dataSource" />
-	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래), classpath경로 : src/main/resources/ -->
+	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래), classpath경로 : src/main/resources/쿼리xml -->
 	 	 <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
+	
+	<!-- 
+		MyBatis에서 DAO를 이용하는 경우, SqlSessionTemplate라는 것을 이용해서 DAO를 구현함.
+		DAO라는 것은 DataAccessObject 데이터핸들링(insert(),delete()등을 처리하는 클래스 DAO라고 합니다.
+		개발자들이 직접 DB 연결, 종료작업하는 것을 줄여줌.
+	 	sqlSessionTemplate을 호출할 때 SqlSessionFactory를 생성자로 주입함.
+	 -->
+	 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+	  <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	 </bean>
+	
+	<context:component-scan base-package="org.edu.dao" />
+	
 	
 </beans>
