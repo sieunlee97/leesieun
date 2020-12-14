@@ -226,6 +226,7 @@
               	  </div>
               	  </form>
               	  
+              	  	<!-- 타임라인 영역 시작 -->
 					<div class="timeline ml-3">
 						<!-- .time-label의 before -->
 						<div class="time-label">
@@ -236,7 +237,6 @@
 							<i class="fas fa-envelope bg-blue"></i>
 							<div class="timeline-item">
 								<h3 class="timeline-header">작성자</h3>
-
 								<div class="timeline-body">댓글 입력 테스트</div>
 								<div class="timeline-footer">
 									Button trigger modal
@@ -246,7 +246,9 @@
 								</div>
 							</div>
 						</div> -->
-					</div><!-- ./timeline  -->
+					</div>
+					<!-- ./timeline  -->
+					
 					<!-- 페이징처리 시작 -->
 		            <div class="pagination justify-content-center">
 			          	 <ul class="pagination">
@@ -372,7 +374,7 @@ var printReplyList = function(data, target, templateObject) {
 						//{rno:댓글번호, bno:게시믈번호, replytext:"첫번째댓글", replyer:"admin", regdate:타임스탬프}
 						{rno:1,bno:15,replytext:"첫번째댓글",replyer:"admin",regate:1601234512345}, //첫번째 댓글 데이터
 						{rno:2,bno:15,replytext:"두번째댓글",replyer:"user02",regate:1601234512345} //두번째 댓글 데이터
-					];// 위 url이 공공데이터라고 생각하면, 위 데이터를 화면에 구현함녀 빅데이터의 시각화로 불리게 된다.
+					];// 위 url이 공공데이터라고 생각하면, 위 데이터를 화면에 구현하면 빅데이터의 시각화로 불리게 된다.
 					
 					//printReplyList(빅데이터, 출력할 타겟 위치, 빅데이터를 가지고 바인딩된-묶인 템플릿화면))
 					printReplyList(result, $(".time-label"), $("#template"));//화면에 출려하는 구현함수를 호출하면 실행.
