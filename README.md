@@ -1,5 +1,6 @@
 ## v4.0.0 프로그램언어 활용
-###20201214(월)
+### 20201214(월)
+
 - =================<개발시작 전 준비 단계>==============================
 - 톰캣/JUnit 실행해야만 DB가 연동된다.
 - 톰캣이 종료되거나 JUnit 테스트가 끝나면, DB연동 끊어진다.
@@ -28,7 +29,7 @@ DataSource(커넥션) - sqlSessionFactory(쿼리생성) - sqlSessionTemplate(쿼
 
 
 
-###20201211(금)
+### 20201211(금)
 - BoardVO 클래스 만들기
 - > AdminController에서 model클래스를 이용해서 jsp로 board_list 데이터 세트를 보낼 때 필요한 클래스
 - AdminController에서 board_list, board_view, board_write 바인드 매핑 만들기
