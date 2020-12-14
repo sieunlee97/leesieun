@@ -10,11 +10,9 @@ memberMapper.xml : 회원관리에 대한 모든 쿼리를 모아서 관리하�
 <!-- 아래 반환값이 MemberVO 클래스형이면, select*from 쿼리에서 결과값에 [자동 바인딩]된다. 
 조건 : 단, 멤버클래스(MemberVO)의 멤버변수값이 tbl_member 테이블의 필드명과 일치하도록 만들어야 한다.
 -->
-<select id="selecMember" resultType="org.edu.vo.MemberVO">
+<select id="selectMember" resultType="org.edu.vo.MemberVO">
 select * from tbl_member
 </select>
 
-<insert id=""></insert>
-<delete id=""></delete>
 
 </mapper>

@@ -20,8 +20,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 /**
  * JUnit 자바단위테스트이고, DataSource 지정 후 DB(Hsql, Mysql, Oracle) 접속,
  * 데이터베이스 테이블에 Create, Read, Update, Delete 테스트용 클래스
- * @author sieunlee
- *
+ * @author 이시은
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
