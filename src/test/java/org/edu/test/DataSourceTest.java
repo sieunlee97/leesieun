@@ -31,13 +31,13 @@ public class DataSourceTest {
 	@Inject
 	private DataSource dataSource; // 자바에서처럼 new 키워드로 객체 생성X, 스프링에서는 @Inject로 객체 생성	
 	
-	@Inject 
+	@Inject
 	IF_MemberDAO memberDAO;
 	
 	@Test
 	public void selectMember() throws Exception {
 		List<MemberVO> memberList =	memberDAO.selectMember();
-		System.out.println("회원리스트 테스트입니다.");
+		System.out.println("회원리스트 테스트 입니다.");
 		System.out.println(memberList.toString());
 	}
 	
