@@ -24,4 +24,12 @@ public class MemberDAOImpl implements IF_MemberDAO {
 		//memberMapper.selectMember 쿼리 실행
 	}
 
+	@Override
+	public void insertMember(MemberVO memberVO) throws Exception {
+		// mapper.xml에 접근하는 방법(아래)
+		sqlSession.insert("memberMapper.insertMember", memberVO);
+		
+	}
+	
+	
 }
