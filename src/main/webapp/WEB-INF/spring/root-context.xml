@@ -38,6 +38,7 @@
 	 </bean>
 	
 	<context:component-scan base-package="org.edu.dao" />
+	<context:component-scan base-package="org.edu.service"/>
 	
 	
 </beans>
