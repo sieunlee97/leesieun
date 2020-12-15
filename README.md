@@ -1,6 +1,14 @@
 ## v4.0.0 프로그램언어 활용
-### 20201214(월)
+### 20201215(화)
+- 워크벤치 쿼리 실행한 것 참조 -> mapper쿼리 만듦 (selectMember) -> DAO클래스(에서 selectMember 호출) -> Service클래스(에서 DAO호출) -> Controller(에서 Service호출) -> jsp
+- [DAO클래스(에서 selectMember 호출) -> Service클래스(에서 DAO호출)]를 한개의 클래스로 사용하는 것 = 스프링부트방식(소규모프로젝트용)
+- [Controller(에서 Service호출) -> jsp] = JUnit테스트
+- DAO와 Service를 두 개의 클래스로 나눈 이유?
+- > 1. 현업에서 사용되는 솔루션들이 두 개로 클래스를 나눈 구조이다.
+- > 2. 근본적인 이유) DAO는 DB에 접근하는 부분(DAO)은 최소화, DAO를 호출하는 서비스는 다수
+- > ->ex) DAO클래스에 selectMember() 메소드 1개, DAO.selectMember() 호출하는 서비스는  관리자단에서 호출, 사용자단 서비스에서 호출. 따라서 1:2(1:n)
 
+### 20201214(월)
 - =================<개발시작 전 준비 단계>==============================
 - JUnit 테스트 (자바단위테스트) 목적: jsp,contorller 하기 전 CRUD 테스트 
 - jsp -> controller -> service -> dao -> mapper.xml -> DB(Mysql, Oracle)
@@ -28,7 +36,7 @@ DataSource(커넥션) - sqlSessionFactory(쿼리생성) - sqlSessionTemplate(쿼
 - 마이바티스 스프링 연동모듈을 사용하면 sqlSessionFactory 직접 사용할 필요 X
 - > 스프링 트랜잭션 설정에 따라 자동으로 커밋 혹은 롤백을 수행하고 닫혀지는, 쓰레드에 안전한 SqlSession 개체가 스프링 빈에 주입될 수 있기 때문
 - sqlSessionTemplate은 마이바티스 스프링 연동모듈의 핵심
-- > sqlSession 구현, sqlSession대체 역할. SqlSessionTemplate 은 쓰레드에 안전하고 여러개의 DAO나 매퍼에서 공유 가능
+- > sqlSession 구현, sqlSession대체 역할. SqlSessionTemplate은 쓰레드에 안전하고 여러개의 DAO나 매퍼에서 공유 가능
 - sqlSessionTemplate은 생성자 인자로 SqlSessionFactory를 사용해서 생성 
 
 --------------------------------------------------------------------------------------
