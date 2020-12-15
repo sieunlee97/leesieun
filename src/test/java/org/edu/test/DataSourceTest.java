@@ -46,7 +46,10 @@ public class DataSourceTest {
 	@Test
 	public void readMember() throws Exception {
 		//CRUD 중 Read 테스트 구현
-		
+		MemberVO memberVO = new MemberVO();
+		memberVO = memberDAO.readMember("admin");
+		System.out.println("user_id가 admin인 사람의 정보는 다음과 같다.");
+		System.out.println(memberVO.toString());
 	}
 	@Test
 	public void deleteMember() throws Exception {
