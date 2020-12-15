@@ -14,5 +14,27 @@ memberMapper.xml : 회원관리에 대한 모든 쿼리를 모아서 관리하�
 select * from tbl_member
 </select>
 
+<insert id="insertMember">
+INSERT INTO tbl_member (
+	user_id, 
+	user_pw, 
+	user_name, 
+	email, 
+	point, 
+	enabled, 
+	levels, 
+	reg_date, 
+	update_date
+) VALUES (
+	#{user_id},
+	#{user_pw},
+	#{user_name},
+	#{email},
+	#{point},
+	#{enabled},
+	#{levels},
+	now()
+)
+</insert>
 
 </mapper>

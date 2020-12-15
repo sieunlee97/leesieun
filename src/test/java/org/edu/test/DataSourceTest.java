@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,8 +35,24 @@ public class DataSourceTest {
 	IF_MemberDAO memberDAO;
 	
 	@Test
+	public void insertMember() throws Exception {
+		//CRUD 중 Create 테스트
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUser_id("user03");
+		memberVO.setUser_name("이시은");
+		memberVO.setUser_pw("1234");
+		memberVO.setEmail("user03@abc.com");
+		memberVO.setPoint(100);
+		memberVO.setEnabled(true);
+		memberVO.setLevels("ROLE_USER");
+		Date reg_date = new Date();
+		memberVO.setReg_date(reg_date);
+	}
+		
+	
+	@Test
 	public void selectMember() throws Exception {
-		List<MemberVO> memberList =	memberDAO.selectMember();
+	List<MemberVO> memberList =	memberDAO.selectMember();
 		System.out.println("회원리스트 테스트 입니다.");
 		System.out.println(memberList.toString());
 	}
