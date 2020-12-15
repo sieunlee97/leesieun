@@ -46,7 +46,9 @@ public class DataSourceTest {
 		memberVO.setEnabled(true);
 		memberVO.setLevels("ROLE_USER");
 		Date reg_date = new Date();
-		memberVO.setReg_date(reg_date);
+		memberVO.setReg_date(reg_date); //매퍼쿼리에서의 처리로 대체
+		
+		memberDAO.insertMember(memberVO);
 	}
 		
 	
