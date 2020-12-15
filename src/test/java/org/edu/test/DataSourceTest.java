@@ -44,6 +44,12 @@ public class DataSourceTest {
 	}
 	
 	@Test
+	public void deleteMember() throws Exception {
+		//CRUD 증 Delete 테스트 구현(쿼리->DAO->memberDAO주입받은 오브젝트사용)
+		
+	}
+	
+	@Test
 	public void insertMember() throws Exception {
 		//CRUD 중 Create 테스트
 		MemberVO memberVO = new MemberVO();
@@ -53,6 +59,7 @@ public class DataSourceTest {
 		memberVO.setUser_id(memberIKey);
 		memberVO.setUser_name("이시은");
 		memberVO.setUser_pw("1234");
+		// 패스워드 암호화 처리 (필수이지만 스프링 시큐리티 할 때 처리 예정)
 		memberVO.setEmail("user03@abc.com");
 		memberVO.setPoint(100);
 		memberVO.setEnabled(true);
