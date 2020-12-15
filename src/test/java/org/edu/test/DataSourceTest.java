@@ -34,7 +34,7 @@ public class DataSourceTest {
 	
 	@Inject
 	IF_MemberDAO memberDAO;
-
+	
 	public String memberPrimaryKey() {
 		// 사용자 프라이머리키 생성하는 메소드  년월시분초+밀리초
 		Date primaryKey = new Date();
@@ -42,11 +42,16 @@ public class DataSourceTest {
 		System.out.println("프라이머리키 : "+ newFormat.format(primaryKey));
 		return "user_"+newFormat.format(primaryKey);
 	}
-	
+	// 생성 순서 : (쿼리->DAO->memberDAO주입받은 오브젝트사용)
+	@Test
+	public void readMember() throws Exception {
+		//CRUD 중 Read 테스트 구현
+		
+	}
 	@Test
 	public void deleteMember() throws Exception {
-		//CRUD 증 Delete 테스트 구현(쿼리->DAO->memberDAO주입받은 오브젝트사용)
-		
+		//CRUD 증 Delete 테스트 구현
+		memberDAO.deleteMember("user_20201215025558093"); // 삭제메소드 -> 쿼리 호출
 	}
 	
 	@Test

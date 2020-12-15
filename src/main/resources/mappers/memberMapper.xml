@@ -35,7 +35,13 @@ INSERT INTO tbl_member (
 	now()
 )
 </insert>
+
 <delete id="deleteMember">
 DELETE FROM tbl_member WHERE user_id=#{user_id}
 </delete>
+
+<select id="readMember">
+SELECT * FROM tbl_member WHERE user_id=#{user_id}
+</select>
+
 </mapper>
