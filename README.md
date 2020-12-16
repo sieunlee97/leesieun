@@ -35,6 +35,22 @@
 - DB 디버그용 드라이버(실행쿼리가 콘솔화면에 나오도록 -개발자가 실행확인을 편리하게 함) 사용 pom.xml 의존성 추가
 - 의존성 추가 후 root-context.xml에서 jdbc 드라이버설정을 변경하면, 아래 콘솔창에서 쿼리가 보이고, 전송자료들을 확인할 수 있어서 개발할 때 필수이다.ㄷ
 
+- 페이징 처리
+- 수의순서: 0,10 -> 10,10 -> 20,10
+- jsp에서 사용가 선택한 페이지번호를 이용해야 페이징처리가 가능.
+- ?page=3&searchType=all&searchKeyword=
+- PageVO클래스만들때, get 페이지번호, set 계산식을 적용 쿼리에 limit변수 첫번째 값으로 넣어줌.
+- GET page=위 URL쿼리스트링의 페이지 번호;
+- 1페이지계산 10x(1-1) = 0 1페이지일때
+- 2페이지계산 10x(2-1) = 10 2페이지일때
+- 3페이지계산 10x(10-1) = 90 10페이지일때
+- SELECT * FROM tbl_board
+- order by bno desc
+- limit [SET으로 받은 계산된 변수값], 10;
+- 데이터 정렬에 사용되는 기준값 위에서는 bno(게시판번호)
+- Order By 데이터정렬에 상용되는 키워드(예약어)
+- 정렬은 오름차순(Ascending)낮은수->높은수 : 옛글부터 보여준다.
+- 내림차순(Descending) 높은수->낮은수 : 최신글부터 보여준다.
 
 ### 20201215(화)
 - 워크벤치 쿼리 실행한 것 참조 -> mapper쿼리 만듦 (selectMember) -> DAO클래스(에서 selectMember 호출) -> Service클래스(에서 DAO호출) -> Controller(에서 Service호출) -> jsp
