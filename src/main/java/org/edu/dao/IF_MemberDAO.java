@@ -19,3 +19,4 @@ public interface IF_MemberDAO {
 	//List<MemberVO>가 아닌 이유는, 레코드 하나만 가져오면 되기 때문이다.
 	//throws 스프링을 예외보내면, 나중에 예외처리 전용 error.jsp를 만들어서 에러메세지 뿌리는 사용자단 사용
 }
+

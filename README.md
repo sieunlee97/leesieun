@@ -1,17 +1,17 @@
 ##  스프링 작업 순서
 - 스프링  HelloWorld MVC 프로젝트 org.edu.controller 제작 OK
 - 스프링 HelloWorld MVC 프로젝트 edu.org.controller 제작OK.
-- wamp(만세아이콘)으로 마리아DB 설치, 사용자암호 추가 및 한글처리OK.
+- wamp(만세아이콘)으로 마리아DB(3306포트) 설치, 사용자암호 추가 및 한글처리OK.
 - 워크벤치 설치 및 ERD 작성연습, 샘플DB(edu)임포트 및 리버스 엔지니어링으로 ERD제작OK.
 - 샘플반응형 웹페이지(mobile,tablet,pc용) 및 J쿼리 페이지 작성OK.
-- 스프링 프로젝트 관리자단 AdminLTE기반으로 제작OK.
-- 스프링 테스트 pom.xml 디펜던시 의존성 추가OK.
-- egov3.9버전 -> 3.10으로 업드레이드OK.
+- 스프링 프로젝트 관리자단 AdminLTE(부트스트랩)기반으로 제작OK.
+- 스프링 테스트 pom.xml(외부라이브러리 가져다가 사용하는 방식) 디펜던시 의존성 추가OK.
+- Maven 기반 전자정부표준프레임워크 egov3.9버전 -> 3.10으로 업드레이드OK.
 - junit(JavaUnit) 테스트 설정 후 기본 unit유닛(단위)테스트OK.
 - jdbc(JavaDataBaseConnection)사용 pom.xml 의존성 추가OK.
 - Mysql사용 pom.xml 의존성 추가OK.
 - 마이바티스 사용(CRUD쿼리를관리하는툴) pom.xml 의존성 추가OK.
-- junit으로 DB접근 후 관리자단 회원관리 CRUD unit테스트 마무리.
+- junit으로 DB접근 후 관리자단 회원관리 CRUD unit테스트 마무리.(MemberVO 인젝션 사용 불가)
 --------------- 여기까지 ------------------
 - DB 디버그용 드라이버 사용 pom.xml 의존성 추가.
 - 스프링 AOP(관점지향프로그래밍-OOP의 확장기능)기능으로 개발용 디버그출력환경 만들기.
