@@ -32,11 +32,11 @@ public class DataSourceTest {
 	@Inject
 	private DataSource dataSource; // 자바에서처럼 new 키워드로 객체 생성X, 스프링에서는 @Inject로 객체 생성	
 	
-	@Inject
+	@Inject 
 	IF_MemberDAO memberDAO;
 	
-	@Inject
-	MemberVO memberVO; // 기본 자바처럼 new MemberVO()로 오브젝트를 생성하지 않고, 주입해서 사용.
+	//@Inject 사용하면 안되는 이유 : 클래스 상단에 @Controller, @Service, @Repository, @Component 이런 내용만 @inject로 주입
+	//MemberVO memberVO; // 기본 자바처럼 new MemberVO()로 오브젝트를 생성하지 않고, 주입해서 사용.
 	
 	public String memberPrimaryKey() {
 		// 사용자 프라이머리키 생성하는 메소드  년월시분초+밀리초
@@ -50,17 +50,23 @@ public class DataSourceTest {
 	public void update() throws Exception {
 		//CRUD 중 Update 테스트 구현
 		//특징 : user_id는 primary키이기 때문에 수정대상이 아니다.
-		memberVO.setEmail("test@test.com");
-		memberVO.setUser_name("홍길동");
+		MemberVO memberVO = new MemberVO();
 		memberVO.setUser_id("admin");
+		memberVO.setUser_name("홍길동");
+		memberVO.setUser_pw(""); // 암호를 수정하지 않는 사람 가정. 수정할 때 암호는 새로 입력 안하겠다.
+		memberVO.setEmail("test@test.com");
+		memberVO.setPoint(50);
+		memberVO.setEnabled(true);
+		memberVO.setLevels("ROLD_ADMIN");
 		String user_id = memberVO.getUser_id(); //memberVO의 오브젝트의 데이터는 1개의 레코드이기 때문에 반환값이 1개만 반환
-
+		// 위 getUser-id는  get/set 사용을 보기 위함
+		memberDAO.updateMember(memberVO);
 	}
 	
 	@Test
 	public void readMember() throws Exception {
 		//CRUD 중 Read 테스트 구현
-		// MemberVO memberVO = new MemberVO();
+		MemberVO memberVO = new MemberVO();
 		memberVO = memberDAO.readMember("admin");
 		System.out.println("user_id가 admin인 사람의 정보는 다음과 같다.");
 		System.out.println(memberVO.toString());
@@ -74,7 +80,7 @@ public class DataSourceTest {
 	@Test
 	public void insertMember() throws Exception {
 		//CRUD 중 Create 테스트
-		//MemberVO memberVO = new MemberVO();
+		MemberVO memberVO = new MemberVO();
 		// 사용자 생성 규칙 : user-시작(prefix), suffix(접미사)는 년월일시분초
 		// ex)사용자생성 결과 예:user_20201215142132
 		String memberIKey = memberPrimaryKey();
