@@ -158,6 +158,15 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
 		</dependency>
+		<!-- log4jdbc 자바데이터베이스커넥션에 관련된 자료의 로그를 출력해주는 드라이버 추ㅏ -->
+		<!-- DB 디버그용 드라이버 -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+			<version>1.16</version>
+		</dependency>
+		
+		
 	</dependencies>
     <build>
     	<defaultGoal>install</defaultGoal>
