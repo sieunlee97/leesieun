@@ -121,7 +121,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/member/member_list", method=RequestMethod.GET)
-	public String member_list(Model model) throws Exception {
+	public String member_list(@RequestParam("search_type") String search_type, @RequestParam("search_keyword") String search_keyword, Model model) throws Exception {
+		// member_list(첫번재 파라미터, 두번째파라미터, jsp로 보낼때)
 		/*
 		 * String[][] members = { {"admin", "관리자", "admin@abc.com", "true",
 		 * "2020-12-02", "ROLE_ADMIN"}, {"user", "사용자", "user@abc.com", "false",
@@ -155,9 +156,8 @@ public class AdminController {
 		 * Arrays.asList메소드로 리스트타입으로 변경 //위에서 데이터타입연습으로 총 3가지 데이터타입 확인했음.
 		 * System.out.println("List타입의 오브젝트 클래스 내용을 출력 " + members_list.toString());
 		 */
-		List<MemberVO> members_list = memberService.selectMember();
+		List<MemberVO> members_list = memberService.selectMember(search_type, search_keyword);
 		model.addAttribute("memberss", members_list);//members 2차원 배열을 members_array 클래스 오브젝트로 변경
-		
 		return "admin/member/member_list";//member_list.jsp로 members 변수명으로 데이터를 전송
 	}
 	

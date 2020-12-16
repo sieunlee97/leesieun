@@ -101,7 +101,7 @@ public class DataSourceTest {
 	
 	@Test
 	public void selectMember() throws Exception {
-	List<MemberVO> memberList =	memberDAO.selectMember();
+	List<MemberVO> memberList =	memberDAO.selectMember("email", "test@test.com");
 		System.out.println("회원리스트 테스트 입니다.");
 		System.out.println(memberList.toString());
 	}

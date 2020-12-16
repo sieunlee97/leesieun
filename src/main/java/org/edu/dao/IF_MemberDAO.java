@@ -10,7 +10,7 @@ import org.edu.vo.MemberVO;
  *
  */
 public interface IF_MemberDAO {
-	public List<MemberVO> selectMember() throws Exception;
+	public List<MemberVO> selectMember(String search_type, String search_keyword) throws Exception;
 	//jsp에서 foreach문 사용
 	public void insertMember(MemberVO memberVO) throws Exception;
 	public void deleteMember(String user_id) throws Exception;

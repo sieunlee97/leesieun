@@ -10,5 +10,6 @@ import org.edu.vo.MemberVO;
  *
  */
 public interface IF_MemberService {
-	public List<MemberVO> selectMember() throws Exception;
+	public List<MemberVO> selectMember(String search_type, String search_keyword) throws Exception;
+	// 메소드 정의할 때 파라미터 타입 필요. 파라미터(매개변수)를 String형으로 받는다. 
 }
