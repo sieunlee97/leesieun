@@ -11,25 +11,25 @@ memberMapper.xml : 회원관리에 대한 모든 쿼리를 모아서 관리하�
 조건 : 단, 멤버클래스(MemberVO)의 멤버변수값이 tbl_member 테이블의 필드명과 일치하도록 만들어야 한다.
 -->
 <!-- 1=1은 있어도,없어도 그만인 조건이지만, and조건이 많을 때  비빌언덕으로 사용 -->
+<!--
+ 일부분 일치는 LIKE + 검색어% 사용한다.
+ 앞뒤로 일치하는 LIKE 쿼리를 사용할 때는 %검색어%
+user_id LIKE '%user_2020% 
+-->
 <select id="selectMember" resultType="org.edu.vo.MemberVO">
 select * from tbl_member	
-<if test="search_type != ''">
+<if test="search_type != '' and search_type != null">
 	where
 	<if test="search_type == 'all'.toString()">
-		user_id = #{search_keyword}
+		user_id LIKE concat('%', #{search_keyword}, '%')
 		or
-		user_name = #{search_keyword}
-		or
-		email = #{search_keyword}
+		user_name LIKE concat('%', #{search_keyword}, '%')
 	</if>
 	<if test="search_type == 'user_id'.toString()">
-			user_id = #{search_keyword}
+			user_id LIKE concat('%', #{search_keyword}, '%')
 	</if>
 	<if test="search_type == 'user_name'.toString()">
-			user_name = #{search_keyword}
-	</if>
-	<if test="search_type == 'email'.toString()">
-			email = #{search_keyword}
+			user_name LIKE concat('%', #{search_keyword}, '%')
 	</if>
 </if>
 </select>

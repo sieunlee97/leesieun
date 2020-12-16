@@ -39,10 +39,9 @@
                   <!-- 부트스트랩 템플릿만으로는 디자인처리가 안되는 경우가 있기 때문에 종종 인라인스타일 사용 -->
                     <div>
                        <select name="search_type" class="form-control">
-                            <option value="" selected>-전체-</option>
+                            <option value="all" selected>-전체-</option>
                             <option value="user_id" data-select2-id="8">ID</option>
-                            <option value="user_name" data-select2-id="24">이름</option>
-                            <option value="user_name" data-select2-id="24">이메일</option>
+                            <option value="user_name" data-select2-id="16">이름</option>
                        </select>
                     </div>
                     <div>
