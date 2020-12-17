@@ -58,7 +58,7 @@ public class OpenApi {
 	}
 	// static메소드 : new키워드로 객체생성 없이 바로 접근 가능한 메소드
 	public static void main(String[] args) {
-		// 메인스레드는 1개, 다른 스레드를 추가로 실행할 때 Runnable 메소드를 사용한다.(아래)
+		// 메인스레드는 1개인데, 다른 스레드를 추가로 실행할 때 Runnable 메소드를 사용한다.(아래)
 		// 추가스레드를 스케줄로(주기적으로) 실행할 때, 실행간격으로 사용할 변수(5초)
 		int sleepSec = 5;
 		// 주기적인 스레드 작업(Concurrent동시작업)을 위한 코딩 : new키워드로 실행가능한 오브젝트변수 exec 생성
