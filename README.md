@@ -44,8 +44,10 @@
 - 위 쿼리 결과 : 6(5), 7(6), 8(7) 9(8) 10(9) 까지 5개 출력
 - 위 로직을 처리하는 PageVO.java 데이터 클래스를 만든다.
 - > 위의 계산이 가능한 get/set 만든다.
-- 
-
+- PageVO클래스 적용하는 순서 : PageVO클래스 생성 -> AdminController클래스 수정 -> MemberService 수정 -> MemberDAO 수정 -> MemberMapper쿼리 수정 -> jsp 화면 수정
+- 실제 개발 순서 
+- > PageVO클래스 생성 - MemberMapper쿼리 수정 - MemberDAO클래스 수정 - MemberService클래스 수정 - AdminController클래스 수정
+- @ModelAttribute("pageVO")
 ### 20201217(목)
 - 백엔드개발 : 프로젝트 10개당(6개월X10=5년) 1개 하드웨어(IoT, 아두이노, 라즈베리파이)와 연동
 - 프론트개발(웹에이전시) : 2주-1달(1년12개이상)

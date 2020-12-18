@@ -16,6 +16,7 @@ import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -121,7 +122,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/member/member_list", method=RequestMethod.GET)
-	public String member_list(PageVO pageVO, Model model) throws Exception {
+	public String member_list(@ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
 		//고전적인 방식의 검색
 		//@RequestParam(value="search_type", required=false) String search_type, @RequestParam(value="search_keyword", required=false) String search_keyword
 		// member_list(첫번재 파라미터, 두번째파라미터, jsp로 보낼때)
@@ -160,6 +161,14 @@ public class AdminController {
 		 */
 		List<MemberVO> members_list = memberService.selectMember(pageVO);
 		model.addAttribute("memberss", members_list);//members 2차원 배열을 members_array 클래스 오브젝트로 변경
+		// null/10 => 에러처리
+		pageVO.setPage(1);
+		pageVO.setPerPageNum(2);//한페이지당 보여줄 회원 수 10명으로 입력.
+		pageVO.setTotalCount(50); //전체 회원 수를 구한 변수값을 매개변수로 입력
+		//전체 회원 수 입력하는 순간 calcpage()메소드 실행.
+		model.addAttribute("pageVO", pageVO);
+		System.out.println("디버그 스타트페이지 : "+ pageVO.getStartPage());
+		System.out.println("디버그 엔드페이지 : " +pageVO.getEndPage());
 		return "admin/member/member_list";//member_list.jsp로 members 변수명으로 데이터를 전송
 	}
 	
