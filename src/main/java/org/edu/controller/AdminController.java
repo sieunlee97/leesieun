@@ -13,7 +13,7 @@ import org.edu.service.IF_MemberService;
 import org.edu.util.SecurityCode;
 import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
-
+import org.edu.vo.PageVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -121,7 +121,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/member/member_list", method=RequestMethod.GET)
-	public String member_list(@RequestParam(value="search_type", required=false) String search_type, @RequestParam(value="search_keyword", required=false) String search_keyword, Model model) throws Exception {
+	public String member_list(PageVO pageVO, Model model) throws Exception {
+		//고전적인 방식의 검색
+		//@RequestParam(value="search_type", required=false) String search_type, @RequestParam(value="search_keyword", required=false) String search_keyword
 		// member_list(첫번재 파라미터, 두번째파라미터, jsp로 보낼때)
 		/*
 		 * String[][] members = { {"admin", "관리자", "admin@abc.com", "true",
