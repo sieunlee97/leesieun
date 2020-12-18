@@ -11,8 +11,9 @@ package org.edu.vo;
  *
  */
 public class PageVO {
-	private int perPageNum; //1페이지당 출력할 자료 개수값이 들어가는 변수
-	private int page; //jsp에서 선택한 페이지 번호값이 들어가는 변수
+	private int perPageNum; // 리스트하단에보이는 번호의 개수 (페이징리스트목록개수)
+	private int perQueryPageNum; //쿼리에서 1페이지당 출력할 자료 개수값이 들어가는 변수
+	private Integer page; //jsp에서 선택한 페이지 번호값이 들어가는 변수
 	private int startNo; //[계산식] 쿼리에서 사용될 시작번호가 들어가는 변수
 	private boolean prev; //[계산식]페이징에서 이전 번호가 있을 때 표시값이 들어가는 변수
 	private boolean next; //[계산식]페이징에서 이후 번호가 있을 때 표시값이 들어가는 변수
@@ -44,7 +45,7 @@ public class PageVO {
 		// ex) <  1  2  3  4  5  6  7  8  9 10(tempEnd) > 페이징 리스트의 시작(1)과 끝(10) 값이 바뀌게 된다.
 		// ex) < 11 12 13 14 15 16 17 18 19 20(tempEnd) > 시작(11), 끝(20)
 		this.startPage = ((tempEnd-this.perPageNum)+1);
-		// jsp에서 11을 클릭해ㅑㅆ을 때 (20-10)+1 = 11(start 페이지)(위)
+		// jsp에서 11을 클릭했을 때 (20-10)+1 = 11(start 페이지)(위)
 		
 		// ex) 20 * 10 = 200개의 레코드 (회원(게시물))
 		// 만약 회원(게시물)이 195개 일 경우가 있다.
@@ -73,22 +74,21 @@ public class PageVO {
 		return perPageNum;
 	}
 	public void setPerPageNum(int perPageNum) {
-		// perPageNum = 10; // 강제로 한페이지당 보여줄 자료 개수 10개로 지정
 		this.perPageNum = perPageNum;
 	}
 	
-	public int getperPageNum() {
-		return perPageNum;
+	public int getPerQueryPageNum() {
+		return perQueryPageNum;
 	}
 
-	public void setperPageNum(int perPageNum) {
-		this.perPageNum = perPageNum;
+	public void setPerQueryPageNum(int perQueryPageNum) {
+		this.perQueryPageNum = perQueryPageNum;
 	}
 
-	public int getPage() {
+	public Integer getPage() {
 		return page;
 	}
-	public void setPage(int page) {
+	public void setPage(Integer page) {
 		this.page = page;
 	}
 	public int getStartNo() {
@@ -96,7 +96,7 @@ public class PageVO {
 		// 계산식 =  (jsp에서 클릭한 페이지 번호 -1) * 페이지당 보여지는 페이지번호 개수
 		// 1페이지 계산>  10[1페이지당 출력할 개수] * (1[몇번째 페이지]-1) = 0
 		// 2페이지 계산>  10*(2-1) = 10[페이지 시작번호]
-		startNo = perPageNum*(this.page-1); //개발자가 추가한 계산식
+		startNo = perQueryPageNum*(this.page-1); //개발자가 추가한 계산식
 		return startNo;
 	}
 	public void setStartNo(int startNo) {

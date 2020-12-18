@@ -48,6 +48,10 @@
 - 실제 개발 순서 
 - > PageVO클래스 생성 - MemberMapper쿼리 수정 - MemberDAO클래스 수정 - MemberService클래스 수정 - AdminController클래스 수정
 - @ModelAttribute("pageVO")
+- 조건문 중 삼항 연산자 
+- idx==pageVO.page?'active':''
+- > if(idx==pageVO.page){'active'} else{''};
+
 ### 20201217(목)
 - 백엔드개발 : 프로젝트 10개당(6개월X10=5년) 1개 하드웨어(IoT, 아두이노, 라즈베리파이)와 연동
 - 프론트개발(웹에이전시) : 2주-1달(1년12개이상)
