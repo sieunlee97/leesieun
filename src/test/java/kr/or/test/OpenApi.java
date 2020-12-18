@@ -22,7 +22,7 @@ public class OpenApi {
 	//외부연계 역할  메소드
 	public static void serviceApi() {
 		BufferedReader bufferedReader = null; //HRD-Net에서 전송받은 데이터를 임시 저장하는 공간.
-		String urlStr = "http://www.hrd.go.kr/hrdp/api/apipo/APIPO0101T.do?returnType=XML&srchTraOrganNm=%ED%9C%B4%EB%A8%BC&pageSize=10&srchTraArea1=44&authKey=2k8XniQf8CYxls0AKifzX9d8ZN7BLb8D&sort=ASC&outType=1&srchTraStDt=20201109&srchTraArea2=44133&pageNum=1&sortCol=TR_STT_DT&srchTraEndDt=20210317&srchTraPattern=N1&srchPart=-99&apiRequstPageUrlAdres=/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp&apiRequstIp=218.150.115.76";
+		String urlStr = "http://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=2k8XniQf8CYxls0AKifzX9d8ZN7BLb8D&pageNum=1&pageSize=10&srchTraStDt=20201108&srchTraEndDt=20201231&outType=1&sort=DESC&sortCol=TR_STT_DT&srchTraArea1=44";
 		try {
 			URL url = new URL(urlStr);
 		 	try {
@@ -31,13 +31,12 @@ public class OpenApi {
 				bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "euc-kr"));
 				String result="";
 				String line;
-				int cnt=0;
+				// int cnt=0;
 				//while 반복문 시작
 				while( (line=bufferedReader.readLine()) !=null ) {
-					cnt=cnt+1;
 					result = result + line + "\n"; // \n Newline 나타내는 기호 = enter
 				}
-				System.out.println("버퍼리더로 읽어들인 최종 결과값은 아래이다. while반복횟수 :"+cnt);
+				System.out.println("버퍼리더로 읽어들인 최종 결과값은 아래이다.");
 				// System.out.println(result); // 2줄로 읽어들이고 끝.
 				// XMLUtils.java 클래스를 이용해서 xml태그 내용을 예쁘게 출력(아래)
 				String result_xmlUtils = XmlUtils.formatXml(result);
@@ -60,7 +59,7 @@ public class OpenApi {
 	public static void main(String[] args) {
 		// 메인스레드는 1개인데, 다른 스레드를 추가로 실행할 때 Runnable 메소드를 사용한다.(아래)
 		// 추가스레드를 스케줄로(주기적으로) 실행할 때, 실행간격으로 사용할 변수(5초)
-		int sleepSec = 5;
+		int sleepSec = 10;
 		// 주기적인 스레드 작업(Concurrent동시작업)을 위한 코딩 : new키워드로 실행가능한 오브젝트변수 exec 생성
 		// final 현재 클래스에서만 사용하겠다는 명시.
 		final ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
