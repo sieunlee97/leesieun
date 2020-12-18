@@ -71,7 +71,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <c:if test="${empty member}">
+                  <c:if test="${empty memberss}">
                  	 <tr><td colspan="6" class="text-center">조회된 데이터가 없습니다.</td></tr>
                   </c:if>
                   <!-- jstl 표준 core 태그  사용해서  반복문으로 AdminController에서 가져온 members Object 값을 출력 -->
@@ -106,13 +106,23 @@
             <!-- 페이징처리 시작 -->
             <div class="pagination justify-content-center">
           	 <ul class="pagination">
-              <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+          	 <c:if test="${pageVO.prev}"><!-- if문 true 일 때 아래 실행 -->
+              	<li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">&laquo;</a></li>
+             </c:if>
               <!-- previous (위) -->
+              
+              <!-- jstl의 for문이고, 향상된 for문이 아닌 고전 for문으로 시작값, 종료값 필요, var변수 idx는 인덱스값이 저장되어 있다.(jstl 제공)-->
+              <c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}"  var="idx">
               <li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+              </c:forEach>
+              <!-- 
               <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-              <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-              <!-- next (아래) -->
-              <li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+              <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li> 
+              -->              
+              <!-- next (아래)  --> 
+             <c:if test="${pageVO.next}"> <!-- if문 true 일 때 아래 실행 -->
+              	<li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">&raquo;</a></li>
+             </c:if>
              </ul>
             </div>
             <!-- 페이징처리 끝 -->
