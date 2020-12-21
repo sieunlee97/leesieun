@@ -113,10 +113,13 @@ public class AdminController {
 	//현재 컨트롤러 클래스에서 member_view.jsp로 데이터를 보내는 역할, Model 클래스 사용
 	//자료 흐름 : member_list.jsp -> (@RequestParam("user_id")-수신, Model-송신 -> member_view.jsp
 	@RequestMapping(value="/admin/member/member_view", method=RequestMethod.GET)
-	public String member_view(@RequestParam("user_id") String user_ID, Model model ) throws Exception {
+	public String member_view(@ModelAttribute("pageVO") PageVO pageVO, @RequestParam("user_id") String user_ID, Model model ) throws Exception {
 		//member_list.jsp에서 받은 "user_id"를 user_ID에 저장한다. -> user_ID값을 user_id2에 넣어서 출력.
 		//위에서 수신한 user_id를 member_view.jsp로 보낸다(아래)
-		model.addAttribute("user_id2", user_ID + "<script>alert('메롱');</script> 님");
+		MemberVO memberVO =memberService.readMember(user_ID);
+		model.addAttribute("memberVO", memberVO);
+		//아래는 초창기에 jsp로 정보를 어떻게 보내는지 확인하기 위한 것.
+		//model.addAttribute("user_id2", user_ID + "<script>alert('메롱');</script> 님");
 		//member_view.jsp에서 model로부터 받은 데이터 user_id2를 출력하는 방법-점심이후
 		return "admin/member/member_view";	
 	}
@@ -170,10 +173,18 @@ public class AdminController {
 		int countMember = 0;
 		countMember = memberService.countMember(pageVO);
 		pageVO.setTotalCount(countMember); //전체 회원 수를 구한 변수값을 매개변수로 입력
+		//전체 회원 수 입력하는 순간 calcpage()메소드 실행.
+		
 		List<MemberVO> members_list = memberService.selectMember(pageVO);
 		model.addAttribute("memberss", members_list);//members 2차원 배열을 members_array 클래스 오브젝트로 변경	
-		//전체 회원 수 입력하는 순간 calcpage()메소드 실행.
-		model.addAttribute("pageVO", pageVO);
+		
+		//상단의 @ModelAttribute("pageVO")는 jsp로 PageVO클래스 결과를 보내주는 역할
+		//@ModelAttribute를 사용한다면, 아래 model.~("pageVO", pageVO)없어도 됨.
+		/*
+		 * @ModelAttribute 자체가 수행하는 기능이, 수행한 pageVO 결과를 pageVO라는 이름으로 jsp에 보내는 것. 따라서
+		 * pageVO를 "pageVO"의 이름으로 보내겠다는 model.addAttribute("pageVO", pageVO); 없어도 됨.
+		 */
+		//model.addAttribute("pageVO", pageVO);
 		return "admin/member/member_list";//member_list.jsp로 members 변수명으로 데이터를 전송
 	}
 	
