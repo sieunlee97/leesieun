@@ -41,40 +41,40 @@
                 <p class="text-muted">
                 <!-- jsp에서 자바변수(저장소)를 사용하는 방법 Model로 수신한 $ 변수명으로 표시한다. -->
                 <%-- ${user_id2} 아래 보안코딩 적용 --%> 
-                <c:out value="${user_id2}"></c:out>
+                <c:out value="${memberVO.user_id}"></c:out>
                 </p>
 				<!-- 부트스트랩 -->
                 <hr> <!-- horizontal 수평선 태그 -->
 
                 <strong><i class="fas fa-address-card mr-1"></i> user_name</strong>
-                <p class="text-muted">관리자</p>
+                <p class="text-muted">${memberVO.user_name}</p>
 
                 <hr>
 
                 <strong><i class="far fa-envelope mr-1"></i> email</strong>
-                <p class="text-muted">admin@abc.com</p>
+                <p class="text-muted">${memberVO.email}</p>
 
                 <hr>
 
                 <strong><i class="far fa-file-alt mr-1"></i> point</strong>
-                <p class="text-muted">100</p>
+                <p class="text-muted">${memberVO.point}</p>
               	
               	<hr>
               	
               	<strong><i class="fas fa-user-shield mr-1"></i> enabled</strong>              
-              	<p class="text-muted">true</p>
+              	<p class="text-muted">${memberVO.enabled}</p>
               	
               	<hr>
               	
               	<strong><i class="fas fa-layer-group mr-1"></i> levels</strong>
-              	<p class="text-muted">ROLL_ADMIN</p>
+              	<p class="text-muted">${memberVO.levels}</p>
               </div>
               <!-- /.card-body -->
             </div>
           
           <!-- 버튼영역 시작 -->
             <div class="card-body">
-              	<a href="/admin/member/member_list" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
+              	<a href="/admin/member/member_list?page=${pageVO.page}" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
               	<button type="button" class="btn btn-danger float-right mr-1">DELETE</button>
               	<button type="button" class="btn btn-warning float-right mr-1 text-white">UPDATE</button>
               	<!-- 부트스트랩 디자인 버튼클래스를 이용해서 a태그를 버튼모양 만들기(위) -->
