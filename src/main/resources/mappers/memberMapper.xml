@@ -32,6 +32,8 @@ select * from tbl_member
 			user_name LIKE concat('%', #{search_keyword}, '%')
 	</if>
 </if>
+order by reg_date
+limit #{queryStartNo}, #{queryPerPageNum}
 </select>
 
 <insert id="insertMember">
