@@ -104,8 +104,12 @@ public class DataSourceTest {
 	public void selectMember() throws Exception {
 		PageVO pageVO = new PageVO();
 		pageVO.setSearch_type("user_id");
-		pageVO.setSearch_keyword("admin ");
-	List<MemberVO> memberList =	memberDAO.selectMember(pageVO);
+		pageVO.setSearch_keyword("admin");
+		// 아래 3가지는 초기 페이징 처리에 필요한 필수값 저장
+		pageVO.setPage(1);
+		pageVO.setPerPageNum(5); // 페이지 리스트 단위 5페이지씩 
+		pageVO.setQueryPerPageNum(10); //한페이지당 보여줄 회원 수 10명
+		List<MemberVO> memberList =	memberDAO.selectMember(pageVO);
 		System.out.println("회원리스트 테스트 입니다.");
 		System.out.println(memberList.toString());
 	}
