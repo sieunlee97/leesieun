@@ -30,6 +30,18 @@
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
 ## v5.0.0 통합구현
+### 202012221(월)
+- 마리아DB실행  -> 워크벤치 실행 -> 이클립스 실행
+- 리스트 출력 전 페이징 처리부터 해야 하기 때문에,  selectMember호출보다 위로 이동
+- 변수변경 
+- > 1. 쿼리에서 사용되는 시작인덱스 startNo -> queryStartNo
+- > 2. 쿼리에서 사용되는 1페이지 당 출력 개수 perQueryPageNum -> queryPerPageNum
+- totalCount가 듣어가는 계산식 변경
+- > tempEnd*this.perQueryPageNum > this.totalCount (임시끝페이지 x 쿼리에서1페이지당출력할개수 > 실제전체개수)
+- > this.totalCount/(double)this.queryPerPageNum (실제전체개수/쿼리에서1페이당출력할개수)
+- > this.endPage*this.perQueryPageNum < this.totalCount (계산된끝페이지 x 쿼리에서1페이지당출력할개수 > 실제전체개수)
+- 더미데이터 입력 : DB stored procedure 사용(DB전용 프로그램 방식)
+
 ### 20201218(금)
 - PK(식별자): Primary Key(기본키, 고유키) 주민번호와 같은 1개의 값.
 - 테이블에서 고유한 PK: 엔티티에서 유일한 값
