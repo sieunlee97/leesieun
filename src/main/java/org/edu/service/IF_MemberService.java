@@ -14,4 +14,5 @@ public interface IF_MemberService {
 	public int countMember(PageVO pageVO) throws Exception;
 	public List<MemberVO> selectMember(PageVO pageVO) throws Exception;
 	// 메소드 정의할 때 파라미터 타입 필요. 파라미터(매개변수)를 String형으로 받는다. 
+	public MemberVO readMember(String user_id) throws Exception;
 }
