@@ -166,7 +166,7 @@ public class AdminController {
 			pageVO.setPage(1);
 		}
 		pageVO.setPerPageNum(5); // 페이지 리스트 단위 5페이지씩 
-		pageVO.setPerQueryPageNum(10); //한페이지당 보여줄 회원 수 10명
+		pageVO.setQueryPerPageNum(10); //한페이지당 보여줄 회원 수 10명
 		pageVO.setTotalCount(110); //전체 회원 수를 구한 변수값을 매개변수로 입력
 		//전체 회원 수 입력하는 순간 calcpage()메소드 실행.
 		model.addAttribute("pageVO", pageVO);

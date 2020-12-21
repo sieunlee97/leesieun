@@ -12,9 +12,9 @@ package org.edu.vo;
  */
 public class PageVO {
 	private int perPageNum; // 리스트하단에보이는 번호의 개수 (페이징리스트목록개수)
-	private int perQueryPageNum; //쿼리에서 1페이지당 출력할 자료 개수값이 들어가는 변수
+	private int queryPerPageNum; //쿼리에서 1페이지당 출력할 자료 개수 변수
 	private Integer page; //jsp에서 선택한 페이지 번호값이 들어가는 변수
-	private int startNo; //[계산식] 쿼리에서 사용될 시작번호가 들어가는 변수
+	private int queryStartNo; //[계산식] 쿼리에서 사용되는 시작인덱스값 변수
 	private boolean prev; //[계산식]페이징에서 이전 번호가 있을 때 표시값이 들어가는 변수
 	private boolean next; //[계산식]페이징에서 이후 번호가 있을 때 표시값이 들어가는 변수
 	//위의 프리뷰, 넥스트 변수 값이 있는지 없는지 확인하려면, [계산식]이 필요하다. 계산할 때 필요한 변수 3개(아래)
@@ -77,12 +77,12 @@ public class PageVO {
 		this.perPageNum = perPageNum;
 	}
 	
-	public int getPerQueryPageNum() {
-		return perQueryPageNum;
+	public int getQueryPerPageNum() {
+		return queryPerPageNum;
 	}
 
-	public void setPerQueryPageNum(int perQueryPageNum) {
-		this.perQueryPageNum = perQueryPageNum;
+	public void setQueryPerPageNum(int queryPerPageNum) {
+		this.queryPerPageNum = queryPerPageNum;
 	}
 
 	public Integer getPage() {
@@ -91,16 +91,16 @@ public class PageVO {
 	public void setPage(Integer page) {
 		this.page = page;
 	}
-	public int getStartNo() {
+	public int getQueryStartNo() {
 		// DB쿼리에서 사용 시작 인덱스번호(0)를 구하는 계산식
 		// 계산식 =  (jsp에서 클릭한 페이지 번호 -1) * 페이지당 보여지는 페이지번호 개수
 		// 1페이지 계산>  10[1페이지당 출력할 개수] * (1[몇번째 페이지]-1) = 0
 		// 2페이지 계산>  10*(2-1) = 10[페이지 시작번호]
-		startNo = perQueryPageNum*(this.page-1); //개발자가 추가한 계산식
-		return startNo;
+		queryStartNo = queryPerPageNum*(this.page-1); //개발자가 추가한 계산식
+		return queryStartNo;
 	}
-	public void setStartNo(int startNo) {
-		this.startNo = startNo;
+	public void setQueryStartNo(int queryStartNo) {
+		this.queryStartNo = queryStartNo;
 	}
 	public boolean getPrev() {
 		return prev;
