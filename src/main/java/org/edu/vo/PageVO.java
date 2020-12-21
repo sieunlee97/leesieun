@@ -49,10 +49,10 @@ public class PageVO {
 		
 		// ex) 20 * 10 = 200개의 레코드 (회원(게시물))
 		// 만약 회원(게시물)이 195개 일 경우가 있다.
-		if( tempEnd*this.perPageNum > this.totalCount ) { //ex. 200>195 
+		if( tempEnd*this.queryPerPageNum > this.totalCount ) { //ex. 200>195 
 			//클릭한 page번호로 계산된 게시물 수가 실제 회원(게시물)수(totalCount)보다 클 때
 			this.endPage = (int)Math.ceil(
-					this.totalCount/(double)this.perPageNum
+					this.totalCount/(double)this.queryPerPageNum
 					); // 195 / 10 = 19.5 -> 20 
 		} else { // 전체게시물 수(totalCount) = 195개인데, 1페이지 클릭한 경우 
 				 // 195/10 계산으로 20페이지가  endPage가 되면 안되기 때문에, else로 처리
@@ -63,7 +63,7 @@ public class PageVO {
 		this.prev = this.startPage != 1; 
 		// ex. startPage = 11 일 때, 결과값은 true
 		//시작 페이지가 1보다 크면 무조건 이전 페이지가 있다로 본다.(위)
-		this.next = (this.endPage*this.perPageNum < this.totalCount); 
+		this.next = (this.endPage*this.queryPerPageNum < this.totalCount); 
 		// 20 * 10 < 195 일 때, 결과값은 false => jsp에서 > 안보임.
 		//ex) < 11 12 13 14 15 16 17 18 19 20(tempEnd) > 시작(11), 끝(20)
 		
