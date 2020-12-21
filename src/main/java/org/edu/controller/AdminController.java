@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 // 스프링에서 사용가능한 클래스를 빈(bean)이라고 하고, @Controller 클래스를 사용하면 된다.
 @Controller
@@ -108,7 +109,13 @@ public class AdminController {
 	public String member_write() throws Exception {
 		return "admin/member/member_write";
 	}
-	
+	@RequestMapping(value="/admin/member/member_delete", method=RequestMethod.POST)
+	public String member_delete(RedirectAttributes rdat, @RequestParam("user_id") String user_id) throws Exception{
+		memberService.deleteMember(user_id);
+		//Redirect로 페이지 이동 시 전송값을 숨겨서 보내는 역할을 하는 클래스 : RedirectAttributes
+		rdat.addFlashAttribute("msg", "삭제");
+		return "redirect:/admin/member/member_list"; //?success=OK
+	}
 	//member_list.jsp에서 받은 데이터를 수신하는 역할  @RequestParam("키값") 리퀘스트파라미터 클래스 사용
 	//현재 컨트롤러 클래스에서 member_view.jsp로 데이터를 보내는 역할, Model 클래스 사용
 	//자료 흐름 : member_list.jsp -> (@RequestParam("user_id")-수신, Model-송신 -> member_view.jsp
