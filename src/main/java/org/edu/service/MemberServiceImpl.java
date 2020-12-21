@@ -26,5 +26,11 @@ public class MemberServiceImpl implements IF_MemberService {
 		//회원정보조회 DAO클래스의 메소드 호출(아래)
 		return memberDAO.selectMember(pageVO);		
 	}
+
+	@Override
+	public int countMember(PageVO pageVO) throws Exception {
+		// 검색된 회원의 전체 명 수 구하기
+		return memberDAO.countMember(pageVO);
+	}
 	
 }

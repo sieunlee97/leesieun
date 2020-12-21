@@ -16,22 +16,30 @@ memberMapper.xml : 회원관리에 대한 모든 쿼리를 모아서 관리하�
  앞뒤로 일치하는 LIKE 쿼리를 사용할 때는 %검색어%
 user_id LIKE '%user_2020% 
 -->
+<!-- 공통사용 쿼리 모음 -->
+<sql id="sqlWhere">
+	<if test="search_type != '' and search_type != null">
+		where
+		<if test="search_type == 'all'.toString()">
+			user_id LIKE concat('%', #{search_keyword}, '%')
+			or
+			user_name LIKE concat('%', #{search_keyword}, '%')
+		</if>
+		<if test="search_type == 'user_id'.toString()">
+			user_id LIKE concat('%', #{search_keyword}, '%')
+		</if>
+		<if test="search_type == 'user_name'.toString()">
+			user_name LIKE concat('%', #{search_keyword}, '%')
+		</if>
+	</if>
+</sql>
+<select id="countMember" resultType="int">
+select count(*) from tbl_member
+<include refid="sqlWhere"></include>
+</select>
 <select id="selectMember" resultType="org.edu.vo.MemberVO">
 select * from tbl_member	
-<if test="search_type != '' and search_type != null">
-	where
-	<if test="search_type == 'all'.toString()">
-		user_id LIKE concat('%', #{search_keyword}, '%')
-		or
-		user_name LIKE concat('%', #{search_keyword}, '%')
-	</if>
-	<if test="search_type == 'user_id'.toString()">
-			user_id LIKE concat('%', #{search_keyword}, '%')
-	</if>
-	<if test="search_type == 'user_name'.toString()">
-			user_name LIKE concat('%', #{search_keyword}, '%')
-	</if>
-</if>
+<include refid="sqlWhere"></include>
 order by reg_date desc
 limit #{queryStartNo}, #{queryPerPageNum}
 </select>
