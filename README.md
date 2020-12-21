@@ -41,6 +41,12 @@
 - > this.totalCount/(double)this.queryPerPageNum (실제전체개수/쿼리에서1페이당출력할개수)
 - > this.endPage*this.perQueryPageNum < this.totalCount (계산된끝페이지 x 쿼리에서1페이지당출력할개수 > 실제전체개수)
 - 더미데이터 입력 : DB stored procedure 사용(DB전용 프로그램 방식)
+- log4j.xml 로그 등급 변경 및 dtd(Document Type Define)문서타입정의를 아래로 변경예정
+- > log4j.xml 레벨 : debug < warn < info , 오른쪽일수록 더 자세한 정보
+- > <!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd"> 이걸로 변경
+- 리스트, 검색, 페이징 완료
+- =====================================================================
+- 신규페이지 작업 순서 : 쿼리 > DAO > Service > Controller > jsp
 
 ### 20201218(금)
 - PK(식별자): Primary Key(기본키, 고유키) 주민번호와 같은 1개의 값.
