@@ -71,11 +71,12 @@
               </div>
               <!-- /.card-body -->
             </div>
-          
+            
+          <form name="delete-form" action="/admin/member/member_delete" method="post">
           <!-- 버튼영역 시작 -->
             <div class="card-body">
               	<a href="/admin/member/member_list?page=${pageVO.page}" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
-              	<button type="button" class="btn btn-danger float-right mr-1">DELETE</button>
+              	<button type="submit" class="btn btn-danger float-right mr-1">DELETE</button>
               	<button type="button" class="btn btn-warning float-right mr-1 text-white">UPDATE</button>
               	<!-- 부트스트랩 디자인 버튼클래스를 이용해서 a태그를 버튼모양 만들기(위) -->
               	<!-- btn클래스명이 버튼모양으로 변경, btn-primary클래스명은 버튼색상을 변경하는역할 -->
@@ -88,6 +89,8 @@
               	 -->
               </div>
           <!-- 버튼영역 끝 -->
+          <input type="hidden" name="user_id" value="${memberVO.user_id}">
+          </form>
           
           </div>
         </div>
