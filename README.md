@@ -35,24 +35,6 @@
 - 한글 POST시 깨지는 문제 : web.xml에서 한글 처리를 위한 UTF-8 필터 추가
 
 '''
-
-<!--  ...한글처리를 위한 UTF-8 필터 추가 -->
-	<filter>
-	  <filter-name>encoding</filter-name>
-	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-	  <init-param>
-	   <param-name>encoding</param-name>
-	   <param-value>UTF-8</param-value>
-	  </init-param>
-	</filter>	
-	<filter-mapping>
-	  <filter-name>encoding</filter-name>
-	  <url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-'''
-
-'''
 <!--  필터는 HTTP통신하는 자료를 걸러주는 역할, 한글처리를 위한 UTF-8 필터 추가 -->
 	<filter>
 	  <filter-name>encoding</filter-name>

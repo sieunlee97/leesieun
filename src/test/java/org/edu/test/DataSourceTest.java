@@ -52,8 +52,8 @@ public class DataSourceTest {
 		//CRUD 중 Update 테스트 구현
 		//특징 : user_id는 primary키이기 때문에 수정대상이 아니다.
 		//MemberVO memberVO = new MemberVO();
-		memberVO.setUser_id("admin");
-		memberVO.setUser_name("홍길동");
+		memberVO.setUser_id("dummy_1");
+		memberVO.setUser_name("수정더미");
 		memberVO.setUser_pw(""); // 암호를 수정하지 않는 사람 가정. 수정할 때 암호는 새로 입력 안하겠다.
 		memberVO.setEmail("test@test.com");
 		memberVO.setPoint(100);

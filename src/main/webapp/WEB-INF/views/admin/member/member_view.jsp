@@ -90,6 +90,7 @@
               </div>
           <!-- 버튼영역 끝 -->
           <input type="hidden" name="user_id" value="${memberVO.user_id}">
+          <input type="hidden" name="page" value="${pageVO.page}">
           </form>
           
           </div>

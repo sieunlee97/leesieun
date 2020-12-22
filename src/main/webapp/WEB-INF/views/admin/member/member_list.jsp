@@ -64,12 +64,7 @@
                     <tr>
                       <th>user_id</th> <!-- 테이블 헤드 타이틀태그 th -->
                       <th>user_name[point]</th>
-                      <th>email</th>
-                  
-                  
-                  
-                  
-                  
+                      <th>email</th> 
                       <th>enabled</th>
                       <th>reg_date</th>
                       <th>levels</th>
