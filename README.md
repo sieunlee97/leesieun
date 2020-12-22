@@ -31,6 +31,43 @@
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
 ## v5.0.0 통합구현
+### 202012222(화)
+- 한글 POST시 깨지는 문제 : web.xml에서 한글 처리를 위한 UTF-8 필터 추가
+
+'''
+
+<!--  ...한글처리를 위한 UTF-8 필터 추가 -->
+	<filter>
+	  <filter-name>encoding</filter-name>
+	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	  <init-param>
+	   <param-name>encoding</param-name>
+	   <param-value>UTF-8</param-value>
+	  </init-param>
+	</filter>	
+	<filter-mapping>
+	  <filter-name>encoding</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+'''
+
+'''
+<!--  필터는 HTTP통신하는 자료를 걸러주는 역할, 한글처리를 위한 UTF-8 필터 추가 -->
+	<filter>
+	  <filter-name>encoding</filter-name>
+	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	  <init-param>
+	   <param-name>encoding</param-name>
+	   <param-value>UTF-8</param-value>
+	  </init-param>
+	</filter>	
+	<filter-mapping>
+	  <filter-name>encoding</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+'''
+
 ### 202012221(월)
 - 마리아DB실행  -> 워크벤치 실행 -> 이클립스 실행
 - 리스트 출력 전 페이징 처리부터 해야 하기 때문에,  selectMember호출보다 위로 이동
