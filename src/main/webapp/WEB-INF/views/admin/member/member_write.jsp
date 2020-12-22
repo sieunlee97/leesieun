@@ -112,7 +112,7 @@ $(document).ready(function(){
 			url:'/id_check?user_id='+p_user_id, //user_id get방식으로 보내게 된다.
 			dataType:'text',
 			success:function(result){
-				alert('디버그'+result);
+				//alert('디버그'+result);
 				if(result=='0'){
 					alert("사용 가능한 아이디입니다.");
 					$(".btn-warning").attr('disabled', false);
@@ -121,7 +121,7 @@ $(document).ready(function(){
 					$(".btn-warning").attr('disabled', true);
 				}else{
 					//에러메세지 출력
-					//alert(result); 개발자용 디버그
+					//alert(result); ///개발자용 디버그
 					alert('API서버에 문제가 발생했습니다.');
 				}
 			}
