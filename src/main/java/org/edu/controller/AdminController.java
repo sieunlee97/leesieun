@@ -109,6 +109,25 @@ public class AdminController {
 	public String member_write() throws Exception {
 		return "admin/member/member_write";
 	}
+	
+	@RequestMapping(value="/admin/member/member_update", method=RequestMethod.GET)
+	public String member_update(@RequestParam("user_id") String user_id, @ModelAttribute("pageVO") PageVO pageVO, Model model ) throws Exception {
+		//선택한 user_id에 해당하는 정보들을 읽어들여서 그 정보들을 memberVO에 저장
+		MemberVO memberVO = memberService.readMember(user_id);
+		//기존에 입력되어있던 값들을 보여줘야한다.
+		model.addAttribute("memberVO", memberVO); //memberVO : "GET으로 받은 user_id에 해당하는 셀렉트 조회값_readMember"
+		//get방식으로 업데이트 폼(파일)만 보여준다.
+		return "admin/member/member_update";
+	}
+	@RequestMapping(value="/admin/member/member_update", method=RequestMethod.POST)
+	public String member_update(@ModelAttribute("pageVO") PageVO pageVO, MemberVO memberVO) throws Exception {
+		// POST방식으로 넘어온 값을 DB 수정 처리하는 역할
+		memberService.updateMember(memberVO);
+		// member_view.jsp에 페이지번호 정보와 수정한 정보의 user_id 값을 전송
+		// redirect를 사용하는 목적 : 새로고침했을 떄, 위 updateMember() 재실행 방지
+		return "redirect:/admin/member/member_view?page="+pageVO.getPage()+"&user_id="+ memberVO.getUser_id();
+	}
+	
 	@RequestMapping(value="/admin/member/member_delete", method=RequestMethod.POST)
 	public String member_delete(RedirectAttributes rdat, @RequestParam("user_id") String user_id) throws Exception{
 		memberService.deleteMember(user_id);
