@@ -41,13 +41,15 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="user_id">User_id</label>
-                    <input value="${memberVO.user_id}" type="text" class="form-control" name="user_id" id="user_id" placeholder="ID를 입력해주세요." required>
+                    <input value="${memberVO.user_id}" type="text" class="form-control" name="user_id" id="user_id" placeholder="ID를 입력해주세요." required readonly>
                   <!-- form에서 input같은 입력태그에는 name 속성이 반드시 필요.name 속성값 = DB 필드 속성명
                   DB에 입력할 때 값을 전송하게 되는데 전송값을 저장하는 이름이 name이 되고,위에서는 user_id이다.-->
                   </div>
                   <div class="form-group">
                     <label for="user_pw">Password</label>
-                    <input value="${memberVO.user_pw}" type="password" class="form-control" name="user_pw" id="user_pw" placeholder="암호를 입력해주세요." required>
+                    <!-- html5에서 지원되는 유효성 검사 maxlength, minlength -->
+                    <!-- 단, html5를 지원하는 브라우저에서만 사용가능. 그래서 jquery.validator라는 자바스크립트 사용 -->
+                    <input maxlength="10" minlength="5" value="" type="password" class="form-control" name="user_pw" id="user_pw" placeholder="암호를 입력해주세요.">
                   </div>
                   <div class="form-group">
                   	<label for="user_name">User_name</label>
