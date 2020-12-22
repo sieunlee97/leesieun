@@ -62,7 +62,7 @@
                   </div>
                   <div class="form-group">
                   	<label for="point">Point</label>
-                  	<input value="${memberVO.point}" type="text" class="form-control" name="point" id="point" placeholder="포인트를 입력해주세요." required>
+                  	<input value="${memberVO.point}" type="number" class="form-control" name="point" id="point" placeholder="포인트를 입력해주세요." required>
                   </div>
                   <div class="form-group">
                   	<label for="enabled">Enabled</label>
@@ -74,8 +74,8 @@
                   <div class="form-group">
                   	<label for="levels">Levels</label>
                   	<select class="form-control" name="levels" id="levels">
-                  		<option value="ROLL_ADMIN" <c:out value="${(memberVO.levels=='ROLL_ADMIN')?'selected':''}"/>>ROLL_ADMIN</option>
-                  		<option value="ROLL_USER" <c:out value="${(memberVO.levels=='ROLL_USER')?'selected':''}"/>>ROLL_USER</option>
+                  		<option value="ROLE_ADMIN" <c:out value="${(memberVO.levels=='ROLE_ADMIN')?'selected':''}"/>>ROLL_ADMIN</option>
+                  		<option value="ROLE_USER" <c:out value="${(memberVO.levels=='ROLE_USER')?'selected':''}"/>>ROLL_USER</option>
                		</select>
                   </div>
                 </div>

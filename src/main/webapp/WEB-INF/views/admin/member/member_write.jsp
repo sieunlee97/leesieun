@@ -60,7 +60,7 @@
                   </div>
                   <div class="form-group">
                   	<label for="point">Point</label>
-                  	<input type="text" class="form-control" name="point" id="point" placeholder="포인트를 입력해주세요." required>
+                  	<input type="number" class="form-control" name="point" id="point" placeholder="포인트를 입력해주세요." required>
                   </div>
                   <div class="form-group">
                   	<label for="enabled">Enabled</label>
@@ -72,8 +72,8 @@
                   <div class="form-group">
                   	<label for="levels">Levels</label>
                   	<select class="form-control" name="levels" id="levels">
-                  		<option value="ROLL_ADMIN">ROLL_ADMIN</option>
-                  		<option value="ROLL_USER" selected>ROLL_USER</option>
+                  		<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                  		<option value="ROLE_USER" selected>ROLE_USER</option>
                		</select>
                   </div>
                 </div>
@@ -83,7 +83,7 @@
           <!-- 버튼영역 시작 -->
             <div class="card-body">
               	<a href="/admin/member/member_list" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
-              	<button type="submit" class="btn btn-warning float-right mr-1 text-white">SUBMIT</button>
+              	<button type="submit" class="btn btn-warning float-right mr-1 text-white" disabled>SUBMIT</button>
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지 못한다. 그래서 button태그를 사용. -->
               </div>
           <!-- 버튼영역 끝 -->
@@ -100,4 +100,30 @@
   </div>
 <!-- /.content-wrapper -->
 
+
 <%@ include file="../include/footer.jsp" %>
+<script>
+$(document).ready(function(){
+	$("#user_id").bind("blur", function(){
+		//alert("여기까지"+ $(this).val()); 디버그용
+		var p_user_id=$(this).val(); // user_id 저장변수
+		$.ajax({
+			type:'get',
+			url:'/id_check?user_id='+p_user_id, //user_id get방식으로 보내게 된다.
+			dataType:'text',
+			success:function(result){
+				alert('디버그'+result);
+				if(result=='0'){
+					$(".btn-warning").attr('disabled', false);
+				}else if(result=='1'){
+					alert("중복 아이디가 존재합니다.");
+					$(".btn-warning").attr('disabled', true);
+				}else{
+					//에러메세지 출력
+					alert(result);
+				}
+			}
+		});
+	});
+});
+</script>
