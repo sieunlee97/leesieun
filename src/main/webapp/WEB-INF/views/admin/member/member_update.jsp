@@ -47,7 +47,7 @@
                   </div>
                   <div class="form-group">
                     <label for="user_pw">Password</label>
-                    <!-- html5에서 지원되는 유효성 검사 maxlength, minlength -->
+                    <!-- html5에서 지원되는 유효성 검사 maxlength, minlength, required, type="email" -->
                     <!-- 단, html5를 지원하는 브라우저에서만 사용가능. 그래서 jquery.validator라는 자바스크립트 사용 -->
                     <input maxlength="10" minlength="5" value="" type="password" class="form-control" name="user_pw" id="user_pw" placeholder="암호를 입력해주세요.">
                   </div>
@@ -67,8 +67,8 @@
                   <div class="form-group">
                   	<label for="enabled">Enabled</label>
                   	<select class="form-control" name="enabled" id="enabled">
-                  		<option value="0" <c:out value="${(memberVO.enabled=='0')?'selected':''}"/>>false</option>
-                  		<option value="1" <c:out value="${(memberVO.enabled=='1')?'selected':''}"/>>true</option>
+                  		<option value="0" <c:out value="${(memberVO.enabled=='false')?'selected':''}"/>>false</option>
+                  		<option value="1" <c:out value="${(memberVO.enabled=='true')?'selected':''}"/>>true</option>
                		</select>
                   </div>
                   <div class="form-group">
@@ -85,7 +85,8 @@
           <!-- 버튼영역 시작 -->
             <div class="card-body">
               	<a href="/admin/member/member_list?page=${pageVO.page}" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
-              	<button type="submit" class="btn btn-warning float-right mr-1 text-white">수정</button>
+              	<a href="/admin/member/member_view?page=${pageVO.page}&user_id=${memberVO.user_id}" class="btn btn-secondary float-right mr-1">BACK</a>
+              	<button type="submit" class="btn btn-warning float-right mr-1 text-white">SUBMIT</button>
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지 못한다. 그래서 button태그를 사용. -->
               </div>
           <!-- 버튼영역 끝 -->
