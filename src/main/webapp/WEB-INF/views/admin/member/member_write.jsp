@@ -114,13 +114,15 @@ $(document).ready(function(){
 			success:function(result){
 				alert('디버그'+result);
 				if(result=='0'){
+					alert("사용 가능한 아이디입니다.");
 					$(".btn-warning").attr('disabled', false);
 				}else if(result=='1'){
 					alert("중복 아이디가 존재합니다.");
 					$(".btn-warning").attr('disabled', true);
 				}else{
 					//에러메세지 출력
-					alert(result);
+					//alert(result); 개발자용 디버그
+					alert('API서버에 문제가 발생했습니다.');
 				}
 			}
 		});
