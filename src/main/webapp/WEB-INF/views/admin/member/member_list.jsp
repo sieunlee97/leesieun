@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../include/header.jsp" %>
 
 <!-- Content Wrapper. Contains page content, 대시보드 본문 -->
@@ -82,7 +83,7 @@
                       <td>${member.user_name}[${member.point}]</td>
                       <td>${member.email}</td>
                       <td>${member.enabled}</td>
-                      <td>${member.reg_date}</td>
+                      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${member.reg_date}"/></td>
                       <td><span class="badge bg-danger">${member.levels}</span></td> <!-- span은 자리를 차지하지 않음. 텍스트에 배지만 적용하기 위해 -->
                       <!-- 권한표시는 부트스트랩 배지 클래스 사용 -->
                     </tr>
