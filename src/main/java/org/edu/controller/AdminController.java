@@ -54,8 +54,8 @@ public class AdminController {
 		String xss_data="첫번째 내용입니다.<br>줄바꿈 자리입니다.<script>alert('메롱')</script>";
 		boardVO.setContent(securityCode.unscript(xss_data));
 		boardVO.setWriter("admin");
-		Date regdate = new Date();
-		boardVO.setRegdate(regdate);
+		Date reg_date = new Date();
+		boardVO.setReg_date(reg_date);
 		boardVO.setView_count(2);
 		boardVO.setReply_count(0);
 		model.addAttribute("boardVO", boardVO);
@@ -70,8 +70,8 @@ public class AdminController {
 		board_input.setTitle("첫번째 게시물입니다.");
 		board_input.setContent("첫번째 게시물 내용입니다.<br>줄바꿈했습니다.");
 		board_input.setWriter("admin");
-		Date regdate = new Date();
-		board_input.setRegdate(regdate);
+		Date reg_date = new Date();
+		board_input.setReg_date(reg_date);
 		board_input.setView_count(2);
 		board_input.setReply_count(0);
 		
@@ -83,7 +83,7 @@ public class AdminController {
 		board_input2.setTitle("두번째 게시물입니다.");
 		board_input2.setContent("두번째 게시물 내용입니다.<br>줄바꿈했습니다.");
 		board_input2.setWriter("user02");
-		board_input2.setRegdate(regdate);
+		board_input2.setReg_date(reg_date);
 		board_input2.setView_count(2);
 		board_input2.setReply_count(0);
 		// board_input.setBno(2); // 게시물번호만 2로 변경, 나머지값들은 변경없이 board_array[1]에 저장
