@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test.html</title>
+        <script src="./js/jquery-1.11.3.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            /* $("#addElement").click(function(){
+                $(document.body).css("background", "green");
+                //$("<div><p>제이쿼리</p></div>").appendTo(this);
+                //$(타켓).append("타켓 내부 Next다음에 추가할 내용");
+                $(this).append("<div><p>내부추가</p></div>");
+                //$(타켓).after("타켓 외부 Next다음에 추가할 내용");
+                $(this).after("<div><p>외부추가</p></div>");
+                var count = $("div").length;
+                alert("div태그의 개수는" + count + "개 입니다.");
+            }); */
+            $("#addElement").bind("click",function(){
+                alert('버튼 클릭 이벤트 방식2');
+            });
+        });
+        //context 영역의 내용을 말합니다.
+        </script>
+    </head>
+    <body>
+        <button id="addElement">동적으로 돔 엘리먼트 추가하기</button>
+    </body>
+</html>

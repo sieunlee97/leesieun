@@ -1,0 +1,56 @@
+@charset "UTF-8";
+label {vertical-align: middle;}
+.radio_area {
+	padding-left: 20px;
+	height: 40px;
+	padding-top: 10px;
+	box-sizing: border-box;
+}
+.css-radio {
+	overflow: hidden;
+	position: absolute;
+	left: -1000px;
+	width: 1px;
+	height: 1px;
+}
+.css-radio + label {
+	display: inline-block;
+	padding-left: 20px !important;
+	margin-right: 20px;
+	background: url(../img/bg_radio.png) no-repeat 0 0;
+	cursor: pointer;
+	font-size: 15px;
+}
+.css-radio:checked + label {
+	background-position: 0 -50px;
+}
+.checkbox_area {
+	padding-left: 20px;
+	height: 40px;
+	padding-top: 10px;
+	box-sizing: border-box;
+}
+.css-checkbox {
+	overflow: hidden;
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+}
+.agree {
+	display: inline-block;
+	height: 20px;
+	padding-left: 30px !important;
+	line-height: 20px !important;
+	background: url(../img/bg_checkbox.png) no-repeat 0 0;
+	background-size: 20px;
+	cursor: pointer;
+	font-size: 15px;
+	-moz-user-select: none;
+}
+.css-checkbox:checked + label {
+	background-position: 0 -20px;
+}
+.css-checkbox:checked + label + label {
+	background-position: 0 -20px;
+}

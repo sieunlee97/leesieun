@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title> 스프링 </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/tablet.css">
+<link rel="stylesheet" href="css/pc.css">
+<link rel="stylesheet" href="css/board.css">
+<link rel="stylesheet" href="css/join.css">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.smooth-scroll.min.js"></script>
+<script src="js/main.js"></script>
+<!-- html5가 아닌 유효성 검사 라이브러리(아래) -->
+<script src="js/jquery.validate.js"></script>
+<script src="js/additional-methods.js"></script>
+<style>
+.myinfo {
+	width: 170px;
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+	font-size: 18px;
+	background: #000;
+	color: #fff;
+}
+.radio_area {
+	padding-left: 5px;
+    padding-top: 5px;
+}
+.radio_area input[type="radio"] {display:none;}
+.radio_area label {display: none;}
+.gender {
+	padding: 4px 10px;
+    font-size: 14px;
+}
+</style>
+<script>
+$(document).ready(function() {
+	$(".appForm").validate({
+		rules: {
+			password: "required",
+			password_chk: {
+				equalTo: "#password_lbl"
+			}
+		}
+	});
+	$.extend($.validator.messages, {
+		required: "필수 항목 입니다.",
+		email: "유효하지 않는 Email주소 입니다.",
+		digits: "숫자만 입력 가능합니다.",
+		equalTo: "비밀번호가 일치하지 않습니다."
+	});
+});
+</script>
+</head>
+<body>
+<!-- 헤더에서푸터까지 -->
+<div id="wrap">
+	<!-- 헤더상단메뉴영역영역 -->
+	<header id="header">
+		<div class="header_area box_inner clear">
+			<!-- 상단로고영역 -->
+			<h1><a href="index.html">스프링 in 자바</a></h1>
+			<!-- //상단로고영역 -->
+			
+			<!-- 상단메뉴메뉴영역 -->
+			<p class="openMOgnb"><a href="#"><b class="hdd">메뉴열기</b> <span></span><span></span><span></span></a></p>
+			<div class="header_cont">
+				<ul class="util clear">
+					<li><a href="login.html">로그인</a></li>
+					<li><a href="join.html">회원가입</a></li>
+					<li><a href="mypage.html">마이페이지</a></li>
+				</ul>	
+				<nav>
+				<ul class="gnb clear">
+					<li><a href="board_list.html" class="openAll1">스프링정보</a>
+
+                        <div class="gnb_depth gnb_depth2_1">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">국내</a></li>
+                                <li><a href="board_list.html">해외</a></li>
+                            </ul>
+                        </div>
+					</li>
+					<li><a href="board_list.html" class="openAll2">고객센터</a>
+				        <div class="gnb_depth gnb_depth2_2">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">공지사항</a></li>
+                                <li><a href="board_list.html">문의하기</a></li>
+                            </ul>
+                        </div>
+					</li>
+					<li><a href="board_list.html" class="openAll3">상품투어</a>
+                        <div class="gnb_depth gnb_depth2_3">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">프로그램 소개</a></li>
+                                <li><a href="board_list.html">스프링자료</a></li>
+                            </ul>
+                        </div>
+					</li>
+					<li><a href="board_list.html" class="openAll4">티켓/가이드</a>
+                        <div class="gnb_depth gnb_depth2_4">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">항공</a></li>
+                                <li><a href="board_list.html">호텔</a></li>
+                            </ul>
+                        </div>
+					</li>
+				</ul>
+                </nav>
+				<p class="closePop"><a href="javascript:;">닫기</a></p>
+			</div>
+			<!-- //상단메뉴메뉴영역 -->
+		</div>
+	</header>
+	<!-- //헤더상단메뉴영역영역 -->
+	
+	<!-- 메인콘텐츠영역 -->
+	<div id="container">
+		<!-- 메인상단위치표시영역 -->
+		<div class="location_area customer">
+			<div class="box_inner">
+				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
+				<p class="location">MYPAGE <span class="path">/</span> 개인정보수정</p>
+				<ul class="page_menu clear">
+					<li><a href="#" class="on">개인정보수정</a></li>
+				</ul>
+			</div>
+		</div>	
+		<!-- //메인상단위치표시영역 -->
+
+		<!-- 메인본문영역 -->
+		<div class="bodytext_area box_inner">
+			<div class="myinfo">내 정보</div>
+			<!-- 폼영역 -->
+			<form method="POST" name="join_form" action="join.html" class="appForm">
+				<fieldset>
+					<legend>회원가입폼</legend>
+					<p class="info_pilsoo pilsoo_item">필수입력</p>
+					<ul class="app_list">
+						<li class="clear">
+							<label for="email_lbl" class="tit_lbl pilsoo_item">이메일</label>
+							<div class="app_content"><input type="email" name="email"" class="w100p" id="email_lbl" placeholder="이메일을 입력해주세요" required/></div>
+						</li>
+						<li class="clear">
+							<label for="name_lbl" class="tit_lbl pilsoo_item">작성자명</label>
+							<div class="app_content"><input type="text" name="name" class="w100p" id="name_lbl" placeholder="이름을 입력해주세요" required/></div>
+						</li>
+						<li class="clear">
+							<label for="password_lbl" class="tit_lbl pilsoo_item">비밀번호</label>
+							<div class="app_content"><input type="password" name="password" class="w100p" id="password_lbl" placeholder="비밀번호를 입력해주세요" required/></div>
+						</li>
+						<li class="clear">
+							<label for="password_chk_lbl" class="tit_lbl pilsoo_item">비밀번호확인</label>
+							<div class="app_content"><input type="password" name="password_chk" class="w100p" id="password_chk_lbl" placeholder="비밀번로를 다시 입력해주세요" required/></div>
+						</li>
+						<li class="clear">
+							<label for="tel_lbl" class="tit_lbl pilsoo_item">연락처</label>
+							<div class="app_content"><input type="digits"" name="tel" class="w100p" id="tel_lbl" placeholder="휴대폰'-'없이 숫자만 입력해주세요" required/></div>
+						</li>
+						<li class="clear">
+							<label for="gender_lbl" class="tit_lbl pilsoo_item">성별</label>
+							<div class="app_content radio_area">
+								<input type="radio" name="gender" class="css-radio" id="man_lbl" checked="" />
+								<label for="man_lbl">남</label>
+								<input type="radio" name="gender" class="css-radio" id="woman_lbl" />
+								<label for="woman_lbl">여</label>
+								<select name="gender" class="gender" required>
+									<option value="" selected>성별을 선택해 주세요</option>
+									<option value="male">남자</option>
+									<option value="female">여자</option>
+								</select>
+							</div>
+						</li>
+						<li class="clear">
+							<label for="comment_lbl" class="tit_lbl pilsoo_item">문의내용</label>
+							<div class="app_content"><textarea name="comment" class="w100p" id="comment_lbl" placeholder="내용을 입력해주세요" required></textarea></div>
+						</li>
+						<li class="clear">
+							<label for="agree_lbl" class="tit_lbl pilsoo_item">개인정보활용동의</label>
+							<div class="app_content checkbox_area"><input type="checkbox"" name="agree" class="css-checkbox" id="agree_lbl" required checked/>
+							<label for="agree_lbl" class="agree">동의함</label>
+							</div>
+						</li>
+					</ul>
+					<p class="btn_line">
+					<button class="btn_baseColor">정보수정</button>
+					<button class="btn_baseColor">회원탈퇴</button>
+					</p>	
+				</fieldset>
+			</form>
+			<!-- //폼영역 -->
+		</div>
+		<!-- //메인본문영역 -->
+	</div>
+	<!-- //메이콘텐츠영역 -->
+	<!-- 푸터메뉴및사업자정보영역 -->
+	<footer>
+		<div class="foot_area box_inner">
+			<ul class="foot_list clear">
+				<li><a href="javascript:;">이용약관</a></li>
+				<li><a href="javascript:;">개인정보취급방침</a></li>
+			</ul>
+			<h2>스프링</h2>
+            <p class="addr">OOOO OOOOO OOOO OOOOOOOOO OOOOO <span class="gubun">/</span>        
+				<span class="br_line">대표전화 <span class="space0">02-1234-5678</span> <span class="gubun">/</span>        
+					<span class="br_line">E-mail : <span class="space0"> admin@OOOO OOOOO.com</span></span>
+				</span>
+			</p>
+			<p class="copy box_inner">Copyright(c) OOOO OOOOO all right reserved</p>
+			<ul class="snslink clear">
+				<li><a href="javascript:;">blog</a></li>
+				<li><a href="javascript:;">facebook</a></li>
+				<li><a href="javascript:;">instargram</a></li>
+			</ul>
+		</div>
+	</footer>
+	<!-- //푸터메뉴및주소영역 -->
+</div>
+<!-- //헤더에서푸터까지 -->
+
+<!-- 하단퀵메뉴영역 -->
+<h2 class="hdd">빠른 링크 : 전화 문의,카카오톡,오시는 길,꼭대기로</h2>
+<div class="quick_area">
+	<ul class="quick_list">
+		<li><a href="tel:010-1234-5678"><h3>전화 문의</h3><p>010-1234-5678</p></a></li>
+		<li><a href="javascript:;"><h3>카카오톡 <em>상담</em></h3><p>1:1상담</p></a></li>
+		<li><a href="javascript:;"><h3 class="to_contact">오시는 길</h3></a></li>
+	</ul>
+	<p class="to_top"><a href="#wrap" class="s_point">TOP</a></p>
+</div>
+<!-- //하단퀵메뉴영역 -->
+
+</body>
+</html>

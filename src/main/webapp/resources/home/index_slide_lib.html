@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title> 스프링 </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- 부트스트랩 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부트스트랩 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/carousel.css">
+
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/tablet.css">
+<link rel="stylesheet" href="css/pc.css">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.smooth-scroll.min.js"></script>
+<script src="js/main.js"></script>
+
+<!-- 부트스트랩 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<style>
+.carousel,  .carousel .item{height: 300px;margin-bottom: 0px;}
+.carousel-inner > .item > img{
+	height: 300px !important;    /*모바일버전 */
+	opacity: 0.8;
+}
+@media all and (min-width: 801px) {
+	.carousel,  .carousel .item{height: 400px;}
+	.carousel-inner > .item > img{
+	height: 400px !important;    /* 태블릿버전 */
+	}
+}
+@media all and (min-width: 1066px) {
+	.carousel, .carousel .item{height: 500px;}
+	.carousel-inner > .item > img{
+	height: 500px !important;    /* PC용버전 */
+	}
+}
+</style>
+<script>
+$(document).ready(function() {
+	$('.carousel').carousel({
+		interval: 2000
+	});
+});
+</script>
+</head>
+<body>
+
+<!-- 헤더에서푸터까지 -->
+<div id="wrap">
+	<!-- 헤더상단메뉴영역영역 -->
+	<header id="header">
+		<div class="header_area box_inner clear">
+			<!-- 상단로고영역 -->
+			<h1><a href="index.html">스프링 in 자바</a></h1>
+			<!-- //상단로고영역 -->
+			
+			<!-- 상단메뉴메뉴영역 -->
+			<p class="openMOgnb"><a href="#"><b class="hdd">메뉴열기</b> <span></span><span></span><span></span></a></p>
+			<div class="header_cont">
+				<ul class="util clear">
+					<li><a href="login.html">로그인</a></li>
+					<li><a href="join.html">회원가입</a></li>
+					<li><a href="mypage.html">마이페이지</a></li>
+				</ul>	
+				<nav>
+				<ul class="gnb clear">
+					<li><a href="board_list.html" class="openAll1">스프링정보</a>
+
+                        <div class="gnb_depth gnb_depth2_1">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">국내</a></li>
+                                <li><a href="board_list.html">해외</a></li>
+                            </ul>
+                        </div>
+					</li>
+					<li><a href="board_list.html" class="openAll2">고객센터</a>
+				        <div class="gnb_depth gnb_depth2_2">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">공지사항</a></li>
+                                <li><a href="board_list.html">문의하기</a></li>
+                            </ul>
+                        </div>
+					</li>
+					<li><a href="board_list.html" class="openAll3">상품투어</a>
+                        <div class="gnb_depth gnb_depth2_3">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">프로그램 소개</a></li>
+                                <li><a href="board_list.html">스프링자료</a></li>
+                            </ul>
+                        </div>
+					</li>
+					<li><a href="board_list.html" class="openAll4">티켓/가이드</a>
+                        <div class="gnb_depth gnb_depth2_4">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">항공</a></li>
+                                <li><a href="board_list.html">호텔</a></li>
+                            </ul>
+                        </div>
+					</li>
+				</ul>
+                </nav>
+				<p class="closePop"><a href="javascript:;">닫기</a></p>
+			</div>
+			<!-- //상단메뉴메뉴영역 -->
+		</div>
+	</header>
+	<!-- //헤더상단메뉴영역영역 -->
+	
+	<!-- 메인콘텐츠영역 -->
+	<div id="container">
+		<!-- 캐러셀 슬라이드 영역 -->
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+			  <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+			  <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+			  <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+			  <div class="item">
+				<img class="first-slide" src="./img/slide_01.jpg" alt="First slide">
+				<div class="container">
+				  <div class="carousel-caption">
+					<h1>샘플 슬라이더1 입니다.</h1>
+					<p>Note:샘플 슬라이더1 입니다. <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+					<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+				  </div>
+				</div>
+			  </div>
+			  <div class="item active">
+				<img class="second-slide" src="./img/slide_02.jpg" alt="Second slide">
+				<div class="container">
+				  <div class="carousel-caption">
+					<h1>샘플 슬라이더2 입니다.</h1>
+					<p>샘플 슬라이더2 입니다. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+					<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+				  </div>
+				</div>
+			  </div>
+			  <div class="item">
+				<img class="third-slide" src="./img/slide_03.jpg" alt="Third slide">
+				<div class="container">
+				  <div class="carousel-caption">
+					<h1>샘플 슬라이더3 입니다.</h1>
+					<p>샘플 슬라이더3 입니다. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+					<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+				  </div>
+				</div>
+			  </div>
+			</div>
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			  <span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			  <span class="sr-only">Next</span>
+			</a>
+		  </div>
+		<!-- //캐러설 슬라이드 영역 -->
+
+		<!-- 모바일+PC 공통슬라이드영역 -->
+    	<div class="main_rolling_pc" style="display: none;">
+            <div class="visualRoll">
+            	<!-- 슬라이드이미지영역 -->
+                <ul class="viewImgList">
+                    <li class="imglist0">
+                        <div class="roll_content">
+                            <a href="javascript:;">
+							<p class="roll_txtline">OOOO OOOOOOOOO OOOOOOOOO OOOOO</p>
+							</a>
+                        </div>
+                    </li>
+                    <li class="imglist1">
+                        <div class="roll_content">
+                            <a href="javascript:;">
+							<p class="roll_txtline">OOOO OOOOOOOOO OOOOOOOOO OOOOO</p>
+							</a>
+                        </div>
+                    </li>
+                    <li class="imglist2">
+                        <div class="roll_content">
+                            <a href="javascript:;">
+							<p class="roll_txtline">OOOO OOOOOOOOO OOOOOOOOO OOOOO</p>
+							</a>
+                        </div>
+                    </li>
+                </ul>
+                <!-- //슬라이드이미지영역 -->
+                <!-- 슬라이드버튼영역 -->
+                <div class="rollbtnArea">
+                    <ul class="rollingbtn">
+                        <li class="seq butt0"><a href="#butt"><img src="img/btn_rollbutt_on.png" alt="1번" /></a></li>
+                        <li class="seq butt1"><a href="#butt"><img src="img/btn_rollbutt_off.png" alt="2번" /></a></li>
+                        <li class="seq butt2"><a href="#butt"><img src="img/btn_rollbutt_off.png" alt="3번" /></a></li>
+                        <li class="rollstop"><a href="#" class="stop"><img src="img/btn_roll_stop.png" alt="멈춤" /></a></li>
+                        <li class="rollplay"><a href="#" class="play"><img src="img/btn_roll_play.png" alt="재생" /></a></li>
+                    </ul>
+                </div>
+                <!-- //슬라이드버튼영역 -->
+            </div>
+        </div>
+        <!-- //모바일+PC 공통슬라이드영역 -->
+	
+		<!-- 갤러리최근게시물영역 -->
+		<div class="about_area">
+			<h2>겔러리 최근 게시물 <b>TOP 3</b></h2>
+			<div class="about_box">
+				<ul class="place_list box_inner clear">
+					<li><a href="#" onclick="$('.popup_base').css('height',$(document).height());$('.contact_pop').show();">
+							<img class="img_topplace" src="img/img_topplace01.jpg" alt="OOOO OOOOO" />
+							<h3>OOOO OOOOO</h3>
+							<p class="txt">OOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOO!</p>
+							<span class="view">VIEW</span></a>
+					</li>
+					<li><a href="#" onclick="$('.popup_base').css('height',$(document).height());$('.space_pop').show();">
+							<img class="img_topplace" src="img/img_topplace02.jpg" alt="OOOO OOOOO" />
+							<h3>OOOO OOOOO</h3>
+							<p class="txt">OOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOO.</p>
+							<span class="view">VIEW</span></a>
+					</li>
+					<li><a href="#" onclick="$('.popup_base').css('height',$(document).height());$('.program_pop').show();">
+							<img class="img_topplace" src="img/img_topplace03.jpg" alt="OOOO OOOOO" />
+							<h3>OOOO OOOOO</h3>
+							<p class="txt">OOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOO</p>
+							<span class="view">VIEW</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- //갤러리최근게시물영역 -->
+
+		<!-- 카카오톡상담및최근공지사항영역 -->
+		<div class="appbbs_area">
+			<div class="appbbs_box box_inner clear">
+				<h2 class="hdd">상담과 최근게시물</h2>
+				<p class="app_line">
+					<a href="javascript:;">카카오톡 1:1 상담</a>
+					<a href="javascript:;">전화 상담 신청</a>
+				</p>
+				<div class="bbs_line">
+					<h3>NOTICE</h3>
+					<ul class="notice_recent">
+						<li><a href="javascript:;">OOOO OOOOO (스프링OOOO OOOOO)</a></li>
+						<li><a href="javascript:;">OOOO OOOOOOOOO OOOOO</a></li>
+						<li><a href="javascript:;">OOOO OOOOO/OOOO OOOOO</a></li>
+						<li><a href="javascript:;">OOOO OOOOO OPEN! (스프링정보, OOOO OOOOO)</a></li>
+						<li><a href="javascript:;">OOOO OOOOO 서비스 점검 안내</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- //카카오톡상담및최근공지사항영역 -->
+	</div>
+	<!-- //메이콘텐츠영역 -->
+	
+	<!-- 푸터메뉴및사업자정보영역 -->
+	<footer>
+		<div class="foot_area box_inner">
+			<ul class="foot_list clear">
+				<li><a href="javascript:;">이용약관</a></li>
+				<li><a href="javascript:;">개인정보취급방침</a></li>
+			</ul>
+			<h2>스프링</h2>
+            <p class="addr">OOOO OOOOO OOOO OOOOOOOOO OOOOO <span class="gubun">/</span>        
+				<span class="br_line">대표전화 <span class="space0">02-1234-5678</span> <span class="gubun">/</span>        
+					<span class="br_line">E-mail : <span class="space0"> admin@OOOO OOOOO.com</span></span>
+				</span>
+			</p>
+			<p class="copy box_inner">Copyright(c) OOOO OOOOO all right reserved</p>
+			<ul class="snslink clear">
+				<li><a href="javascript:;">blog</a></li>
+				<li><a href="javascript:;">facebook</a></li>
+				<li><a href="javascript:;">instargram</a></li>
+			</ul>
+		</div>
+	</footer>
+	<!-- //푸터메뉴및주소영역 -->
+</div>
+<!-- //헤더에서푸터까지 -->
+
+<!-- 하단퀵메뉴영역 -->
+<h2 class="hdd">빠른 링크 : 전화 문의,카카오톡,오시는 길,꼭대기로</h2>
+<div class="quick_area">
+	<ul class="quick_list">
+		<li><a href="tel:010-1234-5678"><h3>전화 문의</h3><p>010-1234-5678</p></a></li>
+		<li><a href="javascript:;"><h3>카카오톡 <em>상담</em></h3><p>1:1상담</p></a></li>
+		<li><a href="javascript:;"><h3 class="to_contact">오시는 길</h3></a></li>
+	</ul>
+	<p class="to_top"><a href="#wrap" class="s_point">TOP</a></p>
+</div>
+<!-- //하단퀵메뉴영역 -->
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title> 스프링 </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/tablet.css">
+<link rel="stylesheet" href="css/pc.css">
+<link rel="stylesheet" href="css/board.css">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.smooth-scroll.min.js"></script>
+<script src="js/main.js"></script>
+<style>
+
+</style>
+<script>
+$(document).ready(function() {
+	//라이브러리 사용않하고, 오리지널 j쿼리로 만드는 유효성(아래)
+	$("#search_form").submit(function(){ //검색버튼을 클릭=전송했을때.
+		var search_keyword = $("input[name=search_keyword]").val();
+		if(search_keyword == "") {
+			alert("검색어는 빈 값으로 검색할 수 없습니다.!");
+			return false;//조건이 맞으면, 전송중지.
+		}
+	});
+});
+</script>
+</head>
+<body>
+<!-- 헤더에서푸터까지 -->
+<div id="wrap">
+	<!-- 헤더상단메뉴영역영역 -->
+	<header id="header">
+		<div class="header_area box_inner clear">
+			<!-- 상단로고영역 -->
+			<h1><a href="index.html">스프링 in 자바</a></h1>
+			<!-- //상단로고영역 -->
+			
+			<!-- 상단메뉴메뉴영역 -->
+			<p class="openMOgnb"><a href="#"><b class="hdd">메뉴열기</b> <span></span><span></span><span></span></a></p>
+			<div class="header_cont">
+				<ul class="util clear">
+					<li><a href="login.html">로그인</a></li>
+					<li><a href="join.html">회원가입</a></li>
+					<li><a href="mypage.html">마이페이지</a></li>
+				</ul>	
+				<nav>
+				<ul class="gnb clear">
+					<li><a href="board_list.html" class="openAll1">스프링정보</a>
+
+                        <div class="gnb_depth gnb_depth2_1">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">국내</a></li>
+                                <li><a href="board_list.html">해외</a></li>
+                            </ul>
+                        </div>
+					</li>
+					<li><a href="board_list.html" class="openAll2">고객센터</a>
+				        <div class="gnb_depth gnb_depth2_2">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">공지사항</a></li>
+                                <li><a href="board_list.html">문의하기</a></li>
+                            </ul>
+                        </div>
+					</li>
+					<li><a href="board_list.html" class="openAll3">상품투어</a>
+                        <div class="gnb_depth gnb_depth2_3">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">프로그램 소개</a></li>
+                                <li><a href="board_list.html">스프링자료</a></li>
+                            </ul>
+                        </div>
+					</li>
+					<li><a href="board_list.html" class="openAll4">티켓/가이드</a>
+                        <div class="gnb_depth gnb_depth2_4">
+                            <ul class="submenu_list">
+                                <li><a href="board_list.html">항공</a></li>
+                                <li><a href="board_list.html">호텔</a></li>
+                            </ul>
+                        </div>
+					</li>
+				</ul>
+                </nav>
+				<p class="closePop"><a href="javascript:;">닫기</a></p>
+			</div>
+			<!-- //상단메뉴메뉴영역 -->
+		</div>
+	</header>
+	<!-- //헤더상단메뉴영역영역 -->
+	
+	<!-- 메인콘텐츠영역 -->
+	<div id="container">
+		<!-- 메인상단위치표시영역 -->
+		<div class="location_area customer">
+			<div class="box_inner">
+				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
+				<p class="location">고객센터 <span class="path">/</span> 공지사항</p>
+				<ul class="page_menu clear">
+					<li><a href="#" class="on">공지사항</a></li>
+					<li><a href="#">문의하기</a></li>
+				</ul>
+			</div>
+		</div>	
+		<!-- //메인상단위치표시영역 -->
+
+		<!-- 메인본문영역 -->
+		<div class="bodytext_area box_inner">
+			<!-- 검색폼영역 -->
+			<form id="search_form" name="search_form" action="board_list.html" class="minisrch_form">
+				<fieldset>
+					<legend>검색</legend>
+					<input name="search_keyword" type="text" class="tbox" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
+					<button class="btn_srch">검색</button>
+				</fieldset>
+			</form>
+			<!-- //검색폼영역 -->
+			
+			<!-- 게시물리스트영역 -->
+			<table class="bbsListTbl" summary="번호,제목,조회수,작성일 등을 제공하는 표">
+				<caption class="hdd">공지사항  목록</caption>
+				<thead>
+					<tr>
+						<th scope="col">번호</th>
+						<th scope="col">제목</th>
+						<th scope="col">조회수</th>
+						<th scope="col">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td class="tit_notice"><a href="board_view.html">이번 여름 휴가 제주 갈까? 미션 투어 (스프링경비 50만원 지원)</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td class="tit_notice"><a href="board_view.html">박물관 미션 투어 응모 당첨자 발표</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td class="tit_notice"><a href="board_view.html">추석 연휴 티켓/투어 배송 및 직접 수령 안내</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td class="tit_notice"><a href="board_view.html">하롱베이 서비스 OPEN! (스프링정보, 가이드북, 가이드맵)</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td class="tit_notice"><a href="board_view.html">스프링 서비스 점검 안내 - 스프링에서 매월 실시하는 정기점검 안내</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td class="tit_notice"><a href="board_view.html">이번 여름 휴가 제주 갈까? 미션 투어 (스프링경비 50만원 지원)</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td class="tit_notice"><a href="board_view.html">박물관 미션 투어 응모 당첨자 발표</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td class="tit_notice"><a href="board_view.html">추석 연휴 티켓/투어 배송 및 직접 수령 안내</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td class="tit_notice"><a href="board_view.html">하롱베이 서비스 OPEN! (스프링정보, 가이드북, 가이드맵)</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td class="tit_notice"><a href="board_view.html">스프링 서비스 점검 안내</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- //게시물리스트영역 -->
+			
+			<!-- 페이징처리영역 -->
+			<div class="pagination">
+				<a href="javascript:;" class="firstpage  pbtn"><img src="img/btn_firstpage.png" alt="첫 페이지로 이동"></a>
+				<a href="javascript:;" class="prevpage  pbtn"><img src="img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
+				<a href="javascript:;"><span class="pagenum currentpage">1</span></a>
+				<a href="javascript:;"><span class="pagenum">2</span></a>
+				<a href="javascript:;"><span class="pagenum">3</span></a>
+				<a href="javascript:;"><span class="pagenum">4</span></a>
+				<a href="javascript:;"><span class="pagenum">5</span></a>
+				<a href="javascript:;" class="nextpage  pbtn"><img src="img/btn_nextpage.png" alt="다음 페이지로 이동"></a>
+				<a href="javascript:;" class="lastpage  pbtn"><img src="img/btn_lastpage.png" alt="마지막 페이지로 이동"></a>
+			</div>
+			<!-- //페이징처리영역 -->
+			<p class="btn_line">
+				<a href="board_write.html" class="btn_baseColor">등록</a>
+			</p>
+		</div>
+		<!-- //메인본문영역 -->
+	</div>
+	<!-- //메이콘텐츠영역 -->
+	<!-- 푸터메뉴및사업자정보영역 -->
+	<footer>
+		<div class="foot_area box_inner">
+			<ul class="foot_list clear">
+				<li><a href="javascript:;">이용약관</a></li>
+				<li><a href="javascript:;">개인정보취급방침</a></li>
+			</ul>
+			<h2>스프링</h2>
+            <p class="addr">OOOO OOOOO OOOO OOOOOOOOO OOOOO <span class="gubun">/</span>        
+				<span class="br_line">대표전화 <span class="space0">02-1234-5678</span> <span class="gubun">/</span>        
+					<span class="br_line">E-mail : <span class="space0"> admin@OOOO OOOOO.com</span></span>
+				</span>
+			</p>
+			<p class="copy box_inner">Copyright(c) OOOO OOOOO all right reserved</p>
+			<ul class="snslink clear">
+				<li><a href="javascript:;">blog</a></li>
+				<li><a href="javascript:;">facebook</a></li>
+				<li><a href="javascript:;">instargram</a></li>
+			</ul>
+		</div>
+	</footer>
+	<!-- //푸터메뉴및주소영역 -->
+</div>
+<!-- //헤더에서푸터까지 -->
+
+<!-- 하단퀵메뉴영역 -->
+<h2 class="hdd">빠른 링크 : 전화 문의,카카오톡,오시는 길,꼭대기로</h2>
+<div class="quick_area">
+	<ul class="quick_list">
+		<li><a href="tel:010-1234-5678"><h3>전화 문의</h3><p>010-1234-5678</p></a></li>
+		<li><a href="javascript:;"><h3>카카오톡 <em>상담</em></h3><p>1:1상담</p></a></li>
+		<li><a href="javascript:;"><h3 class="to_contact">오시는 길</h3></a></li>
+	</ul>
+	<p class="to_top"><a href="#wrap" class="s_point">TOP</a></p>
+</div>
+<!-- //하단퀵메뉴영역 -->
+
+</body>
+</html>

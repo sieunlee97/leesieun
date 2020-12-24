@@ -1,0 +1,230 @@
+@charset "UTF-8";
+@media all and (min-width:801px) {
+/* 태블릿용 스타일 시작 */
+
+/* 태블릿용 상단로고와메뉴스타일 */
+header {height:113px;}
+.header_area h1 {
+	float:left;
+	padding:25px 0 0;
+	padding-left:20px;
+	width:initial;
+	height:initial;
+	text-align:initial;
+}
+.header_area h1 a {
+	display:block;
+	width:270px;
+	height:71px;
+	background-size:initial !important;
+}
+.openMOgnb {display:none;}
+.header_cont {
+	display:block;
+	float:right;
+	width:60%;
+	padding-right:20px;
+	background:none;
+}
+.closePop {display:none;}
+.util {
+	padding:0;
+	text-align:right;
+	padding-top:10px;
+}
+.util li {float:none; display:inline;}
+.util li::after {color:#fff;}
+.util li a {font-size:14px;}
+.gnb {
+	float:right;
+	padding-top:5px;
+	height:initial;
+	border-top:none;
+}
+.gnb li {
+	width:initial;
+	text-align:initial;
+	box-sizing:initial;
+	border-bottom:none;
+}
+.gnb li:nth-child(2n+1) {border-right:none;}
+.gnb li a {
+	padding:26px 25px;
+	font-size:18px;
+	height:inherit;
+	line-height:inherit;
+	background:none;
+}
+.gnb li + li a {background:none;}
+.gnb li + li + li a {background:none;}
+.gnb li + li + li + li a {background:none;}
+.gnb li:last-child a {padding-right:0px;}
+/* 태블릿용 상단로고와메뉴스타일 */
+
+/* 태블릿용 컨테이너영역 스타일 */
+#container {
+	padding-bottom:20px;
+	width:initial;
+	position:initial;
+}
+/* //태블릿용 컨테이너영역 스타일 */
+
+/* 태블릿용 슬라이드영역 */
+.main_rolling_mobile {display:none;}
+.main_rolling_pc {display:block;}
+.visualRoll {
+	position:relative;
+	width:100%;
+}
+.viewImgList {
+	position:relative;
+	width:100%;
+}
+.viewImgList li {
+	text-align:center;
+	height:550px;
+	line-height:550px;
+	background-size:cover;
+}
+li.imglist0 {
+	position:relative;
+	z-index:50;
+	background:#8868d1;
+}
+li.imglist1 {
+	position:absolute;
+	width:100%;
+	left:0; top:0;
+	z-index:10;
+	background:#4438d1;
+}
+li.imglist2 {
+	position:absolute;
+	width:100%;
+	left:0; top:0;
+	z-index:10;
+	background:#2218d1;
+}
+.roll_content {position:relative;}
+.roll_content .roll_txtline {
+	position:absolute;
+	left:0;
+	bottom:60px;
+	width:100%;
+	line-height:1;
+	text-align:center;
+	font-size:22px;
+	color:#fff;
+	letter-spacing:2px;
+}
+.rollbtnArea {
+	position:absolute;
+	width:100%;
+	left:0;
+	bottom:25px;
+	z-index:200;
+}
+.rollingbtn {
+	width:320px; margin:0 auto;
+	text-align:center;
+}
+.rollingbtn li.butt0 {margin-left:10px;}
+.rollingbtn li {
+	display:inline-block;
+	margin-right:5px;
+}
+.rollingbtn li a {vertical-align:top;}
+/* //태블릿용 슬라이드영역 */
+
+/* 태블릿용 갤러리 최근게시물 */
+.about_area h2 {
+	padding:55px 0 105px;
+	font-size:40px;
+}
+.about_area h2 b {display:initial; padding-top:initial;}
+.place_list {
+	box-sizing:border-box;
+	padding:0 20px;
+}
+.place_list li:first-child {margin-left:0;}
+.place_list li {
+	float:left;
+	width:32%;
+	margin-left:2%;
+	position:relative;
+	top:-50px;
+	padding:initial;
+}
+.place_list li p.txt {
+	padding:10px 30px 0;
+	line-height:1.8;
+}
+.place_list li .view {
+	margin-top:20px;
+}
+/* //태블릿용 갤러리 최근게시물 */
+
+/* 컨테이너 전화상담과 최근공지사항 출력 */
+.appbbs_area {padding:60px 0;}
+.appbbs_box {
+	box-sizing:border-box;
+	padding:0 20px;
+}
+.app_line {
+	display:initial;
+	float:left;
+	width:66%;
+	box-sizing:border-box;
+	padding:45px 0;
+	background:url(../img/bg_app.jpg);
+	font-size:0;
+	text-align:center;
+}
+.app_line a {
+	font-size:21px;
+	display:inline-block;
+	width:42.4%;
+	height:100px;
+	line-height:100px;
+	box-sizing:border-box;
+	padding-left:55px;
+	text-align:left;
+	background:rgba(0,0,0,0.3) url(../img/ico_katalk.png) no-repeat 10px 50%;
+	border:2px solid #fff;
+	color:#fff;
+	vertical-align:middle;
+	margin-right:10px;
+}
+.app_line a + a {
+	margin-right:0;
+	padding-left:65px;
+	background:rgba(0,0,0,0.3) url(../img/ico_phone.png) no-repeat 10px 50%;
+}
+.bbs_line {
+	float:right; width:30%;
+	border-top:none;
+	padding:initial;
+}
+.bbs_line h3 {font-size:26px; font-weight:initial;}
+/* //컨테이너 전화상담과 최근공지사항 출력 */
+
+/* 태블릿용 푸터영역 */
+footer {
+	padding:initial;
+}
+.foot_area {
+	padding-left:20px;
+	padding-bottom:0px;
+}
+.addr {font-size:13px; line-height:1.4;}
+/* //태블릿용 푸터영역 */
+.br_line {display:initial;}
+.snslink {position:absolute; right:20px; top:20px;
+	width:initial; margin:initial;
+}
+.snslink li {margin-left:15px;}
+/* //태블릿용 푸터영역 */
+.quick_list {display:none;}
+
+/* //태블릿용 스타일 끝 */
+}
