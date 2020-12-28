@@ -21,4 +21,10 @@ public class BoardDAOImpl implements IF_BoardDAO{
 		// 매퍼쿼리를 실행할 때, 개발자가 DB커넥션, 디스커넥션을 생각할 필요 없이 사용가능한 메소드 집합을 구성해놓은 것 -> sqlSessionTemplate
 		return sqlSession.selectList("boardMapper.selectBoard", pageVO);
 	}
+
+	@Override
+	public int countBoard(PageVO pageVO) throws Exception {
+		// sqlSessionTemplate 사용해서 게시물 개수 구하기, 매퍼쿼리 연결(아래)
+		return sqlSession.selectOne("boardMapper.countBoard", pageVO);
+	}
 }

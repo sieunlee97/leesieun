@@ -19,12 +19,18 @@
 </if>
 </sql>
 
+<select id="countBoard">
+select count(*) from tbl_board
+<include refid="sqlWhere"></include>
+</select>
+
 <select id="selectBoard">
 select * from tbl_board
 <include refid="sqlWhere"></include>
 order by reg_date desc
 limit #{queryStartNo}, #{queryPerPageNum}
 </select>
+
 
 
 </mapper>

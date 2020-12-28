@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.edu.service.IF_BoardService;
 import org.edu.service.IF_MemberService;
 import org.edu.util.SecurityCode;
 import org.edu.vo.BoardVO;
@@ -29,6 +30,9 @@ public class AdminController {
 	//@inject방식으로 외부 라이브러리(모듈, 클래스, 인스턴스) 가져와쓰기(아래)
 	@Inject
 	SecurityCode securityCode;
+	
+	@Inject
+	IF_BoardService boardService; //게시판인터페이스를 주입받아서 boardService 오브젝트변수 생성
 	
 	@Inject
 	IF_MemberService memberService; //멤버인터페이스를 주입받아서 memberService 오브젝트변수 생성
@@ -62,36 +66,45 @@ public class AdminController {
 		return "admin/board/board_view";
 	}
 	@RequestMapping(value="/admin/board/board_list", method=RequestMethod.GET)
-	public String board_list(Model model) throws Exception {
+	public String board_list(@ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
 		
 		//테스트용 더미 게시판 데이터 만들기
-		BoardVO board_input = new BoardVO();
-		board_input.setBno(1);
-		board_input.setTitle("첫번째 게시물입니다.");
-		board_input.setContent("첫번째 게시물 내용입니다.<br>줄바꿈했습니다.");
-		board_input.setWriter("admin");
-		Date reg_date = new Date();
-		board_input.setReg_date(reg_date);
-		board_input.setView_count(2);
-		board_input.setReply_count(0);
+		/*
+		 * BoardVO board_input = new BoardVO(); board_input.setBno(1);
+		 * board_input.setTitle("첫번째 게시물입니다.");
+		 * board_input.setContent("첫번째 게시물 내용입니다.<br>줄바꿈했습니다.");
+		 * board_input.setWriter("admin"); Date reg_date = new Date();
+		 * board_input.setReg_date(reg_date); board_input.setView_count(2);
+		 * board_input.setReply_count(0);
+		 * 
+		 * BoardVO[] board_array = new BoardVO[2]; board_array[0] = board_input; //
+		 * ---------------------------------------------- BoardVO board_input2 = new
+		 * BoardVO(); board_input2.setBno(2); board_input2.setTitle("두번째 게시물입니다.");
+		 * board_input2.setContent("두번째 게시물 내용입니다.<br>줄바꿈했습니다.");
+		 * board_input2.setWriter("user02"); board_input2.setReg_date(reg_date);
+		 * board_input2.setView_count(2); board_input2.setReply_count(0); //
+		 * board_input.setBno(2); // 게시물번호만 2로 변경, 나머지값들은 변경없이 board_array[1]에 저장
+		 * board_array[1] = board_input2;
+		 * 
+		 * List<BoardVO> board_list = Arrays.asList(board_array); //배열타입을 List타입으로 변경
+		 * 절차.
+		 */		
+		// selecBoard 마이바티스 쿼리를 실행하기 전에, set이 빌생해야 변수값이 할당된다.(아래)
+		// PageVO의 queryStartNo 구하는 계산석이 먼저 실행되어서, 변수값이 발생되어야 한다.
+		if(pageVO.getPage()==null) { // int일때 null체크 에러가 나서, pageVO의 page변수형을 Integer로 변경
+			pageVO.setPage(1);
+		}
+		pageVO.setPerPageNum(8); // 페이지 리스트 단위 5페이지씩 
+		pageVO.setQueryPerPageNum(10); //한페이지당 보여줄 게시물 수 10개
+		// 검색된 전체 화면 게시물 개수 구하기 서비스 호출
+		int countBoard = 0;
+		countBoard = boardService.countBoard(pageVO);
+		pageVO.setTotalCount(countBoard); //전체 게시물 수를 구한 변수값을 매개변수로 입력
+		//전체 회원 수 입력하는 순간 calcpage()메소드 실행.
 		
-		BoardVO[] board_array = new BoardVO[2];
-		board_array[0] = board_input;
-		// ----------------------------------------------
-		BoardVO board_input2 = new BoardVO();
-		board_input2.setBno(2);
-		board_input2.setTitle("두번째 게시물입니다.");
-		board_input2.setContent("두번째 게시물 내용입니다.<br>줄바꿈했습니다.");
-		board_input2.setWriter("user02");
-		board_input2.setReg_date(reg_date);
-		board_input2.setView_count(2);
-		board_input2.setReply_count(0);
-		// board_input.setBno(2); // 게시물번호만 2로 변경, 나머지값들은 변경없이 board_array[1]에 저장
-		board_array[1] = board_input2;
-	
-		List<BoardVO> board_list = Arrays.asList(board_array); //배열타입을 List타입으로 변경 절차.
+		List<BoardVO> board_list = boardService.selectBoard(pageVO);
 		model.addAttribute("board_list", board_list);
-		
+		model.addAttribute("pageVO", pageVO);
 		return "admin/board/board_list"; 
 	}
 	
