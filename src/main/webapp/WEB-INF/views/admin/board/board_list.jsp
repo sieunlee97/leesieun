@@ -40,8 +40,8 @@
                   <div class="input-group input-group-sm">
                   <!-- 부트스트랩 템플릿만으로는 디자인처리가 안되는 경우가 있기 때문에 종종 인라인스타일 사용 -->
                     <div>
-                       <select class="form-control">
-                            <option value="" selected>-전체-</option>
+                       <select class="form-control" name="search_type">
+                            <option value="all" selected>-전체-</option>
                             <option value="title" data-select2-id="8">제목</option>
                             <option value="content" data-select2-id="24">내용</option>
                        </select>
@@ -78,7 +78,7 @@
                     <tr>
                       <td>${boardVO.bno}</td> <!-- table data 태그 -->
                       <!-- 아래의 링크a 값은 리스트가 늘어날수록 동적으로  bno값이 변하게 된다. 개발자가 jsp처리 -->
-                      <td><a href="/admin/board/board_view?bno=${boardVO.bno}">
+                      <td><a href="/admin/board/board_view?bno=${boardVO.bno}&page=${pageVO.page}">
                       <!-- c:out 사용하는 이유? 시큐어코딩. 악의적인 코드 삽입이나 sql주입 방지 -->
                       <c:out value="${boardVO.title}"></c:out>[<c:out value="${boardVO.reply_count}"></c:out>]
                       </a></td>
@@ -107,15 +107,28 @@
             
             <!-- 페이징처리 시작 -->
             <div class="pagination justify-content-center">
-	          	 <ul class="pagination">
-	              <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-	              <!-- previous (위) -->
-	              <li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-	              <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-	              <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-	              <!-- next (아래) -->
-	              <li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-	             </ul>
+          	 <ul class="pagination">
+          	 <c:if test="${pageVO.prev}"><!-- if문 true 일 때 아래 실행 -->
+              	<li class="paginate_button page-item previous" id="example1_previous">
+              	<a href="/admin/board/board_list?page=${pageVO.startPage-1}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}" 
+              	aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">&laquo;</a></li>
+             </c:if>
+              <!-- previous (위) -->
+              
+              <!-- jstl의 for문이고, 향상된 for문이 아닌 고전 for문으로 시작값, 종료값 필요, var변수 idx는 인덱스값이 저장되어 있다.(jstl 제공)-->
+              <c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}"  var="idx">
+              	<li class='paginate_button page-item <c:out value="${idx == pageVO.page?'active':''}" />'>
+              	<a href="/admin/board/board_list?page=${idx}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}" 
+              	aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">${idx}</a></li>
+              </c:forEach>
+              
+               <!-- next (아래)  --> 
+             <c:if test="${pageVO.next}"> <!-- if문 true 일 때 아래 실행 -->
+              	<li class="paginate_button page-item next" id="example1_next">
+              	<a href="/admin/board/board_list?page=${pageVO.endPage+1}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}" 
+              	aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">&raquo;</a></li>
+             </c:if>
+             </ul>
             </div>
             <!-- 페이징처리 끝 -->
               
