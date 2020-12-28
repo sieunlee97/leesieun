@@ -48,20 +48,22 @@ public class AdminController {
 		return "redirect:/admin/board/board_list";
 	}
 	@RequestMapping(value="/admin/board/board_view", method=RequestMethod.GET)
-	public String board_view(@RequestParam("bno") Integer bno, Model model) throws Exception {
+	public String board_view(@ModelAttribute("pageVO") PageVO pageVO, @RequestParam("bno") Integer bno, Model model) throws Exception {
 		//jsp로 보낼 더미데이터 memberVO에 담아서 보낸다.
 		// 실제로는 아래처럼 더미데이터를 만드는 것이 아닌, 쿼리스트링(질의문자열)로 받아온 bno(게시물고유번호)를 이용해서
 		// DB에서  SELECT * FROM tbl_board WHERE bno=? 실행이 된 결과값을 BoardVO형으로 받아서 jsp로 보내줌
-		BoardVO boardVO = new BoardVO();
-		boardVO.setBno(1);
-		boardVO.setTitle("첫번째 게시물입니다.");
-		String xss_data="첫번째 내용입니다.<br>줄바꿈 자리입니다.<script>alert('메롱')</script>";
+		/*
+		 * BoardVO boardVO = new BoardVO(); boardVO.setBno(1);
+		 * boardVO.setTitle("첫번째 게시물입니다."); String
+		 * xss_data="첫번째 내용입니다.<br>줄바꿈 자리입니다.<script>alert('메롱')</script>";
+		 * boardVO.setContent(securityCode.unscript(xss_data));
+		 * boardVO.setWriter("admin"); Date reg_date = new Date();
+		 * boardVO.setReg_date(reg_date); boardVO.setView_count(2);
+		 * boardVO.setReply_count(0);
+		 */
+		BoardVO boardVO = boardService.readBoard(bno);
+		String xss_data = boardVO.getContent();
 		boardVO.setContent(securityCode.unscript(xss_data));
-		boardVO.setWriter("admin");
-		Date reg_date = new Date();
-		boardVO.setReg_date(reg_date);
-		boardVO.setView_count(2);
-		boardVO.setReply_count(0);
 		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_view";
 	}
@@ -104,7 +106,7 @@ public class AdminController {
 		
 		List<BoardVO> board_list = boardService.selectBoard(pageVO);
 		model.addAttribute("board_list", board_list);
-		model.addAttribute("pageVO", pageVO);
+		// model.addAttribute("pageVO", pageVO);
 		return "admin/board/board_list"; 
 	}
 	

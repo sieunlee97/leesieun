@@ -28,7 +28,7 @@ order by reg_date desc
 select * from tbl_board where bno = #{bno}
 </select>
 
-<update id="upadateViewCount">
+<update id="updateViewCount">
 update tbl_board set view_count = view_count + 1
 where bno = #{bno}
 </update>

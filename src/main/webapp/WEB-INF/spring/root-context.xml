@@ -58,5 +58,10 @@
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<aop:config></aop:config>
 
+	<!-- 대표적으로 게시판 입력(상세보기에도 추가) 트랜잭션에서 이용 -->
+	 <bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	 </bean>
 	
 </beans>
