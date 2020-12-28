@@ -32,8 +32,20 @@
 
 ## v6.0.0 UI구현
 ### 202012228(월)
-- 
-
+- resources/home 폴더의 디자인 html파일에서 댓글달기 html 같이 작업 예정
+- 위 home폴더를 jsp
+- 자료구조 : List<BoardVO>, List<String>
+- List<BoardVO> : [
+-	{bno1, 'title1', 'content1', ...},
+-	{bno2, 'title2', 'content2', ...},
+- 	{bno3, 'title3', 'content3', ...},
+- ...
+- ]
+- List<String> : [
+- 	{'file_name1'},
+- 	{'file_name2'},
+-	...
+- ]
 
 ### 202012224(목)
 - v6.0.0과목 시작
