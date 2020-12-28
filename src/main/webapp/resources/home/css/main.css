@@ -202,21 +202,21 @@ header {
   li.imglist0 {
     position: relative;
     z-index: 50;
-    background: url(../img/slide_01.jpg) no-repeat;
+    background: url(../img/black.jpg) no-repeat;
   }
   li.imglist1 {
     position: absolute;
     z-index: 10;
     left: 0;
     top: 0;
-    background: url(../img/slide_02.jpg) no-repeat;
+    background: url(../img/white.jpg) no-repeat;
   }
   li.imglist2 {
     position: absolute;
     z-index: 10;
     left: 0;
     top: 0;
-    background: url(../img/slide_03.jpg) no-repeat;
+    background: url(../img/blackblue.jpg) no-repeat;
   }
   .roll_content {
     position: static;
