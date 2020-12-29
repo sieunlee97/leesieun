@@ -78,7 +78,7 @@
                     <tr>
                       <td>${boardVO.bno}</td> <!-- table data 태그 -->
                       <!-- 아래의 링크a 값은 리스트가 늘어날수록 동적으로  bno값이 변하게 된다. 개발자가 jsp처리 -->
-                      <td><a href="/admin/board/board_view?bno=${boardVO.bno}&page=${pageVO.page}">
+                      <td><a href="/admin/board/board_view?page=${pageVO.page}&bno=${boardVO.bno}">
                       <!-- c:out 사용하는 이유? 시큐어코딩. 악의적인 코드 삽입이나 sql주입 방지 -->
                       <c:out value="${boardVO.title}"></c:out>[<c:out value="${boardVO.reply_count}"></c:out>]
                       </a></td>
