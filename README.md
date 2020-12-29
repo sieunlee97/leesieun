@@ -17,7 +17,8 @@
 - [X] 실제 회원관리 화면 CRUD 적용 중 member_list(select+검색) 처리 후 페이징 처리 OK.
 - [X] member_write, member_update, member_delete 만들기 OK.
 - [X] 스프링 AOP(관점지향프로그래밍-OOP의 확장기능)기능으로 개발용 디버그출력환경 만들기 OK.
-- [ ] 실제 게시판 화면 CRUD 적용.
+- [X] 관리자단 게시판 화면 CRUD 적용OK.
+- [X] 트랜잭션 @Tansactional추가: root-context.xml에서 dataSource에 트랜잭션 설정추가필수OK.
 - [ ] 파일업로드 라이브러리 사용 pom.xml 의존성 추가.
 - [ ] 게시판 업로드 화면 구현.
 - [ ] Json데이터 사용 pom.xml 의존성 추가.
@@ -30,6 +31,15 @@
 - [ ] 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
 ## v6.0.0 UI구현
+### 202012230(수)
+- [ ] 관리자단 게시판 업로드 화면 구현
+- [ ] 관리자단 댓글 처리 시작 
+- 1월말, 2월 초에 현재 스프링 프로젝트 버전 4.3.22에서 5.2.25버전으로 마이그레이션한다.
+- DI(의존성주입)컨테이너 영역안에 스프링빈이 들어간다.(@Controller, @Service, @Repository, @Cmponenet 등)
+- MVC : Model, View, Controller = 3티어(3단계)
+- 서버/클라이언트(서버 - 클라이언트 분리) : 2티어(네트워크장비쪽)
+- DB/웹서버(웹서버 - DB서버 분리) : 2티어(시스템프로그램)
+
 ### 202012229(화)
 - 관리자단 게시판 CRUD작업 중 이제 Read작업 확인(첨부파일 다운로드는 아래 insert 작업 후 다시 확인)
 - Create(insert)작업 시 첨부파일 업로드 구현
@@ -41,6 +51,8 @@
 - 물리 DB(필드명) - DAO - Service - Controller - JSP(input태그의 name 속성)
 - >  BoardVO(멤버변수명와 위 5군데 Get/Set 이 가능하려면, 이름이 동일해야함. 필수조건)
 
+
+실습
 - [X] CRUD 중 Delete
 - [X] CRUD 중 Update
 - [X] content영역 summernote로 변경
