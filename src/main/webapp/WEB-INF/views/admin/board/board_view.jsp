@@ -72,15 +72,7 @@
               <!-- /.card-body -->
             </div>
           
-          <form name="action-form" action="">
-	          <input type="hidden" name="bno" value="${boardVO.bno}">
-	          <input type="hidden" name="page" value="${pageVO.page }">
-	      </form>
-	      <script>
-	      $(document).ready(function{
-	    	  
-	      });
-	      </script>
+          
           <!-- 버튼영역 시작 -->
             <div class="card-body">
               	<a href="/admin/board/board_list?page=${pageVO.page}" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
@@ -267,3 +259,23 @@ $(document).ready(function() {
     </div>
   </div>
 </div>
+
+
+<form name="action_form">
+  <input type="hidden" name="bno" value="${boardVO.bno}">
+  <input type="hidden" name="page" value="${pageVO.page}">
+</form>
+
+<!-- 게시물 삭제 버튼 클릭시 액션(아래) -->
+<script>
+$(document).ready(function(){
+ 	$("#btn_board_delete").on("click", function(){
+		//alert("삭제디버그");
+		if(confirm("정말로 삭제하시겠습니까?")){
+			$('form[name="action_form"]').attr("method","post");
+			$('form[name="action_form"]').attr("action","/admin/board/board_delete");
+			$('form[name="action_form"]').submit();
+		}
+	});
+});
+</script>
