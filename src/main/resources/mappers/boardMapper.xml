@@ -19,6 +19,15 @@
 </if>
 </sql>
 
+<delete id="deleteBoard">
+delete from tbl_board where bno=#{bno}
+</delete>
+
+<insert id="insertBoard">
+insert into tbl_board (title,content,writer,reg_date)
+values (#{title},#{content},#{writer},now())
+</insert>
+
 <select id="readAttach" resultType="string">
 select save_file_name from tbl_attach where bno = #{bno}
 order by reg_date desc

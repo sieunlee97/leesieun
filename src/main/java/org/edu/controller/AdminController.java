@@ -37,6 +37,14 @@ public class AdminController {
 	@Inject
 	IF_MemberService memberService; //멤버인터페이스를 주입받아서 memberService 오브젝트변수 생성
 	
+	
+	// GET은 URL전송방식(아무 브라우저 주소에 적으면 실행가능), POST는 폼 전송방식(해당페이지에서만 작동 가능)
+	@RequestMapping(value="/admin/board_delete", method=RequestMethod.POST)
+	public String board_delete(PageVO pageVO,@RequestParam("bno") Integer bno) throws Exception {
+		boardService.deleteBoard(bno);
+		return "redirect:/admin/board/board_list?page="+pageVO.getPage();
+	}
+	
 	@RequestMapping(value="/admin/board/board_write", method=RequestMethod.GET) //url경로
 	public String board_write () throws Exception {
 		return "admin/board/board_write";//파일경로
@@ -44,6 +52,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/board/board_write", method=RequestMethod.POST)
 	public String board_write(MultipartFile file, BoardVO boardVO) throws Exception {
 		//POST로 받은 boardVO내용을 DB서비스에 입력하면 된다.
+		boardService.insertBoard(boardVO);
 		//DB에 입력 후 새로고침 명령으로 게시물테러를 당하지 않으려면 redirect로 이동 처리한다.(아래)
 		return "redirect:/admin/board/board_list";
 	}
