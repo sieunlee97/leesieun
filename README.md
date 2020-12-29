@@ -31,12 +31,24 @@
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
 ## v6.0.0 UI구현
+### 202012229(화)
+- 관리자단 게시판 CRUD작업 중 이제 Read작업 확인(첨부파일 다운로드는 아래 insert 작업 후 다시 확인)
+- Create(insert)작업 시 첨부파일 업로드 구현
+- input type="file" name="file" 바로 DB테이블에 저장할 수 없다.
+- save_file_name, real_file_name 이런 테이블필드에 저장하기 전에 전처리과정 필요
+- 첨부파일 등록 시 전처리 과정 
+- > 저장공간(폴더)에 save_file_name으로 .hwp, .jpg, .xls 저장되는 기능 필요
+- > 물리 DB테이블에 save_file_name, real_file_name 
+- 물리 DB(필드명) - DAO - Service - Controller - JSP(input태그의 name 속성)
+
 ### 202012228(월)
+- AdminLTE관리자단 게시판 CRUD작업 시작
 - resources/home 폴더의 디자인 html파일에서 댓글달기 html 같이 작업 예정
-- 위 home폴더를 jsp
+- 위 home폴더를 jsp로 변경처리 후 스프링과 연동하는 작업 진행된다.
+- 위 작업은 관리자단 게시판 CRUD작업 후 진행
 - 자료구조 : List<BoardVO>, List<String>
-- List<BoardVO> : [
--	{bno1, 'title1', 'content1', ...},
+- List<BoardVO> : 
+-	{bno1, 'title1', 'content1', ...}
 -	{bno2, 'title2', 'content2', ...},
 - 	{bno3, 'title3', 'content3', ...},
 - ...

@@ -84,7 +84,7 @@
                       </a></td>
                       <td><c:out value="${boardVO.writer}"></c:out></td>
                       <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.reg_date}"/></td>
-                      <td><span class="badge bg-danger">${boardVO.view_count}</span></td>
+                      <td><span class="badge bg-danger text-center">${boardVO.view_count}</span></td>
                       <!-- 권한표시는 부트스트랩 배지 클래스 사용 -->
                     </tr>
                   </c:forEach>  

@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../include/header.jsp" %>
 
+
 <!-- 대시보드 본문 Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- 본문헤더 Content Header (Page header) -->
@@ -88,11 +89,26 @@
 <!-- /.content-wrapper -->
   
 <%@ include file="../include/footer.jsp" %>
+
 <!-- 첨부파일 부트스트랩 디자인JS -->
 <script src="/resources/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
 <!-- 첨부파일 선택한 내용 출력 실행 -->
 <script>
 $(function () {
   bsCustomFileInput.init();
 });
 </script>
+
+<link rel="stylesheet" href="/resources/plugins/summernote/summernote.css">
+<script src="/resources/plugins/summernote/summernote.js"></script>
+<script>
+$(document).ready(function(){
+	$('#content').summernote({
+		height:150,
+		lang:"ko-KR",
+		placeholder:'내용을 입력해주세요.'
+	});
+});//textarea 중 content아이디영역을 섬머노트에디터로 변경처리 함수실행
+</script>
+
