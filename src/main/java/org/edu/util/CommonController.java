@@ -1,14 +1,22 @@
 package org.edu.util;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.UUID;
+
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.edu.service.IF_MemberService;
 import org.edu.vo.MemberVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * CommonController 공통 사용(Admin, Home) 컨트롤러
@@ -21,6 +29,52 @@ public class CommonController {
 	@Inject
 	IF_MemberService memberService;
 	
+	
+	/** 첨부파일 업로드 메소드 생성.
+	 * 첨부파일의 확장자를 비교해서 이미지인지 일반파일(.xls, .hwp)인지 확인하는 변수
+	 * 사용용도1 : 게시물 상세보기 첨부파일이 이미지이면 미리보기 이미지가 보이도록, 이미지가 아니라면 다운로드 링크만 보이도록.
+	 * 사용용도2 : 메인페이지 최근 갤러리 게시물에서 첨부파일이 있으면 미리보기 이미기 나오게 됨. 이미지가 아니라면 대체이미지 나오게 됨. 
+	 * => 확장자 체크 필요한 이유.
+	 */
+	@SuppressWarnings("serial")
+	private ArrayList<String> extNameArray = new ArrayList<String>() { //변수 생성 후 바로 리스트 3개 입력처리. 
+		{
+			add("gif");
+			add("jpg");
+			add("png");
+		}
+	};
+	//첨부파일 업로드할 경로를 변수값으로 가져옴. servlet-context.xml에 빈으로 등록되어있음.
+	@Resource(name="uploadPath")
+	private String uploadPath; // 위 uploadPath영역의 값(value)을 uploadPath 변수에 저장
+	
+	public String getUploadPath() {
+		return uploadPath;
+	}
+
+	public void setUploadPath(String uploadPath) {
+		this.uploadPath = uploadPath;
+	}
+
+	//파일 업로드= xml에서 지정한 폴더에 실제파일 저장을 구현한 메소드(아래)
+	public String fileUpload(MultipartFile file) throws IOException {
+		String realFileName = file.getOriginalFilename(); //jsp에서 전송한 파일명 -> 확장자 구할 때 사용
+		//만약 파일이 여러개면 아래 부분에 변수 처리 로직이 더 들어가야 한다.
+		//폴더에 저장할 PK용 파일명 만들기(아래)
+		UUID uid = UUID.randomUUID(); //unique id 생성 : 폴더에 저장할 파일명으로 사용
+		String saveFileName = uid.toString()+"."+realFileName.split("\\.")[1];
+		//realFileName.split("\\."); realFileName을 .으로 분할해서 파일변수로 만드는 메소드
+		//ex. abc.jpg -> realFileName[0]=abc, realFileName[1]=jpg	
+		//String[] files = new String[] {saveFileName}; //saveFileName 스트링형을 배열변수 files로 형변환
+		byte[] fileData = file.getBytes(); //jsp폼에서 전송된 파일이 fileData변수(메모리)에 저장된다.
+		
+		//uploadPath경로의 saveFileName이름을 가진 파일이 타겟이 된다.
+		File target = new File(uploadPath,saveFileName); //파일 저장하기 바로 전 설정 저장
+		FileCopyUtils.copy(fileData, target); //실제로 target폴더에 파일로 저장되는 메소드 = 업로드끝
+		
+		return saveFileName; //첨부파일이 한개 이상일 있기 때문에, BoardVO에 save_file_names가 배열형이기 때문에.
+	}
+
 	//REST-API서비스로 사용할 때, @ResponseBody 어노테이션으로 json텍스트데이터를 반환함 (아래)
 	//아래는 RestAPI백엔드단, Ajax(jsp)부분은 Rest-API의 프론트 엔드단.
 	@RequestMapping(value="/id_check", method=RequestMethod.GET)

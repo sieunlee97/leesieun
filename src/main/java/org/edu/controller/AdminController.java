@@ -15,6 +15,7 @@ import org.edu.util.SecurityCode;
 import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,7 +32,7 @@ public class AdminController {
 	@Inject
 	SecurityCode securityCode;
 	
-	@Inject
+	@Autowired
 	IF_BoardService boardService; //게시판인터페이스를 주입받아서 boardService 오브젝트변수 생성
 	
 	@Inject
@@ -70,8 +71,14 @@ public class AdminController {
 	@RequestMapping(value="/admin/board/board_write", method=RequestMethod.POST)
 	public String board_write(RedirectAttributes rdat, MultipartFile file, BoardVO boardVO) throws Exception {
 		//POST로 받은 boardVO내용을 DB서비스에 입력하면 된다.
+		//첨부파일 존재 여부에 따른 저장 
+		//첨부파일 없으면 게시물만 저장 , 첨부파일있으면 첨부파일 업로드 처리 후 게시물DB저장 + 첨부파일DB저장
+		if(file.getOriginalFilename() == "") { // 첨부파일 없는 경우
+			
+		} else { // 첨부파일 있는 경우
+			
+		}
 		boardService.insertBoard(boardVO);
-		//첨부파일 등록 미처리. 추가 예정 : 등록 순서. 부모부터 등록 후 자식 생성.
 		rdat.addFlashAttribute("msg", "저장");
 		//DB에 입력 후 새로고침 명령으로 게시물테러를 당하지 않으려면 redirect로 이동 처리한다.(아래)
 		return "redirect:/admin/board/board_list";
