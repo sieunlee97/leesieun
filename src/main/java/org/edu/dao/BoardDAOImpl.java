@@ -1,6 +1,8 @@
 package org.edu.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -64,6 +66,16 @@ public class BoardDAOImpl implements IF_BoardDAO{
 	public void updateBoard(BoardVO boardVO) throws Exception {
 		// 게시물 업데이트 매퍼쿼리 연결(아래)
 		sqlSession.update("boardMapper.updateBoard", boardVO);
+		
+	}
+
+	@Override
+	public void insertAttach(String save_file_name, String real_file_name) throws Exception {
+		// 첨부파일 입력 매퍼쿼리 연결(아래)
+		Map<String,Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("save_file_name", save_file_name);
+		paramMap.put("real_file_name", real_file_name);
+		sqlSession.insert("boardMapper.insertAttach", paramMap);
 		
 	}
 }

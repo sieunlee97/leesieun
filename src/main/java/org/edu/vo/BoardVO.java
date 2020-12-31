@@ -17,7 +17,8 @@ public class BoardVO {
 	private Date update_date;
 	private Integer view_count;
 	private Integer reply_count;
-	private String[] save_file_names; //리스트형 첨부파일명을 배열형으로 변경할 때 사용하는 변수
+	private String[] save_file_names; // 폴더에 저장되는 실제파일명을 배열형으로 변경할 때 사용한 변수 (리스트형 첨부파일명을 배열형으로 변경할 때 사용하는 변수)
+	private String[] real_file_names; // DB에 저장되는 한글파일명을 배열형으로 변경할 때 사용한 변수
 	
 	@Override
 	public String toString() {
@@ -80,6 +81,14 @@ public class BoardVO {
 
 	public void setSave_file_names(String[] save_file_names) {
 		this.save_file_names = save_file_names;
+	}
+
+	public String[] getReal_file_names() {
+		return real_file_names;
+	}
+
+	public void setReal_file_names(String[] real_file_names) {
+		this.real_file_names = real_file_names;
 	}
 	
 }

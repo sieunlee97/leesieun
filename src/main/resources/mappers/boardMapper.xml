@@ -18,6 +18,12 @@
 	</if>
 </if>
 </sql>
+<!-- LAST_INSERT_ID() MariaDB에서 작동 X-->
+<insert id="insertAttach">
+insert into tbl_attach(save_file_name, real_file_name, bno)
+values (#{save_file_name},#{real_file_name},(select bno from tbl_board order by bno desc limit 1))
+
+</insert>
 <update id="updateBoard">
 update tbl_board set
 title=#{title},
