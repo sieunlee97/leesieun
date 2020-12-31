@@ -83,6 +83,7 @@ public class AdminController {
 			String[] real_file_names = new String[] {file.getOriginalFilename()}; //"한글파일명.jpg"
 			boardVO.setReal_file_names(real_file_names); //실제 사용자가 저장한 한글파일명
 		}
+		
 		boardService.insertBoard(boardVO);
 		rdat.addFlashAttribute("msg", "저장");
 		//DB에 입력 후 새로고침 명령으로 게시물테러를 당하지 않으려면 redirect로 이동 처리한다.(아래)
@@ -115,15 +116,19 @@ public class AdminController {
 		//	{'save_file_name2'},
 		//	...
 		// ]
-		List<String> files = boardService.readAttach(bno); // 리스트형 변수 생성
+		List<HashMap<String, Object>> files = boardService.readAttach(bno); // 리스트형 변수 생성
 		String[] save_file_names = new String[files.size()];
+		String[] real_file_names = new String[files.size()];
 		int cnt = 0;
-		for(String save_file_name:files) {
-			save_file_names[cnt]=save_file_name;
+		for(HashMap<String, Object> file_name:files) {
+			save_file_names[cnt]=(String) file_name.get("save_file_name"); //HashMap형태의 save_file_name을 뽑아와서 String으로 형변환
+			real_file_names[cnt]= (String)file_name.get("real_file_name");
 			cnt = cnt+1;
 		}
+		
 		//배열형 출력값(가로) {'save_file_name1','save_file_name2',...}
 		boardVO.setSave_file_names(save_file_names);
+		boardVO.setReal_file_names(real_file_names);
 		//위처럼 첨부파일을 세로배치 ->가로배치 변환하고, get/set하는 이유는 attachVO를 만들지 않았기 때문이다.
 		//만약 위처럼 복잡하게 세로배치->가로배치로 바꾸는 것이 이상하면, 아래처럼 처리
 		//model.addAttribute("save_file_names", files);

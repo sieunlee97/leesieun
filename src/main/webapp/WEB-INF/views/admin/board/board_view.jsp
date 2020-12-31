@@ -63,8 +63,8 @@
 	                <hr>
 	                <strong><i class="fas fa-paperclip mr-1"></i> 첨부파일</strong>
 	                <p class="text-muted">
-	                <a href="#"> <!-- 다운로드 링크 만들 예정 -->
-	                ${boardVO.save_file_names[0]}-파일다운로드-
+	                <a href="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}"> <!-- 다운로드 링크 만들 예정 -->
+	                ${boardVO.real_file_names[0]}-파일다운로드-
 	                </a>
 	                </p>
                 </c:if>

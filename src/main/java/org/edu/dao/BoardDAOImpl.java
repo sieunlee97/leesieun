@@ -37,7 +37,7 @@ public class BoardDAOImpl implements IF_BoardDAO{
 	}
 
 	@Override
-	public List<String> readAttach(Integer bno) throws Exception {
+	public List<HashMap<String,Object>> readAttach(Integer bno) throws Exception {
 		// 게시물에 딸린 첨부파일 보기 매퍼 쿼리 연결(아래)
 		return sqlSession.selectList("boardMapper.readAttach", bno);
 	}
