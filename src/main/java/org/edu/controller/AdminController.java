@@ -66,6 +66,11 @@ public class AdminController {
 		//배열형 출력값(가로) {'save_file_name1','save_file_name2',...}
 		boardVO.setSave_file_names(save_file_names);
 		boardVO.setReal_file_names(real_file_names);
+		//시큐어코딩 적용(아래). jsp에서 c:out으로 처리
+		/*
+		 * String xxs_data= boardVO.getContent();
+		 * boardVO.setContent(securityCode.unscript(xxs_data));
+		 */
 		
 		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_update";

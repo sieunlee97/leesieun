@@ -51,7 +51,7 @@
                   <div class="form-group">
                   <!-- label for과 textarea id는 같게 설정 -->
                     <label for="content">Content</label>
-					<textarea row="5" name="content" id="content" class="form-control">${boardVO.content}</textarea>
+					<textarea row="5" name="content" id="content" class="form-control"><c:out value="${boardVO.content}"></c:out></textarea>
                   </div>
                   <div class="form-group">
                   	<label for="writer">writer</label>
@@ -79,7 +79,9 @@
           
           <!-- 버튼영역 시작 -->
             <div class="card-body">
-              	<a href="/admin/board/board_list" class="btn btn-primary float-right mr-1">LIST ALL</a>              	
+              	<a href="/admin/board/board_view?page=${pageVO.page}&bno=${boardVO.bno}
+" class="btn btn-primary float-right mr-1">BACK</a>  
+              	            	
               	<button type="submit" class="btn btn-warning float-right mr-1 text-white">SUBMIT</button>
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지 못한다. 그래서 button태그를 사용. -->
               </div>
