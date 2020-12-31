@@ -15,6 +15,7 @@ import org.edu.vo.MemberVO;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,11 +41,13 @@ public class CommonController {
 	 * => 확장자 체크 필요한 이유.
 	 */
 	@SuppressWarnings("serial")
-	private ArrayList<String> extNameArray = new ArrayList<String>() { //변수 생성 후 바로 리스트 3개 입력처리. 
+	private ArrayList<String> checkImgArray = new ArrayList<String>() { //변수 생성 후 바로 리스트 3개 입력처리. 
 		{
 			add("gif");
 			add("jpg");
+			add("jpeg");
 			add("png");
+			add("bmp");
 		}
 	};
 	//첨부파일 업로드할 경로를 변수값으로 가져옴. servlet-context.xml에 빈으로 등록되어있음.
@@ -81,7 +84,8 @@ public class CommonController {
 		//만약 파일이 여러개면 아래 부분에 변수 처리 로직이 더 들어가야 한다.
 		//폴더에 저장할 PK용 파일명 만들기(아래)
 		UUID uid = UUID.randomUUID(); //unique id 생성 : 폴더에 저장할 파일명으로 사용
-		String saveFileName = uid.toString()+"."+realFileName.split("\\.")[1];
+		//String saveFileName = uid.toString()+"."+realFileName.split("\\.")[1]; //문제발생하여 아래코드로 대체
+		String saveFileName = uid.toString()+"."+StringUtils.getFilenameExtension(realFileName);
 		//realFileName.split("\\."); realFileName을 .으로 분할해서 파일변수로 만드는 메소드
 		//ex. abc.jpg -> realFileName[0]=abc, realFileName[1]=jpg	
 		String[] files = new String[] {saveFileName}; //saveFileName 스트링형을 배열변수 files로 형변환
@@ -113,4 +117,14 @@ public class CommonController {
 		}
 		return result; // 결과값은 0, 1, 또는 에러메세지 중 한가지
 	}
+
+	public ArrayList<String> getCheckImgArray() {
+		return checkImgArray;
+	}
+
+	public void setCheckImgArray(ArrayList<String> checkImgArray) {
+		this.checkImgArray = checkImgArray;
+	}
+
+	
 }

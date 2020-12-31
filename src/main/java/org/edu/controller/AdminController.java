@@ -181,6 +181,7 @@ public class AdminController {
 		//만약 위처럼 복잡하게 세로배치->가로배치로 바꾸는 것이 이상하면, 아래처럼 처리
 		//model.addAttribute("save_file_names", files);
 		model.addAttribute("boardVO", boardVO);
+		model.addAttribute("checkImgArray", commonController.getCheckImgArray());
 		return "admin/board/board_view";
 	}
 	@RequestMapping(value="/admin/board/board_list", method=RequestMethod.GET)

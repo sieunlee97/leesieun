@@ -3,6 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../include/header.jsp" %>
 
 <!-- 대시보드 본문 Content Wrapper. Contains page content -->
@@ -66,6 +67,21 @@
 	                <a href="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}"> <!-- 다운로드 링크 만들 예정 -->
 	                ${boardVO.real_file_names[0]}-파일다운로드-
 	                </a>
+	                <c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[0], '.')}" />
+	                <c:set var="extName" value="${fileNameArray[fn:length(fileNameArray)-1]}" />
+	                <!-- length결과는 2-1= 1 -->
+	                <!-- 첨부파일이 이미지인지 아닌지 비교해서 img태그를 사용할 지 결정(아래) -->
+	                <!-- fn:contains함수(비교배열내용, 첨부파일확장자) -->
+	                <c:choose>
+	                	<c:when test="${fn:containsIgnoreCase(checkImgArray, extName)}">
+	                	<img width="100%" src="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}">
+	                	</c:when>
+	                	<c:otherwise>
+	                	<!-- 사용자홈페이지 메인 최근게시물 미리보기 이미지가 없을 때 사용예정 -->
+	                	</c:otherwise>
+	                </c:choose>
+
+	               
 	                </p>
                 </c:if>
               </div>
