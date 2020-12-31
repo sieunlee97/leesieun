@@ -2,14 +2,17 @@ package org.edu.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import org.edu.service.IF_MemberService;
 import org.edu.vo.MemberVO;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +49,7 @@ public class CommonController {
 	};
 	//첨부파일 업로드할 경로를 변수값으로 가져옴. servlet-context.xml에 빈으로 등록되어있음.
 	@Resource(name="uploadPath")
-	private String uploadPath; // 위 uploadPath영역의 값(value)을 uploadPath 변수에 저장
+	private String uploadPath; // 위 uploadPath영역의 값(value)을 uploadPath 멤버(전역)변수에 저장
 	
 	public String getUploadPath() {
 		return uploadPath;
@@ -54,6 +57,22 @@ public class CommonController {
 
 	public void setUploadPath(String uploadPath) {
 		this.uploadPath = uploadPath;
+	}
+	
+	//파일 다운로드 구현한 메소드(아래)
+	@RequestMapping(value="/download", method=RequestMethod.GET)
+	@ResponseBody //이 어노테이션으로 지정된 메소드는 페이지 이동처리 아니고, RestAPI처럼 현재 페이지에서 구현 결과 내용을 전송 받음
+	public FileSystemResource download(
+			@RequestParam("save_file_name") String save_file_name,
+			@RequestParam("real_file_name") String real_file_name,
+			HttpServletResponse response 
+			) throws Exception { //파일시스템리소스로 현재 페이지에서 반환받음.
+		File file = new File(uploadPath + "/"+ save_file_name); //다운받을 파일 경로 지정
+		response.setContentType("application/download; utf-8"); //파일"내용" 중 한글이 깨지는 것 방지
+		real_file_name = URLEncoder.encode(real_file_name, "UTF-8").replaceAll("\\+", "%20");
+		//위의 URLEncoder는 파일"명"이 한글(일본어, 베트남어)일 떄, 깨지는 것 방지.
+		response.setHeader("Content-Disposition", "attachment; filename="+real_file_name);
+		return new FileSystemResource(file); //실제 다운로드 시작
 	}
 
 	//파일 업로드= xml에서 지정한 폴더에 실제파일 저장을 구현한 메소드(아래)
