@@ -1,5 +1,6 @@
 package org.edu.controller;
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Date;
@@ -62,8 +63,17 @@ public class AdminController {
 	// GET은 URL전송방식(아무 브라우저 주소에 적으면 실행가능), POST는 폼 전송방식(해당페이지에서만 작동 가능)
 	@RequestMapping(value="/admin/board/board_delete", method=RequestMethod.POST)
 	public String board_delete(RedirectAttributes rdat, PageVO pageVO, @RequestParam("bno") Integer bno) throws Exception {
-		//첨부파일 삭제 미처리. 추가 예정: 삭제할 때 순서. 자식부터 삭제 후 부모 삭제.
+		// 기존 등록된 첨부파일 폴더에서 삭제할 UUID 파일명 구하기(아래)
+		List<HashMap<String, Object>> delFiles = boardService.readAttach(bno);
 		boardService.deleteBoard(bno);
+		// 첨부파일 삭제 : DB부터 먼저 삭제 후  폴더에서 첨부파일 삭제
+		for(HashMap<String, Object> file_name:delFiles) {
+			//실제파일 삭제 로직(아래 File클래스(폴더경루, 파일명))
+			File target = new File(commonController.getUploadPath(), (String)file_name.get("save_file_name"));
+			if(target.exists()) {
+				target.delete(); //실제 지워짐.
+			}
+		}
 		rdat.addFlashAttribute("msg", "삭제");
 		return "redirect:/admin/board/board_list?page=" + pageVO.getPage();
 	}

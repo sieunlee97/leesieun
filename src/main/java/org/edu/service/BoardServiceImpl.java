@@ -65,9 +65,11 @@ public class BoardServiceImpl implements IF_BoardService {
 		}
 	}
 
+	@Transactional
 	@Override
 	public void deleteBoard(Integer bno) throws Exception {
-		// 게시물 삭제 DAO연결(아래)
+		// 첨부파일 삭제 후, 게시물 삭제 DAO연결(아래)
+		boardDAO.deleteAttachAll(bno);
 		boardDAO.deleteBoard(bno);
 		
 	}
@@ -76,6 +78,20 @@ public class BoardServiceImpl implements IF_BoardService {
 	public void updateBoard(BoardVO boardVO) throws Exception {
 		// 게시물 수정 DAO연결(아래)
 		boardDAO.updateBoard(boardVO);
+		// 첨부파일 등록 DAO연결(아래), 조건: 첨부파일 DB를 삭제한 이후		
+		Integer bno = boardVO.getBno();
+		String[] save_file_names = boardVO.getSave_file_names();
+		String[] real_file_names = boardVO.getReal_file_names();
+		//첨부파일이 여러개일 때 상황 대비
+		if(save_file_names == null) {return;} //첨부파일 없을때
+		int index = 0;
+		String real_file_name="";
+		for(String save_file_name:save_file_names) {
+			real_file_name=real_file_names[index];
+			boardDAO.updateAttach(save_file_name, real_file_name, bno);
+			index=index+1;
+		}
+		
 		
 	}
 

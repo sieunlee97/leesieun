@@ -18,6 +18,23 @@
 	</if>
 </if>
 </sql>
+<!-- 해당 게시물의 첨부파일 업데이트 시키기 
+첨부파일은 update 기능인데, 태그는 insert 사용한 이유 : PK가 save_file_name UUID이름인데, 수정할 수 없다.
+예를들면, 주민번호를 수정하는 것과 갑은 의미로, PK 수정하는 것 불가능. 따라서 삭제후 추가
+-->
+<insert id="updateAttach">
+insert into tbl_attach (save_file_name, real_file_name, bno)
+values (#{save_file_name}, #{real_file_name}, #{bno})
+</insert>
+
+<!-- 해당 게시물의 첨부파일 1개만 지우기 PK=Primary Key=기본키 => 인덱스자동생성 -->
+<delete id="deleteAttach">
+delete from tbl_attach where save_file_name = #{save_file_name}
+</delete>
+<!-- 해당 게시물의 첨부파일 모두 지우기, 외래키 사용(Foreign Key)=참조키=FK -->
+<delete id="deleteAttachAll">
+delete from tbl_attach where bno = #{bno}
+</delete>
 <!-- LAST_INSERT_ID() MariaDB에서 작동 X-->
 <insert id="insertAttach">
 insert into tbl_attach(save_file_name, real_file_name, bno)
