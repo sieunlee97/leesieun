@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.edu.dao.IF_BoardDAO;
 import org.edu.service.IF_BoardService;
 import org.edu.service.IF_MemberService;
 import org.edu.util.CommonController;
@@ -37,8 +38,11 @@ public class AdminController {
 	@Inject
 	SecurityCode securityCode;
 	
-	@Autowired
+	@Inject
 	IF_BoardService boardService; //게시판인터페이스를 주입받아서 boardService 오브젝트변수 생성
+	
+	@Inject
+	IF_BoardDAO boardDAO;
 	
 	@Inject
 	IF_MemberService memberService; //멤버인터페이스를 주입받아서 memberService 오브젝트변수 생성
@@ -48,14 +52,48 @@ public class AdminController {
 	@RequestMapping(value="/admin/board/board_update", method=RequestMethod.GET)
 	public String board_update(@RequestParam("bno") Integer bno, @ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
 		BoardVO boardVO = boardService.readBoard(bno);
+		
+		List<HashMap<String, Object>> files = boardService.readAttach(bno); // 리스트형 변수 생성
+		String[] save_file_names = new String[files.size()];
+		String[] real_file_names = new String[files.size()];
+		int cnt = 0;
+		for(HashMap<String, Object> file_name:files) {
+			save_file_names[cnt]=(String) file_name.get("save_file_name"); //HashMap형태의 save_file_name을 뽑아와서 String으로 형변환
+			real_file_names[cnt]= (String)file_name.get("real_file_name");
+			cnt = cnt+1;
+		}
+		
+		//배열형 출력값(가로) {'save_file_name1','save_file_name2',...}
+		boardVO.setSave_file_names(save_file_names);
+		boardVO.setReal_file_names(real_file_names);
+		
 		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_update";
 	}
 	
 	@RequestMapping(value="/admin/board/board_update", method=RequestMethod.POST)
 	public String board_update(RedirectAttributes rdat, MultipartFile file, BoardVO boardVO, PageVO pageVO) throws Exception {
-		boardService.updateBoard(boardVO);
+		// 기존등록된 첨부파일 목록 구하기
+		List<HashMap<String,Object>> delFiles = boardService.readAttach(boardVO.getBno());
 		//첨부파일 수정 미처리. 추가 예정: 수정할 때 수정. 부모부터 수정 후 자식 수정.
+		if(file.getOriginalFilename() != "") { // 첨부파일 있는 경우
+			//기존 파일을 폴더에서 삭제 처리
+			for(HashMap<String,Object> old_file_name:delFiles) {
+				File target = new File(commonController.getUploadPath(), (String)old_file_name.get("save_file_name") );
+				if (target.exists()) {
+					target.delete(); // 기존 첨부파일 폴더에서 지우기
+					// 서비스 클래스에는 첨부파일
+					boardDAO.deleteAttach( (String)old_file_name.get("save_file_name"));
+				}
+			}
+			//신규 파일 폴더에 업로드 처리
+			String[] save_file_names = commonController.fileUpload(file); // 폴더에 업로드 저장 완료.
+			boardVO.setSave_file_names(save_file_names); //UUID로 생성된 유니크한 파일명
+			String[] real_file_names = new String[] {file.getOriginalFilename()}; //"한글파일명.jpg"
+			boardVO.setReal_file_names(real_file_names); //실제 사용자가 저장한 한글파일명
+		}
+		
+		boardService.updateBoard(boardVO);
 		rdat.addFlashAttribute("msg", "수정");
 		return "redirect:/admin/board/board_view?page="+pageVO.getPage()+"&bno="+boardVO.getBno();
 	}
