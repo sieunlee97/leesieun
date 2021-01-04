@@ -62,8 +62,8 @@ public class BoardServiceImpl implements IF_BoardService {
 			if(save_file_name != null) { //첨부파일 배열에서 배열값이 있는 경우
 				real_file_name=real_file_names[index];
 				boardDAO.insertAttach(save_file_name, real_file_name);
+				index=index+1;
 			}
-			index=index+1;
 		}
 	}
 
