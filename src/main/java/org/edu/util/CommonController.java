@@ -79,7 +79,7 @@ public class CommonController {
 	}
 
 	//파일 업로드= xml에서 지정한 폴더에 실제파일 저장을 구현한 메소드(아래)
-	public String[] fileUpload(MultipartFile file) throws IOException {
+	public String fileUpload(MultipartFile file) throws IOException {
 		String realFileName = file.getOriginalFilename(); //jsp에서 전송한 파일명 -> 확장자 구할 때 사용
 		//만약 파일이 여러개면 아래 부분에 변수 처리 로직이 더 들어가야 한다.
 		//폴더에 저장할 PK용 파일명 만들기(아래)
@@ -88,15 +88,14 @@ public class CommonController {
 		String saveFileName = uid.toString()+"."+StringUtils.getFilenameExtension(realFileName);
 		//realFileName.split("\\."); realFileName을 .으로 분할해서 파일변수로 만드는 메소드
 		//ex. abc.jpg -> realFileName[0]=abc, realFileName[1]=jpg	
-		String[] files = new String[] {saveFileName}; //saveFileName 스트링형을 배열변수 files로 형변환
+		//String[] files = new String[] {saveFileName}; //saveFileName 스트링형을 배열변수 files로 형변환
 		byte[] fileData = file.getBytes(); //jsp폼에서 전송된 파일이 fileData변수(메모리)에 저장된다.
 		
 		//uploadPath경로의 saveFileName이름을 가진 파일이 타겟이 된다.
 		File target = new File(uploadPath,saveFileName); //파일 저장하기 바로 전 설정 저장
 		FileCopyUtils.copy(fileData, target); //실제로 target폴더에 파일로 저장되는 메소드 = 업로드끝
 		
-		return files; // 1개 이상의 파일 업로드 시, 저장된 파일명을 배열로 저장한 변수
-		//첨부파일이 한개 이상일 수 있기 때문에, BoardVO에 save_file_names가 배열형이기 때문에.
+		return saveFileName; // copy로 업로드 이후에 저장된 real_file_name 스트링 문자열값 1개 반환
 	}
 
 	//REST-API서비스로 사용할 때, @ResponseBody 어노테이션으로 json텍스트데이터를 반환함 (아래)

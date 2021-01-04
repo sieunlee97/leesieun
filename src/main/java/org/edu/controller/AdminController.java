@@ -77,27 +77,45 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/board/board_update", method=RequestMethod.POST)
-	public String board_update(RedirectAttributes rdat, MultipartFile file, BoardVO boardVO, PageVO pageVO) throws Exception {
+	public String board_update(RedirectAttributes rdat, @RequestParam("file") MultipartFile[] files, BoardVO boardVO, PageVO pageVO) throws Exception {
 		// 기존등록된 첨부파일 목록 구하기
 		List<HashMap<String,Object>> delFiles = boardService.readAttach(boardVO.getBno());
+		//jsp에 보낼 save_file_names, real_file_names 배열변수 초기값 지정
+		String[] save_file_names = new String[files.length];
+		String[] real_file_names = new String[files.length];
+		int index=0; //아래 향상된 for문에서 사용할 인덱스값
 		//첨부파일 수정 미처리. 추가 예정: 수정할 때 수정. 부모부터 수정 후 자식 수정.
-		if(file.getOriginalFilename() != "") { // 첨부파일 있는 경우
-			//기존 파일을 폴더에서 삭제 처리
-			for(HashMap<String,Object> old_file_name:delFiles) {
-				File target = new File(commonController.getUploadPath(), (String)old_file_name.get("save_file_name") );
-				if (target.exists()) {
-					target.delete(); // 기존 첨부파일 폴더에서 지우기
-					// 서비스 클래스에는 첨부파일
-					boardDAO.deleteAttach( (String)old_file_name.get("save_file_name"));
+		for(MultipartFile file:files) {
+			if(file.getOriginalFilename() != "") { // 첨부파일 있는 경우
+				//기존 파일 DB에서 삭제처리할 변수 생성
+				int cnt=0; //업데이트 jsp에서 첨부파일 개별 삭제시 순서가 필요하기 때문
+				for(HashMap<String,Object> file_name:delFiles) {
+					save_file_names[cnt]=(String)file_name.get("save_file_name");
+					real_file_names[cnt]=(String)file_name.get("real_file_name");
+					cnt=cnt+1;
 				}
+				int sun = 0; //업데이트 jsp화면에서 첨부파일을 개별 삭제시 사용할 순서가 필요하기 때문
+				//기존 파일을 폴더에서 삭제 처리
+				for(HashMap<String,Object> old_file_name:delFiles) {
+					if(index == sun) { //index는 첨부파일 개수, sun는 삭제할 개별 순서
+						File target = new File(commonController.getUploadPath(), (String)old_file_name.get("save_file_name") );
+						if (target.exists()) {
+							target.delete(); // 기존 첨부파일 폴더에서 지우기
+							
+						}
+					}
+					// 서비스 클래스에는 첨부파일DB를 지우는 메소드 없음. DAO접긓내서 tbl_attach 지운다.
+					boardDAO.deleteAttach( (String)old_file_name.get("save_file_name"));
+					sun=sun+1;
+				}
+				//신규 파일 폴더에 업로드 처리
+				save_file_names[index] = commonController.fileUpload(file); // 폴더에 업로드 저장 완료.
+				real_file_names[index] = file.getOriginalFilename(); //"한글파일명.jpg"		
 			}
-			//신규 파일 폴더에 업로드 처리
-			String[] save_file_names = commonController.fileUpload(file); // 폴더에 업로드 저장 완료.
-			boardVO.setSave_file_names(save_file_names); //UUID로 생성된 유니크한 파일명
-			String[] real_file_names = new String[] {file.getOriginalFilename()}; //"한글파일명.jpg"
-			boardVO.setReal_file_names(real_file_names); //실제 사용자가 저장한 한글파일명
+			index=index+1;
 		}
-		
+		boardVO.setSave_file_names(save_file_names); //UUID로 생성된 유니크한 파일명
+		boardVO.setReal_file_names(real_file_names); //실제 사용자가 저장한 한글파일명
 		boardService.updateBoard(boardVO);
 		rdat.addFlashAttribute("msg", "수정");
 		return "redirect:/admin/board/board_view?page="+pageVO.getPage()+"&bno="+boardVO.getBno();
@@ -126,17 +144,22 @@ public class AdminController {
 		return "admin/board/board_write";//파일경로
 	}
 	@RequestMapping(value="/admin/board/board_write", method=RequestMethod.POST)
-	public String board_write(RedirectAttributes rdat, MultipartFile file, BoardVO boardVO) throws Exception {
+	public String board_write(RedirectAttributes rdat, @RequestParam("file") MultipartFile[] files, BoardVO boardVO) throws Exception {
 		//POST로 받은 boardVO내용을 DB서비스에 입력하면 된다.
+		String[] save_file_names=new String[files.length];
+		String[] real_file_names=new String[files.length];
 		//첨부파일 존재 여부에 따른 저장 
 		//첨부파일 없으면 게시물만 저장 , 첨부파일있으면 첨부파일 업로드 처리 후 게시물DB저장 + 첨부파일DB저장
-		if(file.getOriginalFilename() != "") { // 첨부파일 있는 경우
-			String[] save_file_names = commonController.fileUpload(file); // 폴더에 업로드 저장 완료.
-			boardVO.setSave_file_names(save_file_names); //UUID로 생성된 유니크한 파일명
-			String[] real_file_names = new String[] {file.getOriginalFilename()}; //"한글파일명.jpg"
-			boardVO.setReal_file_names(real_file_names); //실제 사용자가 저장한 한글파일명
+		int index=0;
+		for(MultipartFile file:files) {
+			if(file.getOriginalFilename() != "") { // 첨부파일 있는 경우
+				save_file_names[index] = commonController.fileUpload(file); // 폴더에 업로드 저장 완료.
+				real_file_names[index] = file.getOriginalFilename(); //"한글파일명.jpg"				
+			}
+			index=index+1;
 		}
-		
+		boardVO.setSave_file_names(save_file_names); //UUID로 생성된 유니크한 파일명
+		boardVO.setReal_file_names(real_file_names); //실제 사용자가 저장한 한글파일명
 		boardService.insertBoard(boardVO);
 		rdat.addFlashAttribute("msg", "저장");
 		//DB에 입력 후 새로고침 명령으로 게시물테러를 당하지 않으려면 redirect로 이동 처리한다.(아래)

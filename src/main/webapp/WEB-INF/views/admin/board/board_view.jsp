@@ -59,31 +59,31 @@
                 <p class="text-muted">
                 	<c:out value="${boardVO.writer}"></c:out>
                 </p>
-  				
-  				<c:if test="${boardVO.save_file_names[0] != null}">              
+  				<c:forEach var="index" begin="0" end="1">
+  				<c:if test="${boardVO.save_file_names[index] != null}">              
 	                <hr>
-	                <strong><i class="fas fa-paperclip mr-1"></i> 첨부파일</strong>
+	                <strong><i class="fas fa-paperclip mr-1"></i> 첨부파일${index}</strong>
 	                <p class="text-muted">
-	                <a href="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}"> <!-- 다운로드 링크 만들 예정 -->
-	                ${boardVO.real_file_names[0]}-파일다운로드-
+	                <a href="/download?save_file_name=${boardVO.save_file_names[indx]}&real_file_name=${boardVO.real_file_names[index]}"> <!-- 다운로드 링크 만들 예정 -->
+	                ${boardVO.real_file_names[index]}-파일다운로드-
 	                </a>
-	                <c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[0], '.')}" />
+	                <c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[index], '.')}" />
 	                <c:set var="extName" value="${fileNameArray[fn:length(fileNameArray)-1]}" />
 	                <!-- length결과는 2-1= 1 -->
 	                <!-- 첨부파일이 이미지인지 아닌지 비교해서 img태그를 사용할 지 결정(아래) -->
 	                <!-- fn:contains함수(비교배열내용, 첨부파일확장자) -->
 	                <c:choose>
 	                	<c:when test="${fn:containsIgnoreCase(checkImgArray, extName)}">
-	                	<img width="100%" src="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}">
+	                	<img width="100%" src="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}">
 	                	</c:when>
 	                	<c:otherwise>
 	                	<!-- 사용자홈페이지 메인 최근게시물 미리보기 이미지가 없을 때 사용예정 -->
 	                	</c:otherwise>
-	                </c:choose>
-
-	               
+	                </c:choose>               
 	                </p>
                 </c:if>
+  				</c:forEach>
+  				
               </div>
               <!-- /.card-body -->
             </div>
