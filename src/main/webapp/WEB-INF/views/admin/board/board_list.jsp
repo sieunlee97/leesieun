@@ -74,9 +74,12 @@
                   
                   <tbody>
                   <!-- jstl core를 쓰는 이유? 향상된 for문을 사용하기 위해서 지정 -->
-                  <c:forEach items="${board_list}" var="boardVO">
+                  <c:forEach items="${board_list}" var="boardVO" varStatus="status">
                     <tr>
-                      <td>${boardVO.bno}</td> <!-- table data 태그 -->
+                      <td>
+                      <!-- ${boardVO.bno} 대신에 보기 편한 넘버링으로 변환(아래 계산식 사용)-->
+                      ${pageVO.totalCount-(pageVO.page*pageVO.queryPerPageNum)+pageVO.queryPerPageNum-status.index}  
+                      </td> <!-- table data 태그 -->
                       <!-- 아래의 링크a 값은 리스트가 늘어날수록 동적으로  bno값이 변하게 된다. 개발자가 jsp처리 -->
                       <td><a href="/admin/board/board_view?page=${pageVO.page}&bno=${boardVO.bno}">
                       <!-- c:out 사용하는 이유? 시큐어코딩. 악의적인 코드 삽입이나 sql주입 방지 -->

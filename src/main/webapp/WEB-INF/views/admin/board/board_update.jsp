@@ -61,6 +61,7 @@
                   <div class="form-group">
                   	<label for="customFile">attach</label>
                   	<c:forEach var="index" begin="0" end="1">
+                  	<div class="div_file_delete">
 	                  <div class="custom-file">
 	                      <input type="file" name="file" class="custom-file-input" id="customFile_${index}">
 	                      <label class="custom-file-label" for="customFile">파일을 선택해주세요</label>
@@ -70,10 +71,13 @@
 		                <p class="text-muted">
 		                <a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}"> <!-- 다운로드 링크 만들 예정 -->
 		                ${boardVO.real_file_names[index]}-파일다운로드-
-		                </a>
+		                </a> &nbsp; 
+		                <input type="hidden" name="save_file_name" value="${boardVO.save_file_names[index]}">
+		                <button type="button" class="btn btn-info btn_file_delete">삭제</button>
 		                </p>
 	                </c:if>
 	                <hr>
+	                </div>
                   	</c:forEach>                  	
                 </div>
                 <!-- /.card-body -->
@@ -140,4 +144,31 @@ $(document).ready(function(){
 	});
 });//textarea 중 content아이디영역을 섬머노트에디터로 변경처리 함수실행
 </script>
-
+<script>
+$(document).ready(function(){
+	$(".btn_file_delete").on("click",function(){
+		//alert('디버그');
+		if(confirm("선택한 첨부파일을 삭제하시겠습니까?")){
+			
+			var click_element = $(this); //클릭한 현재 엘리먼트(삭제버튼)
+			var save_file_name = click_element.parent().find('input[name=save_file_name]').val();
+			//alert("삭제할 파일명 :" + save_file_name); return false;
+			$.ajax({
+				type:"post", //get방식으로 지우면, 누구나 아래  URL입력시 지우는 것이 가능함
+				url:"/file_delete?save_file_name="+save_file_name,
+				dataType:"text",
+				success:function(result){
+					if(result=="success"){//실제파일+DB테이블삭제 후 화면에서도 삭제 (아래)
+						click_element.parents(".div_file_delete").remove();
+					}
+				},
+				error:function(result){
+					alert("RestAPI접근에 실패했습니다.");
+					//click_element.parents(".div_file_delete").remove(); //디버그 
+				}
+			});
+		}
+		
+	});
+});
+</script>
