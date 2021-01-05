@@ -21,7 +21,7 @@
 - [X] 트랜잭션 @Tansactional추가: root-context.xml에서 dataSource에 트랜잭션 설정추가필수OK.
 - [X] 파일업로드 라이브러리 사용 pom.xml 의존성 추가.
 - [X] 게시판 업로드 화면 구현.
-- [ ] Json데이터 사용 pom.xml 의존성 추가.
+- [X] Json데이터 사용 pom.xml 의존성 추가.
 - [ ] 실제 댓글 화면CRUD적용.(우리가 만들어서 제공 Rest-API백엔드단)
 - [ ] 사용자단 html(https://miniplugin.github.io/) 소스를 커스터마이징 후 jsp로 만들기.
 - [ ] 스프링시큐리티 로그인 구현 pom.xml 의존성 추가(회원가입시 패스워드 암호화 추가).
@@ -31,9 +31,32 @@
 - [ ] 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
 ## v6.0.0 UI구현
+### 20210105(화)
+- 특이사항 : RestAPI에서 Select는 GET이 기본.(수업 중 이클립스 내장 브라우저에서 실행 오류 -> POST사용)
+- 게시판에서 GET으로 전송하는 방식1 (고전) : url:"/reply/reply_list?bno="+bno,
+- 게시판에서 GET으로 전송하는 방식2 (시멘틱 웹) : url:"/reply/reply_list/"+bno,
+- 시멘틱 웹방식으로 전송하는 목적 : 구글 검색에 노출되기 쉽게 하기 위해.(검색 광고와 관련)
+- ==========================================================
+- @PathVaribale : URI경로에 변수를 넣어준다. RestAPI에서 사용
+- > ReplyController
+- @RequestMapping: 메소드가 어떤 HTTP요청을 처리할 것인가
+- > value="/../.." : value값의 URL인 것 처리.
+- > method=RequestMethod.GET(혹은 POST) : 요청 메소드가 GET(혹은 POST)인 것 처리.
+- @RestController : @Controller에 @ResponseBody를 추가한 효과를 가진다. RestAPI 구현을 염두한 축약형 어노테이션
+-  > ReplyController
+- @ResponseBody : 모든 멧도드의 return 오브젝트를 적절한 형태로 변환 후 HTTP응답 메시지의 바디에 담아 반환한다. RestAPI 구현시 적합.
+- > CommonController
+- ==========================================================
+
+- 부메랑(크롬의 플러그인) : JUnit(스프링-자바단위테스트)과 같은 역할. RestAPI의 단위 테스트 할 때 사용.
+- > JUnit으로 CRUD테스트 했다.
+- > 부메랑으로도 CRUD테스트 한다.
+- 부메랑으로 테스트 후 댓글 클래스 작업 시작 할 것이다.
+- 댓글 DB -> VO -> mapper쿼리 -> DAO -> ~Service~(생략) -> Controller -> JSP
+
 ### 20210104(월)
 - [X] 다중 파일 업로드
-- [ ] 관리자단 게시판의 뷰화면의 댓글 RestAPI 프로그램작업 시작.
+- [X] 관리자단 게시판의 뷰화면의 댓글 RestAPI 프로그램작업 시작.
 - [ ] 사용자화면 디자인 커스터마이징
 - [ ] 인터셉터(가로채기) 클래스 이용해서, 예외처리를 공동 error.jsp로 바인딩 처리
 - [ ] 스프링 시큐리티 사용해서 로그인 구현

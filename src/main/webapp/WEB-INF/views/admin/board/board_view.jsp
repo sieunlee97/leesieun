@@ -217,7 +217,7 @@ $(document).ready(function(){
 		//alert("디버그"); //$.getJSON 으로 대체해도 된다. 하지만 아래와 같은 방식이 기본방식.
 		$.ajax({
 			type:"post",
-			url:"/reply/reply_list/5", //111 게시물번호에 대한 댓글 목록을 가져오는 URL
+			url:"/reply/reply_list/111", //111 게시물번호에 대한 댓글 목록을 가져오는 URL
 			dataType:"json", //받을 때 JSON데이터를 받는다.
 			success:function(result){ //result에는 댓글 목록을 Json데이터로 받는다.
 				//빵틀에 result 데이터를 바인딩해서 출력
