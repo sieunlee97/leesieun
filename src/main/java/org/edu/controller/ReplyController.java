@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ReplyController {
-	
-	@RequestMapping(value="/reply/reply_list/{bno}", method=RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> reply_list() {
+	//댓글 리스트 메소드(아래)
+	@RequestMapping(value="/reply/reply_list/{bno}", method=RequestMethod.POST)
+	public ResponseEntity<Map<String,Object>> reply_list(@PathVariable("bno") Integer bno) {
+		System.out.println("디버그 : PathVariable변수는 "+bno);
 		ResponseEntity<Map<String,Object>> result = null;
 
 		Map<String,Object> resultMap = new HashMap<String,Object>();//해시맵타입으로 Json저장소생성
