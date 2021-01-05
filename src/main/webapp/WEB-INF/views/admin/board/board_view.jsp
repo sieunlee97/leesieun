@@ -217,21 +217,25 @@ $(document).ready(function(){
 		//alert("디버그"); //$.getJSON 으로 대체해도 된다. 하지만 아래와 같은 방식이 기본방식.
 		$.ajax({
 			type:"post",
-			url:"/reply/reply_list/111", //111 게시물번호에 대한 댓글 목록을 가져오는 URL
+			url:"/reply/reply_list/${boardVO.bno}", //111 게시물번호에 대한 댓글 목록을 가져오는 URL
 			dataType:"json", //받을 때 JSON데이터를 받는다.
 			success:function(result){ //result에는 댓글 목록을 Json데이터로 받는다.
-				//빵틀에 result 데이터를 바인딩해서 출력
-				//console.log(result); //디버그용
-				
-				/* 데이터 타입이 'text' 형식일 때 실행.
-				var jsonData = JSON.parse(result); 텍스트자료를 JSON자료로 변환
-				console.log("여기까지"+jsonData.replyList); //디버그용 // 
-				printReplyList(jsonData.replyList, $(".time-label"), $("#template")); JSON으로 받은 것중에 replyList값을 받는다.
-				*/
-				
-				//위에서 정의한 printReplyList(Json데이터, 추력위치타켓, 빵틀);  
-				printReplyList(result.replyList, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
-				
+				// alert("디버그"+result);
+				if(typeof result=="undefined" || result == null || result == ""){
+					alert("조회된 값이 없습니다.");
+				}else{
+					//빵틀에 result 데이터를 바인딩해서 출력
+					//console.log(result); //디버그용
+					
+					/* 데이터 타입이 'text' 형식일 때 실행.
+					var jsonData = JSON.parse(result); 텍스트자료를 JSON자료로 변환
+					console.log("여기까지"+jsonData.replyList); //디버그용 // 
+					printReplyList(jsonData.replyList, $(".time-label"), $("#template")); JSON으로 받은 것중에 replyList값을 받는다.
+					*/
+					
+					//위에서 정의한 printReplyList(Json데이터, 추력위치타켓, 빵틀);  
+					printReplyList(result.replyList, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
+				}		
 			},
 			error:function(result){
 				alert("RestAPI서버에 문제가 발생했습니다. 다음에 이용해주세요.");
