@@ -29,16 +29,17 @@ public class ReplyController {
 		//Map변수=데이터형 [{'key':'List<>'},{'key':'ClassVO'},{'':''},...]
 		Map<String,Object> dummyMap = new HashMap<String,Object>();
 		dummyMap.put("rno", "1");
-		dummyMap.put("replyer", "관리자");
-		dummyMap.put("reply_text", "댓글 입력 테스트 입니다.");
+		dummyMap.put("replyer", "관리자1");
+		dummyMap.put("reply_text", "컨트롤1 댓글 입력 테스트 입니다.");
 		Map<String,Object> dummyMap2 = new HashMap<String,Object>();
 		dummyMap.put("rno", "2");
-		dummyMap2.put("replyer", "관리자");
-		dummyMap2.put("reply_text", "댓글 입력 테스트 입니다.");
+		dummyMap2.put("replyer", "관리자2");
+		dummyMap2.put("reply_text", "컨트롤2 댓글 입력 테스트 입니다.");
 		List<Object> dummyMapList = new ArrayList<Object>();
 		dummyMapList.add(0,dummyMap);
 		dummyMapList.add(1,dummyMap2);
 		//-----------------------------------------------
+		//dummyMapList 대신 DB tbl_reply 테이블에서 조회된 결과값으로 대체.
 		resultMap.put("replyList", dummyMapList);//put메서드로 Key:Value 제이슨데이터 생성
 		//resultMap를 Json데이터로 반환하려면, jackson-databind 모듈이 필수(pom.xml)
 		result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.OK);
