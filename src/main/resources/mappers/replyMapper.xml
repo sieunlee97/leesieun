@@ -3,7 +3,8 @@
 <mapper namespace="replyMapper">
 
 <select id="selectReply" resultType="org.edu.vo.ReplyVO">
-SELECT * FROM tbl_reply where bno=#{bno} ORDER BY rno DESC
+SELECT * FROM tbl_reply WHERE bno=#{bno} ORDER BY rno DESC
+LIMIT #{queryStartNo}, #{queryPerPageNum}
 </select>
 
 <select id="countReply" resultType="int">
@@ -22,7 +23,7 @@ update_date=now()
 WHERE rno=#{rno}
 </update>
 
-<delete id="deletReply">
+<delete id="deleteReply">
 DELETE FROM tbl_reply WHERE rno=#{rno}
 </delete>
 

@@ -49,8 +49,8 @@
 - > method=RequestMethod.GET(혹은 POST) : 요청 메소드가 GET(혹은 POST)인 것 처리.
 - @RestController : @Controller에 @ResponseBody를 추가한 효과를 가진다. RestAPI 구현을 염두한 축약형 어노테이션
 -  > ReplyController
-- @ResponseBody : 모든 멧도드의 return 오브젝트를 적절한 형태로 변환 후 HTTP응답 메시지의 바디에 담아 반환한다. RestAPI 구현시 적합.
-- > CommonController
+- @ResponseBody : 모든 메소드의 return 오브젝트를 적절한 형태로 변환 후 HTTP응답 메시지의 바디에 담아 반환한다. RestAPI 구현시 적합.
+- > CommonController, ReplyController
 - ==========================================================
 
 - 부메랑(크롬의 플러그인) : JUnit(스프링-자바단위테스트)과 같은 역할. RestAPI의 단위 테스트 할 때 사용.

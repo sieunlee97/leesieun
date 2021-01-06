@@ -44,4 +44,15 @@
 	  <url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!--  Ajax사용시 브라우저가 POST, GET만 지원할때, PUT,PATCH,DELETE확장 필터 추가 -->
+	<filter>
+	    <filter-name>hiddenHttpMethodFilter</filter-name>
+	    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>hiddenHttpMethodFilter</filter-name>
+	    <url-pattern>/</url-pattern>
+	</filter-mapping>
+	
+	
 </web-app>
