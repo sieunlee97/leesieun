@@ -154,14 +154,15 @@
 					
 					<!-- 페이징처리 시작 -->
 		            <div class="pagination justify-content-center">
-			          	 <ul class="pagination">
+			          	 <ul class="pagination pageVO">
+			          	 <!-- 
 			              <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">&laquo;</a></li>
-			              <!-- previous (위) -->
+			              	previous (위) 
 			              <li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
 			              <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-			              <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-			              <!-- next (아래) -->
+			              	next (아래) 
 			              <li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">&raquo;</a></li>
+			               -->
 			             </ul>
 		            </div><!-- 페이징처리 끝 -->
 
@@ -177,6 +178,7 @@
 
 <%@ include file="../include/footer.jsp" %>
  
+<input type="hidden" id="reply_page" value="1"><!-- #btn_reply_list 클릭할 때 가져올 페이지 값 -->
  
 <%-- 자바스크립트용 #template element 제작  jstl 향상된 for문과 같은 역할 
 	 화면을 재구현Representation하는 함수 
@@ -202,6 +204,49 @@
 </div>
 {{/each}}
 </script>
+
+<!-- 디자인에 프로그램 입히는 작업 -pageVO를 파싱하는 함수(아래) -->
+<script>
+var printPageVO = function(pageVO, target) {
+	var paging = ""; // 출력변수(이전링크+페이지번호+다음링크에 대한 디자인 저장)
+	
+	//이전 페이지 링크- pageVO.prev 파싱
+	if(pageVO.prev){
+		paging = paging + 
+	'<li class="paginate_button page-item previous" id="example1_previous"><a href="'+(pageVO.startPage-1)+'" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">&laquo;</a></li>';
+	}
+	
+	//pageVO를 target영역에 페이지번호(- 반복문 사용) 파싱(아래)
+	for(var cnt = pageVO.startPage; cnt<=pageVO.endPage; cnt++) {
+		var active = (cnt==pageVO.page)?"active":"";
+		paging = paging + 
+	'<li class="paginate_button page-item '+active+'"><a href="'+(cnt)+'" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">'+(cnt)+'</a></li>';
+	}
+	//다음 페이지 링크 - pageVO.next 파싱
+	if(pageVO.next){
+		paging = paging +
+	'<li class="paginate_button page-item next" id="example1_next"><a href="'+(pageVO.endPage+1)+'" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">&raquo;</a></li>';
+	}
+	target.html(paging);
+}
+</script>
+
+<!-- 댓글 페이징에서 링크 태그의 페이지 이동을 방지하고, btn_reply_list 버튼을 클릭했을 때
+	/reply/reply_list/${boardVO.bno}/1 -> 링크 페이지값으로 대체해서 실행하는 역할 코드(아래) -->
+<script>
+$(document).ready(function(){
+	$(".pageVO").on("click", "li a", function(event){ //pagination 클래스는 2개라 alert(page); 가 두번 발생. 따라서 pageVO 클래스로 변경
+		event.preventDefault(); // a태그의 기본기능인 이동기능을 막아준다.
+		var page = $(this).attr("href"); //현재 클릭한 페이지 값을 저장.
+		//alert(page);
+		$("#reply_page").val(page);
+		$("#btn_reply_list").click(); //페이지번호에서 현재 페이지 번호를 클릭했을 떄, btn_reply_list버튼을 누르는것과 같은 역할
+	});
+});
+
+</script>
+
+<!-- 화면을 재구현Representation하는 함수(아래) -->
 <script>
 var printReplyList = function(data, target, templateObject) {
 	var template = Handlebars.compile(templateObject.html()); //html태그로 변환
@@ -215,9 +260,11 @@ var printReplyList = function(data, target, templateObject) {
 $(document).ready(function(){
 	$("#btn_reply_list").on("click", function(){
 		//alert("디버그"); //$.getJSON 으로 대체해도 된다. 하지만 아래와 같은 방식이 기본방식.
+		var page = $("#reply_page").val();
+		alert("디버그 선택한 페이지값 : "+page);
 		$.ajax({
 			type:"post",
-			url:"/reply/reply_list/${boardVO.bno}", //111 게시물번호에 대한 댓글 목록을 가져오는 URL
+			url:"/reply/reply_list/${boardVO.bno}/"+page, //게시물번호에 대한 댓글 목록을 가져오는 URL
 			dataType:"json", //받을 때 JSON데이터를 받는다.
 			success:function(result){ //result에는 댓글 목록을 Json데이터로 받는다.
 				// alert("디버그"+result);
@@ -235,6 +282,8 @@ $(document).ready(function(){
 					
 					//위에서 정의한 printReplyList(Json데이터, 추력위치타켓, 빵틀);  
 					printReplyList(result.replyList, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
+					// result.pageVO 데이터를 .pageVO클래스 영역에 파싱한다.
+					printPageVO(result.pageVO, $(".pageVO")); //pageVO는 ReplyController에서 가져온것
 				}		
 			},
 			error:function(result){

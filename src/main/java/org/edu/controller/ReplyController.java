@@ -38,6 +38,8 @@ public class ReplyController {
 		pageVO.setPage(page); // 조건은 Ajax로 호출시 항상 page변수는 반드시 보내야한다.
 		pageVO.setPerPageNum(3); //리스트하단에 보이는 페이징번호 개수
 		pageVO.setQueryPerPageNum(5); //한페이지당 보이는 댓글 개수
+		int replyCount=replyDAO.selectReplyCount(bno);
+		pageVO.setTotalCount(replyCount); // 전체 댓글 개수를 구해서 set하는 순간 변수들이 활성화되기 때문에 필요.
 //페이징 계산식 처리 끝
 //현재 게시물에 달린 전체 댓글 개수 구하기 -> 게시물 관리 테이블에 있는 reply_count 가져와서 사용
 		
@@ -68,10 +70,10 @@ public class ReplyController {
 				result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.NO_CONTENT);	 	//코드 204
 			}else {					  //댓글이 있을 때
 				resultMap.put("replyList", replyList);
+				resultMap.put("pageVO", pageVO); // 페이징 처리 때문에 추가함. 페이지 정보를 json데이터에 포함시킴
 				//resultMap를 Json데이터로 반환하려면, jackson-databind 모듈이 필수(pom.xml)
 				result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.OK);	//코드 200
 			}
-			
 		} catch (Exception e) {
 			result=new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);//코드 500
 		}
