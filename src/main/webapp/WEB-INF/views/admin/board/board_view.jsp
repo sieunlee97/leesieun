@@ -133,7 +133,7 @@
 					<div class="timeline ml-3">
 						<!-- .time-label의 before -->
 						<div class="time-label" >
-							<span class="bg-red"id="btn_reply_list" style="cursor:pointer;">Reply List[1]&nbsp;</span>
+							<span class="bg-red"id="btn_reply_list" style="cursor:pointer;">Reply List[${boardVO.reply_count}]&nbsp;</span>
 						</div>
 						<!-- .time-label의 after -->
 						<!-- <div>

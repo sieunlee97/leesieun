@@ -62,7 +62,7 @@ public class ReplyController {
 //---------------------------------------------------------------------------------
 		//dummyMapList 대신 DB tbl_reply 테이블에서 조회된 결과값으로 대체.
 		try {
-			List<ReplyVO> replyList = replyDAO.selectReply(bno);
+			List<ReplyVO> replyList = replyDAO.selectReply(bno, pageVO);
 			if(replyList.isEmpty()) { //댓글이 없을 때
 				//result=null; //jsp에서 받는 값이 text일 때 적용
 				result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.NO_CONTENT);	 	//코드 204
@@ -77,13 +77,15 @@ public class ReplyController {
 		}
 		return result;
 	}
+	
 	//댓글삭제 메소드(아래) 전송방식 POST가 아니고 DELETE 사용
-	@RequestMapping(value="/reply/reply_delete/{rno}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> reply_delete(@PathVariable("rno") Integer rno) {
+	@RequestMapping(value="/reply/reply_delete/{bno}/{rno}", method=RequestMethod.DELETE)
+	public ResponseEntity<String> reply_delete(@PathVariable("rno") Integer rno, @PathVariable("bno") Integer bno) {
 		ResponseEntity<String> result=null;
 		try {
 			replyDAO.deleteReply(rno);
 			result=new ResponseEntity<String>("success", HttpStatus.OK);
+			replyDAO.updateCountReply(bno);
 		} catch (Exception e) {
 			result=new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
@@ -114,6 +116,7 @@ public class ReplyController {
 		try {
 			replyDAO.insertReply(replyVO);
 			result=new ResponseEntity<String>("success", HttpStatus.OK);
+			replyDAO.updateCountReply(replyVO.getBno());
 		} catch (Exception e) {
 			result=new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}

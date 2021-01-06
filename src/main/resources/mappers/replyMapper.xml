@@ -4,12 +4,13 @@
 
 <select id="selectReply" resultType="org.edu.vo.ReplyVO">
 SELECT * FROM tbl_reply WHERE bno=#{bno} ORDER BY rno DESC
-LIMIT #{queryStartNo}, #{queryPerPageNum}
+LIMIT #{pageVO.queryStartNo}, #{pageVO.queryPerPageNum}
 </select>
 
-<select id="countReply" resultType="int">
-SELECT COUNT(*) FROM tbl_reply WHERE bno = #{bno}
-</select>
+<update id="updateCountReply">
+update tbl_board set reply_count=(select count(*) from tbl_reply where bno=#{bno}) 
+where bno=#{bno}
+</update>
 
 <insert id="insertReply">
 INSERT INTO tbl_reply(bno, reply_text, replyer, reg_date)
