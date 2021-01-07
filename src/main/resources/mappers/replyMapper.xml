@@ -32,4 +32,8 @@ WHERE rno=#{rno}
 DELETE FROM tbl_reply WHERE rno=#{rno}
 </delete>
 
+<delete id="deleteReplyAll">
+DELETE FROM tbl_reply WHERE bno=#{bno}
+</delete>
+
 </mapper>

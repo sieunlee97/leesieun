@@ -339,7 +339,38 @@ $(document).ready(function(){
 	});
 });
 </script>
-
+<!-- 댓글 수정 버튼 액션 처리(아래) -->
+<script>
+$(document).ready(function(){
+	$("#updateReplyBtn").on("click", function(){
+		var rno = $("#rno").val(); //모달창의 input태그 값 변수
+		var reply_text_modal = $("#reply_text_modal").val();//모달창의 input태그값 변수
+		$.ajax({
+			type:"patch",
+			url:"/reply/reply_update",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"PATCH"
+			},
+			data:JSON.stringify({ //JSON데이터로 변환해서 REST API서버로 전송
+				rno:rno,
+				reply_text:reply_text_modal
+			}),
+			dataType:"text", // REST API에서 text형식으로 반환
+			success:function(result){
+				if(result=="success"){
+					$("#replyModal").modal("hide");
+					alert("수정이 완료되었습니다.");
+					replyList();					
+				}
+			},
+			error:function(result){
+				alert("RestAPI서버가 작동하지 않습니다."); 
+			}
+		});
+	});
+});
+</script>
 
 <!-- 댓글 등록 버튼 액션 처리 -->
 <script>

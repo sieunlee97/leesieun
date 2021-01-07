@@ -56,4 +56,11 @@ public class ReplyDAOImpl implements IF_ReplyDAO {
 		return sqlSession.selectOne("replyMapper.selectReplyCount", bno);
 	}
 
+	@Override
+	public void deleteReplyAll(Integer bno) throws Exception {
+		// 매퍼쿼리 연결
+		sqlSession.delete("replyMapper.deleteReplyAll", bno);
+		
+	}
+
 }
