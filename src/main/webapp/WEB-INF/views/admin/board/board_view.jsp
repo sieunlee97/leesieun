@@ -262,6 +262,7 @@ var replyList = function() {
 		success:function(result){ //result에는 댓글 목록을 Json데이터로 받는다.
 			// alert("디버그"+result);
 			if(typeof result=="undefined" || result == null || result == ""){
+				$("#div_reply").empty(); //조회된 값 없을 때, 화면 내용 클리어.
 				alert("조회된 값이 없습니다.");
 			}else{
 				//빵틀에 result 데이터를 바인딩해서 출력
@@ -311,6 +312,34 @@ $(document).ready(function(){
 	});
 });
 </script>
+
+<!-- 댓글 삭제 버튼 액션 처리 (아래) -->
+<script>
+$(document).ready(function(){
+	$("#deleteReplyBtn").on("click", function(){
+		var rno = $("#rno").val(); //삭제할 댓글 번호값 변수
+		//alert("선택한 댓글 번호: "+rno);
+		$.ajax({
+			type:"delete",
+			url:"/reply/reply_delete/${boardVO.bno}/"+rno,
+			dataType:"text", //반환값 문자열
+			success:function(result){
+				if(result=="success"){
+					$("#replyModal").modal("hide");
+					alert("삭제가 완료되었습니다.");
+					var reply_count = $("#reply_count").text();//$("영역").val(input데이터),
+					$("#reply_count").text(parseInt(reply_count)-1);//$("영역").text(영역안쪽의문자열)
+					replyList(); //댓글리스트 메소드 호출
+				}
+			},
+			error:function(result){
+				alert("RestAPI서버가 작동하지 않습니다."); //모달창(팝업창) 숨기기
+			}
+		});
+	});
+});
+</script>
+
 
 <!-- 댓글 등록 버튼 액션 처리 -->
 <script>
@@ -382,8 +411,8 @@ $(document).ready(function() {
 		//$(this); 클릭한 댓글에 따라서 this는 첫번째 댓글일 수도 있고, 두번째 댓글일 수도 있다.
 		$("#rno").val($(this).attr("data-rno"));
 		$(".modal-title").html($(this).find(".timeline-header").text());
-		$("#reply_text").val($(this).find(".timeline-body").text());
-		// 클릭으로 선택한 댓글의 .thimeline-body영역의 text문자를 모달창의 #replytext영역에 입력하겠다.
+		$("#reply_text_modal").val($(this).find(".timeline-body").text());
+		// 클릭으로 선택한 댓글의 .thimeline-body영역의 text문자를 모달창의 #reply_text영역에 입력하겠다.
 	});
 });
 </script>
@@ -399,7 +428,7 @@ $(document).ready(function() {
       </div>
       <div class="modal-body">
       	<input type="hidden" name="rno" id="rno" value=""> <!-- $(".timeline").on("click", 액션으로 value값이 채워집니다. -->
-		<input type="text" class="form-control" name="reply_text" id="reply_text" placeholder="내용 입력해주세요." required> 
+		<input type="text" class="form-control" name="reply_text_modal" id="reply_text_modal" placeholder="내용 입력해주세요." required> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
