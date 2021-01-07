@@ -117,13 +117,13 @@
               	   <div class="form-group">
                     <label for="replyer">Replyer</label>
                     <input type="text" class="form-control" name="replyer" id="replyer" placeholder="작성자를 입력해주세요." required>
-                  <!-- form에서 input같은 입력태그에는 name 속성이 반드시 필요.name 속성값 = DB 필드 속성명
-                  </div>
+                  <!-- form에서 input같은 입력태그에는 name 속성이 반드시 필요.name 속성값 = DB 필드 속성명 -->
+                  	</div>
                   <div class="form-group">
-                    <label for="replytext">Reply Text</label>
-                    <input type="text" class="form-control" name="replytext" id="replytext" placeholder="내용 입력해주세요." required>
+                    <label for="reply_text">Reply Text</label>
+                    <input type="text" class="form-control" name="reply_text" id="reply_text" placeholder="내용 입력해주세요." required>
                   <!-- form에서 input같은 입력태그에는 name 속성이 반드시 필요.name 속성값 = DB 필드 속성명
-                  DB에 입력할 때 값을 전송하게 되는데 전송값을 저장하는 이름이 name이 되고,위에서는 replytext이다.-->
+                  DB에 입력할 때 값을 전송하게 되는데 전송값을 저장하는 이름이 name이 되고,위에서는 reply_text이다.-->
                   </div>
                   	<button type="button" class="btn btn-warning float-left mr-1 text-white" id="insertReplyBtn">댓글등록</button>
               	  	<!-- 게시판에서는 폼을 전송할때 submit타입을 사용하지만, 댓글은 Ajax로 전송하기 땜누에 button타입으로 지정 -->
@@ -133,11 +133,12 @@
 					<div class="timeline ml-3">
 						<!-- .time-label의 before -->
 						<div class="time-label" >
-							<span data-toggle="collapse" data-target="#div_reply" class="bg-red"id="btn_reply_list" style="cursor:pointer;">Reply List[${boardVO.reply_count}]&nbsp;</span>
+							<span data-toggle="collapse" data-target="#div_reply" class="bg-red"id="btn_reply_list" style="cursor:pointer;">Reply List[<span id="reply_count">${boardVO.reply_count}</span>]&nbsp;</span>
 						</div>
+						
 						<div id="div_reply" class="timeline collapse">
-						<!-- append(내부) 토글영역 -->
-						<!-- 페이징처리 시작 -->
+							<!-- append(내부) 토글영역 -->
+							<!-- 페이징처리 시작 -->
 				            <div class="pagination justify-content-center">
 				          	 <ul class="pagination pageVO">
 				          	 <!-- 
@@ -169,10 +170,8 @@
 							</div>
 						</div> -->
 					</div><!-- ./timeline  -->
-					
-					
-
 			</div><!-- 댓글영역 끝 -->
+			
           </div> <!-- col-12 끝 -->
         </div><!-- row 끝 -->        
       </div><!-- /.container-fluid -->
@@ -319,24 +318,58 @@ $(document).ready(function(){
 		$("#insertReplyBtn").on("click", function() { //댓글등록버튼 클릭했을 때 구현 내용
 			// alert("디버그");
 			// Ajax 이용해서, 화면을 Representation (REST-API방식) 부분 화면을 재구현
+		// REST API 서버 단에 보낼 변수 값 정의(아래)
+			var bno = "${boardVO.bno}"; //자바변수
+			var reply_text=$("#reply_text").val(); //jquery변수, input태그값
+			var replyer=$("#replyer").val(); //jquery변수, input태그값
+			//alert(bno+":"+ reply_text+":"+replyer); //디버그
+			//return false; //디버그 강제 중지
+			if(reply_text=="" || replyer ==""){
+				alert("댓글내용과 댓글 작성자 입력은 필수입니다");
+				return false;
+			}
 			$.ajax({
 				//여기서부터는 프론트엔드 개발자 영역
 				type:'post', //지금은 html이라서 get방식이지만, jsp로 가면 post방식으로 바꿔야한다.(보안)
 				url:'/reply/reply_write', //jsp로 가면, ReplyController에서 지정한 url로 변경
 				dataType:'text', //ReplyController로부터 데이터를 text형식으로 받겠다고 명시.
+		// 백엔드로 보내주는 작업 (아래)
+				headers:{ //데이터를 json으로 보낼 것이다.
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"POST"
+				},
+				data:JSON.stringify({
+					// Key:Value
+					bno:bno, 
+					reply_text:reply_text,
+					replyer:replyer
+				}),			
 				success:function(result){ //응답이 성공하면(상태값 200 OK), 위 경로에서 반환받은 result(JSON 텍스트 데이터) 이용해서 화면 재구현
 					//alert(result);
 					//지금은 html이라서 result값을 이용할 수 없기 대문에 댓글더미데이터를 만든다.
+					/*
 					result=[
 						//{rno:댓글번호, bno:게시믈번호, replytext:"첫번째댓글", replyer:"admin", regdate:타임스탬프}
 						{rno:1,bno:15,reply_text:"첫번째댓글",replyer:"admin",reg_date:1601234512345}, //첫번째 댓글 데이터
 						{rno:2,bno:15,reply_text:"두번째댓글",replyer:"user02",reg_date:1601234512345} //두번째 댓글 데이터
 					];// 위 url이 공공데이터라고 생각하면, 위 데이터를 화면에 구현함녀 빅데이터의 시각화로 불리게 된다.
-					
+					*/
 					//printReplyList(빅데이터, 출력할 타겟 위치, 빅데이터를 가지고 바인딩된-묶인 템플릿화면))
-					printReplyList(result, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
+					//printReplyList(result, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
 					//result값을 받아서 #template으로 가공시켜서 time-label 위치에 출력한다.
-				} 
+					
+					//입력이 success된 후에 댓긁수+1, 페이지는 1페이지로 이동, replyList() 댓글목록 호출 
+					var reply_count = $("#reply_count").text(); //$("영역").text(영역안쪽의문자열), $("영역").val(input데이터)
+					//alert(reply_count);디버그
+					$("#reply_count").text(parseInt(reply_count)+1);
+					$("#reply_page").val("1");
+					replyList();
+					$("#replyer").val(""); //등록후 빈칸으로 
+					$("#reply_text").val(""); //등록후 빈칸으로
+				},
+				error:function(result){
+					alert("RestAPI서버가 작동하지 않습니다.");
+				}
 			});
 		});
 	});
@@ -349,7 +382,7 @@ $(document).ready(function() {
 		//$(this); 클릭한 댓글에 따라서 this는 첫번째 댓글일 수도 있고, 두번째 댓글일 수도 있다.
 		$("#rno").val($(this).attr("data-rno"));
 		$(".modal-title").html($(this).find(".timeline-header").text());
-		$("#replytext").val($(this).find(".timeline-body").text());
+		$("#reply_text").val($(this).find(".timeline-body").text());
 		// 클릭으로 선택한 댓글의 .thimeline-body영역의 text문자를 모달창의 #replytext영역에 입력하겠다.
 	});
 });
@@ -366,7 +399,7 @@ $(document).ready(function() {
       </div>
       <div class="modal-body">
       	<input type="hidden" name="rno" id="rno" value=""> <!-- $(".timeline").on("click", 액션으로 value값이 채워집니다. -->
-		<input type="text" class="form-control" name="replytext" id="replytext" placeholder="내용 입력해주세요." required> 
+		<input type="text" class="form-control" name="reply_text" id="reply_text" placeholder="내용 입력해주세요." required> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
