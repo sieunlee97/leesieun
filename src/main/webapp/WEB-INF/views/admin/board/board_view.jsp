@@ -287,7 +287,7 @@ var replyList = function() {
 }
 </script>
 
-<!-- 댓글 페이징에서 링크 태그의 페이지 이동을 방지하고, btn_reply_list 버튼을 클릭했을 때
+<!-- 댓글 페 이징에서 링크 태그의 페이지 이동을 방지하고, btn_reply_list 버튼을 클릭했을 때
 	/reply/reply_list/${boardVO.bno}/1 -> 링크 페이지값으로 대체해서 실행하는 역할 코드(아래) -->
 <script>
 $(document).ready(function(){
