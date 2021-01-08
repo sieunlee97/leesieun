@@ -34,59 +34,59 @@ text-decoration: none;
 .carousel-item, .carousel-item img {height:500px;}
 /*슬라이드영역 끝------------------------------------------------------*/
 
-/* booking영역 시작*/
+/* weare영역 시작*/
 .float-clear {clear:both;} /*clear속성은 float작동을 없애는 역할*/
-.booking-section li {
+.weare-section li {
 float:left; /*세로정렬을 가로정렬로 변경*/
 /*부트스트랩의 그리드시스템 (col-12(!00%), col-3,col-3,col-3,col-3)의 원형*/
 width: 23.046875%; /* (177(포토샵레이아웃의가로값)/768)*100 = ~ %*/
 margin-left:2.604166%; /* (20(포토샵레이아웃의여백값)/768)*100 */
 overflow:hidden;/*반응형 li박스에서 가로크기를 벗어나는 이미지 내용은 숨김처리*/
 }
-.booking-body {margin:10px 3%;}
-.booking-body li img {width:100%;height:200px;}
-.booking-body li:first-child{margin-left:0px;}
-/* booking영역 끝------------------------------------------------ */
+.weare-body {margin:10px 3%;}
+.weare-body li img {width:100%;height:200px;}
+.weare-body li:first-child{margin-left:0px;}
+/* weare영역 끝------------------------------------------------ */
 
-/*package 영역 시작*/
+/*work 영역 시작*/
 .float-clear {clear:both;} /*clear속성은 float작동을 없애는 역할*/
-.package-section li {
+.work-section li {
 float:left;/*세로배치를 가로배치로 변경*/
 width:50%;
 max-height:300px;
 overflow:hidden;
 }
-/*package 영역 끝-------------------------------------------------*/
+/*work 영역 끝-------------------------------------------------*/
 
-/*review영역 시작*/
+/*blog영역 시작*/
 .float-clear {clear:both;} /*clear속성은 float작동을 없애는 역할*/
-.review-section li{
+.blog-section li{
 float:left;/*3개의 컨텐츠 세로배치을 가로배치로 변경*/
 width: 31.59722222222%;/* 3개 중 1개의 가로 크기 구하기 (242px/768)*100=31.59722222222% */
 margin-left:2.60416666666%;/* 1개의 여백 구하기 (20px/768)*100=2.60416666666% */
 height:300px;
 border:1px solid #ccc;
 }
-.review-section li .preview {
+.blog-section li .pblog {
 height:200px;
 overflow:hidden;
 /*디버그용코드 border:1px solid red; */
 }
-.review-section li .review-info{
+.blog-section li .blog-info{
 padding:10px;
 }
 
-.review-section li:first-child {
+.blog-section li:first-child {
 margin-left:0px; /*마지막 li가 아래로 떨어지는 것을 방지하는 역할*/
 }
 
-.review-section li:nth-child(3n+1) {
+.blog-section li:nth-child(3n+1) {
 /* 1,4, 7, 10, 13...번째 컨텐츠는 모두 margin-left:0px; 이어야함*/
 margin-left:0px;
 }
 
-.review-section hr{display:none;}
-/*review영역 끝---------------------------------------------------*/
+.blog-section hr{display:none;}
+/*blog영역 끝---------------------------------------------------*/
 
 /*contact영역 시작*/
 .input-class, .textarea-class {

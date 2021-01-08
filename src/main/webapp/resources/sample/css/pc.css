@@ -9,27 +9,27 @@
 .carousel-item, .carousel-item img{height:700px;}
 /*슬라이드영역 끝----------------------------------------------------------------------*/
 
-/* booking 영역 시작 */
-.booking-header{
+/* weare 영역 시작 */
+.weare-header{
 margin:0px 3%;
 margin-top:30px;
 text-align:left; /*내부 글자들 좌우 정렬을 왼쪽으로 지정*/
 } /*가운데정렬(수직정렬)이면서 좌우여백 5%*/
 
-.booking-header .section-title {
+.weare-header .section-title {
 float:left;
 width:50%;
 }
 
-.booking-header p {
+.weare-header p {
 float:right; 
 width:50%;
 position:relative;/*p태그 영역을 상대위치로 배치*/
 padding-left:20px;/*아래 before 가상요소가 나타날 영역을 넓히는 역할*/
 }
 
-.booking-header p::before {
-position:absolute; /*booking-header영역 안 쪽에서 절대위치로 표시*/
+.weare-header p::before {
+position:absolute; /*weare-header영역 안 쪽에서 절대위치로 표시*/
 top:7px;
 left:0px;
 width:2px; /*구분선 가로크기*/
@@ -37,34 +37,34 @@ height:40px; /*구분선 세로크기*/
 background:#ccc; /*구분선 색상*/
 content:""; /*선만 만들고 내용은 빈공간으로 처리*/
 }
-.booking-body li img {
+.weare-body li img {
 width:100%;
 height:260px; /*이미지는 가로든 세로든 한 쪽 크기를 지정하면 비율유지하며 크기 조정.*/
 }
-/* booking 영역 끝 ---------------------------------------------------------------------*/
+/* weare 영역 끝 ---------------------------------------------------------------------*/
 
-/* package 영역 시작 */
-.package-section .section-title {
+/* work 영역 시작 */
+.work-section .section-title {
 text-align:left;
 margin-left:3%;
 }
-.package-section li {width:25%;} /* 100%/4=25% */
-/* package 영역 끝  ---------------------------------------------------------------------*/
+.work-section li {width:25%;} /* 100%/4=25% */
+/* work 영역 끝  ---------------------------------------------------------------------*/
 
-/* review영역 시작 */
-.review-section {
+/* blog영역 시작 */
+.blog-section {
 margin-left:3%;
 margin-right:3%;
 }
-.review-section .section-title {
+.blog-section .section-title {
 float:left;
 margin-top:30px;
 }
-.review-section .container {
+.blog-section .container {
 float:right;/*li 태그에 적용했던 방식이라면 모두 float:left;*/
 width:80%;
 } 
-/* review영역 끝 ----------------------------------------------------------------------- */
+/* blog영역 끝 ----------------------------------------------------------------------- */
 
 /*contact영역시작*/
 .contact-section {

@@ -42,21 +42,21 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/resources/sample/img/mosque.jpg" class="d-block w-100" alt="모스크바사진입니다.">
+      <img src="/resources/sample/img/img_02.jpg" class="d-block w-100" alt="휴먼교육센터입니다.">
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/resources/sample/img/hamburg.jpg" class="d-block w-100" alt="함부르크사진입니다.">
+      <img src="/resources/sample/img/img_03.jpg" class="d-block w-100" alt="휴먼교육센터입니다.">
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/resources/sample/img/canal.jpg" class="d-block w-100" alt="캐널사진입니다.">
+      <img src="/resources/sample/img/img_04.jpg" class="d-block w-100" alt="휴먼교육센터입니다.">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>

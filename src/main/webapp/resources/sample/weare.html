@@ -15,13 +15,15 @@
 <script src="/resources/sample/js/user.js"></script>
 <style>
 /* pc용 스타일 시작*/
-@media all and (min-width:1132px){
+@media all and (min-width:1132px) {
+
 
 }
-/* pc용 스타일 끝 */
+/* pc용 스타일 끝*/
 </style>
 <script>
 /* 자바스크립트 시작 */
+
 /* 자바스크립트 끝 */
 </script>
 </head>
@@ -43,78 +45,47 @@
 <!-- ul(Unordered List) / ol(Ordered List) : 1.~ 2.~ 3.~ -->
 <ul>
 <li><a href="index.html">HOME</a></li>
-<li><a href="booking.html">BOOKING</a></li>
-<li><a href="packaging.html">PACKAGE</a></li>
-<li><a href="review.html">REVIEW</a></li>
+<li><a href="weare.html">WE ARE</a></li>
+<li><a href="work.html">WORK</a></li>
+<li><a href="blog.html">BLOG</a></li>
 <li><a href="contact.html">CONTACT US</a></li>
 </ul>
 </nav>
 <!-- 상단 로고와 햄버거 메뉴 영역 끝 -->
 </header>
-
-<section class="package-section"> <!-- division 이라는 div 영역표시 태그 대신 사용 -->
-<h1 class="section-title">PACKAGE</h1>
+<section class="booking-section"> <!-- division 이라는 div 영역표시 태그 대신 사용 -->
+<section class="booking-header"><!-- ---------------------- -->
+<h1 class="section-title">WE ARE</h1>
+<p>
+안녕하세요. 휴먼교육센터입니다.<br> <!-- break return 줄바꿈 -->
+천안, 수원, 서울에 위치하고 있습니다.
+</p>
+</section><!-- ------------------------------------------ -->
+<section class="booking-body float-clear"><!-- 갤러리게시판에서 가져오는 데이터 4개 반복영역 -->
 <ul>
-<!-- 아래 a링크의 title 속성은 시각장애인들의 웹접근성을 위한 코딩 -->
-<li><a href="javascript:;", title="갤러리게시판2의 이미지1번입니다.">
-<div class="info">
-<h2>Package1</h2>
-<p>Package1입니다.</p>
-</div>
-<img alt="갤러리게시판2이미지1" src="/resources/sample/img/mosque.jpg">
+<li><a href="javascript:;"><!-- a링크 태그의 가상링크 # 대신에 javascript:; 넣는다. -->
+<img alt="갤러리게시물1" src="/resources/sample/img/img_01.png">
+<h2>휴먼교육센터 천안센터</h2>
+<p>국비지원 교육을 신청하세요.</p>
 </a></li>
 <li><a href="javascript:;">
-<div class="info">
-<h2>Package2</h2>
-<p>Package2입니다.</p>
-</div>
-<img alt="갤러리게시판2이미지2" src="/resources/sample/img/hamburg.jpg">
+<img alt="갤러리게시물2" src="/resources/sample/img/img_01.png">
+<h2>휴먼교육센터 수원센터</h2>
+<p>국비지원 교육을 신청하세요.</p>
 </a></li>
 <li><a href="javascript:;">
-<div class="info">
-<h2>Package3</h2>
-<p>Package3입니다.</p>
-</div>
-<img alt="갤러리게시판2이미지3" src="/resources/sample/img/canal.jpg">
-</a></li>
-<li><a href="javascript:;", title="갤러리게시판2의 이미지1번입니다.">
-<div class="info">
-<h2>Package1</h2>
-<p>Package1입니다.</p>
-</div>
-<img alt="갤러리게시판2이미지1" src="/resources/sample/img/mosque.jpg">
+<img alt="갤러리게시물3" src="/resources/sample/img/img_01.png">
+<h2>휴먼교육센터 서울센터</h2>
+<p>국비지원 교육을 신청하세요.</p>
 </a></li>
 <li><a href="javascript:;">
-<div class="info">
-<h2>Package2</h2>
-<p>Package2입니다.</p>
-</div>
-<img alt="갤러리게시판2이미지2" src="/resources/sample/img/hamburg.jpg">
-</a></li>
-<li><a href="javascript:;">
-<div class="info">
-<h2>Package3</h2>
-<p>Package3입니다.</p>
-</div>
-<img alt="갤러리게시판2이미지3" src="/resources/sample/img/canal.jpg">
-</a></li>
-<li><a href="javascript:;", title="갤러리게시판2의 이미지1번입니다.">
-<div class="info">
-<h2>Package1</h2>
-<p>Package1입니다.</p>
-</div>
-<img alt="갤러리게시판2이미지1" src="/resources/sample/img/mosque.jpg">
-</a></li>
-<li><a href="javascript:;">
-<div class="info">
-<h2>Package2</h2>
-<p>Package2입니다.</p>
-</div>
-<img alt="갤러리게시판2이미지2" src="/resources/sample/img/hamburg.jpg">
+<img alt="갤러리게시물4" src="/resources/sample/img/img_01.png">
+<h2>휴먼교육센터 고객센터</h2>
+<p>0000-0000</p>
 </a></li>
 </ul>
+</section><!-- -------------------------------------------->
 </section>
-
 <footer class="footer float-clear">
 <!-- 하단 로고 영역 시작 -->
 <p>LOGO</p> <!-- paragraph(문단) 태그 -->
