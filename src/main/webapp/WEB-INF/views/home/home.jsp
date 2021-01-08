@@ -1,79 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<title> 스프링 </title>
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="/resources/home/css/reset.css">
-<link rel="stylesheet" href="/resources/home/css/main.css">
-<link rel="stylesheet" href="/resources/home/css/tablet.css">
-<link rel="stylesheet" href="/resources/home/css/pc.css">
-<script src="/resources/home/js/jquery-1.11.3.min.js"></script>
-<script src="/resources/home/js/jquery.smooth-scroll.min.js"></script>
-<script src="/resources/home/js/main.js"></script>
-<!-- 슬라이드용 -->
-<script src="/resources/home/js/rollmain.js"></script>
-<!-- //슬라이드용 --> 
-<style>
 
-</style>
-<script>
-$(document).ready(function() {
-	
-});
-</script>
-</head>
-<body>
-
-<!-- 헤더에서푸터까지 -->
-<div id="wrap">
-	<!-- 헤더상단메뉴영역영역 -->
-	<header id="header">
-		<div class="header_area box_inner clear">
-			<!-- 상단로고영역 -->
-			<h1><a href="index.html">스프링 in 자바</a></h1>
-			<!-- //상단로고영역 -->
-			
-			<!-- 상단메뉴메뉴영역 -->
-			<p class="openMOgnb"><a href="#"><b class="hdd">메뉴열기</b> <span></span><span></span><span></span></a></p>
-			<div class="header_cont">
-				<ul class="util clear">
-					<li><a href="login.html">로그인</a></li>
-					<li><a href="join.html">회원가입</a></li>
-					<!-- 로그인 후 보이는 메뉴(아래) -->
-					<li><a href="#">ooo님 환영합니다.</a></li>
-					<li><a href="mypage.html">마이페이지</a></li>
-					<li><a href="/admin">AdminLTE</a></li>
-				</ul>	
-				<nav>
-				<ul class="gnb clear">
-					<li><a href="/sample" class="openAll1">샘플 홈페이지</a>
-
-                        <div class="gnb_depth gnb_depth2_1">
-                            <ul class="submenu_list">
-                                <li><a href="/sample">반응형 홈페이지</a></li>
-                            </ul>
-                        </div>
-					</li>
-					<li><a href="board_list.html" class="openAll2">커뮤니티</a>
-				        <div class="gnb_depth gnb_depth2_2">
-                            <ul class="submenu_list">
-                                <li><a href="board_list.html">공지사항</a></li>
-                                <li><a href="board_list.html">갤러리</a></li>
-                            </ul>
-                        </div>
-					</li>
-				</ul>
-                </nav>
-				<p class="closePop"><a href="javascript:;">닫기</a></p>
-			</div>
-			<!-- //상단메뉴메뉴영역 -->
-		</div>
-	</header>
-	<!-- //헤더상단메뉴영역영역 -->
+<%@include file="include/header.jsp" %>
 	
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
@@ -171,37 +99,6 @@ $(document).ready(function() {
 		<!-- //카카오톡상담및최근공지사항영역 -->
 	</div>
 	<!-- //메이콘텐츠영역 -->
+
+<%@ include file="include/footer.jsp" %>
 	
-	<!-- 푸터메뉴및사업자정보영역 -->
-	<footer>
-		<div class="foot_area box_inner">
-			<ul class="foot_list clear">
-				<li><a href="javascript:;">이용약관</a></li>
-				<li><a href="javascript:;">개인정보취급방침</a></li>
-			</ul>
-			<h2>스프링</h2>
-            <p class="addr">OOOO OOOOO OOOO OOOOOOOOO OOOOO <span class="gubun">/</span>        
-				<span class="br_line">대표전화 <span class="space0">02-1234-5678</span> <span class="gubun">/</span>        
-					<span class="br_line">E-mail : <span class="space0"> admin@OOOO OOOOO.com</span></span>
-				</span>
-			</p>
-			<p class="copy box_inner">Copyright(c) OOOO OOOOO all right reserved</p>
-			<ul class="snslink clear">
-				<li><a href="javascript:;">blog</a></li>
-				<li><a href="javascript:;">facebook</a></li>
-				<li><a href="javascript:;">instargram</a></li>
-			</ul>
-		</div>
-	</footer>
-	<!-- //푸터메뉴및주소영역 -->
-</div>
-<!-- //헤더에서푸터까지 -->
-
-<!-- 하단퀵메뉴영역 -->
-<div class="quick_area">
-	<p class="to_top"><a href="#wrap" class="s_point">TOP</a></p>
-</div>
-<!-- //하단퀵메뉴영역 -->
-
-</body>
-</html>

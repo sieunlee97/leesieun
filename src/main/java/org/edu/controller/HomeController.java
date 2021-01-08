@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+	//사용자 홈페이지 로그인 접근 매핑
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login() throws Exception {
+		return "home/login";
+	}
 	//사용자 홈페이지 접근 매핑
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String home() throws Exception {
