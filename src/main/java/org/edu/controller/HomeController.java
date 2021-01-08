@@ -18,8 +18,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	//사용자 홈페이지 회원 마이페이지 접근 매핑
+	@RequestMapping(value="/member/mypage", method=RequestMethod.GET)
+	public String mypage() throws Exception {
+		return "home/member/mypage";
+	}
+	//사용자 홈페이지 회원가입 접근 매핑
+	@RequestMapping(value="/join", method=RequestMethod.GET)
+	public String join() throws Exception {
+		return "home/join";
+	}
+	
 	//사용자 홈페이지 로그인 접근 매핑
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login() throws Exception {
