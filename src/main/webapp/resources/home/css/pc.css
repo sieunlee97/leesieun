@@ -147,8 +147,7 @@
     box-sizing: border-box;
     text-indent: -9999px;
     overflow: hidden;
-    border-left: 1px solid #a3a3a3;
-    border-bottom: 1px solid #a3a3a3;
+    border: 1px solid #a3a3a3;
     background: url(../img/ico_totop.png) no-repeat center;
     background-size: 50%;
   }

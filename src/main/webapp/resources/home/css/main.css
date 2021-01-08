@@ -2,16 +2,18 @@
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 /* 공통영역 */
 body {
-	font-family: 'Nanum Gothic', '나눔 고딕', sans-serif;
-	font-size:16px;
-	letter-spacing: -1px;
-	color: #444;
-	word-wrap: break-word;
-	line-height: 1;
+	font-family: 'Nanum Gothic', '나눔 고딕', sans-serif !important;
+	font-size:16px !important;
+	letter-spacing: -1px !important;
+	color: #444 !important;
+	word-wrap: break-word !important;
+	line-height: 1 !important;
 }
+dl, ol, ul { margin-bottom:0 !important;}
+
 /* : 가상선택자, :: 가상요소 */
 a:link {color: #444;}
-a:hover {color: #444;}
+a:hover {color: #fff important;}
 a:visited {color: #444;}
 a {text-decoration: none;}
 img {border: none;}

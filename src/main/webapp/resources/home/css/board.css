@@ -275,7 +275,7 @@ input:-ms-input-placeholder {
 @media all and (min-width: 801px) {
 /* 태블릿+PC용 */
 .app_list .tit_lbl {
-	width: 21%;
+	width: 20%;
 }
 .app_list .app_content {
 	width: 79%;
