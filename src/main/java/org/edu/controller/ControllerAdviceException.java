@@ -17,7 +17,7 @@ public class ControllerAdviceException {
 		//AdminController에서 사용한 Model클래스는 jsp로 값을 보낼 때
 		//여기서 사용하는 ModelAndView클래스는 jsp로 값을 보내고 + model값을 보낼 jsp 경로도 지정 
 		//모델값을 보낼 jsp경로 지정하는 명령은 setViwName이다.
-		modelAndView.setViewName("home/error"); //반환할 jsp 경로 
+		modelAndView.setViewName("home/spring_error"); //반환할 jsp 경로 
 		modelAndView.addObject("exception",ex); // jsp로 보낼 값
 		/*  model 사용 시 
 		 model.Attribute("exception", ex);

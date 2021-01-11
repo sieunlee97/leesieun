@@ -20,6 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	//전역 홈페이지에서 스프링 진입 전에 발생하는 에러의 페이지 처리
+	@RequestMapping(value="/home/error/404", method=RequestMethod.GET)
+	public String error404() throws Exception {
+		return "home/error/404";
+	}
+	
 	//사용자 홈페이지 게시판 뷰 매핑
 	@RequestMapping(value="/home/board/board_view", method=RequestMethod.GET)
 	public String board_view() throws Exception {
