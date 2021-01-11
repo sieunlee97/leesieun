@@ -57,11 +57,11 @@ $(document).ready(function() {
                             </ul>
                         </div>
 					</li>
-					<li><a href="board_list.html" class="openAll2">커뮤니티</a>
+					<li><a href="/home/board/board_list" class="openAll2">커뮤니티</a>
 				        <div class="gnb_depth gnb_depth2_2">
                             <ul class="submenu_list">
-                                <li><a href="board_list.html">공지사항</a></li>
-                                <li><a href="board_list.html">갤러리</a></li>
+                                <li><a href="/home/board/board_list">공지사항</a></li>
+                                <li><a href="/home/board/board_list">갤러리</a></li>
                             </ul>
                         </div>
 					</li>
