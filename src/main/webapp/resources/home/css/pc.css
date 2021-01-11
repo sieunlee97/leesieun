@@ -8,6 +8,7 @@
   .header_cont {
     width: 769px;
     padding-right: 10px;
+    margin-top:0px;
   }
   .gnb li a {
     padding: 26px 40px;
