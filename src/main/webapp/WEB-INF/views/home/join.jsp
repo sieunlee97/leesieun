@@ -95,6 +95,6 @@ $(document).ready(function() {
 		</div>
 		<!-- //메인본문영역 -->
 	</div>
-	<!-- //메이콘텐츠영역 -->
+<!-- //메이콘텐츠영역 -->
 
 <%@ include file="./include/footer.jsp" %>
