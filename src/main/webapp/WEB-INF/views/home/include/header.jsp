@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,9 +22,9 @@
 
 </style>
 <script>
-$(document).ready(function() {
-	
-});
+if('${msg}' != ''){ //자바의 EL표기법 달러{변수명}
+	alert("${msg} 이(가) 성공하였습니다.");
+}
 </script>
 </head>
 <body>
@@ -40,12 +41,19 @@ $(document).ready(function() {
 			<p class="openMOgnb"><a href="#"><b class="hdd">메뉴열기</b> <span></span><span></span><span></span></a></p>
 			<div class="header_cont">
 				<ul class="util clear">
-					<li><a href="/login">로그인</a></li>
-					<li><a href="/join">회원가입</a></li>
-					<!-- 로그인 후 보이는 메뉴(아래) -->
-					<li><a href="#">ooo님 환영합니다.</a></li>
-					<li><a href="/member/mypage">마이페이지</a></li>
-					<li><a href="/admin">AdminLTE</a></li>
+				<c:choose>
+					<c:when test="${session_enabled eq 'true}">
+						<!-- 로그인 후 보이는 메뉴(아래) -->
+						<li><a href="#">${session_username} 님 환영합니다.</a></li>
+						<li><a href="/member/mypage">마이페이지</a></li>
+						<li><a href="/logout">로그아웃</a></li>
+						<li><a href="/admin">AdminLTE</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/login">로그인</a></li>
+						<li><a href="/join">회원가입</a></li>
+					</c:otherwise>
+				</c:choose>
 				</ul>	
 				<nav>
 				<ul class="gnb clear">
