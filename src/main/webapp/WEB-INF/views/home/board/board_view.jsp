@@ -153,7 +153,7 @@ $(document).ready(function() {
 	-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<!-- 댓글리스트 템플릿(빵틀) 만들기(아래) -->
-	<!-- jsp <c:forEach items="${members}" var="member"> 같은 역할 {{#each .}} -->
+	<!-- jsp <c:forEach items="${members}" var="member" /> 같은 역할 {{#each .}} -->
 	<script id="template" type="text/x-handlebars-template">
 		{{#each .}}
 		<div class="template-div" data-rno="{{rno}}">

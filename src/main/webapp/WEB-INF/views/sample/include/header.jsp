@@ -56,12 +56,12 @@ $(document).ready(function(){
 <!-- 리스트를 보여주는 태그 ul, ol -->
 <!-- ul(Unordered List) / ol(Ordered List) : 1.~ 2.~ 3.~ -->
 <ul>
-<li><a href="/sample">HOME</a></li>
+<li><a href="/sample">SAMPLE_HOME</a></li>
 <li><a href="/sample/weare">WE ARE</a></li>
 <li><a href="/sample/work">WORK</a></li>
 <li><a href="/sample/blog">BLOG</a></li>
 <li><a href="/sample/contact">CONTACT US</a></li>
-<li><a href="/">HOME</a></li>
+<li><a href="/">MAIN_HOME</a></li>
 </ul>
 </nav>
 <!-- 상단 로고와 햄버거 메뉴 영역 끝 -->
