@@ -14,7 +14,11 @@
   <!-- Control Sidebar, 로그아웃 영역 -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
-  </aside>
+    <div class="p-3 control-sidebar-content text-center">
+    	<h5>로그아웃</h5><hr class="mb-2"/>
+    	<a href="/logout" class="btn btn-lg btn-primary">로그아웃</button>
+  	</div>
+  </aside> 
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
@@ -50,7 +54,7 @@
 <!-- AdminLTE App -->
 <script src="/resources/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/resources/demo.js"></script> <!-- 원래 경로 dist/js/demo.js -->
+<!--  <script src="/resources/demo.js"></script> --><!-- 원래 경로 dist/js/demo.js -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/resources/dist/js/pages/dashboard.js"></script>
 <!-- 왼쪽메뉴 선택된 부분 active클래스 주는 jquery 명령어 -->
