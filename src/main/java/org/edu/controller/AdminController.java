@@ -261,6 +261,12 @@ public class AdminController {
 	// 메소드 오버로딩(ex. 동영상 로딩중.., 로딩된 매개변수가 다르면, 메소드 이름 중복가능하다. 대표적인 다형성 구현)
 	@RequestMapping(value="/admin/member/member_write", method=RequestMethod.POST)
 	public String member_write(MemberVO memberVO) throws Exception{
+		// POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호화시킴
+		if(memberVO.getUser_pw() != null) {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String userPWEncoder = passwordEncoder.encode(memberVO.getUser_pw()); 
+			memberVO.setUser_pw(userPWEncoder);
+		}
 		// 아래 GET방식의 폼 출력화면에서 데이터 전송받은 내용을 처리하는 바인딩
 		// DB 입력/출력/삭제/수정 처리
 		memberService.insertMember(memberVO);
