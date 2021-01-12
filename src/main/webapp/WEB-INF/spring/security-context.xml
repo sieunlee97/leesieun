@@ -19,5 +19,14 @@
 	<security:intercept-url pattern="/**/*_write" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" method="GET"/>
 	<security:intercept-url pattern="/**/*_update" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 	<security:intercept-url pattern="/**/*_delete" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+	<security:intercept-url pattern="/**" access="permitAll"/>
+	<security:csrf disabled="true"/>
+	<security:form-login
+		login-page="login"
+		login-processing-url="/login"
+	/>
+	<!-- /home/login이렇게 경로를 사용하지 않고, /login으로 하는 이유? 공동기능은 경로제약사항을 두지 않기 위해서.(ex. home버전 업그레이드 home2021 -> home2022) -->
+	<!-- HomeController클래스 Home22Controller클래스를 만들어서 사이트리뉴얼 한다. 다른 공동기능은 건드리지 않아도 됨.-->
+	<!-- csrf 크로스사이트 리퀘으스 포거리 : 교차사이트 요청 공격 : 기본은 csrf기능사용(disabled="false"). 기본일 때는 jsp에서 폼전송태그를 jstl대그로 변경해야한다.그래서 disabled="true"한다. -->
 </security:http>
 </beans>
