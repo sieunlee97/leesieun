@@ -19,6 +19,7 @@ import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -282,6 +283,12 @@ public class AdminController {
 	}
 	@RequestMapping(value="/admin/member/member_update", method=RequestMethod.POST)
 	public String member_update(@ModelAttribute("pageVO") PageVO pageVO, MemberVO memberVO) throws Exception {
+		// POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호화시킴
+		if(memberVO.getUser_pw() != null) {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String userPWEncoder = passwordEncoder.encode(memberVO.getUser_pw()); 
+			memberVO.setUser_pw(userPWEncoder);
+		}
 		// POST방식으로 넘어온 값을 DB 수정 처리하는 역할
 		memberService.updateMember(memberVO);
 		// member_view.jsp에 페이지번호 정보와 수정한 정보의 user_id 값을 전송
