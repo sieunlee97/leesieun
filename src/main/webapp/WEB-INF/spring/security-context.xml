@@ -24,9 +24,39 @@
 	<security:form-login
 		login-page="login"
 		login-processing-url="/login"
+		always-use-default-target="true"
+		default-target-url="/login_success"
+		authentication-failure-url="/login?msg=fail"
+		username-parameter="user_id"
+		password-parameter="user_pw"
 	/>
+	<security:remember-me key="remember-key" token-validity-seconds="604800" remember-me-parameter="rember-me-parameter"/>
+	<security:logout logout-url="/logout" logout-success-url="/" invalidate-session="true" 
+	delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
+</security:http>
+	<!-- 
+	쿠키에는 간단한 텍스트문자 정보가 저장되어 있다.(접속한 PC기기에 저장된다.)
+	반대로 세션은 간단한 텍스트문자 정보가 저장되어 있다.(접속한 서버기기에 저장된다.) 
+	 -->
+	<!-- 로그아웃 성공시 홈으로 이동, 세션을 지운다.(true) -->
+	<!-- remember-me : 아이디 저장 기능 , 604800 : 일주일 -->
+	<!-- 인증이 실패했을 경우, 로그인 페이지로 이동. 쿼리스트링에 msg=fail 값 넣어서 이동. -->
+	<!-- 홈컨트롤러에 로그인이 성공했으면, login-success(세션을 만든다)를 실행하도록 만들 예정 
+	세션에 저장할 정보는 로그인한 사람의 이름, 로그인한 사람의 권한. 
+		- 특징 : 세션에 저장된 정ㅇ보는 페이지이동해도 세션정보가 사라지지 않는다.
+	-->
 	<!-- /home/login이렇게 경로를 사용하지 않고, /login으로 하는 이유? 공동기능은 경로제약사항을 두지 않기 위해서.(ex. home버전 업그레이드 home2021 -> home2022) -->
 	<!-- HomeController클래스 Home22Controller클래스를 만들어서 사이트리뉴얼 한다. 다른 공동기능은 건드리지 않아도 됨.-->
 	<!-- csrf 크로스사이트 리퀘으스 포거리 : 교차사이트 요청 공격 : 기본은 csrf기능사용(disabled="false"). 기본일 때는 jsp에서 폼전송태그를 jstl대그로 변경해야한다.그래서 disabled="true"한다. -->
-</security:http>
+
+	<!-- 인증관련 아이디/암호 비교설정(아래) -->
+	<security:authentication-manager>
+	<!-- 스프링에 내장되어 있는 인증제공자, userDetail과 userDetailService를 사용하겠다고 명시(아래) -->
+		<security:authentication-provider>
+			<security:jdbc-user-service 
+				data-source-ref="dataSource"
+				users-by-username-query="select user_id as no, user_pw as password, enabled from tbl_member where user_id = ?"	
+			/>		
+		</security:authentication-provider>
+	</security:authentication-manager>
 </beans>
