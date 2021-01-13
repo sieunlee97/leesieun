@@ -137,7 +137,7 @@
 						</div>
 						
 						<div id="div_reply" class="timeline collapse">
-							<!-- append(내부) 토글영역 -->
+							<!-- preppend(내부) 토글영역 -->
 							<!-- 페이징처리 시작 -->
 				            <div class="pagination justify-content-center">
 				          	 <ul class="pagination pageVO">

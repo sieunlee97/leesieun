@@ -2,15 +2,25 @@ package org.edu.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
+import org.edu.service.IF_BoardService;
+import org.edu.util.CommonController;
+import org.edu.util.SecurityCode;
 import org.edu.vo.BoardVO;
+import org.edu.vo.PageVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
@@ -19,7 +29,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	//private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Inject
+	private IF_BoardService boardService;
+	
+	@Inject
+	private SecurityCode securityCode;
+	
+	@Inject
+	private CommonController commonController;
 	
 	//전역 홈페이지에서 스프링 진입 전에 발생하는 에러의 페이지 처리
 	@RequestMapping(value="/home/error/404", method=RequestMethod.GET)
@@ -29,7 +47,29 @@ public class HomeController {
 	
 	//사용자 홈페이지 게시판 뷰 매핑
 	@RequestMapping(value="/home/board/board_view", method=RequestMethod.GET)
-	public String board_view() throws Exception {
+	public String board_view(@RequestParam("bno") Integer bno, @ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
+		BoardVO boardVO = boardService.readBoard(bno);
+		//내용에 대한 시큐어코딩(아래)
+		String xssData = securityCode.unscript(boardVO.getContent());
+		boardVO.setContent(xssData); //악성코드 제거한 결과를 다시 셋 저장
+//===============================================================			
+		//첨부파일 데이터 jsp 뷰단으로 보내기(아래)
+		List<HashMap<String,Object>> files = boardService.readAttach(bno);
+		String[] save_file_names = new String[files.size()];
+		String[] real_file_names = new String[files.size()];
+		int cnt=0;
+		for(HashMap<String, Object>filename:files) {
+			save_file_names[cnt] = (String) filename.get("save_file_name");
+			real_file_names[cnt] = (String) filename.get("real_file_name");
+			cnt=cnt+1;
+		}
+		boardVO.setSave_file_names(save_file_names);
+		boardVO.setReal_file_names(real_file_names);
+//===============================================================	
+		model.addAttribute("boardVO", boardVO);
+		
+		//업로드한 내용이 이미지인지 일반문서인지 구분하는 역할을 jsp로 보낸다.
+		model.addAttribute("checkImgArray", commonController.getCheckImgArray());
 		return "home/board/board_view";
 	}
 	
@@ -49,7 +89,17 @@ public class HomeController {
 	
 	//사용자 홈페이지 게시판 리스트 매핑
 	@RequestMapping(value="/home/board/board_list", method=RequestMethod.GET)
-	public String board_list() throws Exception {
+	public String board_list(@ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
+		//페이징 처리 추가(아래)
+		if(pageVO.getPage() == null) {
+			pageVO.setPage(1);
+		}
+		pageVO.setQueryPerPageNum(10);
+		pageVO.setPerPageNum(5);
+		int totalCount = boardService.countBoard(pageVO); //페이징의 게시물 전체 개수 구하기
+		pageVO.setTotalCount(totalCount);
+		List<BoardVO> board_list = boardService.selectBoard(pageVO);
+		model.addAttribute("board_list", board_list);
 		return "home/board/board_list";
 	}
 	//사용자 홈페이지 회원 마이페이지 접근 매핑
