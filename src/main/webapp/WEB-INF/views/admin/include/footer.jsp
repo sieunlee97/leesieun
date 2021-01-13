@@ -54,7 +54,8 @@
 <!-- AdminLTE App -->
 <script src="/resources/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<!--  <script src="/resources/demo.js"></script> --><!-- 원래 경로 dist/js/demo.js -->
+<!-- 원래 경로 dist/js/demo.js -->
+<!-- <script src="/resources/demo.js"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/resources/dist/js/pages/dashboard.js"></script>
 <!-- 왼쪽메뉴 선택된 부분 active클래스 주는 jquery 명령어 -->
