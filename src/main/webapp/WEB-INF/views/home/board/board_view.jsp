@@ -207,7 +207,74 @@ $(document).ready(function(){
 <!-- 모달창의 댓글 수정 버튼 액션 처리(아래) -->
 <script>
 $(document).ready(function(){
-	$("#updateReplyBtn")
+	$("#updateReplyBtn").on("click", function(){
+		if("${session_enabled}" == ""){
+			alert("로그인 후 이용해주세요.");
+			location.href("/login");
+			return false;
+		}
+		var rno = $("#rno").val();
+		var reply_text = $("#replytext").val();
+		
+		$.ajax({
+			type:"patch",
+			url:"/reply/reply_update",
+			dataType:"text",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"PATCH"
+			},
+			data:JSON.stringify({
+				rno:rno,
+				reply_text:reply_text
+			}),
+			success:function(result){
+				if(result=="success"){
+					$("#replyModal").modal("hide");
+					alert("수정이 완료되었습니다.");
+					replyList();	
+				}else {
+					alert("다시 시도해주세요.");
+				}
+			},
+			error:function(result){
+				alert("RestAPI서버가 작동하지 않습니다.");	
+			}
+
+		});
+	});
+});
+</script>
+<!-- 모달창의 댓글 삭제 버튼 액션 처리(아래) -->
+<script>
+$(document).ready(function(){
+	$("#deleteReplyBtn").on("click", function(){
+		if("${session_enabled}" == ""){
+			alert("로그인 후 이용해주세요.");
+			location.href("/login");
+			return false;
+		}
+		var rno = $("#rno").val();
+		$.ajax({
+			type:"delete",
+			url:"/reply/reply_delete/${boardVO.bno}/"+rno,
+			dataType:"text",
+			success:function(result){
+				if(result=="success"){
+					$("#replyModal").modal("hide");
+					alert("댓글이 삭제되었습니다.");
+					var reply_count = $("#reply_count").text();//get
+					$("#reply_count").text(parseInt(reply_count)-1); //set
+					replyList(); //삭제 후 댓글 리스트 재실행
+				}else{
+					alert("다시 시도해주세요.")
+				}
+			},
+			error:function(result){
+				alert("RestAPI서버가 작동하지 않습니다.");	
+			}
+		});
+	});
 });
 </script>
 <!-- 댓글 등록 버튼 액션 처리(아래) -->
@@ -265,6 +332,11 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$(".timeline").on("click", ".template-div", function() {//.template-div 댓글 리스트영역
 		//$(this);클릭한 댓글에 따라서 this는 첫번째 댓글일 수 도 있고, 두번째 댓글일 수도 있습니다.
+		if("${session_enabled}" == ""){
+			alert("로그인 후 이용해주세요.");
+			location.href("/login");
+			return false;
+		}
 		$("#rno").val($(this).attr("data-rno"));
 		$(".modal-title").html($(this).find(".timeline-header").text());
 		$("#replytext").val($(this).find(".timeline-body").text());
@@ -290,8 +362,8 @@ $(document).ready(function() {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary">수정</button>
-        <button type="button" class="btn btn-danger">삭제</button>
+        <button type="button" class="btn btn-primary" id="updateReplyBtn">수정</button>
+        <button type="button" class="btn btn-danger" id="deleteReplyBtn">삭제</button>
       </div>
     </div>
   </div>
