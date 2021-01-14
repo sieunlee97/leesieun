@@ -108,7 +108,7 @@
 	              
 	          </div><!-- //.timeline -->
 	          
-		  	  <input type="hidden" name="reply_poge" id="reply_page" value="1">    
+		  	  <input type="hidden" name="reply_page" id="reply_page" value="1">    
 	      </div>
 <!-- 댓글영역 끝 -->
 <!-- 자바스트립트용 #template 엘리먼트 제작(아래) jstl 향상된 for문과 같은 역할 
@@ -153,7 +153,7 @@ var printPageVO = function(pageVO, target) {
 
 	 for(var cnt=pageVO.startPage; cnt<=pageVO.endPage; cnt++){
 		 var active = (cnt==pageVO.page)? "active" : "";
-	 	paging = paging + '<li class="paginate_button page-item '+active+'"><a href="'+cnt+'" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">'+cnt+'</a></li>';
+	 	paging = paging + '<li class="paginate_button page-item '+active+'"><a href="'+(cnt)+'" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">'+cnt+'</a></li>';
 	 }
 	 if(pageVO.next){
 		paging = paging + '<li class="paginate_button page-item next" id="example2_next"><a href="'+(pageVO.endPage+1)+'" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
@@ -163,8 +163,8 @@ var printPageVO = function(pageVO, target) {
 </script>
 <!-- 댓글 리스트 실행하는 함수(아래)-->
 <script>
-var page = $("#reply_page").val(); //댓글 페이지 값 가져오기
  var replyList = function(){
+	 var page = $("#reply_page").val(); //댓글 페이지 값 가져오기 // get
 	 $.ajax({
 		type:"post", //원래는 get인데, post로 보낼 수 있음. 전송방식
 		url:"/reply/reply_list/${boardVO.bno}/"+page, //쿼리스트링X, PathVariable로 보낸다.
@@ -179,7 +179,7 @@ var page = $("#reply_page").val(); //댓글 페이지 값 가져오기
 			}
 		},
 		error:function(){
-			
+			alert("RestAPI서버에 문제가 발생했습니다. 다음에 이용해주세요.");
 		}
 	});
  }
@@ -202,6 +202,12 @@ $(document).ready(function(){
 		//alert("디버그");
 		replyList();
 	});
+});
+</script>
+<!-- 모달창의 댓글 수정 버튼 액션 처리(아래) -->
+<script>
+$(document).ready(function(){
+	$("#updateReplyBtn")
 });
 </script>
 <!-- 댓글 등록 버튼 액션 처리(아래) -->
@@ -240,8 +246,16 @@ $(document).ready(function() {
 			success:function(result) {//응답이 성공하면(상태값200)위경로에서 반환받은 result(json데이터)를 이용해서 화면을 재구현
 				var reply_count = $("#reply_count").text();//get
 				$("#reply_count").text(parseInt(reply_count)+1); //set
+				//댓글 3페이지 보고 있다가, 댓글 입력 시, 작성자가 본인이 작성한 댓글 확인할 수 있도록 1페이지로 이동
+				$("#reply_page").val(1); //set
 				replyList();
-			} 
+				$("#replyer").val("");
+				$("#reply_text").val("");
+				
+			},
+			error:function(result){
+				alert("RestAPI서버가 작동하지 않습니다.");	
+			}
 		});
 	} );
 });
