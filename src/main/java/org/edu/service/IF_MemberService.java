@@ -19,5 +19,6 @@ public interface IF_MemberService {
 	// 업데이트 후 member_view.jsp로 이동(아래)
 	public void updateMember(MemberVO memberVO) throws Exception;
 	public void insertMember(MemberVO memberVO) throws Exception;
+	public void herokuJobMethod() throws Exception;
 }
 
