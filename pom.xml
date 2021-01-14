@@ -199,6 +199,25 @@
 		 	<artifactId>spring-security-taglibs</artifactId>
 		 	<version>${spring.security.version}</version>
 		</dependency>
+		
+		<!-- quartz 라이브러러리 배치작업 -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
+		<!-- 스프링 Quartz 도우미 라이브러리 배치작업 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- hsql 데이터베이스 사용 -->
+		<dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.2</version>
+        </dependency>
 
 		
 	</dependencies>
