@@ -112,6 +112,7 @@
 	    <property name="jobDetail" ref="herokuJob" />
 	    <!-- 월-금 오전 8시부터 23(미국시간0-14)시까지 사이에 20분 간격으로 실행 참조: https://nhj12311.tistory.com/283 -->
 	    <property name="cronExpression" value="0 0/20 23,0-14 ? * MON,TUE,WED,THU,FRI" />
+	    <!-- 다른 문제는 아니었구요 현재는 PC에서 작동을 해서 위 시간이 22밤10시 로 되어서 앱이 활성화 된 것을 보실 수 있습니다. 1분  -->
 	</bean>
 	<!-- 배치작업 테스트용 스케줄러 -->
 	<bean id="herokuJobScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
