@@ -319,13 +319,19 @@ input:-ms-input-placeholder {
 	height: 40px;
 	line-height: 40px;
 	float: left;
-	width: 50%;
+	width: 33%;
 }
 .bbsview_list .bbs_date {
 	float: left;
 	height: 40px;
 	line-height: 40px;
-	width: 50%;
+	width: 33%;
+}
+.bbsview_list .bbs_date {
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	width: 33%;
 }
 .bbs_content {
 	clear: both;

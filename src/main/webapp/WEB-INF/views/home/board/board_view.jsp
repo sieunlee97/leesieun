@@ -30,6 +30,7 @@
 		<div class="bodytext_area box_inner">			
 			<ul class="bbsview_list">
 				<li class="bbs_title"><c:out value="${boardVO.title}" /></li>
+				<li class="bbs_date">작성자 : <span>${boardVO.writer}</span></li>
 				<li class="bbs_hit">작성일 : <span> <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.reg_date}" /></span></li>
 				<li class="bbs_date">조회수 : <span>${boardVO.view_count}</span></li>
 				<li class="bbs_content">
@@ -210,7 +211,7 @@ $(document).ready(function(){
 	$("#updateReplyBtn").on("click", function(){
 		if("${session_enabled}" == ""){
 			alert("로그인 후 이용해주세요.");
-			location.href("/login");
+			location.href="/login";
 			return false;
 		}
 		var rno = $("#rno").val();
@@ -251,7 +252,7 @@ $(document).ready(function(){
 	$("#deleteReplyBtn").on("click", function(){
 		if("${session_enabled}" == ""){
 			alert("로그인 후 이용해주세요.");
-			location.href("/login");
+			location.href="/login";
 			return false;
 		}
 		var rno = $("#rno").val();
@@ -283,7 +284,7 @@ $(document).ready(function() {
 	$("#insertReplyBtn").on("click", function() {//댓글등록버튼을 클릭했을 때 구현내용(아래)
 		if("${session_enabled}"==""){ //버튼 클릭 시 , 비로그인 상황이라면 로그인 화면으로 이동
 			alert("로그인 후 이용해주세요.");
-			location.href("/login"); //자바스크립트 내장 함수, url이동
+			location.href="/login";
 			return false;
 		}
 		//alert("디버그");
@@ -334,7 +335,7 @@ $(document).ready(function() {
 		//$(this);클릭한 댓글에 따라서 this는 첫번째 댓글일 수 도 있고, 두번째 댓글일 수도 있습니다.
 		if("${session_enabled}" == ""){
 			alert("로그인 후 이용해주세요.");
-			location.href("/login");
+			location.href="/login";
 			return false;
 		}
 		$("#rno").val($(this).attr("data-rno"));

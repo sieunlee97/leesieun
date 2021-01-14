@@ -3,14 +3,49 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 	
 
 	
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- HSQLDB FILE기반 사용 헤로쿠에 올릴때 생성 경로는 /tmp/embeded/edu.db , 로컬PC일때  생성 경로는 c:/egov/workspace/embeded/edu.db -->   
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+
+	<!-- CREATE TABLE 초기 1회만 실행 -->
+	<!-- <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
+		<jdbc:script location="classpath:/db/embeded_hsql_file.sql" /> 
+	</jdbc:initialize-database> -->
+	
+	<!-- jdbc:hsqldb:mem:dataSource / jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db -->
+	<!-- 테스트 실행용 DB매니저 실행:실제 사용시 아래 value - - 공백제거 하세요. -->
+	<bean depends-on="dataSource"
+	class="org.springframework.beans.factory.config.MethodInvokingBean">
+	<property name="targetClass" value="org.hsqldb.util.DatabaseManagerSwing" />
+	<property name="targetMethod" value="main" />
+	<property name="arguments">
+		<list>
+			<value>--url</value>
+			<value>jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db</value>
+			<value>--user</value>
+			<value>sa</value>
+			<value>--password</value>
+			<value></value>
+		</list>
+	</property>
+	</bean>
+	
 	
 	<!-- 로컬 mysql log4jdbc 설정전 -->
 	<!-- 실제로 돈받고 서비스할 때는 이 설정으로. -->
@@ -23,12 +58,12 @@
 	
 	<!-- 로컬 mysql log4jdbc 설정 후 -->
 	<!-- 개발할 때는 이 설정으로. -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/edu"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="apmsetup"></property>
-	</bean>
+	</bean> -->
 	
 	
 	<!--
