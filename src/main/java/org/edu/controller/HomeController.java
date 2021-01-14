@@ -2,7 +2,6 @@ package org.edu.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -11,6 +10,7 @@ import javax.inject.Inject;
 import org.edu.service.IF_BoardService;
 import org.edu.util.CommonController;
 import org.edu.util.SecurityCode;
+import org.edu.vo.AttachVO;
 import org.edu.vo.BoardVO;
 import org.edu.vo.PageVO;
 import org.slf4j.Logger;
@@ -54,13 +54,13 @@ public class HomeController {
 		boardVO.setContent(xssData); //악성코드 제거한 결과를 다시 셋 저장
 //===============================================================			
 		//첨부파일 데이터 jsp 뷰단으로 보내기(아래)
-		List<HashMap<String,Object>> files = boardService.readAttach(bno);
+		List<AttachVO> files = boardService.readAttach(bno);
 		String[] save_file_names = new String[files.size()];
 		String[] real_file_names = new String[files.size()];
 		int cnt=0;
-		for(HashMap<String, Object>filename:files) {
-			save_file_names[cnt] = (String) filename.get("save_file_name");
-			real_file_names[cnt] = (String) filename.get("real_file_name");
+		for(AttachVO filename:files) {
+			save_file_names[cnt] = filename.getSave_file_name();
+			real_file_names[cnt] = filename.getReal_file_name();
 			cnt=cnt+1;
 		}
 		boardVO.setSave_file_names(save_file_names);
