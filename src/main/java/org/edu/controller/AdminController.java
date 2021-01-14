@@ -15,6 +15,7 @@ import org.edu.service.IF_BoardService;
 import org.edu.service.IF_MemberService;
 import org.edu.util.CommonController;
 import org.edu.util.SecurityCode;
+import org.edu.vo.AttachVO;
 import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
@@ -53,16 +54,23 @@ public class AdminController {
 	@RequestMapping(value="/admin/board/board_update", method=RequestMethod.GET)
 	public String board_update(@RequestParam("bno") Integer bno, @ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
 		BoardVO boardVO = boardService.readBoard(bno);
-		
-		List<HashMap<String, Object>> files = boardService.readAttach(bno); // 리스트형 변수 생성
+		List<AttachVO> files = boardService.readAttach(bno);
+	  //List<HashMap<String, Object>> files_notUse = boardService.readAttach_notUse(bno); // 리스트형 변수 생성
 		String[] save_file_names = new String[files.size()];
 		String[] real_file_names = new String[files.size()];
 		int cnt = 0;
-		for(HashMap<String, Object> file_name:files) {
-			save_file_names[cnt]=(String) file_name.get("save_file_name"); //HashMap형태의 save_file_name을 뽑아와서 String으로 형변환
-			real_file_names[cnt]= (String)file_name.get("real_file_name");
+		for(AttachVO file_name:files) {
+			save_file_names[cnt]= file_name.getSave_file_name(); //HashMap형태의 save_file_name을 뽑아와서 String으로 형변환
+			real_file_names[cnt]= file_name.getReal_file_name();
 			cnt = cnt+1;
 		}
+	 /*
+	  * for(HashMap<String, Object> file_name:files_notUse) {
+	  * 	save_file_names[cnt]=(String) file_name.get("save_file_name"); //HashMap형태의 save_file_name을 뽑아와서 String으로 형변환 
+	  * 	real_file_names[cnt]=(String)file_name.get("real_file_name"); 
+	  * 	cnt = cnt+1; 
+	  * }
+	  */
 		
 		//배열형 출력값(가로) {'save_file_name1','save_file_name2',...}
 		boardVO.setSave_file_names(save_file_names);
@@ -72,7 +80,6 @@ public class AdminController {
 		 * String xxs_data= boardVO.getContent();
 		 * boardVO.setContent(securityCode.unscript(xxs_data));
 		 */
-		
 		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_update";
 	}
@@ -80,7 +87,8 @@ public class AdminController {
 	@RequestMapping(value="/admin/board/board_update", method=RequestMethod.POST)
 	public String board_update(RedirectAttributes rdat, @RequestParam("file") MultipartFile[] files, BoardVO boardVO, PageVO pageVO) throws Exception {
 		// 기존등록된 첨부파일 목록 구하기
-		List<HashMap<String,Object>> delFiles = boardService.readAttach(boardVO.getBno());
+		List<AttachVO> delFiles = boardService.readAttach(boardVO.getBno());
+	  //List<HashMap<String,Object>> delFiles_notUse = boardService.readAttach_notUse(boardVO.getBno());
 		//jsp에 보낼 save_file_names, real_file_names 배열변수 초기값 지정
 		String[] save_file_names = new String[files.length];
 		String[] real_file_names = new String[files.length];
@@ -90,25 +98,44 @@ public class AdminController {
 			if(file.getOriginalFilename() != "") { // 첨부파일 있는 경우
 				//기존 파일 DB에서 삭제처리할 변수 생성
 				int cnt=0; //업데이트 jsp에서 첨부파일 개별 삭제시 순서가 필요하기 때문
-				for(HashMap<String,Object> file_name:delFiles) {
-					save_file_names[cnt]=(String)file_name.get("save_file_name");
-					real_file_names[cnt]=(String)file_name.get("real_file_name");
+				for(AttachVO file_name:delFiles) {
+					save_file_names[cnt]= file_name.getSave_file_name();
+					real_file_names[cnt]= file_name.getReal_file_name();
 					cnt=cnt+1;
 				}
+			 /*
+			  * for(HashMap<String,Object> file_name:delFiles_notUse) {
+			  * 	save_file_names[cnt]=(String)file_name.get("save_file_name");
+			  * 	real_file_names[cnt]=(String)file_name.get("real_file_name"); cnt=cnt+1; 
+			  * }
+			  */
 				int sun = 0; //업데이트 jsp화면에서 첨부파일을 개별 삭제시 사용할 순서가 필요하기 때문
 				//기존 파일을 폴더에서 삭제 처리
-				for(HashMap<String,Object> old_file_name:delFiles) {
+				for(AttachVO old_file_name:delFiles) {
 					if(index == sun) { //index는 첨부파일 개수, sun는 삭제할 개별 순서
-						File target = new File(commonController.getUploadPath(), (String)old_file_name.get("save_file_name") );
+						File target = new File(commonController.getUploadPath(), old_file_name.getSave_file_name() );
 						if (target.exists()) {
 							target.delete(); // 기존 첨부파일 폴더에서 지우기
 							
 						}
 					}
 					// 서비스 클래스에는 첨부파일DB를 지우는 메소드 없음. DAO접긓내서 tbl_attach 지운다.
-					boardDAO.deleteAttach( (String)old_file_name.get("save_file_name"));
+					boardDAO.deleteAttach( (String)old_file_name.getSave_file_name());
 					sun=sun+1;
 				}
+			 /*
+			  * for(HashMap<String,Object> old_file_name:delFiles_notUse) { 
+			  * 	if(index == sun) { //index는 첨부파일 개수, sun는 삭제할 개별 순서 File target = new
+			  * 		File(commonController.getUploadPath(), (String)old_file_name.get("save_file_name") ); 
+			  * 		if (target.exists()) {
+			  * 			target.delete(); // 기존 첨부파일 폴더에서 지우기
+			  * 		} 
+			  * 	} 
+			  * 	// 서비스 클래스에는 첨부파일DB를 지우는 메소드 없음. DAO접긓내서 tbl_attach 지운다.
+			  * 	boardDAO.deleteAttach( (String)old_file_name.get("save_file_name"));
+			  * 	sun=sun+1; 
+			  * }
+			  */
 				//신규 파일 폴더에 업로드 처리
 				save_file_names[index] = commonController.fileUpload(file); // 폴더에 업로드 저장 완료.
 				real_file_names[index] = file.getOriginalFilename(); //"한글파일명.jpg"		
@@ -126,16 +153,26 @@ public class AdminController {
 	@RequestMapping(value="/admin/board/board_delete", method=RequestMethod.POST)
 	public String board_delete(RedirectAttributes rdat, PageVO pageVO, @RequestParam("bno") Integer bno) throws Exception {
 		// 기존 등록된 첨부파일 폴더에서 삭제할 UUID 파일명 구하기(아래)
-		List<HashMap<String, Object>> delFiles = boardService.readAttach(bno);
-		boardService.deleteBoard(bno);
-		// 첨부파일 삭제 : DB부터 먼저 삭제 후  폴더에서 첨부파일 삭제
-		for(HashMap<String, Object> file_name:delFiles) {
+		List<AttachVO> delFiles = boardService.readAttach(bno);
+		//List<HashMap<String, Object>> delFiles_notUse = boardService.readAttach_notUse(bno);
+		for(AttachVO file_name:delFiles) { //실제파일 삭제 로직(아래)
 			//실제파일 삭제 로직(아래 File클래스(폴더경루, 파일명))
-			File target = new File(commonController.getUploadPath(), (String)file_name.get("save_file_name"));
+			File target = new File(commonController.getUploadPath(), file_name.getSave_file_name());
 			if(target.exists()) {
 				target.delete(); //실제 지워짐.
 			}
 		}
+	 /*
+	  * for(HashMap<String, Object> file_name:delFiles_notUse) { 
+	  * 	//실제파일 삭제 로직(아래 File클래스(폴더경루, 파일명))
+	  * 	File클래스(폴더경루, 파일명)) File target = new File(commonController.getUploadPath(), (String)file_name.get("save_file_name")); 
+	  * 	if(target.exists()) {
+	  * 		target.delete(); //실제 지워짐. 
+	  * 	} 
+	  * }
+	  */
+		boardService.deleteBoard(bno);
+		// 첨부파일 삭제 : DB부터 먼저 삭제 후  폴더에서 첨부파일 삭제
 		rdat.addFlashAttribute("msg", "삭제");
 		return "redirect:/admin/board/board_list?page=" + pageVO.getPage();
 	}
@@ -193,16 +230,23 @@ public class AdminController {
 		//	{'save_file_name2'},
 		//	...
 		// ]
-		List<HashMap<String, Object>> files = boardService.readAttach(bno); // 리스트형 변수 생성
+		List<AttachVO> files = boardService.readAttach(bno);
+	  //List<HashMap<String, Object>> files = boardService.readAttach_notUse(bno); // 리스트형 변수 생성
 		String[] save_file_names = new String[files.size()];
 		String[] real_file_names = new String[files.size()];
 		int cnt = 0;
-		for(HashMap<String, Object> file_name:files) {
-			save_file_names[cnt]=(String) file_name.get("save_file_name"); //HashMap형태의 save_file_name을 뽑아와서 String으로 형변환
-			real_file_names[cnt]= (String)file_name.get("real_file_name");
+		for(AttachVO file_name:files) {
+			save_file_names[cnt]=file_name.getSave_file_name(); //HashMap형태의 save_file_name을 뽑아와서 String으로 형변환
+			real_file_names[cnt]=file_name.getReal_file_name();
 			cnt = cnt+1;
 		}
-		
+	 /*
+	  * for(HashMap<String, Object> file_name:files_notUse) { save_file_names[cnt]=(String)
+	  * file_name.get("save_file_name"); //HashMap형태의 save_file_name을 뽑아와서 String으로
+	  * 형변환 real_file_names[cnt]= (String)file_name.get("real_file_name"); cnt =
+	  * cnt+1; }
+	  */
+	
 		//배열형 출력값(가로) {'save_file_name1','save_file_name2',...}
 		boardVO.setSave_file_names(save_file_names);
 		boardVO.setReal_file_names(real_file_names);
