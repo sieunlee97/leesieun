@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>sieun_portfolio</title>
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  </head>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
+/*rgb(131,165,151)*/
+.header { /*커버영역부터 category영역까지*/
+  position: relative;
+  width: 100%;
+  height:490px;
+}
+.header .menu {
+  position: absolute;
+  right:2%;
+  width:50%;
+}
+.header .menu li {
+  float:left;
+  display: block;
+  width:25%;
+  text-align: center;
+  padding:10px;
+}
+.menu li a{
+  font-size: 15px;
+  font-weight: bold;
+  color:#FFF;
+}
+.menu .current a {
+  display: block;
+  width:auto;
+  border-radius: 3px;
+  border:1px solid white;
+}
+.cover-section { /*커버영역*/
+  width:100%;
+  height:500px;
+  background-image: url(img/background.jpg);
+  background-size: cover;
+  background-position:top;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top:100px;
+  text-align: center;
+}
+.cover-section .cover-content {  /*커버영역 내의 콘텐츠 영역*/
+  position: relative;
+  margin:10px auto;
+  color: white;
+  font-size:40px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-style: italic;
+  text-align: center;
+  width:auto;
+}
+/*타이핑 효과 시작*/
+.cover-content p{
+  letter-spacing: 3px;
+  animation: typing 3s steps(26);
+  overflow:hidden;
+  white-space: nowrap;;
+  width:26ch;
+}
+@keyframes typing {
+  0%{
+    width:0;
+  }
+  100%{
+    width:26ch;
+  }
+}
+/*타이핑 효과 끝*/
+.circle-background { /*커버영역 내의 프로필 사진*/
+margin:0 auto;
+background-image:url(./img/profile.png);
+background-size:210px 230px;
+background-repeat: no-repeat;
+border-style:solid;  /*원 테두리 선*/
+border-color: #ECECED;
+border-radius: 50%;  /*원형으로 만들기*/
+width: 200px;
+height: 200px;
+}
+.container {
+  position: relative;
+  width:100%;
+  margin:0 auto;
+}
+.category {
+  position: absolute;
+  top:0;
+  width:100%;
+}
+.category li {
+  display: block;
+  width:25%;  /*3개의 카테고리 정렬*/
+  height:77px;
+  float:left;  /*카테고리 가로 정렬*/
+  text-align: center;  /*글자 가운데 정렬*/
+  padding: 30px 0;
+  font-size: 20px;  /*카테고리 글자 크기*/
+  font-family: 'Open Sans Condensed', sans-serif;  /*글씨체*/
+  font-weight: bold;  /*굵게*/
+  overflow: hidden;
+}
+.category .current {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top:2px solid rgb(218,48,76);
+  border-right:2px solid rgb(218,48,76);
+  border-left:2px  solid rgb(218,48,76);
+  background-color: #FCF0F2;
+}
+.category .no-current {
+ border-bottom: 2px solid rgb(218,48,76);
+}
+.category .current a {
+  color:rgb(218,48,76);  /*현재 링크 페이지일 때 글자 색*/
+}
+.category :hover {  /*카테고리 영역에 마우스를 올리면*/
+  color: rgb(64,78,136) !important;  /*글자 색 변경*/
+  font-size: 25px;  /*글자 크기 30px로 증가*/
+  transition: 0.5s;  /*글자 커지는 속도*/
+}
+.content {
+  position:absolute;
+  top:77px;
+  width:100%;
+  background-color: #FCF0F2;
+  border-left:2px solid rgb(218,48,76);
+  border-right:2px solid rgb(218,48,76);
+  padding:50px 0;
+}
+
+  </style>
+  <script>
+
+  </script>
+  <body>
+    <div id="wrap">
+<!-- 헤더 영역 시작 -->
+      <header class="header">
+<!-- 헤더 상단 메뉴 영역 시작 -->
+        <nav class="menu">
+          <ul>
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="skill.html">SKILL</a></li>
+            <li class="current"><a href="mywork.html">WORK</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+          </ul>
+        </nav>
+<!-- 헤더 상단 메뉴 영역 끝 -->
+<!-- 헤더 커버 영역 시작 -->
+        <div class="cover-section">
+          <div class="circle-background" OnClick="location.href ='home.html'" style="cursor:pointer;"></div>
+        <div class="cover-content">
+          <p>Hi, My name is <a href="home.html" style="color:white;"><b>Lee Si Eun.<b><a></p>
+        </div>
+<!-- 헤더 커버 영역 끝 -->
+      </header>
+<!-- 헤더 영역 끝-->
+<!-- 메인 콘텐츠 영역 시작 -->
+      <div class="container">
+        <nav class="category">
+          <ul>
+            <li class="no-current"><a href="mywork.html">반응형 웹사이트</a></li>
+            <li class="no-current"><a href="#">사용자 홈페이지</a></li>
+            <li class="no-current"><a href="#">관리자 홈페이지</a></li>
+            <li class="current"><a href="mall.html">온라인 쇼핑몰 홈페이지</a></li>
+          </ul>
+        </nav>
+        <div class="content">
+
+      </div>
+<!-- 메인 콘텐츠 영역 시작 -->
+    </div>
+  </body>
+</html>

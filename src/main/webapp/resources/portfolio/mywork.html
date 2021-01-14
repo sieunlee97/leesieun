@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scaleable=no">
+    <title>sieun_portfolio</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="js/user.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/portfolio/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/resources/portfolio/css/pc.css">
+  	<link rel="stylesheet" type="text/css" href="/resources/portfolio/css/tablet.css">
+  </head>
+  <style>
+ 
+  </style>
+  <script>
+  </script>
+  <body>
+    <div id="wrap">
+<!-- 헤더 영역 시작 -->
+      <header class="header">
+<!-- 헤더 상단 메뉴 영역 시작 -->
+        <nav class="menu">
+          <ul>
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="skill.html">SKILL</a></li>
+            <li class="current"><a href="mywork.html">WORK</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+          </ul>
+        </nav>
+<!-- 헤더 상단 메뉴 영역 끝 -->
+<!-- 헤더 커버 영역 시작 -->
+        <div class="cover-section">
+          	<div class="circle-background" OnClick="location.href ='home.html'" style="cursor:pointer;"></div>
+	        <div class="cover-content">
+	          <p>Hi, My name is <a href="home.html" style="color:white;"><b>Lee Si Eun.</b></a></p>
+	        </div>
+        </div>
+<!-- 헤더 커버 영역 끝 -->
+      </header>
+<!-- 헤더 영역 끝-->
+
+<!-- 메인 콘텐츠 영역 시작 -->
+<section class="mywork-section">
+      <div class="my-container">
+        <nav class="category">
+          <ul>
+            <li class="current"><a href="mywork.html">반응형 웹사이트</a></li>
+            <li class="no-current"><a href="user_home.html">사용자 홈페이지</a></li>
+            <li class="no-current"><a href="admin_home.html">관리자 홈페이지</a></li>
+            <li class="no-current"><a href="mall.html">온라인 쇼핑몰 홈페이지</a></li>
+          </ul>
+        </nav>
+        <div class="content">
+          <li class="m-title">Mobile 화면</li>
+          <div class="mobile">
+            <div class="div1">
+              <img class="ex-toggle" src="img/mobile_index.png" alt="모바일 홈 화면">
+              <img class="ex-toggle" src="img/mobile_gnb.png" alt="모바일 gnb 화면">
+              <p>- Jquery로 토글 메뉴 기능 구현</p>
+              <pre><code>
+  $(document).ready(function() {
+    $(".menu-toggle-btn").click(function(){
+  	    $(".gnb").stop().slideToggle("fast");
+     });
+  });
+              </code></pre>
+            </div>
+
+          <div class="div2">
+            <img class="ex-hover" src="img/mobile_work.jpg" alt="모바일 work 화면">
+            <img class="ex-hover" src="img/mobile_work02.png" alt="모바일 work 화면">
+            <p>- 마우스 오버 효과 (work.html/work.jsp)</p>
+            <pre><code>
+  /*마우스를 풀오버했을 때 나오는 배경색상, before가상요소 영역*/
+  .work-section li a::before {
+      display:block;
+      width:100%;
+      height:100%;
+      position:absolute;  /*absolute 위치는 위 a태그에서 지정한 relative 위치에 한정해서 절대위치로 지정*/
+      top:0px;            /*화면의 세로로 상단 0px 위치*/
+      left:0px;           /*화면의 가로로 왼쪽 0px 위치*/
+      background:#000;    /*배경색상 #000 (black)*/
+      content:"";         /*content 없음*/
+      opacity:0;          /*투명도 0%로 지정(안보임)*/
+  }
+  .work-section li a:hover::before {
+      opacity:0.7;        /*투명도 0.7로 지정*/
+  }
+          </pre></code>
+        </div>
+
+        <div class="div3" style="height:450px !important">
+          <img class="ex-form" src="img/mobile_contact.png" alt="모바일 contact 화면">
+          <p>- 입력폼 사용 (contact.jsp)</p>
+          <pre><code>
+&lt;form name="message_form" action="/contact" method="post">
+  &lt;fieldset>
+  &lt;legend> 현재폼의 타이틀영역입니다. &lt;/legend>
+    &lt;div class="input-class">
+      &lt;label for="name"> Name &lt;/label>
+      &lt;input name="name" id="name" type="text" placeholder="이름을 입력해주세요">
+
+      &lt;label for="phone"> Phone &lt;/label>
+      &lt;input name="phone" id="phone" type="text" placeholder="연락처를 입력해주세요">
+
+      &lt;label for="email"> E-mail &lt;/label>
+      &lt;input name="e-mail" id="email" type="email" placeholder="이메일을 입력해주세요">
+    &lt;/div>
+
+    &lt;div class="textarea-class">
+      &lt;label for="message"> Message &lt;/label>
+      &lt;textarea name="message" id="message" placeholder="내용을 입력해주세요">&lt;/textarea>
+    &lt;/div>
+  &lt;/fieldset>
+
+  &lt;div class="submit-btn">
+    &lt;button type="submit"> SEND &lt;/button>
+  &lt;/div>
+&lt;/form>
+          </pre></code>
+          </div>
+        </div>
+          <li class="t-title">Tablet화면(min-width:768px)</li>
+          <div class="tablet">
+
+          </div>
+
+          <li class="p-title">PC화면(min-width:1132px)</li>
+          <div class="pc">
+
+          </div>
+
+      </div>
+</section>
+<!-- 메인 콘텐츠 영역 끝 -->
+    </div>
+  </body>
+</html>

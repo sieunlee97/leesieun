@@ -1,0 +1,20 @@
+$(document).ready(function(){
+  $(".m-title").click(function(){
+   $(".mobile").toggle("slow");
+  });
+});
+$(document).ready(function(){
+  $(".t-title").click(function(){
+   $(".tablet").toggle("slow");
+  });
+});
+$(document).ready(function(){
+  $(".p-title").click(function(){
+   $(".pc").toggle("slow");
+  });
+});
+$(document).ready(function(){
+  $(".sec-title").click(function(){
+   $(".spring-sec").toggle("slow");
+  });
+});
