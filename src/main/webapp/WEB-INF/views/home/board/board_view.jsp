@@ -62,7 +62,9 @@
 				</li>
 			</ul>
 			<p class="btn_line txt_right">
-				<a href="/home/board/board_list" class="btn_bbs">목록</a>
+				<a href="/home/board/board_list?page=${pageVO.page}" class="btn_bbs">목록</a>
+				<a href="/home/board/board_update?bno=${boardVO.bno}&page=${pageVO.page}" class="btn_bbs">수정</a>
+				<button class="btn_baseColor btn_smallColor">삭제</button>
 			</p>
 			
 		</div>

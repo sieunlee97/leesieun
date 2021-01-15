@@ -32,7 +32,14 @@
 
 ## v6.0.0 UI구현
 ### 20210115(금)
-
+- 서블렛자바+JSP(jstlX)프로그램 - 스트러츠웹프로그램만들기 - 스프링+jsp(jstl)웹프로그램만들기 - 미래에는 알지못하는 프레임워크
+- ================================================================================================
+- 헤로쿠에 배포하기 1-DB부분:
+- > 1. 헤로쿠용 : root-context에 Hsql DB위치 변경 /temp/~ + 1회용 초기화 부분 주석 해제
+- > 2. PC용 : root-context에 Hsql DB위치 변경 c:/~ + 1회원 초기화 부분 주석 처리
+- 헤로쿠에 배포하기 2-첨부파일부분:
+- > 1. 헤로쿠용 : 업로드 경로 변경:헤로쿠: /temp/~
+- > 2. PC용 : c:~
 
 ### 20210114(목)
 - [X] 사용자단 댓글 CRUD 마무리
@@ -52,6 +59,7 @@
 - > 톰캣(server, web, context 3개 xml 순서대로 실행)
 - > 스프링 (1. web.xml:404file not found, 500, 400)
 - > 2. root-context -> 3. servlet-context (여기서부터 스프링에러표시)
+
 - 스프링시큐리티 적용한 로그인 처리
 - > 스프링 시큐리티 필터기능 말고, 대표적인 필터기능솔루션은 글작성시 욕설방지기능 필터 기능으로 작성
 - > 스프링시큐리티 2가지 기능 : 인증기능(로그인체크기능- 암호화), 권한기능(권한체크)
@@ -61,6 +69,7 @@
 - 네이버아이디 로그인(네이버에서 제공하는 REST-API백엔드단) 실습.
 - 헤로쿠(URL)에 배포 (HsqlDB로 배포, 메이븐 외부 라이브러리 추가 필수 pom.xml 수정)
 - =======================2월3일까지(위)==========================
+
 - 위 과정 끝나면, MySQL로 작성된 소스를 오라클로 마이그레이션(오라클설치 및 사용자 생성 및 암호 추가)
 - 문서작업(완료보고서작업) : 이력서 제출시 사용.
 - IoT(노드MCU보드:아두이노계열)로 임베디드 프로그램 실습.
@@ -71,6 +80,26 @@
 - 입사지원기간(사람인 사이트에 이력서 제출) : 취업활동
 
 ### 20210108(금)
+- 사용자단 html 소스를 jsp 로 변환하는 작업진행. views폴더안에 home폴더 생성 후 작업진행.
+- HomeController클래스 리퀘스트 매핑부분 추가/수정.
+- 사용자단 html(https://miniplugin.github.io/) 소스를 커스터마이징 후 jsp로 만들기.
+- 부트스트랩과 AdminLTE라이브러리 가져오기(board_view[write].html 상단에 추가:아래)
+
+'''
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
+<!-- Bootstrap 4 -->
+<link rel="stylesheet" href="/resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<script src="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLte -->
+<link rel="stylesheet" href="/resources/dist/css/adminlte.min.css">	
+<!-- write.html은 서머노트 웹에디터 부분 추가(아래) -->
+<link rel="stylesheet" href="/resources/plugins/summernote/summernote.css">
+<script src="/resources/plugins/summernote/summernote.js"></script>
+'''
+
+- 인터셉터(가로채기-Interceptor)클래스를 이용해서, 예외처리를 공통 error.jsp 로 바인딩 처리.
+- 스프링시큐리티 로그인 구현 pom.xml 의존성 추가(회원가입시 패스워드 암호화 추가).
 
 ### 20210107(목)
 - [X] 댓글 기능 구현

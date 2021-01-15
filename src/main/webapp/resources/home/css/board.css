@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 /* 메인상단 위치표시영역 */
 .location_area {
@@ -349,6 +350,16 @@ input:-ms-input-placeholder {
 	color: #fff !important;
 	text-align: center;
 }
+/*기본 CSS 모바일용*/
+.btn_smallColor{
+	height:35px;
+	line-height:35px;
+	font-size:14px;
+	width:100%;
+	margin-bottom:5px;
+	margin-top:0px;
+	font-weight:normal;
+}
 .near_list {display: none;}
 @media all and (min-width: 801px) {
 /* 태블릿+PC용 게시판뷰 */
@@ -360,6 +371,9 @@ input:-ms-input-placeholder {
 	width: 70px;
 	float: none;
 	text-align: center;
+}
+.btn_smallColor{
+	width:70px; margin-top:10px;
 }
 .near_list li {
 	padding: 10px;
