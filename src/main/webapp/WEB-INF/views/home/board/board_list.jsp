@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" href="/resources/home/css/board.css">
-
-
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
 <!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 메인상단위치표시영역 -->
@@ -51,7 +51,7 @@
 		                      ${pageVO.totalCount-(pageVO.page*pageVO.queryPerPageNum)+pageVO.queryPerPageNum-status.index}
 							</td>
 							<td class="tit_notice"><a href="/home/board/board_view?bno=${boardVO.bno}&page=${pageVO.page}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}">
-								<c:out value="${boardVO.title}"/>[<c:out value="${boardVO.reply_count}" />]
+								<c:out value="${boardVO.title}"/>  [<c:out value="${boardVO.reply_count}" />]
 							</a></td>
 							<td>${boardVO.view_count}</td>
 							<td>

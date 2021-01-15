@@ -64,7 +64,7 @@
 	                <hr>
 	                <strong><i class="fas fa-paperclip mr-1"></i> 첨부파일${index}</strong>
 	                <p class="text-muted">
-	                <a href="/download?save_file_name=${boardVO.save_file_names[indx]}&real_file_name=${boardVO.real_file_names[index]}"> <!-- 다운로드 링크 만들 예정 -->
+	                <a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}"> <!-- 다운로드 링크 만들 예정 -->
 	                ${boardVO.real_file_names[index]}-파일다운로드-
 	                </a>
 	                <c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[index], '.')}" />

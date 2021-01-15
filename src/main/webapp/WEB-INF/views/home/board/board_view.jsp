@@ -43,7 +43,7 @@
 					<c:forEach begin="0" end="1" var="index">
 						<c:if test="${boardVO.save_file_names[index] != null}">
 							<br>
-							<a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}" >파일 다운로드 링크[${index}]</a>
+							<a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}" >파일 다운로드 링크[${boardVO.real_file_names[index]}]</a>
 							<c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[index], '.')}" />
 	                		<c:set var="extName" value="${fileNameArray[fn:length(fileNameArray)-1]}" />
 						<c:choose>
