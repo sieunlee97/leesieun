@@ -35,7 +35,7 @@
 	</beans:bean>
 	<!-- 업로드한 파일이 저장되는 위치: 헤로쿠용 /tmp 로컬PC용 C:\\egov\\workspace\\upload--> 
 	<beans:bean id="uploadPath" class="java.lang.String">
-	    <beans:constructor-arg value="/tmp" />
+	    <beans:constructor-arg value="C:\\egov\\workspace\\upload" />
 	</beans:bean>
 	
 	

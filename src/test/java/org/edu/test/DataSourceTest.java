@@ -156,7 +156,8 @@ public class DataSourceTest {
 		/* root-context.xml 사용 (아래) */
 		//Connection connection = dataSource.getConnection();
 		Connection connection = null;
-		connection = DriverManager.getConnection("jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db","sa","");
+		connection = DriverManager.getConnection("jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false" + 
+				"","sa","");
 		//직접 쿼리를 날린다.(아래)
 		Statement stmt = connection.createStatement();
 		/* insert 쿼리 실행(아래) */ 
