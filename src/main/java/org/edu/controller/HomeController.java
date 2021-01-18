@@ -90,6 +90,9 @@ public class HomeController {
 			cnt = cnt+1;
 		}
 		
+		boardVO.setSave_file_names(save_file_names);
+		boardVO.setReal_file_names(real_file_names);
+		
 		model.addAttribute("boardVO", boardVO);
 		return "home/board/board_update";
 	}
