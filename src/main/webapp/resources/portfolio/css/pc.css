@@ -311,7 +311,7 @@ height: 290px;
   width:100%;
   height:300px;
   float:right;
-  text-align:left;
+  text-align:left; 
   padding-left: 10%;
   margin-top:15%;
 }
