@@ -96,49 +96,26 @@ public class AdminController {
 		//첨부파일 수정 미처리. 추가 예정: 수정할 때 수정. 부모부터 수정 후 자식 수정.
 		for(MultipartFile file:files) {
 			if(file.getOriginalFilename() != "") { // 첨부파일 있는 경우
-				//기존 파일 DB에서 삭제처리할 변수 생성
-				int cnt=0; //업데이트 jsp에서 첨부파일 개별 삭제시 순서가 필요하기 때문
-				for(AttachVO file_name:delFiles) {
-					save_file_names[cnt]= file_name.getSave_file_name();
-					real_file_names[cnt]= file_name.getReal_file_name();
-					cnt=cnt+1;
-				}
-			 /*
-			  * for(HashMap<String,Object> file_name:delFiles_notUse) {
-			  * 	save_file_names[cnt]=(String)file_name.get("save_file_name");
-			  * 	real_file_names[cnt]=(String)file_name.get("real_file_name"); cnt=cnt+1; 
-			  * }
-			  */
+
 				int sun = 0; //업데이트 jsp화면에서 첨부파일을 개별 삭제시 사용할 순서가 필요하기 때문
 				//기존 파일을 폴더에서 삭제 처리
-				for(AttachVO old_file_name:delFiles) {
-					if(index == sun) { //index는 첨부파일 개수, sun는 삭제할 개별 순서
-						File target = new File(commonController.getUploadPath(), old_file_name.getSave_file_name() );
-						if (target.exists()) {
-							target.delete(); // 기존 첨부파일 폴더에서 지우기
-							
+				for(AttachVO file_name:delFiles) {
+					if(index == sun) {//index는 첨부파일개수 , sun삭제할 개별순서
+						File target = new File(commonController.getUploadPath(), file_name.getSave_file_name());
+						if(target.exists()) {
+							target.delete();//폴더에서 기존첨부파일 지우기
+							//서비스클래스에는 첨부파일DB를 지우는 메서드가 없음. DAO를 접근해서 tbl_attach를 지웁니다.
+							boardDAO.deleteAttach(file_name.getSave_file_name());
 						}
-					}
-					// 서비스 클래스에는 첨부파일DB를 지우는 메소드 없음. DAO접긓내서 tbl_attach 지운다.
-					boardDAO.deleteAttach( (String)old_file_name.getSave_file_name());
+					}	
 					sun=sun+1;
 				}
-			 /*
-			  * for(HashMap<String,Object> old_file_name:delFiles_notUse) { 
-			  * 	if(index == sun) { //index는 첨부파일 개수, sun는 삭제할 개별 순서 File target = new
-			  * 		File(commonController.getUploadPath(), (String)old_file_name.get("save_file_name") ); 
-			  * 		if (target.exists()) {
-			  * 			target.delete(); // 기존 첨부파일 폴더에서 지우기
-			  * 		} 
-			  * 	} 
-			  * 	// 서비스 클래스에는 첨부파일DB를 지우는 메소드 없음. DAO접긓내서 tbl_attach 지운다.
-			  * 	boardDAO.deleteAttach( (String)old_file_name.get("save_file_name"));
-			  * 	sun=sun+1; 
-			  * }
-			  */
 				//신규 파일 폴더에 업로드 처리
 				save_file_names[index] = commonController.fileUpload(file); // 폴더에 업로드 저장 완료.
 				real_file_names[index] = file.getOriginalFilename(); //"한글파일명.jpg"		
+			}else {
+				save_file_names[index]=null;
+				real_file_names[index]=null;
 			}
 			index=index+1;
 		}

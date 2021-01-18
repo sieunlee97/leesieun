@@ -1,5 +1,6 @@
 package org.edu.controller;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import org.edu.dao.IF_BoardDAO;
 import org.edu.service.IF_BoardService;
 import org.edu.util.CommonController;
 import org.edu.util.SecurityCode;
@@ -34,6 +36,9 @@ public class HomeController {
 	//private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Inject
 	private IF_BoardService boardService;
+	
+	@Inject
+	private IF_BoardDAO boardDAO;
 	
 	@Inject
 	private SecurityCode securityCode;
@@ -74,6 +79,44 @@ public class HomeController {
 		model.addAttribute("checkImgArray", commonController.getCheckImgArray());
 		return "home/board/board_view";
 	}
+	@RequestMapping(value="/home/board/board_update", method=RequestMethod.POST)
+	public String board_update(RedirectAttributes rdat, @RequestParam("file") MultipartFile[] files, BoardVO boardVO, PageVO pageVO) throws Exception {
+		//첨부파일 업로드
+		List<AttachVO> delFiles = boardService.readAttach(boardVO.getBno());
+		String[] save_file_names = new String[files.length];
+		String[] real_file_names = new String[files.length];
+		int index = 0;
+		for(MultipartFile file:files) { // 여기의 file은 신규로 저장하는 파일 
+			if(file.getOriginalFilename() !="") {
+				int sun=0;
+				for(AttachVO file_name:delFiles) { //실제 폴더에서 기존 첨부파일 삭제처리
+					if(index==sun) {
+						File target = new File(commonController.getUploadPath(), file_name.getSave_file_name()); //삭제할 파일 경로
+						if(target.exists()) {
+							target.delete(); //폴더에서 기존 첨부파일 지우기
+							boardDAO.deleteAttach(file_name.getSave_file_name()); //DB에서 기존 첨부파일 지우기
+						}
+					}
+					sun=sun+1;
+				}	
+				//신규파일 폴더에 업로드 처리
+				save_file_names[index] = commonController.fileUpload(file); //신규 팡리 폴더에 업로드
+				real_file_names[index] = file.getOriginalFilename(); //신규 파일 한글 파일명 저장
+			}else {
+				save_file_names[index]=null;
+				real_file_names[index]=null;
+			}
+			index = index+1;
+		}
+		//게시판 테이블 업데이트 + 첨부파일 테이블 업데이트
+		boardVO.setSave_file_names(save_file_names);
+		boardVO.setReal_file_names(real_file_names);
+		boardService.updateBoard(boardVO);
+		rdat.addFlashAttribute("msg", "수정");
+	
+		return "redirect:/home/board/board_view?bno="+boardVO.getBno()+"&page="+pageVO.getPage();
+	}
+		
 	@RequestMapping(value="/home/board/board_update", method=RequestMethod.GET)
 	public String board_update(Model model, @ModelAttribute("pageVO") PageVO pageVO, @RequestParam("bno") Integer bno) throws Exception {
 		BoardVO boardVO = boardService.readBoard(bno);

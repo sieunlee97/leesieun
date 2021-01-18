@@ -62,8 +62,8 @@
 				                    <label class="custom-file-label" for="customFile" style="color:#999;">파일첨부${index}</label>
 			                	</div>
 			                	<c:if test="${boardVO.save_file_names[index] != null}">
-			                	<br>
-									<div class="tit_lbl">
+			                		<br>
+									<div class="tit_lbl" style="width:100%;">
 										<a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}" > 다운로드링크[${index}](${boardVO.real_file_names[index]})</a> 
 										&nbsp;&nbsp;
 										<input type="hidden" value="${boardVO.save_file_names[index]}" name="save_file_name">
@@ -72,28 +72,7 @@
 								</c:if>
 								</div>
 		                    </c:forEach>
-		                    <script>
-								$(document).ready(function(){								
-									$(".btn_file_delete").on("click", function(){
-										if(confirm("선택한 첨부파일을 삭제하시겠습니까?")){
-											var click_btn = $(this); 
-											var save_file_name = click_btn.parent().find("input[name=save_file_name]").val();
-											//alert("디버그"+save_file_name);
-											$.ajax({
-												type:"post",
-												url:"/file_delete?save_file_name="+save_file_name,
-												dataType:"text",
-												success:function(result){
-													click_btn.parents().find(".div_file").remove();
-												},
-												error:function(result){
-													alert("RESTAPI 서버거ㅏ 작동하지 않습니다.")
-												}
-											});
-										}
-									});
-								});
-								</script>
+		                   
 		                </li>
 						
 					</ul>
@@ -142,6 +121,30 @@
 			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 		});
 	});//textarea 중 content아이디영역을 섬머노트에디터로 변경처리 함수실행
+	</script>
+	 <script>
+		$(document).ready(function(){								
+			$(".btn_file_delete").on("click", function(){
+				if(confirm("선택한 첨부파일을 삭제하시겠습니까?")){
+					var click_btn = $(this); 
+					var save_file_name = click_btn.parent().find("input[name=save_file_name]").val();
+					//alert("디버그"+save_file_name);
+					$.ajax({
+						type:"post",
+						url:"/file_delete?save_file_name="+save_file_name,
+						dataType:"text",
+						success:function(result){
+							if(result=="success"){
+								click_btn.parents(".div_file").remove();	
+							}
+						},
+						error:function(result){
+							alert("RESTAPI 서버거ㅏ 작동하지 않습니다.")
+						}
+					});
+				}
+			});
+		});
 	</script>
 
 <%@ include file="../include/footer.jsp" %>
