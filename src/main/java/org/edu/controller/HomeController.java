@@ -77,9 +77,19 @@ public class HomeController {
 	@RequestMapping(value="/home/board/board_update", method=RequestMethod.GET)
 	public String board_update(Model model, @ModelAttribute("pageVO") PageVO pageVO, @RequestParam("bno") Integer bno) throws Exception {
 		BoardVO boardVO = boardService.readBoard(bno);
-		//콘텐츠 내용 시큐어 코딩 처리
-		String xssData = securityCode.unscript(boardVO.getContent());
-		boardVO.setContent(xssData);
+		//첨부파일 처리(아래)
+		List<AttachVO> files = boardService.readAttach(bno);
+		//아래 변수는 List<AttachVO> 세로배치를 가로배치로 변경할 때 필요
+		String[] save_file_names = new String[files.size()];
+		String[] real_file_names = new String[files.size()];
+		int cnt = 0;
+		//세로 데이터를 가로 데이터로 변경하는 로직
+		for(AttachVO file_name:files) {
+			save_file_names[cnt] = file_name.getSave_file_name();
+			real_file_names[cnt] = file_name.getReal_file_name();
+			cnt = cnt+1;
+		}
+		
 		model.addAttribute("boardVO", boardVO);
 		return "home/board/board_update";
 	}

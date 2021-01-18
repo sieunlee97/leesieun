@@ -43,12 +43,13 @@
 		<property name="username" value="sa" />
 		<property name="password" value="" />
 	</bean>
-	<!-- CREATE TABLE 초기 1회만 실행 -->
 	
+	<!-- CREATE TABLE 초기 1회만 실행 -->
 	<!-- <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
 		<jdbc:script location="classpath:/db/embeded_hsql_file.sql" /> 
 	</jdbc:initialize-database>
 	 -->
+	 
 	<!-- jdbc:hsqldb:mem:dataSource / jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db -->
 	<!-- 테스트 실행용 DB매니저 실행:실제 사용시 아래 value - - 공백제거 하세요. -->
 	<!-- 
@@ -95,7 +96,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	   
 	 	<property name="dataSource" ref="dataSource-${DbType}" />
 	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래 classpath경로 src/main/resources/쿼리xml) -->
-	 	 <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+	 	 <property name="mapperLocations" value="classpath:mappers/**/${MapperType}/*Mapper.xml"></property>
 	</bean>
 	
 	<!-- 
