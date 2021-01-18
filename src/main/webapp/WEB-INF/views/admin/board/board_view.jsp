@@ -65,8 +65,7 @@
 	                <strong><i class="fas fa-paperclip mr-1"></i> 첨부파일${index}</strong>
 	                <p class="text-muted">
 	                <a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}"> <!-- 다운로드 링크 만들 예정 -->
-	                ${boardVO.real_file_names[index]}-파일다운로드-
-	                </a>
+	                ${boardVO.real_file_names[index]}-파일다운로드</a>
 	                <c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[index], '.')}" />
 	                <c:set var="extName" value="${fileNameArray[fn:length(fileNameArray)-1]}" />
 	                <!-- length결과는 2-1= 1 -->

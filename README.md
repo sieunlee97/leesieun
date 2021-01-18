@@ -37,6 +37,7 @@
 - 현재 해당되는 xml설정파일에서 개발용과 운영서버용 내용을 변경 처리해서 작업한다.
 - 현업1 : globals.properties파일을 만들어서 전역변수로 위 설정 내용을 변수처리해서 사용.
 - 현업2 : local.properties, prod.properties
+- > properties : 속성, product - 운영서버, local - 개발PC
 
 ### 20210115(금)
 - 서블렛자바+JSP(jstlX)프로그램 - 스트러츠웹프로그램만들기 - 스프링+jsp(jstl)웹프로그램만들기 - 미래에는 알지못하는 프레임워크
