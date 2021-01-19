@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.FilenameUtils;
 import org.edu.dao.IF_BoardDAO;
 import org.edu.service.IF_BoardService;
 import org.edu.util.CommonController;
@@ -50,6 +51,24 @@ public class HomeController {
 	@RequestMapping(value="/home/error/404", method=RequestMethod.GET)
 	public String error404() throws Exception {
 		return "home/error/404";
+	}
+	
+	@RequestMapping(value="/home/board/board_delete", method=RequestMethod.POST)
+	public String board_delete(RedirectAttributes rdat, @RequestParam("bno") Integer bno, @RequestParam("page") Integer page) throws Exception {
+		//부모 게시판에 참부파일이 있다면 첨부파일 삭제 처리 후 게시글 삭제(아래)
+		List<AttachVO> delFiles = boardService.readAttach(bno);
+		if(!delFiles.isEmpty()) {
+			for(AttachVO file_name : delFiles) {
+				File target = new File(commonController.getUploadPath(), file_name.getSave_file_name());
+				if(target.exists()) {
+					target.delete(); //실제파일 지우기
+				}
+			}
+		}
+		//DB에서 부모 게시판에 댓글이 있다면 댓글 삭제 처리 후 게시글 삭제 처리(아래)
+		boardService.deleteBoard(bno);
+		rdat.addFlashAttribute("msg", "삭제");
+		return "redirect:/home/board/board_list?page="+page;
 	}
 	
 	//사용자 홈페이지 게시판 뷰 매핑
@@ -111,6 +130,11 @@ public class HomeController {
 		//게시판 테이블 업데이트 + 첨부파일 테이블 업데이트
 		boardVO.setSave_file_names(save_file_names);
 		boardVO.setReal_file_names(real_file_names);
+		
+		//시큐어코딩 촉가(아래)
+		String xssData = boardVO.getContent();
+		boardVO.setContent(securityCode.unscript(xssData));
+				
 		boardService.updateBoard(boardVO);
 		rdat.addFlashAttribute("msg", "수정");
 	
@@ -136,6 +160,7 @@ public class HomeController {
 		boardVO.setSave_file_names(save_file_names);
 		boardVO.setReal_file_names(real_file_names);
 		
+		
 		model.addAttribute("boardVO", boardVO);
 		return "home/board/board_update";
 	}
@@ -159,6 +184,11 @@ public class HomeController {
 		}
 		boardVO.setSave_file_names(save_file_names);
 		boardVO.setReal_file_names(real_file_names);
+		
+		//보안코딩으로 script 제거(아래)
+		String xssData =  boardVO.getContent();
+		boardVO.setContent(securityCode.unscript(xssData));
+
 		
 		boardService.insertBoard(boardVO); //실제 DB에 insert
 		rdat.addFlashAttribute("msg", "저장");
@@ -200,7 +230,43 @@ public class HomeController {
 	
 	//사용자 홈페이지 접근 매핑
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String home() throws Exception {
+	public String home(Model model) throws Exception {
+		PageVO pageVO = new PageVO();
+		pageVO.setPage(1);
+		pageVO.setPerPageNum(5);
+		pageVO.setQueryPerPageNum(5);
+		List<BoardVO> board_list = boardService.selectBoard(pageVO);
+		//System.out.println("디버그 "+board_list);
+		model.addAttribute("board_list", board_list);
+		//첨부파일 1개만 model클래스를 이용해서 home.jsp로 보낸다.
+		String[] save_file_names = new String[board_list.size()];
+		int cnt=0;
+		for(BoardVO boardVO:board_list) {
+			List<AttachVO> file_list = boardService.readAttach(boardVO.getBno());
+			if(file_list.size() ==0) {	//첨부파일이 없을 때
+				save_file_names[cnt] = "";
+				System.out.println("디버그 ["+cnt+"] "+save_file_names[cnt]);
+			}
+			else {						//첨부파일이 있을 때
+				for(AttachVO file_name : file_list) {
+					String save_file_name = file_name.getSave_file_name();
+					String extName = FilenameUtils.getExtension(save_file_name); 
+					boolean imgCheck = commonController.getCheckImgArray().contains(extName.toLowerCase());
+					
+					if(imgCheck) { 		//첨부파일이 이미지일때
+						save_file_names[cnt] = save_file_name;
+						System.out.println("디버그 ["+cnt+"] "+save_file_names[cnt]);
+						break;
+					}
+					else { 				//첨부파일이 있지만, 이미지파일이 아닐때
+						save_file_names[cnt] = "";
+						System.out.println("디버그 ["+cnt+"] "+save_file_names[cnt]);
+					}
+				}
+			}
+			cnt=cnt+1;
+		}
+		model.addAttribute("save_file_names", save_file_names);
 		return "home/home"; 
 	}
 	

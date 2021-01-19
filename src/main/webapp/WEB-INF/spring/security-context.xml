@@ -55,7 +55,7 @@
 	<!-- 스프링에 내장되어 있는 인증제공자, userDetail과 userDetailService를 사용하겠다고 명시(아래) -->
 		<security:authentication-provider>
 			<security:jdbc-user-service 
-				data-source-ref="dataSource-${DbType}"
+				data-source-ref="dataSource"
 				users-by-username-query="select user_id as no, user_pw as password, enabled from tbl_member where user_id = ?"	
 				authorities-by-username-query="select user_id as no, levels as authority from tbl_member where user_id = ?"
 			/>

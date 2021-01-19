@@ -64,7 +64,7 @@
 			<p class="btn_line txt_right">
 				<a href="/home/board/board_list?page=${pageVO.page}" class="btn_bbs">목록</a>
 				<a href="/home/board/board_update?bno=${boardVO.bno}&page=${pageVO.page}" class="btn_bbs">수정</a>
-				<button class="btn_baseColor btn_smallColor">삭제</button>
+				<button id="btn_board_delete" class="btn_baseColor btn_smallColor">삭제</button>
 			</p>
 			
 		</div>
@@ -371,6 +371,20 @@ $(document).ready(function() {
     </div>
   </div>
 </div>
-	
+<form name="action_form">
+<input type="hidden" name="bno" value="${boardVO.bno}">
+<input type="hidden" name="page" value="${pageVO.page}">
+</form>
+<script>
+$(document).ready(function(){
+	$("#btn_board_delete").on("click",function(){
+		if(confirm("정말로 삭제 하시겠습니까?")) {
+			$("form[name='action_form']").attr("method","post");
+			$("form[name='action_form']").attr("action","/home/board/board_delete");
+			$("form[name='action_form']").submit();
+		}
+	});
+});
+</script>
 
 <%@ include file="../include/footer.jsp" %>

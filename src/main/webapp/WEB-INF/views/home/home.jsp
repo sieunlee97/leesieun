@@ -1,8 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@include file="include/header.jsp" %>
-	
+<style>
+div.txt{
+	height:100px;
+	overflow:hidden;
+	line-height: 17px;
+	padding-top:10px;
+}
+div.txt * { font-size: 14px !important; font-style:none;}
+.length_limit{
+   display: block;
+   padding-left: 14px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+</style>
+<script>
+$(document).ready(function(){
+	$(".opacity_hover img").on("mouseover", function(){
+		$(this).css("opacity", "1.0");
+	});
+	$(".opacity_hover img").on("mouseout", function(){
+		$(this).css("opacity", "0.8");
+	});
+});
+</script>
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 모바일+PC 공통슬라이드영역 -->
@@ -47,30 +71,30 @@
             </div>
         </div>
         <!-- //모바일+PC 공통슬라이드영역 -->
-	
+
 		<!-- 갤러리최근게시물영역 -->
 		<div class="about_area">
 			<h2>겔러리 최근 게시물 <b>TOP 3</b></h2>
 			<div class="about_box">
 				<ul class="place_list box_inner clear">
-					<li><a href="#" onclick="$('.popup_base').css('height',$(document).height());$('.contact_pop').show();">
-							<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" />
-							<h3>OOOO OOOOO</h3>
-							<p class="txt">OOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOO!</p>
-							<span class="view">VIEW</span></a>
+				<c:forEach var="boardVO" items="${board_list}" varStatus="status">
+					<c:if test="${status.count<=3}"> 
+					<li class="opacity_hover"><a href="/home/board/board_view?bno=${boardVO.bno}&page=1">
+						<div style="height:280px; overflow:hidden;">
+							<c:if test="${save_file_names[status.index] eq ''}">
+								<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.8;"/>
+							</c:if>
+							<c:if test="${save_file_names[status.index] ne '' }">
+							  <img class="img_topplace" alt="첨부파일 이미지입니다." src="/image_preview?save_file_name=${save_file_names[status.index]}" style="opacity:0.8;">
+							</c:if>
+						</div>
+							<h3 class="length_limit"><c:out value="${boardVO.title}"></c:out></h3>
+							<div class="txt">${boardVO.content}</div>
+							<span class="view">VIEW</span>
+						</a>
 					</li>
-					<li><a href="#" onclick="$('.popup_base').css('height',$(document).height());$('.space_pop').show();">
-							<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" />
-							<h3>OOOO OOOOO</h3>
-							<p class="txt">OOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOO.</p>
-							<span class="view">VIEW</span></a>
-					</li>
-					<li><a href="#" onclick="$('.popup_base').css('height',$(document).height());$('.program_pop').show();">
-							<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" />
-							<h3>OOOO OOOOO</h3>
-							<p class="txt">OOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOO</p>
-							<span class="view">VIEW</span></a>
-					</li>
+					</c:if>
+				</c:forEach>
 				</ul>
 			</div>
 		</div>
@@ -85,13 +109,12 @@
 					<a href="javascript:;">전화 상담 신청</a>
 				</p>
 				<div class="bbs_line">
-					<h3>NOTICE</h3>
+					<h3><a href="/home/board/board_list">NOTICE</a></h3>
 					<ul class="notice_recent">
-						<li><a href="javascript:;">OOOO OOOOO (스프링OOOO OOOOO)</a></li>
-						<li><a href="javascript:;">OOOO OOOOOOOOO OOOOO</a></li>
-						<li><a href="javascript:;">OOOO OOOOO/OOOO OOOOO</a></li>
-						<li><a href="javascript:;">OOOO OOOOO OPEN! (스프링정보, OOOO OOOOO)</a></li>
-						<li><a href="javascript:;">OOOO OOOOO 서비스 점검 안내</a></li>
+					<c:forEach var="boardVO" items="${board_list}">
+						<li><a href="/home/board/board_view?bno=${boardVO.bno}&page=1"><c:out value="${boardVO.title}"></c:out></a></li>
+					</c:forEach>
+						
 					</ul>
 				</div>
 			</div>
