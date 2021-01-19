@@ -17,8 +17,8 @@
 	padding-left: 5px;
     padding-top: 5px;
 }
-.radio_area input[type="radio"] {display:none;}
-.radio_area label {display: none;}
+/* .radio_area input[type="radio"] {display:none;}
+.radio_area label {display: none;} */
 .gender {
 	padding: 4px 10px;
     font-size: 14px;
@@ -68,43 +68,47 @@ $(document).ready(function() {
 					<p class="info_pilsoo pilsoo_item">필수입력</p>
 					<ul class="app_list">
 						<li class="clear">
+							<label for="user_id" class="tit_lbl pilsoo_item">아이디</label>
+							<div class="app_content"><input value="${memberVO.user_id}" readonly type="text" name="user_id"" class="w100p" id="user_id" placeholder="아이디를 입력해주세요" required/></div>
+						</li>
+						<li class="clear">
+							<label for="user-name_lbl" class="tit_lbl pilsoo_item">사용자명</label>
+							<div class="app_content"><input value="${memberVO.user_name}" type="text" name="name_name" class="w100p" id="user_name_lbl" placeholder="이름을 입력해주세요" required/></div>
+						</li>
+						<li class="clear">
 							<label for="email_lbl" class="tit_lbl pilsoo_item">이메일</label>
-							<div class="app_content"><input type="email" name="email"" class="w100p" id="email_lbl" placeholder="이메일을 입력해주세요" required/></div>
+							<div class="app_content"><input value="${email}" type="email" name="email"" class="w100p" id="email_lbl" placeholder="이메일을 입력해주세요" required/></div>
 						</li>
 						<li class="clear">
-							<label for="name_lbl" class="tit_lbl pilsoo_item">작성자명</label>
-							<div class="app_content"><input type="text" name="name" class="w100p" id="name_lbl" placeholder="이름을 입력해주세요" required/></div>
+							<label for="user_pw_lbl" class="tit_lbl pilsoo_item">비밀번호</label>
+							<div class="app_content"><input type="password" name="user_pw" class="w100p" id="user_pw_lbl" placeholder="비밀번호를 입력해주세요" required/></div>
 						</li>
 						<li class="clear">
-							<label for="password_lbl" class="tit_lbl pilsoo_item">비밀번호</label>
-							<div class="app_content"><input type="password" name="password" class="w100p" id="password_lbl" placeholder="비밀번호를 입력해주세요" required/></div>
+							<label for="user_pw_chk_lbl" class="tit_lbl pilsoo_item">비밀번호확인</label>
+							<div class="app_content"><input type="password" name="user_pw_chk" class="w100p" id="user_pw_chk_lbl" placeholder="비밀번로를 다시 입력해주세요" required/></div>
 						</li>
 						<li class="clear">
-							<label for="password_chk_lbl" class="tit_lbl pilsoo_item">비밀번호확인</label>
-							<div class="app_content"><input type="password" name="password_chk" class="w100p" id="password_chk_lbl" placeholder="비밀번로를 다시 입력해주세요" required/></div>
+							<label for="point_lbl" class="tit_lbl pilsoo_item">포인트</label>
+							<div class="app_content"><input value="${memberVO.point}" type="digits"" name="point" class="w100p" id="point_lbl" placeholder="휴대폰'-'없이 숫자만 입력해주세요" required/></div>
 						</li>
 						<li class="clear">
-							<label for="tel_lbl" class="tit_lbl pilsoo_item">연락처</label>
-							<div class="app_content"><input type="digits"" name="tel" class="w100p" id="tel_lbl" placeholder="휴대폰'-'없이 숫자만 입력해주세요" required/></div>
-						</li>
-						<li class="clear">
-							<label for="gender_lbl" class="tit_lbl pilsoo_item">성별</label>
+							<label for="enabled_lbl" class="tit_lbl pilsoo_item">회원권한</label>
 							<div class="app_content radio_area">
-								<input type="radio" name="gender" class="css-radio" id="man_lbl" checked="" />
-								<label for="man_lbl">남</label>
-								<input type="radio" name="gender" class="css-radio" id="woman_lbl" />
-								<label for="woman_lbl">여</label>
-								<select name="gender" class="gender" required>
-									<option value="" selected>성별을 선택해 주세요</option>
-									<option value="male">남자</option>
-									<option value="female">여자</option>
+								<select name="levels" class="gender" required>
+									<option value="ROLE_USER">일반사용자</option>
 								</select>
 							</div>
 						</li>
 						<li class="clear">
-							<label for="comment_lbl" class="tit_lbl pilsoo_item">문의내용</label>
-							<div class="app_content"><textarea name="comment" class="w100p" id="comment_lbl" placeholder="내용을 입력해주세요" required></textarea></div>
+							<label for="noUseenabled_lbl" class="tit_lbl pilsoo_item">탈퇴여부</label>
+							<div class="app_content radio_area">
+								<input type="radio" readonly name="enabled" class="css-radio" id="enabled_lbl" checked="" />
+								<label for="enabled_lbl">회원사용</label>
+								<input type="radio" readonly name="enabled" class="css-radio" id="disabled_lbl" />
+								<label for="disabled_lbl">회원탈퇴</label>
+							</div>
 						</li>
+						
 						<li class="clear">
 							<label for="agree_lbl" class="tit_lbl pilsoo_item">개인정보활용동의</label>
 							<div class="app_content checkbox_area"><input type="checkbox"" name="agree" class="css-checkbox" id="agree_lbl" required checked/>
