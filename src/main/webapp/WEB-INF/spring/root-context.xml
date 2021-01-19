@@ -17,16 +17,16 @@
         <property name="locations">
             <list>
             	<!-- 로컬개발일 때 사용 (아래) -->
-                <value>classpath:/properties/local.properties</value>
+                <!-- value>classpath:/properties/local.properties</value -->
                	<!-- 운영서버개발일 때 사용 (아래) -->
-                <!-- value>file:/properties/prod.properties</value-->
+                <value>file:/properties/prod.properties</value>
             </list>
         </property>
     </bean>
 	
-	<!-- Alias(별칭) dataSource 만들어서 사용할 수도 있음. (지금 사용 안 함) 
-	<alias name="dataSource-${Globals.DbType}" alias="dataSource" />
-	-->
+	<!-- Alias(별칭) dataSource 만들어서 사용할 수도 있음. (junit에서 사용) -->
+	<alias name="dataSource-${DbType}" alias="dataSource" />
+	
 	
 	<!-- HSQLDB FILE기반 사용 헤로쿠에 올릴때 생성경로는 /tmp/embeded/hsql_file.db , 로컬PC일때 경로는 c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false-->   
 	
@@ -45,10 +45,10 @@
 	</bean>
 	
 	<!-- CREATE TABLE 초기 1회만 실행 -->
-	<!-- <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
+	<jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
 		<jdbc:script location="classpath:/db/embeded_hsql_file.sql" /> 
 	</jdbc:initialize-database>
-	 -->
+	
 	 
 	<!-- jdbc:hsqldb:mem:dataSource / jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db -->
 	<!-- 테스트 실행용 DB매니저 실행:실제 사용시 아래 value - - 공백제거 하세요. -->
@@ -94,7 +94,7 @@
 		SqlSessionFactory : myBatis와 스프링의 Connection 생성후 쿼리 위치지정.
 	 -->		 		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	   
-	 	<property name="dataSource" ref="dataSource-${DbType}" />
+	 	<property name="dataSource" ref="dataSource" />
 	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래 classpath경로 src/main/resources/쿼리xml) -->
 	 	 <property name="mapperLocations" value="classpath:mappers/**/${MapperType}/*Mapper.xml"></property>
 	</bean>
@@ -118,7 +118,7 @@
 	<!-- 대표적으로 상세보기에도 추가, 게시판 입력 트랜잭션에서 이용 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource-${DbType}"></property>
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
 	<!-- 배치작업 -->
