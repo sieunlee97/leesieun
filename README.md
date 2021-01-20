@@ -112,7 +112,7 @@
 - 사용자단 html(https://miniplugin.github.io/) 소스를 커스터마이징 후 jsp로 만들기.
 - 부트스트랩과 AdminLTE라이브러리 가져오기(board_view[write].html 상단에 추가:아래)
 
-'''html
+```
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
 <!-- Bootstrap 4 -->
@@ -123,7 +123,7 @@
 <!-- write.html은 서머노트 웹에디터 부분 추가(아래) -->
 <link rel="stylesheet" href="/resources/plugins/summernote/summernote.css">
 <script src="/resources/plugins/summernote/summernote.js"></script>
-'''
+```
 
 - 인터셉터(가로채기-Interceptor)클래스를 이용해서, 예외처리를 공통 error.jsp 로 바인딩 처리.
 - 스프링시큐리티 로그인 구현 pom.xml 의존성 추가(회원가입시 패스워드 암호화 추가).
@@ -143,7 +143,7 @@ https://m.blog.naver.com/PostView.nhn?blogId=sksk3479&logNo=221175889439&proxyRe
 - 우리가 사용한 경우: 달력 인스턴스 생성. Calendar.getInstance() 참조정보(아래)
 https://m.blog.naver.com/PostView.nhn?blogId=heartflow89&logNo=221001179016&proxyReferer=https:%2F%2Fwww.google.com%2F
 
-'''java
+```java
 class Singleton{
 	private static Singleton instance = new Singleton(); // 정적필드 / 인스턴스 생성 
 	private Singleton(){} // private 생성자
@@ -163,7 +163,7 @@ public class SingletonEx {
 		}
 	}
 }
-'''
+```
 
 ### 20210106(수)
 - [X] 부메랑 이용해서 댓글 CRUD 테스트 마무리.
@@ -330,7 +330,7 @@ j
 ### 202012222(화)
 - 한글 POST시 깨지는 문제 : web.xml에서 한글 처리를 위한 UTF-8 필터 추가
 
-'''
+```
 <!--  필터는 HTTP통신하는 자료를 걸러주는 역할, 한글처리를 위한 UTF-8 필터 추가 -->
 	<filter>
 	  <filter-name>encoding</filter-name>
@@ -344,7 +344,7 @@ j
 	  <filter-name>encoding</filter-name>
 	  <url-pattern>/*</url-pattern>
 	</filter-mapping>
-'''
+```
 
 - 오후 수업
 - > ID수정 방지 기능, enabled값 jsp바인딩처리 확인. 업데이트 마무리
@@ -951,14 +951,14 @@ DataSource(커넥션) - sqlSessionFactory(쿼리생성) - sqlSessionTemplate(쿼
 - reset.css : 크로스 부라우징 사전처리 역할
 - * 크로스브라우징 : IE, 크롬, 파이어폭스, 사파리 등 다양한 웹브라우저 콘텐츠가 같은 크기로 보이게 하는 역할
 
-'''
+```css
   *, :after, :before { /* 콜론 : 의 의미 - 가상요소 */
     -webkit-box-sizing: border-box; /* 크롬, 사파리용 크로스브라우징 때문에 추가  */
     -moz-box-sizing: border-box; /* 파이어폭스용 크로스브라우징 때문에 추가  */
     box-sizing: border-box; /* IE용 박스크기를 지정하는데 테두리 포함하겠다. */
 	}
 
-'''
+```
 
 - 인덱스(index) : 색인, 특징-0부터 시작하는 순서를 가지게 된다.
 - 대표적인 에러메시지 ( HTTP Status 웹프라우저 상태 에러 )
