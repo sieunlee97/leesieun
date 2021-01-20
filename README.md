@@ -112,7 +112,7 @@
 - 사용자단 html(https://miniplugin.github.io/) 소스를 커스터마이징 후 jsp로 만들기.
 - 부트스트랩과 AdminLTE라이브러리 가져오기(board_view[write].html 상단에 추가:아래)
 
-'''
+'''html
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
 <!-- Bootstrap 4 -->
@@ -123,7 +123,6 @@
 <!-- write.html은 서머노트 웹에디터 부분 추가(아래) -->
 <link rel="stylesheet" href="/resources/plugins/summernote/summernote.css">
 <script src="/resources/plugins/summernote/summernote.js"></script>
-
 '''
 
 - 인터셉터(가로채기-Interceptor)클래스를 이용해서, 예외처리를 공통 error.jsp 로 바인딩 처리.
@@ -144,8 +143,7 @@ https://m.blog.naver.com/PostView.nhn?blogId=sksk3479&logNo=221175889439&proxyRe
 - 우리가 사용한 경우: 달력 인스턴스 생성. Calendar.getInstance() 참조정보(아래)
 https://m.blog.naver.com/PostView.nhn?blogId=heartflow89&logNo=221001179016&proxyReferer=https:%2F%2Fwww.google.com%2F
 
-'''
-
+'''java
 class Singleton{
 	private static Singleton instance = new Singleton(); // 정적필드 / 인스턴스 생성 
 	private Singleton(){} // private 생성자
@@ -165,7 +163,6 @@ public class SingletonEx {
 		}
 	}
 }
-
 '''
 
 ### 20210106(수)
