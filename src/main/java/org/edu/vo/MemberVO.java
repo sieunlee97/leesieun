@@ -2,6 +2,8 @@ package org.edu.vo;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,6 +18,7 @@ public class MemberVO {
 	private String user_pw;
 	private String user_name;
 	private String email;
+	@Min(value=0, message="0보다 큰 숫자만 입력 가능합니다.")
 	private Integer point; //int(not null) 기본형 -> Integer(null 가능) 참조형 클래스변수
 	private Boolean enabled; // Boolean형은 true, false 2개의 값 중 1개
 	private String levels;

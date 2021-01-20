@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.edu.dao.IF_BoardDAO;
 import org.edu.service.IF_BoardService;
@@ -281,7 +282,7 @@ public class AdminController {
 	
 	// 메소드 오버로딩(ex. 동영상 로딩중.., 로딩된 매개변수가 다르면, 메소드 이름 중복가능하다. 대표적인 다형성 구현)
 	@RequestMapping(value="/admin/member/member_write", method=RequestMethod.POST)
-	public String member_write(MemberVO memberVO) throws Exception{
+	public String member_write(@Valid MemberVO memberVO) throws Exception{
 		// POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호화시킴
 		if(memberVO.getUser_pw() != null) {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -309,7 +310,7 @@ public class AdminController {
 		return "admin/member/member_update";
 	}
 	@RequestMapping(value="/admin/member/member_update", method=RequestMethod.POST)
-	public String member_update(@ModelAttribute("pageVO") PageVO pageVO, MemberVO memberVO) throws Exception {
+	public String member_update(@ModelAttribute("pageVO") PageVO pageVO, @Valid MemberVO memberVO) throws Exception {
 		// POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호화시킴
 		if(memberVO.getUser_pw() != null) {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
