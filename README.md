@@ -29,14 +29,21 @@
 - [X] 사용자단 CRUD 구현.
 - [ ] 오라클로 마이그레이션 작업.
 - [ ] 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
-- [ ] 
 
 ## v6.0.0 UI구현
+### 20210120(수)
+- 이론 ch13 - ch16 마무리
+- 마이페이지 권한 부분에서 ROLE_ADMIN 추가 및 disabled 처리 및 input hidden으로 값 지정.
+- 회원탈퇴 여부도 disabled 처리 및 input hidden으로 값 지정.
+- 사용자단, 유효성 검사 기능을 포함하여 마이페이지 완료.
+- 관리자단, @Valid 어노테이션 사용해서 유효성 검사 실습.(pom,xml 외부모듈추가)
+
 ### 20210119(화)
 - [X] 메인 페이지 최근 게시물 처리, 최근 이미지 처리 
 - [X] 헤로쿠 배포
-- [ ] 
-
+- [X] 사용자단 게시판 CRUD 마무리
+- root-context.xml에서, dataSource-hsql_local을 dataSource로 alias 별칭 만들어서  Junit DB 작동 처리
+- @PropertySource("classpath:properties/local.properties") JUnit 파일 상단에 추가 (전역변수 필요 없음)
 
 ### 20210118(월)
 - 로컬 PC의 DB설정 파일 : 개발용 - 헤로쿠용 DB설정 파일 : 운영서버용
@@ -116,14 +123,50 @@
 <!-- write.html은 서머노트 웹에디터 부분 추가(아래) -->
 <link rel="stylesheet" href="/resources/plugins/summernote/summernote.css">
 <script src="/resources/plugins/summernote/summernote.js"></script>
+
 '''
 
 - 인터셉터(가로채기-Interceptor)클래스를 이용해서, 예외처리를 공통 error.jsp 로 바인딩 처리.
 - 스프링시큐리티 로그인 구현 pom.xml 의존성 추가(회원가입시 패스워드 암호화 추가).
 
 ### 20210107(목)
-- [X] 댓글 기능 구현
-- [X] JSP에서 Ajax + Jquery 화면 처리 마무리
+- [X] 댓글 기능 구현, CRUD 마무리
+- > btn_reply_list 버튼 id에 부트스트랩(jquery기반의 프레임워크)의 토글 기능 넣어서 하단 댓글 리스트(페이징포함)를 나타내고 숨기는 기능 추가
+- > 1. 액션버튼 부분 : data-toggle="collapse" data-target="#div_reply"
+- > 2. 대상 타겟 부분 : 토글영역
+- [X] 댓글 JSP에서 Ajax + Jquery 화면 처리 마무리
+- prepend, append, after : Jquery 기능
+------------------------------------------------------------------------
+- Ps.싱글톤이 사용되는 이유참조: https://shxrecord.tistory.com/132
+- Ps.싱글톤 빈(스프링)에 대해서(1개의 빈은 1개의 빈객체만 생성해서 사용하겠다명시)
+https://m.blog.naver.com/PostView.nhn?blogId=sksk3479&logNo=221175889439&proxyReferer=https:%2F%2Fwww.google.com%2F
+- Ps.싱글톤 클래스(자바)에 대해서(1개의 클래스는 1개의 인스턴스만 생성해서 사용하겠다명시)
+- 우리가 사용한 경우: 달력 인스턴스 생성. Calendar.getInstance() 참조정보(아래)
+https://m.blog.naver.com/PostView.nhn?blogId=heartflow89&logNo=221001179016&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+'''
+
+class Singleton{
+	private static Singleton instance = new Singleton(); // 정적필드 / 인스턴스 생성 
+	private Singleton(){} // private 생성자
+	public static Singleton getInstance(){ // getInstance 메서드 정의
+		return instance; // instance 객체 리턴
+	}
+}
+public class SingletonEx {
+	public static void main(String[] args) {
+		Singleton st1 = Singleton.getInstance(); // 싱글톤 인스턴스 호출
+		Singleton st2 = Singleton.getInstance();
+//		Singleton st3 = new Singleton(); // 생성자 이용 인스턴스 생성 불가
+		if(st1 == st2){
+			System.out.println("동일 객체");
+		}else{
+			System.out.println("다른 객체");
+		}
+	}
+}
+
+'''
 
 ### 20210106(수)
 - [X] 부메랑 이용해서 댓글 CRUD 테스트 마무리.
