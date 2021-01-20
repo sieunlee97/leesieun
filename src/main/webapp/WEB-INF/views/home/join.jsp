@@ -53,10 +53,49 @@ jQuery(document).ready(function(){
 	//목적2 PHP기반 - $사용하면 작동X, jQuery로 사용해야 작동O
 	//단점 : 타이핑 할 문자 수 많음
 	//alert("jQuery로 명시해도 실행되는지?");
-	jQuery("#btn_join").attr("disabled", "true"); //초기에는 submit 버튼 비활성화
+	jQuery("#btn_join").attr("disabled", true); //초기에는 submit 버튼 비활성화
 	jQuery("#btn_join").css("opacity","0.5");
+	jQuery("input[name='user_id']").bind("blur", function(){
+		//blur액션은 focus액션과는 반대. 선택을 벗어났을 때 이벤트
+		var user_id = jQuery(this).val();
+		if(user_id=="") {
+			alert("아이디 값은 필수 입력입니다.");
+			return false;
+		}
+		jQuery.ajax({
+			method:"get",
+			url:"id_check?user_id="+user_id,
+			dataType:"text",
+			success:function(result){
+				if(result=='0'){
+					alert('사용가능한 아이디입니다.');
+					jQuery("#btn_join").attr("disabled", false);
+					jQuery("#btn_join").css("opacity","1");
+				}
+				if(result=='1') {
+					alert('중복 아이디가 존재합니다.');
+					jQuery("input[name='user_id']").focus();
+					jQuery("#btn_join").attr("disabled", true);
+					jQuery("#btn_join").css("opacity","0.5");
+				}
+			},
+			error:function(result){
+				alert("REST-API 서버가 작동하지 않습니다.")
+			}
+		});
+	});
 });
 </script>
+<!-- 아래방식 대신 다른 방식 사용 -->
+<!-- <script>
+jQuery(document).ready(function(){
+	jQuery("form[name='join_form']").on("submit", function(event){
+		event.preventDefault();
+		jQuery("input[name='enabled']").attr("disabled", false);
+		jQuery(this).submit();
+	});
+});
+</script> -->
 
 <!-- 메인콘텐츠영역 -->
 	<div id="container">
@@ -75,7 +114,7 @@ jQuery(document).ready(function(){
 		<!-- 메인본문영역 -->
 		<div class="bodytext_area box_inner">
 			<!-- 폼영역 -->
-			<form method="POST" name="join_form" action="/member/member_write" class="appForm">
+			<form method="POST" name="join_form" action="/join" class="appForm">
 				<fieldset>
 					<legend>회원가입폼</legend>
 					<p class="info_pilsoo pilsoo_item">필수입력</p>
@@ -102,7 +141,7 @@ jQuery(document).ready(function(){
 						</li>
 						<li class="clear">
 							<label for="point_lbl" class="tit_lbl pilsoo_item">포인트</label>
-							<div class="app_content"><input type="digits" name="point" class="w100p" id="point_lbl" placeholder="숫자만 입력해주세요" required/></div>
+							<div class="app_content"><input readonly value="10" type="digits" name="point" class="w100p" id="point_lbl" placeholder="숫자만 입력해주세요" required/></div>
 						</li>
 						<li class="clear">
 							<label for="enabled_lbl" class="tit_lbl pilsoo_item">회원권한</label>
@@ -113,10 +152,11 @@ jQuery(document).ready(function(){
 							</div>
 						</li>
 						<li class="clear">
-							<label for="noUseenabled_lbl" class="tit_lbl pilsoo_item">탈퇴여부</label>
+							<label for="noUseenabled_lbl" class="tit_lbl pilsoo_item">대기여부</label>
 							<div class="app_content radio_area">
-								<input type="radio" name="enabled" class="css-radio" id="enabled_lbl" checked/>
-								<label for="enabled_lbl">회원사용</label>
+								<input disabled checked type="radio" name="" class="css-radio" id="enabled_lbl"/>
+								<label for="enabled_lbl">인증대기[관리자가 승인해야 로그인이 가능합니다.]</label>
+								<input type="hidden" name="enabled" value="0">
 							</div>
 						</li>
 						<li class="clear">
