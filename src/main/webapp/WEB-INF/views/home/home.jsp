@@ -6,7 +6,7 @@ div.txt{
 	height:100px;
 	overflow:hidden;
 	line-height: 17px;
-	padding-top:10px;
+	padding-top:14px;
 }
 div.txt * { font-size: 14px !important; font-style:none;}
 .length_limit{
@@ -80,7 +80,7 @@ $(document).ready(function(){
 				<c:forEach var="boardVO" items="${board_list}" varStatus="status">
 					<c:if test="${status.count<=3}"> 
 					<li class="opacity_hover"><a href="/home/board/board_view?bno=${boardVO.bno}&page=1">
-						<div style="height:280px; overflow:hidden;">
+						<div style="height:300px;" >
 							<c:if test="${save_file_names[status.index] eq ''}">
 								<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.8;"/>
 							</c:if>

@@ -81,11 +81,11 @@ $(document).ready(function() {
 						</li>
 						<li class="clear">
 							<label for="user_pw_lbl" class="tit_lbl pilsoo_item">비밀번호</label>
-							<div class="app_content"><input type="password" name="user_pw" class="w100p" id="user_pw_lbl" placeholder="비밀번호를 입력해주세요" required/></div>
+							<div class="app_content"><input type="password" name="user_pw" class="w100p" id="user_pw_lbl" placeholder="비밀번호를 입력해주세요"/></div>
 						</li>
 						<li class="clear">
 							<label for="user_pw_chk_lbl" class="tit_lbl pilsoo_item">비밀번호확인</label>
-							<div class="app_content"><input type="password" name="user_pw_chk" class="w100p" id="user_pw_chk_lbl" placeholder="비밀번로를 다시 입력해주세요" required/></div>
+							<div class="app_content"><input type="password" name="user_pw_chk" class="w100p" id="user_pw_chk_lbl" placeholder="비밀번로를 다시 입력해주세요"/></div>
 						</li>
 						<li class="clear">
 							<label for="point_lbl" class="tit_lbl pilsoo_item">포인트</label>
@@ -94,24 +94,27 @@ $(document).ready(function() {
 						<li class="clear">
 							<label for="enabled_lbl" class="tit_lbl pilsoo_item">회원권한</label>
 							<div class="app_content radio_area">
-								<select name="levels" class="gender" required>
+								<select disabled name="" class="gender">
 									<option value="ROLE_USER">일반사용자</option>
+									<option value="ROLE_ADMIN">관리자</option>
 								</select>
+								<input type="hidden" name="levels" value="${memberVO.levels}" readonly>
 							</div>
 						</li>
 						<li class="clear">
 							<label for="noUseenabled_lbl" class="tit_lbl pilsoo_item">탈퇴여부</label>
 							<div class="app_content radio_area">
-								<input type="radio" readonly name="enabled" class="css-radio" id="enabled_lbl" checked="" />
+								<input disabled type="radio" readonly name="enabled" class="css-radio" id="enabled_lbl" checked="" />
 								<label for="enabled_lbl">회원사용</label>
-								<input type="radio" readonly name="enabled" class="css-radio" id="disabled_lbl" />
+								<input disabled type="radio" readonly name="enabled" class="css-radio" id="disabled_lbl" />
 								<label for="disabled_lbl">회원탈퇴</label>
+								<input type="hidden" name="enabled" value="${memberVO.enabled}" readonly>
 							</div>
 						</li>
 						
 						<li class="clear">
 							<label for="agree_lbl" class="tit_lbl pilsoo_item">개인정보활용동의</label>
-							<div class="app_content checkbox_area"><input type="checkbox"" name="agree" class="css-checkbox" id="agree_lbl" required checked/>
+							<div class="app_content checkbox_area"><input disabled type="checkbox"" name="agree" class="css-checkbox" id="agree_lbl" required checked/>
 							<label for="agree_lbl" class="agree">동의함</label>
 							</div>
 						</li>

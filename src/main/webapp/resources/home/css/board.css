@@ -245,7 +245,7 @@ input::placeholder {
 }
 .app_content input {
 	border: none;
-	width: 100% !important;
+	width:inherit !important;
 	box-sizing: border-box;
 	display: inline-block;
 	height: 45px;
