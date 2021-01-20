@@ -245,12 +245,12 @@ input::placeholder {
 }
 .app_content input {
 	border: none;
-	width:inherit !important;
+	width: 100% !important;
 	box-sizing: border-box;
 	display: inline-block;
 	height: 45px;
 	padding: 0 10px;
-	/*background-color: #fff; */
+	background-color: #fff;
 	line-height: normal;
 	font-size: 15px;
 }

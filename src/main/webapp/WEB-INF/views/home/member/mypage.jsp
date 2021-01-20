@@ -3,6 +3,9 @@
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" href="/resources/home/css/board.css">
 <link rel="stylesheet" href="/resources/home/css/join.css">
+<!-- html5가 아닌 유효성 검사 라이브러리(아래) -->
+<script src="/resources/home/js/jquery.validate.js"></script>
+<script src="/resources/home/js/additional-methods.js"></script>
 <style>
 .myinfo {
 	width: 170px;
@@ -28,9 +31,9 @@
 $(document).ready(function() {
 	$(".appForm").validate({
 		rules: {
-			password: "required",
-			password_chk: {
-				equalTo: "#password_lbl"
+			//user_pw: "required",
+			user_pw_chk: {
+				equalTo: "#user_pw_lbl"
 			}
 		}
 	});
@@ -39,6 +42,18 @@ $(document).ready(function() {
 		email: "유효하지 않는 Email주소 입니다.",
 		digits: "숫자만 입력 가능합니다.",
 		equalTo: "비밀번호가 일치하지 않습니다."
+	});
+});
+</script>
+<script>
+//회원탈퇴 처리 코딩(아래)
+$(document).ready(function(){
+	$("#btn_member_disabled").on("click", function(){
+		if(confirm("정말 탈퇴하시겠습니까? 탈퇴 후 1년동안 재가입할 수 없습니다.")){
+			$("form[name='mypage_form']").attr("action", "/member/member_disabled");
+			$("input[name='enabled']").val('0'); //enabled값이 0(false)면 로그인 거부 set
+			$("form[name='mypage_form']").submit();
+		}
 	});
 });
 </script>
@@ -62,7 +77,7 @@ $(document).ready(function() {
 		<div class="bodytext_area box_inner">
 			<div class="myinfo">내 정보</div>
 			<!-- 폼영역 -->
-			<form method="POST" name="join_form" action="join.html" class="appForm">
+			<form method="POST" name="mypage_form" action="/member/mypage_update" class="appForm">
 				<fieldset>
 					<legend>회원가입폼</legend>
 					<p class="info_pilsoo pilsoo_item">필수입력</p>
@@ -73,11 +88,11 @@ $(document).ready(function() {
 						</li>
 						<li class="clear">
 							<label for="user-name_lbl" class="tit_lbl pilsoo_item">사용자명</label>
-							<div class="app_content"><input value="${memberVO.user_name}" type="text" name="name_name" class="w100p" id="user_name_lbl" placeholder="이름을 입력해주세요" required/></div>
+							<div class="app_content"><input value="${memberVO.user_name}" type="text" name="user_name" class="w100p" id="user_name_lbl" placeholder="이름을 입력해주세요" required/></div>
 						</li>
 						<li class="clear">
 							<label for="email_lbl" class="tit_lbl pilsoo_item">이메일</label>
-							<div class="app_content"><input value="${email}" type="email" name="email"" class="w100p" id="email_lbl" placeholder="이메일을 입력해주세요" required/></div>
+							<div class="app_content"><input value="${memberVO.email}" type="email" name="email" class="w100p" id="email_lbl" placeholder="이메일을 입력해주세요" required/></div>
 						</li>
 						<li class="clear">
 							<label for="user_pw_lbl" class="tit_lbl pilsoo_item">비밀번호</label>
@@ -95,8 +110,8 @@ $(document).ready(function() {
 							<label for="enabled_lbl" class="tit_lbl pilsoo_item">회원권한</label>
 							<div class="app_content radio_area">
 								<select disabled name="" class="gender">
-									<option value="ROLE_USER">일반사용자</option>
-									<option value="ROLE_ADMIN">관리자</option>
+									<option value="ROLE_USER" <c:out value="${meberVO.levels=='ROLE_USER'? 'selected':''}"/>>일반사용자</option>
+									<option value="ROLE_ADMIN" <c:out value="${memberVO.levels=='ROLE_ADMIN'? 'selected':''}"/> >관리자</option>
 								</select>
 								<input type="hidden" name="levels" value="${memberVO.levels}" readonly>
 							</div>
@@ -104,9 +119,9 @@ $(document).ready(function() {
 						<li class="clear">
 							<label for="noUseenabled_lbl" class="tit_lbl pilsoo_item">탈퇴여부</label>
 							<div class="app_content radio_area">
-								<input disabled type="radio" readonly name="enabled" class="css-radio" id="enabled_lbl" checked="" />
+								<input <c:out value=" ${memberVO.enabled eq 'true'?'checked':''} " /> disabled type="radio" readonly name="" class="css-radio" id="enabled_lbl" checked="" />
 								<label for="enabled_lbl">회원사용</label>
-								<input disabled type="radio" readonly name="enabled" class="css-radio" id="disabled_lbl" />
+								<input <c:out value=" ${memberVO.enabled eq 'false'? 'checked':''} " /> disabled type="radio" readonly name="" class="css-radio" id="disabled_lbl" />
 								<label for="disabled_lbl">회원탈퇴</label>
 								<input type="hidden" name="enabled" value="${memberVO.enabled}" readonly>
 							</div>
@@ -120,8 +135,8 @@ $(document).ready(function() {
 						</li>
 					</ul>
 					<p class="btn_line">
-					<button class="btn_baseColor">정보수정</button>
-					<button class="btn_baseColor">회원탈퇴</button>
+					<button type="submit" class="btn_baseColor">정보수정</button>
+					<button type="button" class="btn_baseColor" id="btn_member_disabled">회원탈퇴</button>
 					</p>	
 				</fieldset>
 			</form>
