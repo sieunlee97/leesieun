@@ -10,6 +10,11 @@ if("${param.msg}" == "fail"){
 	//스프링 시큐리티는 세션을 발생시킨다. 위 자바 변수 중 세션 스코프는 세션영역을 말한다.
 }
 </script>
+<script>
+$(document).ready(function(){
+	$("input[name='user_id']").focus(); //페이지로딩시 첫번째 입력위치로 이동
+});
+</script>
 <!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 메인상단위치표시영역 -->

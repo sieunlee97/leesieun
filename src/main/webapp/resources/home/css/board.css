@@ -250,7 +250,7 @@ input::placeholder {
 	display: inline-block;
 	height: 45px;
 	padding: 0 10px;
-	background-color: #fff;
+	/*background-color: #fff;*/
 	line-height: normal;
 	font-size: 15px;
 }
