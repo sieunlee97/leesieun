@@ -1,5 +1,6 @@
 package org.edu.controller;
 
+import java.io.IOException;
 import java.util.Collection;
 
 import javax.inject.Inject;
@@ -8,26 +9,60 @@ import javax.servlet.http.HttpSession;
 
 import org.edu.service.IF_MemberService;
 import org.edu.vo.MemberVO;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class LoginController {
 	@Inject
 	IF_MemberService memberService;
+	
+	@Inject
+	private NaverLoginController naverLoginController;
+	
 	//로그인 후 세션 처리 매핑 - 네이버 아이디 로그인 로직일 떄
-	//session(인증토큰정보), state(유효성 검증용 UUID정보)
+	//session(인증토큰정보), state(유효성 검증용 UUID정보), code(인증성공/실패코드 ex) 00 OK / 01 Error)
 	@RequestMapping(value="/login_callback", method= {RequestMethod.GET, RequestMethod.POST})
-	public String login_callback() throws Exception {
+	public String login_callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, RedirectAttributes rdat) throws IOException, ParseException {
+
+		OAuth2AccessToken oauthToken; //토큰으로 사용할 변수 선언 
 		
-		return null;
+		//NaverLoginController의 메소드 호출(아래)
+		oauthToken = naverLoginController.getAccessToken(session, code, state) ;
+		
+		//네이버로그인한 사용자 정보(profile)을 읽어온다(아래)
+		String apiResult = naverLoginController.getUserProfile(oauthToken); //이름, 이메일 자료
+		//위 String형 apiResult 값을 json형태로 파싱한다.(아래)
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(apiResult); //apiResult 문자열 값을 HashMap<키:값> JSON형태로 변환
+		JSONObject jsonObj = (JSONObject)obj; //여기서 Json 오브젝트가 된다. (jsonObj - 파싱한 1차데이터)
+		/*JSON데이터 */
+		/* apiResult json 구조
+	    {"resultcode":"00",
+	    "message":"success",
+	    "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+	    */
+		//위 1차 데이터 중 response 키로 분리한 값(아래)
+		JSONObject response_obj = (JSONObject) jsonObj.get("response"); // (response_obj - 2차데이터)
+		
+		//위 response_obj 파싱(분리)
+		
+		rdat.addFlashAttribute("msg", "네이버 아이디 로그인");
+		return "redirect:/";
 	}
 	
 	//로그인 후 세션 처리 매핑 - 스프링 시큐리티 로직일 때
