@@ -172,7 +172,7 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-		<!-- JSON(HashMap)데이터를 jsp로 반환하려고 할 때 처리하는 모듈 -->
+		<!-- JSON(HashMap)데이터(=반환값 ResponseEnttity<HashMap>)를 jsp로 반환하려고 할 때 처리하는 모듈 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -229,6 +229,18 @@
 		  <artifactId>hibernate-validator</artifactId>
 		  <version>5.4.2.Final</version>
 		</dependency>
+		<!-- naver -->
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		<!-- naver 리턴값 json파싱 -->
+		<dependency>
+		      <groupId>com.googlecode.json-simple</groupId>
+		      <artifactId>json-simple</artifactId>
+		      <version>1.1</version>
+  		</dependency>
 		
 	</dependencies>
     <build>
