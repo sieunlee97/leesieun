@@ -8,6 +8,7 @@ import org.edu.util.NaverLoginApi;
 import org.springframework.stereotype.Controller;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 @Controller
@@ -46,7 +47,19 @@ public class NaverLoginController {
 		
 		return oauthService.getAuthorizationUrl();
 	}
-
+	
+	/*네아로 Callback 처리 및 Access Token 구하기 메소드*/
+	public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) {
+		// 콜백URL로 전달받은 세션 검증용 난수값과 세션에 저장되어있는 값이 일치하는지 확인
+		String sessionState = getSession(session);
+		return null;
+	}
+	
+	private String getSession(HttpSession session) {
+		//http에서 session값 가져오기
+		return (String)session.getAttribute(SESSION_STATE);
+	}
+	
 	private void setSession(HttpSession session, String state) {
 		// http session 클래스에 데이터 저장
 		session.setAttribute(SESSION_STATE, state); //고유한 UUID값이 세션으로 저장
