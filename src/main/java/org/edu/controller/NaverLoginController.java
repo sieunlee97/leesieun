@@ -1,14 +1,19 @@
 package org.edu.controller;
 
+import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.edu.util.NaverLoginApi;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 @Controller
@@ -24,7 +29,7 @@ public class NaverLoginController {
 	
 	private final static String CLIENT_ID = "8vl0NWZbnTq1_R7BWOyX";
 	private final static String CLIENT_SECRET ="qIZzDwb0ju";
-	private final static String REDIRECT_URI = "http://127.0.0.1:8080/login";
+	private final static String REDIRECT_URI = "http://127.0.0.1:8080/login_callback";
 	private final static String SESSION_STATE = "oauth_state";
 	
 	/*프로필 조회 API URL - 사용자 이름 + 사용자 이메일 가져옴*/
@@ -49,10 +54,21 @@ public class NaverLoginController {
 	}
 	
 	/*네아로 Callback 처리 및 Access Token 구하기 메소드*/
-	public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) {
+	public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) throws IOException {
 		// 콜백URL로 전달받은 세션 검증용 난수값과 세션에 저장되어있는 값이 일치하는지 확인
 		String sessionState = getSession(session);
-		return null;
+		if(StringUtils.pathEquals(sessionState, state)) {
+			OAuth20Service oauthService = new ServiceBuilder()
+					.apiKey(CLIENT_ID)
+					.apiSecret(CLIENT_SECRET)
+					.callback(PROFILE_API_URL)
+					.state(state)
+					.build(NaverLoginApi.instance());
+			/*Scribe 외부 모듈에서 제공하는 네아로 AccessToken을 획득 */
+			OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
+			return accessToken; // 인증받은 토큰 정보를 리턴 반환.
+		}
+		return null; //인증 받지 못하면, null값을 반환.
 	}
 	
 	private String getSession(HttpSession session) {
@@ -70,4 +86,16 @@ public class NaverLoginController {
 		return UUID.randomUUID().toString();
 	}
 	
+	/*Access Token을 이용하여 네이버 사용자 프로필 API 호출 = 여기서 네이버 이름, 이메일을 반환*/
+	public String getUserProfile(OAuth2AccessToken oauthToken) throws IOException {
+		OAuth20Service oauthService = new ServiceBuilder()
+				.apiKey(CLIENT_ID)
+				.apiSecret(CLIENT_SECRET)
+				.callback(REDIRECT_URI)
+				.build(NaverLoginApi.instance()); //인스턴스 클래스(=실행클래스) 생성
+		OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
+		oauthService.signRequest(oauthToken, request);
+		Response response = request.send(); //Response 클래스는 Scribe 외부 모듈에서 추가
+		return response.getBody();
+	}
 }
