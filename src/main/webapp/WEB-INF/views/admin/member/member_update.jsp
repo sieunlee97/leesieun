@@ -74,8 +74,8 @@
                   <div class="form-group">
                   	<label for="levels">Levels</label>
                   	<select class="form-control" name="levels" id="levels">
-                  		<option value="ROLE_ADMIN" <c:out value="${(memberVO.levels=='ROLE_ADMIN')?'selected':''}"/>>ROLL_ADMIN</option>
-                  		<option value="ROLE_USER" <c:out value="${(memberVO.levels=='ROLE_USER')?'selected':''}"/>>ROLL_USER</option>
+                  		<option value="ROLE_ADMIN" <c:out value="${(memberVO.levels=='ROLE_ADMIN')?'selected':''}"/>>ROLE_ADMIN</option>
+                  		<option value="ROLE_USER" <c:out value="${(memberVO.levels=='ROLE_USER')?'selected':''}"/>>ROLE_USER</option>
                		</select>
                   </div>
                 </div>
