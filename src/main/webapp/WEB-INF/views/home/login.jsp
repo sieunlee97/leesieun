@@ -15,6 +15,7 @@ $(document).ready(function(){
 	$("input[name='user_id']").focus(); //페이지로딩시 첫번째 입력위치로 이동
 });
 </script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 <!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 메인상단위치표시영역 -->
@@ -58,7 +59,8 @@ $(document).ready(function(){
 
 					</ul>
 					<p class="btn_line">
-					<button class="btn_baseColor">로그인</button>
+					<button type="submit" class="btn_baseColor">로그인</button>
+					<a href="${url}" class="btn_baseColor" style="background-color:green;">네이버 아이디로 로그인</a>
 					</p>	
 				</fieldset>
 			</form>

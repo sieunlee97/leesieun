@@ -36,12 +36,14 @@
 - > memberVO.setUser(""); 공백값
 - > 아예 보내지 않음. null값
 - 회원가입 프로그램 처리 결과 확인. 회원가입 후 바로 로그인X 관리자가 enabled를 true로 변경해줘야(승인) 로그인 가능
-
+- > /admin/member/member_update (AdminController클래스매핑)에서 조건변경
+- =======================================================================================
 - 서비스 URL : http://localhost:8080 -> http://127.0.0.1:8080
-- 콜백 URL : function() 콜백함수와 같은 기능. 자동실행되는 함수처럼 자동으로 이동할 URL. ㅇ리 프로그램에서는 로그인 URL
+- 콜백 URL : function() 콜백함수와 같은 기능. 자동실행되는 함수처럼 자동으로 이동할 URL. 우리 프로그램에서는 로그인 URL
 - 로그인 후 URL == 콜백 URL과 같은 이야기 
 - 인증(Authentication) - 스프링시큐리티에서 enabled가 인증 체크
 - 권한(Authorization) -  스프링시큐리티에서 ROLE_ADMIN, ROLE_USER 가 권한체크
+- 네이버아이디 로그인(네이버에서 제공하는 REST_API 백엔드단) 실습
 
 ### 20210120(수)
 - 이론 ch13 - ch16 마무리

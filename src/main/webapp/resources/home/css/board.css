@@ -184,7 +184,7 @@ input::placeholder {
 	display: table-cell;
 }
 .btn_baseColor {
-	width: 125px;
+	width: 230px;
 	font-weight: normal;
 }
 /* //태블릿 + PC용 */
@@ -350,7 +350,6 @@ input:-ms-input-placeholder {
 	color: #fff !important;
 	text-align: center;
 }
-/*기본 CSS 모바일용*/
 .btn_smallColor{
 	height:35px;
 	line-height:35px;

@@ -47,7 +47,9 @@ if('${msg}' != ''){ //자바의 EL표기법 달러{변수명}
 					<c:when test="${session_enabled eq 'true'}">
 						<!-- 로그인 후 보이는 메뉴(아래) -->
 						<li><a href="#">${session_username} 님 환영합니다.</a></li>
+						<c:if test="${session_type eq 'normal'}">
 						<li><a href="/member/mypage">마이페이지</a></li>
+						</c:if>
 						<li><a href="/logout">로그아웃</a></li>
 						<c:if test="${session_levels eq 'ROLE_ADMIN'}">
 							<li><a href="/admin">AdminLTE</a></li>
