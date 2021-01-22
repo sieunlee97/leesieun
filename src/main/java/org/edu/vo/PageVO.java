@@ -11,6 +11,7 @@ package org.edu.vo;
  *
  */
 public class PageVO {
+	private String board_type;
 	private int perPageNum; // 리스트하단에보이는 번호의 개수 (페이징리스트목록개수)
 	private int queryPerPageNum; //쿼리에서 1페이지당 출력할 자료 개수 변수
 	private Integer page; //jsp에서 선택한 페이지 번호값이 들어가는 변수
@@ -68,6 +69,14 @@ public class PageVO {
 		//ex) < 11 12 13 14 15 16 17 18 19 20(tempEnd) > 시작(11), 끝(20)
 		
 //===================-======(위)prev, next 계산식===================================	
+	}
+	
+	public String getBoard_type() {
+		return board_type;
+	}
+
+	public void setBoard_type(String board_type) {
+		this.board_type = board_type;
 	}
 
 	public int getPerPageNum() {

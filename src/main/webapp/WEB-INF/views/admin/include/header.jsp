@@ -138,13 +138,13 @@ if('${msg}' != ''){ //자바의 EL표기법 달러{변수명}
                 </a>
                 <ul class="nav nav-treeview" style="display: block;">
                   <li class="nav-item">
-                    <a href="/admin/board/board_list?board_type=notice" class="nav-link">
+                    <a href="/admin/board/board_list?board_type=notice" class="nav-link <c:out value='${(session_board_type eq "notice")? "active":""}' />">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>공지사항</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/admin/board/board_list?board_type=gallery" class="nav-link">
+                    <a href="/admin/board/board_list?board_type=gallery" class="nav-link <c:out value='${(session_board_type eq "gallery")? "active":""}' />">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>갤러리</p>
                     </a>

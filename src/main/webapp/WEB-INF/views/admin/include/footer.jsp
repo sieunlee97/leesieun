@@ -77,10 +77,14 @@ $(document).ready(function() {
 		 //if( $(this).attr('href').includes(current_2) == true ){}
 		 // - includes 포함하고 있는 문자열 비교
 		 // - 위에서 사용한 includes 함수는 Chrome에서만 작동		 
-		 if( $(this).attr('href').indexOf(current_2) != -1 ){ // 위 문제를 처리하는 대체 함수 indexOf 사용
-			 $(this).addClass("active");//선택한 메뉴의 배경색상 흰색 추가 처리
+		 if( $(this).attr('href').indexOf(current_2) != -1 && current_2 != 'board'){ // 위 문제를 처리하는 대체 함수 indexOf 사용
+			 if(current_2 != 'board'){
+				 $(this).addClass("active");//선택한 메뉴의 배경색상 흰색 추가 처리
+			 }
 		 } else { 
-			 $(this).removeClass("active");//선택하지 않은 메뉴의 배경색상 흰색을 제거 처리
+			 if(current_2 != 'board'){
+				 $(this).removeClass("active");//선택하지 않은 메뉴의 배경색상 흰색을 제거 처리
+			 }
 		 }
 	});
 });

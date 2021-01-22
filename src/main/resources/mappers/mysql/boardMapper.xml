@@ -3,12 +3,15 @@
 <mapper namespace="boardMapper">
 
 <sql id="sqlWhere">
+	where board_type = #{board_type}
 <if test="search_type !='' and search_type !=null">
-	where 
+	and
 	<if test="search_type == 'all'.toString()">
+		(
 		title like concat('%', #{search_keyword}, '%')
 		or 
 		content like concat('%', #{search_keyword},'%')	
+		)
 	</if>
 	<if test="search_type == 'title'.toString()">
 		title like concat('%', #{search_keyword}, '%')
@@ -43,6 +46,7 @@ values (#{save_file_name},#{real_file_name},(select bno from tbl_board order by 
 </insert>
 <update id="updateBoard">
 update tbl_board set
+board_type = #{board_type},
 title=#{title},
 content=#{content},
 update_date=now()
@@ -54,8 +58,8 @@ delete from tbl_board where bno = #{bno}
 </delete>
 
 <insert id="insertBoard">
-insert into tbl_board (title,content,writer,reg_date)
-values (#{title},#{content},#{writer},now())
+insert into tbl_board (board_type,title,content,writer,reg_date)
+values (#{board_type},#{title},#{content},#{writer},now())
 </insert>
 
 <!-- get/set으로 사용할 것이기 때문에 속성명 적을 필요 없다.(아래) -->
