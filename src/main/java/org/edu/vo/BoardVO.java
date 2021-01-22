@@ -36,6 +36,7 @@ public class BoardVO {
 	}
 	
 	public String getBoard_type() {
+		this.board_type="notice"; // 세션 변수를 사용할 예정
 		return board_type;
 	}
 

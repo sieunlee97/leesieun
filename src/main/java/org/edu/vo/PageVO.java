@@ -1,4 +1,5 @@
 package org.edu.vo;
+
 /**
  * PageVO클래스로서 회원, 게시판 공통으로 사용된다.
  * 1페이지당 보여줄 개수를 이용해서 전체 데이터를 분할해서 보여주는 역할 
@@ -10,6 +11,7 @@ package org.edu.vo;
  * @author 이시은
  *
  */
+
 public class PageVO {
 	private String board_type;
 	private int perPageNum; // 리스트하단에보이는 번호의 개수 (페이징리스트목록개수)
@@ -72,6 +74,7 @@ public class PageVO {
 	}
 	
 	public String getBoard_type() {
+		this.board_type = "notice"; // 세션 변수를 사용할 예정
 		return board_type;
 	}
 
