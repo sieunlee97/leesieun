@@ -40,45 +40,51 @@
                 <h3 class="card-title">UPDATE Board</h3>
               </div>
               <!-- /.card-header -->
-              
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="title">title</label>
-                    <input type="text" value="${boardVO.title}" class="form-control" name="title" id="title" placeholder="제목 입력해주세요." required>
+              <div class="card-body">
+              	<div class="form-group">
+              		<label>게시판 타입</label>
+              		<select name="board_type" id="board_type" class= "form-control">
+              			<option value="notice" <c:out value="${session_board_type eq 'notice'? 'selected':'' }" />>공지사항</option>
+              			<option value="gallery" <c:out value="${session_board_type eq 'gallery'? 'selected':'' }" />>갤러리</option>
+              		</select>
+              	</div>
+                <div class="form-group">
+                   <label for="title">title</label>
+                   <input type="text" value="${boardVO.title}" class="form-control" name="title" id="title" placeholder="제목 입력해주세요." required>
                   <!-- form에서 input같은 입력태그에는 name 속성이 반드시 필요.name 속성값 = DB 필드 속성명
                   DB에 입력할 때 값을 전송하게 되는데 전송값을 저장하는 이름이 name이 되고,위에서는 title이다.-->
-                  </div>
-                  <div class="form-group">
+                </div>
+                <div class="form-group">
                   <!-- label for과 textarea id는 같게 설정 -->
-                    <label for="content">Content</label>
-					<textarea row="5" name="content" id="content" class="form-control"><c:out value="${boardVO.content}"></c:out></textarea>
-                  </div>
-                  <div class="form-group">
-                  	<label for="writer">writer</label>
-                  	<input type="text" value="${boardVO.writer}" class="form-control" name="writer" id="writer" placeholder="작성자을 입력해주세요." required>
-                  	<!-- 필수 입력값은 html5에서 지원하는 유효성 검사 중 required 속성 사용해서 null값을 체크한다.(유효성검사) -->
-                  </div>
-                  <div class="form-group">
-                  	<label for="customFile">attach</label>
-                  	<c:forEach var="index" begin="0" end="1">
-                  	<div class="div_file_delete">
-	                  <div class="custom-file">
-	                      <input type="file" name="file" class="custom-file-input" id="customFile_${index}">
-	                      <label class="custom-file-label" for="customFile">파일을 선택해주세요</label>
-	                  </div>
-	                  <c:if test="${boardVO.save_file_names[index] != null}">              
-		                <strong><i class="fas fa-paperclip mr-1"></i> 첨부파일${index}</strong>
-		                <p class="text-muted">
-		                <a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}"> <!-- 다운로드 링크 만들 예정 -->
-		                ${boardVO.real_file_names[index]}-파일다운로드-
-		                </a> &nbsp; 
-		                <input type="hidden" name="save_file_name" value="${boardVO.save_file_names[index]}">
-		                <button type="button" class="btn btn-info btn_file_delete">삭제</button>
-		                </p>
-	                </c:if>
-	                <hr>
-	                </div>
-                  	</c:forEach>                  	
+                   <label for="content">Content</label>
+				   <textarea row="5" name="content" id="content" class="form-control"><c:out value="${boardVO.content}"></c:out></textarea>
+                </div>
+                <div class="form-group">
+                	<label for="writer">writer</label>
+                	<input type="text" value="${boardVO.writer}" class="form-control" name="writer" id="writer" placeholder="작성자을 입력해주세요." required>
+                	<!-- 필수 입력값은 html5에서 지원하는 유효성 검사 중 required 속성 사용해서 null값을 체크한다.(유효성검사) -->
+                </div>
+                <div class="form-group">
+                	<label for="customFile">attach</label>
+                	<c:forEach var="index" begin="0" end="1">
+                	<div class="div_file_delete">
+                 <div class="custom-file">
+                     <input type="file" name="file" class="custom-file-input" id="customFile_${index}">
+                     <label class="custom-file-label" for="customFile">파일을 선택해주세요</label>
+                 </div>
+                 <c:if test="${boardVO.save_file_names[index] != null}">              
+	                <strong><i class="fas fa-paperclip mr-1"></i> 첨부파일${index}</strong>
+	                <p class="text-muted">
+	                <a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}"> <!-- 다운로드 링크 만들 예정 -->
+	                ${boardVO.real_file_names[index]}-파일다운로드-
+	                </a> &nbsp; 
+	                <input type="hidden" name="save_file_name" value="${boardVO.save_file_names[index]}">
+	                <button type="button" class="btn btn-info btn_file_delete">삭제</button>
+                </p>
+               </c:if>
+                <hr>
+                </div>
+                 	</c:forEach>                  	
                 </div>
                 <!-- /.card-body -->
              </div> <!-- /.card card-primary -->
