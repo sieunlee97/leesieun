@@ -42,6 +42,13 @@
 - > boardVO.setBoard_type(session.getAttribute("session_boartd_type")); //게시판CRUD시 항상필요
 - 위와 같이 MVC에서 항상 실행되는 부분을 뽑아내서 공통실행으로 만드는 과정을 AOP(관점지향프로그래밍)라고 한다.
 
+- @Aspect 기능으로 세션관리 :DebugAdvice.java에 sessionManager()메소드 생성
+- @ControllerAdvice 기능으로 @ModelAttribute List<BoardTypeVO> 오브젝트 반환 후 jsp 이용
+- 오전에 작업한 파일 : DebugAdvice.java, ControllerAdviceException.java
+
+- 게시판 타입(ex.공지사항, 갤러리) 세션을 사용. 스프링시큐리티를 사용하지 않았으면 로그인 인증 체크를 AOP세션으로 처리
+- 
+
 ### 20210122(금)
 
 

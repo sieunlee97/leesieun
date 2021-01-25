@@ -8,8 +8,11 @@
 				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
 				<p class="location">고객센터 <span class="path">/</span> ${session_board_type}</p>
 				<ul class="page_menu clear">
-					<li><a href="#" class="on">공지사항</a></li>
-					<li><a href="#">문의하기</a></li>
+				<c:forEach items="${board_type_list}" var="boardTypeVO">
+					<li><a href="/home/board/board_list?board_type=${boardTypeVO.board_type}" class="<c:out value='${(session_board_type eq boardTypeVO.board_type)? "on":""}' />">${boardTypeVO.board_name}</a></li>
+				</c:forEach>					
 				</ul>
 			</div>
 		</div>	
+		
+		
