@@ -31,6 +31,15 @@
 - [ ] 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
 ## v6.0.0 UI구현
+###20210125(월)
+- 세션변수 session_board_type을 컨트롤러, 서비스, DAO, 매퍼 모두 VO기준 get/set 발생할 때 세션 변수를 사용할 예정. 
+- AOP로는 session_board_type변수를 생성 관리
+-AdviceController로는 board_type게시판 타입 리스트(List<BoardTypeVO>)를 jsp모델값으로 전송해주는 인터셉터 기능을 사용하여 메뉴 관리
+
+
+### 20210122(금)
+
+
 ### 20210121(목)
 - null과 ""의 차이
 - > memberVO.setUser(""); 공백값

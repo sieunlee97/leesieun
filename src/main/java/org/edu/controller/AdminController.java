@@ -245,11 +245,11 @@ public class AdminController {
 		if(board_type != null) {
 			session.setAttribute("session_board_type", board_type);
 		}
-		/* pageVO와 BoardVO에서 세션 변수로 get/set 하기 때문에 
-		 * if(session.getAttribute("session_board_type") != null ) { board_type =
-		 * (String) session.getAttribute("session_board_type");
-		 * pageVO.setBoard_type(board_type);//다중게시판 쿼리때문에 추가 }
-		 */
+		// pageVO와 BoardVO에서 세션 변수로 get/set 하기 때문에 
+	    if(session.getAttribute("session_board_type") != null ) { board_type =
+	    (String) session.getAttribute("session_board_type");
+	    pageVO.setBoard_type(board_type);//다중게시판 쿼리때문에 추가 }
+	    }
 
 		//테스트용 더미 게시판 데이터 만들기
 		/*
@@ -288,7 +288,7 @@ public class AdminController {
 		List<BoardVO> board_list = boardService.selectBoard(pageVO);
 		model.addAttribute("board_list", board_list);
 		// model.addAttribute("pageVO", pageVO);
-		return "admin/board/board_list"; 
+		return "admin/board/board_list";
 	}
 	
 //==============================================================================================================================
