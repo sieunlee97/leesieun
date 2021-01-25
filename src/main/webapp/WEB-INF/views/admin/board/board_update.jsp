@@ -44,9 +44,9 @@
               	<div class="form-group">
               		<label>게시판 타입</label>
               		<select name="board_type" id="board_type" class= "form-control">
-	              		<c:foreach items="${board_type_list}" var="boardTypeVO">
-	              			<option value="${boardTypeVO.board_type}" <c:out value="${(session_board_type eq boardType.board_type)? 'selected':'' }" />>${boardTypeVO.board_name}</option>
-	              		</c:foreach>
+	              		<c:forEach items="${board_type_list}" var="boardTypeVO">
+	              			<option value="${boardTypeVO.board_type}" <c:out value="${(session_board_type eq boardTypeVO.board_type)? 'selected':'' }"/> >${boardTypeVO.board_name}</option>
+	              		</c:forEach>
               		</select>
               	</div>
                 <div class="form-group">

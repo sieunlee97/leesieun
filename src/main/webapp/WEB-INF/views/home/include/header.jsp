@@ -72,11 +72,18 @@ if('${msg}' != ''){ //자바의 EL표기법 달러{변수명}
                             </ul>
                         </div>
 					</li>
-					<li><a href="/home/board/board_list" class="openAll2">커뮤니티</a>
+					<!-- 자바jstl로 board_type_list의 1번째 레코드 값에서 board_type변수를 생성(아래) -->
+					<c:forEach items="${board_type_list}" var="boardTypeVO" varStatus="status">
+						<c:if test="${status.index==0}">
+							<c:set var="first_board_type" value="${boardTypeVO.board_type}"/>
+						</c:if>
+					</c:forEach>
+					<li><a href="/home/board/board_list?board_type=${first_board_type}" class="openAll2">커뮤니티</a>
 				        <div class="gnb_depth gnb_depth2_2">
                             <ul class="submenu_list">
-                                <li><a href="/home/board/board_list">공지사항</a></li>
-                                <li><a href="/home/board/board_list">갤러리</a></li>
+                            <c:forEach items="${board_type_list}" var="boardTypeVO">
+                            	<li><a href="/home/board/board_list?board_type=${boardTypeVO.board_type}">${boardTypeVO.board_name}</a></li>
+                            </c:forEach>
                             </ul>
                         </div>
 					</li>
