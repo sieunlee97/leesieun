@@ -52,7 +52,16 @@ public class AdminController {
 	@Inject
 	IF_MemberService memberService; //멤버인터페이스를 주입받아서 memberService 오브젝트변수 생성
 	
-	
+
+
+	//게시판 타입 리스트 매핑
+	@RequestMapping(value="/admin/bbs_type/bbs_type_list", method=RequestMethod.GET)
+	public String bbs_type_list() throws Exception{
+		//여기는 model을 이용해서 jsp로 board_type_list오브젝트를 보낼 필요 없음.
+		//-> ControllerAdvice클래스에서 만들었기 때문에.
+		return "admin/bbs_type/bbs_type_list";
+	}
+//==============================================================================================================================
 	
 	@RequestMapping(value="/admin/board/board_update", method=RequestMethod.GET)
 	public String board_update(@RequestParam("bno") Integer bno, @ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
