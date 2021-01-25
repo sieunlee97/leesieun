@@ -84,6 +84,8 @@ public class AdminController {
 		 * boardVO.setContent(securityCode.unscript(xxs_data));
 		 */
 		model.addAttribute("boardVO", boardVO);
+		//model.addAttribute("board_type_list", "게시판 타입 리스트 오브젝트");
+		//게시판 타입 리스트는 위처럼 개별 메소드에서 처리하지 않고, ControllerAdvice클래스로 대체한다.
 		return "admin/board/board_update";
 	}
 	
