@@ -57,6 +57,15 @@ public class AdminController {
 	@Inject
 	private IF_BoardTypeService boardTypeService;
 	
+	
+	//게시판 타입 신겨 등록 매핑(POST)
+	@RequestMapping(value="/admin/bbs_type/bbs_type_write", method=RequestMethod.POST)
+	public String bbs_type_write(RedirectAttributes rdat, BoardTypeVO boardTypeVO) throws Exception {
+		boardTypeService.insert_board_type(boardTypeVO);
+		rdat.addFlashAttribute("msg", "등록");
+		return "redirect:/admin/bbs_type/bbs_type_list";
+	}
+	
 	//게시판 타입 신규 등록 매핑(GET)
 	@RequestMapping(value="/admin/bbs_type/bbs_type_write", method=RequestMethod.GET)
 	public String bbs_type_write() throws Exception {
@@ -68,7 +77,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/bbs_type/bbs_type_update", method=RequestMethod.POST)
 	public String bbs_type_update(BoardTypeVO boardTypeVO, RedirectAttributes rdat) throws Exception {
 		boardTypeService.update_board_type(boardTypeVO);
-		rdat.addFlashAttribute("msg", "게시판 타입 수정");
+		rdat.addFlashAttribute("msg", "수정");
 		return "redirect:/admin/bbs_type/bbs_type_update?board_type="+ boardTypeVO.getBoard_type();
 	}
 	

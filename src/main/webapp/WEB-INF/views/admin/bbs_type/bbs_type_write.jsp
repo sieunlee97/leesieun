@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../include/header.jsp" %>
-
 <!-- Content Wrapper. Contains page content, 대시보드 본문 -->
   <div class="content-wrapper">
     <!-- Content Header (Page header), 본문 헤더 -->
@@ -57,9 +56,8 @@
           
           <!-- 버튼영역 시작 -->
             <div class="card-body">
-              	<a href="/admin/bbs_type/bbs_type_list" class="btn btn-primary float-right mr-1">LIST</a>  
-              	            	
-              	<button type="submit" class="btn btn-warning float-right mr-1 text-white">SUBMIT</button>
+              	<a href="/admin/bbs_type/bbs_type_list" class="btn btn-primary float-right mr-1">LIST</a>
+              	<button disabled id="btn_insert" type="submit" class="btn btn-warning float-right mr-1 text-white">SUBMIT</button>
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지 못한다. 그래서 button태그를 사용. -->
               </div>
           <!-- 버튼영역 끝 -->
@@ -76,3 +74,20 @@
 <!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>
+<script>
+jQuery(document).ready(function(){
+	jQuery("#board_type").bind("blur", function(){
+		//board_type_list의 board_type값과 jQuery(this).val() 비교
+		var board_type_list = "${board_type_list}";
+		//alert(board_type_list);
+		if(board_type_list.indexOf(jQuery(this).val()) != -1 ) { //자바변수값과 input에 있는 게시판 타입값을 비교. 있으면 disabled
+			alert("기존 게시판 타입이 존재합니다. 다시 입력해주세요.")
+			jQuery("#btn_insert").attr("disabled", true);
+		}else{
+			alert("사용 가능한 게시판 타입입니다.");
+			jQuery("#btn_insert").attr("disabled", false);
+		}
+		
+	});
+});
+</script>

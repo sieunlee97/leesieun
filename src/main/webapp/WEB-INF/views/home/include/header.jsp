@@ -25,7 +25,13 @@
 </style>
 <script>
 if('${msg}' != ''){ //자바의 EL표기법 달러{변수명}
-	alert("${msg} 이(가) 성공하였습니다.");
+	if('${msg}' != '삭제'){
+		alert("${msg}이 완료되었습니다.");
+	}
+	else{
+		alert("${msg}가 완료되었습니다.");
+	}
+	
 }
 </script>
 </head>
