@@ -15,10 +15,12 @@ import javax.validation.Valid;
 
 import org.edu.dao.IF_BoardDAO;
 import org.edu.service.IF_BoardService;
+import org.edu.service.IF_BoardTypeService;
 import org.edu.service.IF_MemberService;
 import org.edu.util.CommonController;
 import org.edu.util.SecurityCode;
 import org.edu.vo.AttachVO;
+import org.edu.vo.BoardTypeVO;
 import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
@@ -52,8 +54,31 @@ public class AdminController {
 	@Inject
 	IF_MemberService memberService; //멤버인터페이스를 주입받아서 memberService 오브젝트변수 생성
 	
-
-
+	@Inject
+	private IF_BoardTypeService boardTypeService;
+	
+	//게시판 타입 신규 등록 매핑(GET)
+	@RequestMapping(value="/admin/bbs_type/bbs_type_write", method=RequestMethod.GET)
+	public String bbs_type_write() throws Exception {
+		return "admin/bbs_type/bbs_type_write";
+	}
+	
+	
+	//게시판 타입 수정 매핑(POST)
+	@RequestMapping(value="/admin/bbs_type/bbs_type_update", method=RequestMethod.POST)
+	public String bbs_type_update(BoardTypeVO boardTypeVO, RedirectAttributes rdat) throws Exception {
+		boardTypeService.update_board_type(boardTypeVO);
+		rdat.addFlashAttribute("msg", "게시판 타입 수정");
+		return "redirect:/admin/bbs_type/bbs_type_update?board_type="+ boardTypeVO.getBoard_type();
+	}
+	
+	//게시판 타입 수정 매핑(GET)
+	@RequestMapping(value="/admin/bbs_type/bbs_type_update", method=RequestMethod.GET)
+	public String bbs_type_update(@RequestParam("board_type") String board_type, Model model ) throws Exception {
+		BoardTypeVO boardTypeVO = boardTypeService.view_board_type(board_type);
+		model.addAttribute("boardTypeVO", boardTypeVO);
+		return "admin/bbs_type/bbs_type_update";
+	}
 	//게시판 타입 리스트 매핑
 	@RequestMapping(value="/admin/bbs_type/bbs_type_list", method=RequestMethod.GET)
 	public String bbs_type_list() throws Exception{
