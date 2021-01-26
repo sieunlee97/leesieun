@@ -35,6 +35,9 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:if test="${empty board_list}">
+					<tr><td colspan="5">조회된 데이터가 없습니다.</td></tr>
+				</c:if>
 					<c:forEach items="${board_list}" var="boardVO" varStatus="status">
 						<tr>
 							<td>
