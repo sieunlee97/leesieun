@@ -26,8 +26,7 @@ public class BoardTypeVO {
 	}
 	@Override
 	public String toString() {
-		return "디버그용 BoardTypeVO [board_type=" + board_type + ", board_name=" + board_name + ", board_sun=" + board_sun
-				+ "]";
+		return board_type;
 	}
 	
 	

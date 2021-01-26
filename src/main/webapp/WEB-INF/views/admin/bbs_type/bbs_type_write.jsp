@@ -78,10 +78,17 @@
 jQuery(document).ready(function(){
 	jQuery("#board_type").bind("blur", function(){
 		//board_type_list의 board_type값과 jQuery(this).val() 비교
-		var board_type_list = "${board_type_list}";
-		//alert(board_type_list);
-		if(board_type_list.indexOf(jQuery(this).val()) != -1 ) { //자바변수값과 input에 있는 게시판 타입값을 비교. 있으면 disabled
+		var board_type_list = "${board_type_list}";//자바스크립트변수에 자바변수값을 넣기
+		board_type_list = board_type_list.replace(/\[/g,"");//특수문자 \[   (g: global 영역)
+		board_type_list = board_type_list.replace(/\]/g,"");//특수문자 \]
+		board_type_list = board_type_list.replace(/\s/g,"");//공백제거
+		var board_type_array = board_type_list.split(",");
+		//alert(board_type_array[0]);//디버그배열값 확인
+		//alert(jQuery(this).val());//디버그 input 게시판타입 확인
+		if(jQuery.inArray(jQuery(this).val(), board_type_array) != -1) { //자바변수값과 input에 있는 게시판 타입값을 비교. 있으면 disabled
+			//inArray함수는 인덱스값을 반환한다. 0보다 크면 인덱스가 존재.
 			alert("기존 게시판 타입이 존재합니다. 다시 입력해주세요.")
+			$("input[name='board_type']").focus();
 			jQuery("#btn_insert").attr("disabled", true);
 		}else{
 			alert("사용 가능한 게시판 타입입니다.");
