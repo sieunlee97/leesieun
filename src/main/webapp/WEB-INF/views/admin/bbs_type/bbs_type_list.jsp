@@ -47,7 +47,7 @@
                     <tr>
                       <td>${status.count}</td> 
                       <td><a href="/admin/bbs_type/bbs_type_update?board_type=${boardTypeVO.board_type}">${boardTypeVO.board_type}</a></td>
-                      <td>${boardTypeVO.board_name }</td>
+                      <td>${boardTypeVO.board_name}</td>
                       <td>${boardTypeVO.board_sun}</td>
                     </tr>
                   </c:forEach>  

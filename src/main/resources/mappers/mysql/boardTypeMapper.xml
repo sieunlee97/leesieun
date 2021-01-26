@@ -22,6 +22,7 @@
 	update tbl_board_type set
 	board_name = #{board_name},
 	board_sun = #{board_sun}
+	where board_type=#{board_type}
 	</update>
 	
 	<delete id="deleteBoardType">
@@ -29,7 +30,8 @@
 	</delete>
 	
 	<select id="viewBoardType" resultType="org.edu.vo.BoardTypeVO">
-	select from tbl_board_type where board_type = #{board_type}
+	select*from tbl_board_type where board_type = #{board_type}
 	</select>
+	
 	
 </mapper>

@@ -60,7 +60,7 @@ public class DebugAdvice {
 	//여기서 AOP는 예전 자바 코딩의 인터셉터(AdviceController)와 같은 기능
 	//추가로 다중게시판용 세션관리도 AOP기능을 사용한다.(아래)
 	//아래 컨트롤러 패키지 안에 있는 모든 메소드가 실행될 때, 공통으로 필요한 세션관리코드를 넣는다.
-	@Around("execution(* org.edu.controller.*Controller*.*(..))")
+	@Around("execution(* org.edu.controller.*Controller.*(..))")
 	public Object sessionManager(ProceedingJoinPoint pjp) throws Throwable {		
 		
 		//AOP에서 RequestContextHolder클래스를 이용해서  HttpServletRequest 오브젝트를 사용하기 (아래)
