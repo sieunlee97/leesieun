@@ -58,7 +58,7 @@
           <!-- 버튼영역 시작 -->
             <div class="card-body">
               	<a href="/admin/bbs_type/bbs_type_list" class="btn btn-primary float-right mr-1">LIST</a>  
-              	            	
+                <button id="btn_delete" type="button" class="btn btn-danger float-right mr-1 text-white">DELETE</button>	
               	<button type="submit" class="btn btn-warning float-right mr-1 text-white">UPDATE</button>
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지 못한다. 그래서 button태그를 사용. -->
               </div>
@@ -77,3 +77,14 @@
 <!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>
+<script>
+jQuery(document).ready(function(){
+	jQuery("#btn_delete").on("click", function(){
+		if(confirm("정말 삭제하시겠습니까?")){
+			var delete_form = jQuery("form[name='update_form']")
+			delete_form.attr("action", "/admin/bbs_type/bbs_type_delete");
+			delete_form.submit();	
+		}
+	});
+});
+</script>

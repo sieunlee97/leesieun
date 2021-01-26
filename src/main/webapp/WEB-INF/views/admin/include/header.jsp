@@ -13,6 +13,9 @@ if('${msg}' != ''){ //자바의 EL표기법 달러{변수명}
 	alert("${msg}가 완료되었습니다.");
 	}
 }
+if('${msg_fail}' != ''){
+	alert("${msg_fail}할 수 없습니다.");
+}
 </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

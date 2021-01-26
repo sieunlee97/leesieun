@@ -57,8 +57,25 @@ public class AdminController {
 	@Inject
 	private IF_BoardTypeService boardTypeService;
 	
+	//게시판 타입 삭제 매핑(POST)
+	@RequestMapping(value="/admin/bbs_type/bbs_type_delete", method=RequestMethod.POST)
+	public String bbs_type_delete(RedirectAttributes rdat, BoardTypeVO boardTypeVO)throws Exception {
+		String board_type = boardTypeVO.getBoard_type();
+		PageVO pageVO = new PageVO();
+		pageVO.setBoard_type(board_type);
+		int board_count = boardService.countBoard(pageVO);
+		if(board_count > 0) {
+			rdat.addFlashAttribute("msg_fail", "해당 타입의 게시물이 존재합니다. 삭제");
+			return "redirect:/admin/bbs_type/bbs_type_update?board_type="+board_type;
+		}else {
+			boardTypeService.delete_board_type(board_type);
+			rdat.addFlashAttribute("msg", "삭제");
+		}
+		
+		return "redirect:/admin/bbs_type/bbs_type_list";
+	}
 	
-	//게시판 타입 신겨 등록 매핑(POST)
+	//게시판 타입 신규 등록 매핑(POST)
 	@RequestMapping(value="/admin/bbs_type/bbs_type_write", method=RequestMethod.POST)
 	public String bbs_type_write(RedirectAttributes rdat, BoardTypeVO boardTypeVO) throws Exception {
 		boardTypeService.insert_board_type(boardTypeVO);
