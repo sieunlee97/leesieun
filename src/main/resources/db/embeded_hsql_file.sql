@@ -23,7 +23,7 @@ INSERT INTO tbl_reply(rno, bno, reply_text, replyer, reg_date, update_date) VALU
 ALTER TABLE tbl_attach ADD CONSTRAINT fk_board_attach FOREIGN KEY (bno) REFERENCES tbl_board (bno)
 ALTER TABLE tbl_reply ADD CONSTRAINT fk_board FOREIGN KEY (bno) REFERENCES tbl_board (bno)
 ALTER TABLE tbl_board ADD COLUMN board_type VARCHAR(45) NULL
-CREATE TABLE tbl_board_type(board_type VARCHAR(45) NOT NULL PRIMARY KEY, board_name VARCHAR(45) NULL, board_sun INT(11) NULL)
+CREATE TABLE tbl_board_type(board_type VARCHAR(45) NOT NULL PRIMARY KEY, board_name VARCHAR(45) NULL, board_sun INTEGER DEFAULT 0)
 INSERT INTO tbl_board_type(board_type,board_name,board_sun) VALUES('notice','공지사항',1),('gallery','갤러리',2)
 INSERT INTO tbl_board(bno, title, content, writer, reg_date, update_date, view_count, reply_count) VALUES(6, '수정된 글입니다.', '수정 테스트 ', 'user00', '2019-10-10 03:20:01', '2019-10-10 03:20:01', 0, 1),(7, '새로운 글을 넣습니다. ', '새로운 글을 넣습니다. ', 'user00', '2019-10-10 03:25:36', '2019-10-10 03:25:36', 0, 0),(8, '새로운 글을 넣습니다. ', '새로운 글을 넣습니다. ', 'user00', '2019-10-10 03:25:36', '2019-10-10 03:25:36', 0, 0),(9, '새로운 글을 넣습니다. ', '새로운 글을 넣습니다. ', 'user00', '2019-10-10 03:26:56', '2019-10-10 03:26:56', 0, 0),(10, '새로운 글을 넣습니다. ', '새로운 글을 넣습니다. ', 'user00', '2019-10-10 03:26:56', '2019-10-10 03:26:56', 0, 0)
 UPDATE tbl_board SET board_type = 'notice' WHERE bno <= 5
