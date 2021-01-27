@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="TBL_BOARD_TYPE" directorySegmentName="seg_0" id="EB826931-C3D9-DD3D-0891-C14A78AE775F">
+<createdBy>sieunlee</createdBy>
+<createdTime>2021-01-27 02:56:28 UTC</createdTime>
+<ownerDesignName>oracle_210127</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="BOARD_SUN" id="6078F0D1-268E-DBDB-2A09-8E0F746BF420">
+<createdBy>sieunlee</createdBy>
+<createdTime>2021-01-27 03:00:45 UTC</createdTime>
+<ownerDesignName>oracle_210127</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="BOARD_TYPE" id="E06128FA-7B51-9073-07C0-E49718244ECF">
+<createdBy>sieunlee</createdBy>
+<createdTime>2021-01-27 02:58:25 UTC</createdTime>
+<ownerDesignName>oracle_210127</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="BOARD_NAME" id="FE7A8300-A2E2-FF70-9936-7869B3939A89">
+<createdBy>sieunlee</createdBy>
+<createdTime>2021-01-27 02:58:43 UTC</createdTime>
+<ownerDesignName>oracle_210127</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TBL_BOARD_TYPE_PK" id="F60523E8-B65D-6A56-8B53-A074D7FBD380">
+<createdBy>sieunlee</createdBy>
+<createdTime>2021-01-27 02:58:26 UTC</createdTime>
+<ownerDesignName>oracle_210127</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="TBL_MEMBER" directorySegmentName="seg_0" id="73D7E0BB-84A8-3C06-FCE0-F7E063BF1D7F">
+<createdBy>sieunlee</createdBy>
+<createdTime>2021-01-27 03:01:04 UTC</createdTime>
+<ownerDesignName>oracle_210127</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+</TableProxyOraclev11g>
