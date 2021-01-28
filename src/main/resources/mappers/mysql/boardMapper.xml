@@ -38,12 +38,18 @@ delete from tbl_attach where save_file_name = #{save_file_name}
 <delete id="deleteAttachAll">
 delete from tbl_attach where bno = #{bno}
 </delete>
-<!-- LAST_INSERT_ID() MariaDB에서 작동 X-->
-<insert id="insertAttach">
+<!-- LAST_INSERT_ID() MariaDB에서 작동 X, mysql 전용-->
+<!-- <insert id="insertAttach"> 
 insert into tbl_attach(save_file_name, real_file_name, bno)
 values (#{save_file_name},#{real_file_name},(select bno from tbl_board order by bno desc limit 1))
+</insert> -->
 
+<!-- hsql전용, limit 사용X  -->
+<insert id="insertAttach">
+insert into tbl_attach(save_file_name, real_file_name, bno)
+values (#{save_file_name},#{real_file_name},(select top 1 bno from tbl_board order by bno desc))
 </insert>
+
 <update id="updateBoard">
 update tbl_board set
 board_type = #{board_type},

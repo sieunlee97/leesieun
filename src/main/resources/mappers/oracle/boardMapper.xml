@@ -8,16 +8,16 @@
 	and
 	<if test="search_type == 'all'.toString()">
 		(
-		title like concat('%', #{search_keyword}, '%')
+		title like '%'||#{search_keyword}||'%'
 		or 
-		content like concat('%', #{search_keyword},'%')	
+		content like '%'||#{search_keyword}||'%'	
 		)
 	</if>
 	<if test="search_type == 'title'.toString()">
-		title like concat('%', #{search_keyword}, '%')
+		title like '%'||#{search_keyword}||'%'
 	</if>
 	<if test="search_type == 'content'.toString()">
-		content like concat('%', #{search_keyword},'%')
+		content like '%'||#{search_keyword}||'%'
 	</if>
 </if>
 </sql>
@@ -41,7 +41,12 @@ delete from tbl_attach where bno = #{bno}
 <!-- LAST_INSERT_ID() MariaDB에서 작동 X-->
 <insert id="insertAttach">
 insert into tbl_attach(save_file_name, real_file_name, bno)
-values (#{save_file_name},#{real_file_name},(select bno from tbl_board order by bno desc limit 1))
+values (#{save_file_name},#{real_file_name},(
+SELECT TABLE_A.BNO FROM (
+SELECT BNO FROM TBL_BOARD ORDER BY BNO DESC 
+) TABLE_A
+WHERE ROWNUM = 1
+))
 
 </insert>
 <update id="updateBoard">
@@ -49,7 +54,7 @@ update tbl_board set
 board_type = #{board_type},
 title=#{title},
 content=#{content},
-update_date=sysdate
+update_date= SYSDATE
 where bno = #{bno}
 </update>
 
