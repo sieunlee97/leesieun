@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="930ED015-B0E3-6B1C-8AA0-CBB0A5F7B7BB" name="TBL_BOARD">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:08:25 UTC</createdTime>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<ordsAlias>table_7</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BNO" id="7138CF19-230C-D137-FABB-5DC3DBAC745F">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[게시물 일련번호]]></commentInRDBMS>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<ownDataTypeParameters>,11,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOARD_TYPE" id="30E4B532-C96F-569D-27D1-9455728527B1">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[게시판종류]]></commentInRDBMS>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TITLE" id="0DC2C089-D4F4-9986-0A03-15FB11321D7F">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[글 제목]]></commentInRDBMS>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONTENT" id="EEA8B665-9FCB-0D2E-74DC-8D2B6E5003D2">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[글 내용]]></commentInRDBMS>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRITER" id="128A4C04-E416-9FE9-DF90-3EEF93743FEB">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[작성자]]></commentInRDBMS>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VIEW_COUNT" id="C3FB5D14-1E7D-E425-3A0F-C04CA572C5CF">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[조회수]]></commentInRDBMS>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<ownDataTypeParameters>,11,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REPLY_COUNT" id="A5E45062-C5BD-3DC3-5661-52BC9D6B0358">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[댓글수]]></commentInRDBMS>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<ownDataTypeParameters>,11,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REG_DATE" id="91483AF9-C16A-5633-3A62-261C3C4F36B1">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[등록 일시]]></commentInRDBMS>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPDATE_DATE" id="E6688859-1D1F-079C-5BEF-8219389EE46F">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[수정 일시]]></commentInRDBMS>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4A064D26-0D8F-A49C-48AA-11E22B2BBC10" name="TBL_BOARD_PK">
+<createdBy>User</createdBy>
+<createdTime>2021-01-27 03:18:01 UTC</createdTime>
+<ownerDesignName>oracle_20210127</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7138CF19-230C-D137-FABB-5DC3DBAC745F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
