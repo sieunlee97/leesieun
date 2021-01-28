@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+
+<sql id="sqlWhere">
+	where board_type = #{board_type}
+<if test="search_type !='' and search_type !=null">
+	and
+	<if test="search_type == 'all'.toString()">
+		(
+		title like concat('%', #{search_keyword}, '%')
+		or 
+		content like concat('%', #{search_keyword},'%')	
+		)
+	</if>
+	<if test="search_type == 'title'.toString()">
+		title like concat('%', #{search_keyword}, '%')
+	</if>
+	<if test="search_type == 'content'.toString()">
+		content like concat('%', #{search_keyword},'%')
+	</if>
+</if>
+</sql>
+<!-- 해당 게시물의 첨부파일 업데이트 시키기 
+첨부파일은 update 기능인데, 태그는 insert 사용한 이유 : PK가 save_file_name UUID이름인데, 수정할 수 없다.
+예를들면, 주민번호를 수정하는 것과 갑은 의미로, PK 수정하는 것 불가능. 따라서 삭제후 추가
+-->
+<insert id="updateAttach">
+insert into tbl_attach (save_file_name, real_file_name, bno)
+values (#{save_file_name}, #{real_file_name}, #{bno})
+</insert>
+
+<!-- 해당 게시물의 첨부파일 1개만 지우기 PK=Primary Key=기본키 => 인덱스자동생성 -->
+<delete id="deleteAttach">
+delete from tbl_attach where save_file_name = #{save_file_name}
+</delete>
+<!-- 해당 게시물의 첨부파일 모두 지우기, 외래키 사용(Foreign Key)=참조키=FK -->
+<delete id="deleteAttachAll">
+delete from tbl_attach where bno = #{bno}
+</delete>
+<!-- LAST_INSERT_ID() MariaDB에서 작동 X-->
+<insert id="insertAttach">
+insert into tbl_attach(save_file_name, real_file_name, bno)
+values (#{save_file_name},#{real_file_name},(select bno from tbl_board order by bno desc limit 1))
+
+</insert>
+<update id="updateBoard">
+update tbl_board set
+board_type = #{board_type},
+title=#{title},
+content=#{content},
+update_date=sysdate
+where bno = #{bno}
+</update>
+
+<delete id="deleteBoard">
+delete from tbl_board where bno = #{bno}
+</delete>
+
+<insert id="insertBoard">
+insert into tbl_board (board_type,title,content,writer,reg_date)
+values (#{board_type},#{title},#{content},#{writer},sysdate)
+</insert>
+
+<!-- get/set으로 사용할 것이기 때문에 속성명 적을 필요 없다.(아래) -->
+<select id="readAttach" resultType="org.edu.vo.AttachVO">
+select * from tbl_attach where bno = #{bno}
+order by reg_date desc
+</select>
+
+<select id="readAttach_notUse" resultType="java.util.HashMap">
+select save_file_name, real_file_name from tbl_attach where bno = #{bno}
+order by reg_date desc
+</select>
+
+<select id="readBoard" resultType="org.edu.vo.BoardVO">
+select * from tbl_board where bno = #{bno}
+</select>
+
+<update id="updateViewCount">
+update tbl_board set view_count = view_count + 1
+where bno = #{bno}
+</update>
+
+<select id="countBoard" resultType="int">
+select count(*) from tbl_board
+<include refid="sqlWhere"></include>
+</select>
+
+<select id="selectBoard" resultType="org.edu.vo.BoardVO">
+SELECT TABLE_B.* FROM (
+    SELECT ROWNUM AS RNUM, TABLE_A. * FROM (
+    SELECT * FROM TBL_BOARD
+    <include refid="sqlWhere"></include> 
+    <![CDATA[
+    order by reg_date desc
+    ) TABLE_A 
+    WHERE ROWNUM <= (#{queryStartNo}/#{queryPerPageNum}+1)*#{queryPerPageNum}
+) TABLE_B
+WHERE TABLE_B.RNUM > (#{queryStartNo}/#{queryPerPageNum})*#{queryPerPageNum}
+]]>
+</select>
+
+
+
+</mapper>

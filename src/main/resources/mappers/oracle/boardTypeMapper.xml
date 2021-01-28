@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "boardTypeMapper">
+	<select id="selectBoardType" resultType="org.edu.vo.BoardTypeVO">
+	select * from tbl_board_type order by board_sun asc
+	</select>
+	
+	<insert id="insertBoardType">
+	insert into tbl_board_type (
+		board_type, 
+		board_name, 
+		board_sun
+	)
+	values (
+		#{board_type}, 
+		#{board_name}, 
+		#{board_sun}
+	)
+	</insert>
+	
+	<update id="updateBoardType">
+	update tbl_board_type set
+	board_name = #{board_name},
+	board_sun = #{board_sun}
+	where board_type=#{board_type}
+	</update>
+	
+	<delete id="deleteBoardType">
+	delete from tbl_board_type where board_type= #{board_type}
+	</delete>
+	
+	<select id="viewBoardType" resultType="org.edu.vo.BoardTypeVO">
+	select*from tbl_board_type where board_type = #{board_type}
+	</select>
+	
+	
+</mapper>

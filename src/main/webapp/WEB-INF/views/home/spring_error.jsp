@@ -20,7 +20,7 @@
 				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
 				<p class="location">에러페이지 <span class="path">/</span>${exception.getMessage()}</p>
 				<ul class="page_menu clear">
-					<li><a href="#" class="on">${exception.getMessage()}</a></li>
+					<li>${exception.getMessage()}</li>
 				</ul>
 			</div>
 		</div>	
