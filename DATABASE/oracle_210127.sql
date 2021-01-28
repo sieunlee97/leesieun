@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  파일이 생성됨 - 수요일-1월-27-2021   
+--  파일이 생성됨 - 목요일-1월-28-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Sequence SEQ_BNO
@@ -77,6 +77,10 @@
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
+
+   COMMENT ON COLUMN "XE"."TBL_BOARD_TYPE"."BOARD_TYPE" IS '게시판타입';
+   COMMENT ON COLUMN "XE"."TBL_BOARD_TYPE"."BOARD_NAME" IS '게시판이름';
+   COMMENT ON COLUMN "XE"."TBL_BOARD_TYPE"."BOARD_SUN" IS '출력순서';
 --------------------------------------------------------
 --  DDL for Table TBL_MEMBER
 --------------------------------------------------------
@@ -97,6 +101,13 @@
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 
+   COMMENT ON COLUMN "XE"."TBL_MEMBER"."USER_ID" IS '사용자 아이디';
+   COMMENT ON COLUMN "XE"."TBL_MEMBER"."USER_PW" IS '사용자 암호';
+   COMMENT ON COLUMN "XE"."TBL_MEMBER"."USER_NAME" IS '사용자 이름';
+   COMMENT ON COLUMN "XE"."TBL_MEMBER"."EMAIL" IS '이메일';
+   COMMENT ON COLUMN "XE"."TBL_MEMBER"."POINT" IS '포인트';
+   COMMENT ON COLUMN "XE"."TBL_MEMBER"."ENABLED" IS '스프링시큐리티 인증';
+   COMMENT ON COLUMN "XE"."TBL_MEMBER"."LEVELS" IS '스프링시큐리티 권한';
    COMMENT ON COLUMN "XE"."TBL_MEMBER"."REG_DATE" IS '등록일시';
    COMMENT ON COLUMN "XE"."TBL_MEMBER"."UPDATE_DATE" IS '수정일시';
 --------------------------------------------------------
@@ -228,6 +239,8 @@ Insert into XE.TBL_BOARD (BNO,BOARD_TYPE,TITLE,WRITER,VIEW_COUNT,REPLY_COUNT,REG
 Insert into XE.TBL_BOARD (BNO,BOARD_TYPE,TITLE,WRITER,VIEW_COUNT,REPLY_COUNT,REG_DATE,UPDATE_DATE) values (100,'gallery','게시물테스트','관리자',null,null,to_timestamp('21/01/27 15:46:10.000000000','RR/MM/DD HH24:MI:SSXFF'),to_timestamp('21/01/27 15:46:10.000000000','RR/MM/DD HH24:MI:SSXFF'));
 REM INSERTING into XE.TBL_BOARD_TYPE
 SET DEFINE OFF;
+Insert into XE.TBL_BOARD_TYPE (BOARD_TYPE,BOARD_NAME,BOARD_SUN) values ('notice','공지사항',1);
+Insert into XE.TBL_BOARD_TYPE (BOARD_TYPE,BOARD_NAME,BOARD_SUN) values ('gallery','갤러리',2);
 REM INSERTING into XE.TBL_MEMBER
 SET DEFINE OFF;
 Insert into XE.TBL_MEMBER (USER_ID,USER_PW,USER_NAME,EMAIL,POINT,ENABLED,LEVELS,REG_DATE,UPDATE_DATE) values ('admin','$2a$10$kIqR/PTloYan/MRNiEsy6uYO6OCHVmAKR4kflVKQkJ345nqTiuGeO','관리자',null,null,1,'ROLE_ADMIN',to_timestamp('21/01/27 15:58:56.000000000','RR/MM/DD HH24:MI:SSXFF'),to_timestamp('21/01/27 15:58:56.000000000','RR/MM/DD HH24:MI:SSXFF'));

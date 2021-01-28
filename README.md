@@ -27,10 +27,36 @@
 - [X] 스프링시큐리티 로그인 구현 pom.xml 의존성 추가(회원가입시 패스워드 암호화 추가).
 - [X] 헤로쿠 클라우드로 배포(Hsql데이터베이스사용).
 - [X] 사용자단 CRUD 구현.
+- [X] 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 - [ ] 오라클로 마이그레이션 작업.
-- [ ] 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
+
 
 ## v6.0.0 UI구현
+###20210128(목)
+- 시작 전, 어제 백업받은 DATABASE폴더에 oracle_20210127.spl 파일 복원
+- 스프링 프로젝트를 오라클로 마이그레이션하기 전 이클립스 준비 작업
+- ojdbc6.jar등록 : 스프링에서 오라클 서버에 접속하는 드라이버 클래스 파일
+- > pom.xml로 외부 모듈 추가하지 않고, 직접 jar파일 외부모듈 등록
+
+
+이론
+- SQL : Structured Query Language(구조화된 질의 언어) CRUD 목적의 언어
+- Ansi SQL : (미국)표준 SQL -------< 표준 SQL위주로 공부해야함
+- 오라클 전용 SQL(전용함수이용, 기능 많음), MS SQL(마이크로소프트사 전용)
+- root-context.xml에서 오라클 커넥션 bean(스프링용클래스)을 생성하고, mybatis용 쿼리 생성 예정
+- DQL(Select)
+- DDL(Create, Alter, Drop)
+- DML(Insert, Update, Delete)
+- DCL(Commit, Rollback..)
+- SQL*PLUS : RUN SQL Command line 실행 -> CONNECT XE/apmsetup XE사용자로 접속
+- SELECT * FROM DEPT;
+- DELETE와 TRUNCATE 차이점 : 둘 다 테이블 내용을 삭제하는 것은 동일
+- DELETE : 100개의 레코드를 지우면, 내용은 지우고, 100개의 공간은 남는다.
+- TRUNCATE : 100개의 레코드를 지우면, 내용도 지우고, 100개의 공간도 날아간다.
+
+###20210127(수)
+###20210126(화)
+
 ###20210125(월)
 - 세션변수 session_board_type을 컨트롤러, 서비스, DAO, 매퍼 모두 VO기준 get/set 발생할 때 세션 변수를 사용할 예정. AOP또는 Interceptor가로채기 클래스를 이용해서 구현예정.
 - AOP로는 session_board_type변수를 생성 관리
