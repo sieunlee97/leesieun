@@ -26,8 +26,8 @@
 예를들면, 주민번호를 수정하는 것과 갑은 의미로, PK 수정하는 것 불가능. 따라서 삭제후 추가
 -->
 <insert id="updateAttach">
-insert into tbl_attach (save_file_name, real_file_name, bno)
-values (#{save_file_name}, #{real_file_name}, #{bno})
+insert into tbl_attach (save_file_name, real_file_name, bno, reg_date)
+values (#{save_file_name}, #{real_file_name}, #{bno}, sysdate)
 </insert>
 
 <!-- 해당 게시물의 첨부파일 1개만 지우기 PK=Primary Key=기본키 => 인덱스자동생성 -->
@@ -40,13 +40,13 @@ delete from tbl_attach where bno = #{bno}
 </delete>
 <!-- LAST_INSERT_ID() MariaDB에서 작동 X-->
 <insert id="insertAttach">
-insert into tbl_attach(save_file_name, real_file_name, bno)
+insert into tbl_attach(save_file_name, real_file_name, bno, reg_date)
 values (#{save_file_name},#{real_file_name},(
 SELECT TABLE_A.BNO FROM (
 SELECT BNO FROM TBL_BOARD ORDER BY BNO DESC 
 ) TABLE_A
 WHERE ROWNUM = 1
-))
+), sysdate)
 
 </insert>
 <update id="updateBoard">

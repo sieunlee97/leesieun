@@ -40,7 +40,7 @@
 						</li>
 						<li class="clear">
 							<label for="writer_lbl" class="tit_lbl pilsoo_item">작성자명</label>
-							<div class="app_content"><input type="text" name="writer" class="w100p" id="writer_lbl" placeholder="이름을 입력해주세요" required/></div>
+							<div class="app_content"><input type="text" value="${session_username}" name="writer" class="w100p" id="writer_lbl" placeholder="이름을 입력해주세요" required/></div>
 						</li>
 	
 						<li class="clear">

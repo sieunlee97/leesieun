@@ -55,7 +55,7 @@
                   </div>
                   <div class="form-group">
                   	<label for="writer">writer</label>
-                  	<input type="text" class="form-control" name="writer" id="writer" placeholder="작성자을 입력해주세요." required>
+                  	<input type="text" value="${session_username}" class="form-control" name="writer" id="writer" placeholder="작성자을 입력해주세요." required>
                   	<!-- 필수 입력값은 html5에서 지원하는 유효성 검사 중 required 속성 사용해서 null값을 체크한다.(유효성검사) -->
                   </div>
                   <div class="form-group">
