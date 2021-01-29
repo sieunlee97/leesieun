@@ -84,7 +84,15 @@
                       <td>${member.email}</td>
                       <td>${member.enabled}</td>
                       <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${member.reg_date}"/></td>
-                      <td><span class="badge bg-danger">${member.levels}</span></td> <!-- span은 자리를 차지하지 않음. 텍스트에 배지만 적용하기 위해 -->
+                      
+                      <c:choose>
+                      <c:when test="${member.levels eq 'ROLE_ADMIN'}">
+                       <td><span class="badge bg-danger">${member.levels}</span></td>
+                       </c:when>
+                      <c:when test="${member.levels ne 'ROLE_ADMIN'}">
+                       <td><span class="badge bg-success">${member.levels}</span></td>
+                      </c:when>
+                      </c:choose> <!-- span은 자리를 차지하지 않음. 텍스트에 배지만 적용하기 위해 -->
                       <!-- 권한표시는 부트스트랩 배지 클래스 사용 -->
                     </tr>
                   </c:forEach>

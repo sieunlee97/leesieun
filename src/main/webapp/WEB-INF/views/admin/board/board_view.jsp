@@ -132,7 +132,7 @@
 					<div class="timeline ml-3">
 						<!-- .time-label의 before -->
 						<div class="time-label" >
-							<span data-toggle="collapse" data-target="#div_reply" class="bg-red"id="btn_reply_list" style="cursor:pointer;">Reply List[<span id="reply_count">${boardVO.reply_count}</span>]&nbsp;</span>
+							<span data-toggle="collapse" data-target="#div_reply" class="bg-red" id="btn_reply_list" style="cursor:pointer;">Reply List[<span id="reply_count">${boardVO.reply_count}</span>]&nbsp;</span>
 						</div>
 						
 						<div id="div_reply" class="timeline collapse">
@@ -420,6 +420,7 @@ $(document).ready(function(){
 					//입력이 success된 후에 댓긁수+1, 페이지는 1페이지로 이동, replyList() 댓글목록 호출 
 					var reply_count = $("#reply_count").text(); //$("영역").text(영역안쪽의문자열), $("영역").val(input데이터)
 					//alert(reply_count);디버그
+					if(reply_count==""){reply_count=0;}
 					$("#reply_count").text(parseInt(reply_count)+1);
 					$("#reply_page").val("1");
 					replyList();

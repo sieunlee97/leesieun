@@ -72,7 +72,7 @@
 	          <div class="card-body">
 	          	<div class="form-group">
                    <label for="replyer">Writer</label>
-                   <input type="text" class="form-control" name="replyer" id="replyer" placeholder="작성자를 입력해 주세요." required>
+                   <input type="text" value="${session_username}"class="form-control" name="replyer" id="replyer" placeholder="작성자를 입력해 주세요." required>
                    <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
                    	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 writer 입니다. -->
                 </div>
@@ -90,7 +90,7 @@
 	                <span data-toggle="collapse" data-target="#div_reply" class="bg-red float-left btn ml-3" id="btn_reply_list">Reply List[<span id="reply_count">${boardVO.reply_count}</span>]&nbsp;&nbsp;</span>
 	              </div>
 	              <!-- .time-label의 after 위치 -->
-	              <div id="div_reply" class="collapse timeline">
+	              <div id="div_reply" class="collapse timeline" style="margin-top:50px; text-align:left;">
 	              <!-- preppend 토글 영역 -->
 			         <!-- 페이징처리 시작 -->
 	         			<div class="pagination justify-content-center">
@@ -306,6 +306,7 @@ $(document).ready(function() {
 			}), //RestAPI 서버로 보내는 Json 값
 			success:function(result) {//응답이 성공하면(상태값200)위경로에서 반환받은 result(json데이터)를 이용해서 화면을 재구현
 				var reply_count = $("#reply_count").text();//get
+				if(reply_count==""){reply_count=0;}
 				$("#reply_count").text(parseInt(reply_count)+1); //set
 				//댓글 3페이지 보고 있다가, 댓글 입력 시, 작성자가 본인이 작성한 댓글 확인할 수 있도록 1페이지로 이동
 				$("#reply_page").val(1); //set

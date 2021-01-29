@@ -7,8 +7,17 @@ select count(*) from tbl_reply where bno = #{bno}
 </select>
 
 <select id="selectReply" resultType="org.edu.vo.ReplyVO">
-SELECT * FROM tbl_reply WHERE bno=#{bno} ORDER BY rno DESC
-LIMIT #{pageVO.queryStartNo}, #{pageVO.queryPerPageNum}
+SELECT TABLE_B.* FROM (
+    SELECT ROWNUM AS RNUM, TABLE_A. * FROM (
+    SELECT * FROM TBL_REPLY
+    WHERE bno=#{bno}
+    order by rno desc
+    ) TABLE_A 
+    <![CDATA[
+    WHERE ROWNUM <= (#{pageVO.queryStartNo}/ #{pageVO.queryPerPageNum}+1)* #{pageVO.queryPerPageNum}
+) TABLE_B
+WHERE TABLE_B.RNUM > (#{pageVO.queryStartNo}/ #{pageVO.queryPerPageNum})* #{pageVO.queryPerPageNum}
+]]>
 </select>
 
 <update id="updateCountReply">
@@ -17,14 +26,17 @@ where bno=#{bno}
 </update>
 
 <insert id="insertReply">
-INSERT INTO tbl_reply(bno, reply_text, replyer, reg_date)
-VALUES (#{bno}, #{reply_text}, #{replyer}, now())
+	<selectKey keyProperty="rno" resultType="int" order="BEFORE">
+	SELECT SEQ_RNO.nextval FROM DUAL
+	</selectKey>
+INSERT INTO tbl_reply(rno, bno, reply_text, replyer, reg_date)
+VALUES (#{rno}, #{bno}, #{reply_text}, #{replyer}, sysdate)
 </insert>
 
 <update id="updateReply">
 UPDATE tbl_reply SET
 reply_text=#{reply_text},
-update_date=now()
+update_date=sysdate
 WHERE rno=#{rno}
 </update>
 

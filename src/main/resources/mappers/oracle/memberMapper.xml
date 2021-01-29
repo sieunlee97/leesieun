@@ -21,15 +21,15 @@ user_id LIKE '%user_2020%
 	<if test="search_type != '' and search_type != null">
 		where
 		<if test="search_type == 'all'.toString()">
-			user_id LIKE concat('%', #{search_keyword}, '%')
+			user_id LIKE '%'||#{search_keyword}||'%'
 			or
-			user_name LIKE concat('%', #{search_keyword}, '%')
+			user_name LIKE '%'||#{search_keyword}||'%'
 		</if>
 		<if test="search_type == 'user_id'.toString()">
-			user_id LIKE concat('%', #{search_keyword}, '%')
+			user_id LIKE '%'||#{search_keyword}||'%'
 		</if>
 		<if test="search_type == 'user_name'.toString()">
-			user_name LIKE concat('%', #{search_keyword}, '%')
+			user_name LIKE '%'||#{search_keyword}||'%'
 		</if>
 	</if>
 </sql>
@@ -38,10 +38,17 @@ select count(*) from tbl_member
 <include refid="sqlWhere"></include>
 </select>
 <select id="selectMember" resultType="org.edu.vo.MemberVO">
-select * from tbl_member	
-<include refid="sqlWhere"></include>
+SELECT TABLE_B.* FROM (
+    SELECT ROWNUM AS RNUM, TABLE_A. * FROM (
+    SELECT * FROM TBL_MEMBER
+    <include refid="sqlWhere"></include>
+    <![CDATA[ 
+    ) TABLE_A 
+    WHERE ROWNUM <= (#{queryStartNo}/#{queryPerPageNum}+1)*#{queryPerPageNum}
+) TABLE_B
+WHERE TABLE_B.RNUM > (#{queryStartNo}/#{queryPerPageNum})*#{queryPerPageNum} 
 order by reg_date desc
-limit #{queryStartNo}, #{queryPerPageNum}
+]]>
 </select>
 
 <insert id="insertMember">
@@ -62,7 +69,7 @@ INSERT INTO tbl_member (
 	#{point},
 	#{enabled},
 	#{levels},
-	now()
+	sysdate
 )
 </insert>
 
@@ -79,7 +86,7 @@ SET
 	point=#{point},
 	enabled=#{enabled},
 	levels=#{levels},
-	update_date=now()
+	update_date=sysdate
 WHERE 
 	user_id=#{user_id}
 </update>

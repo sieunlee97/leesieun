@@ -45,7 +45,7 @@
 		                      ${pageVO.totalCount-(pageVO.page*pageVO.queryPerPageNum)+pageVO.queryPerPageNum-status.index}
 							</td>
 							<td class="tit_notice"><a href="/home/board/board_view?bno=${boardVO.bno}&page=${pageVO.page}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}">
-								<c:out value="${boardVO.title}"/><c:if test="${boardVO.reply_count} !=0 ">[<c:out value="${boardVO.reply_count}" />]</c:if> 
+								<c:out value="${boardVO.title}"/><c:if test="${not empty boardVO.reply_count}">[<c:out value="${boardVO.reply_count}"></c:out>]</c:if> 
 							</a></td>
 							<td>${boardVO.view_count}</td>
 							<td>
