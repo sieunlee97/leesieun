@@ -63,8 +63,11 @@ delete from tbl_board where bno = #{bno}
 </delete>
 
 <insert id="insertBoard">
-insert into tbl_board (board_type,title,content,writer,reg_date)
-values (#{board_type},#{title},#{content},#{writer},sysdate)
+<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+SELECT SEQ_BNO.nextval FROM DUAL
+</selectKey>
+insert into tbl_board (bno,board_type,title,content,writer,reg_date)
+values (#{bno},#{board_type},#{title},#{content},#{writer},sysdate)
 </insert>
 
 <!-- get/set으로 사용할 것이기 때문에 속성명 적을 필요 없다.(아래) -->

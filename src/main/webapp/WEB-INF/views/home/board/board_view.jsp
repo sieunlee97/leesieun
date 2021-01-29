@@ -87,7 +87,7 @@
 	          <div class="timeline">
 	          	  <!-- .time-label의 before 위치 -->
 		          <div class="time-label">
-	                <span data-toggle="collapse" data-target="#div_reply" class="bg-red btn ml-3" id="btn_reply_list">Reply List[<span id="reply_count">${boardVO.reply_count}</span>]&nbsp;&nbsp;</span>
+	                <span data-toggle="collapse" data-target="#div_reply" class="bg-red float-left btn ml-3" id="btn_reply_list">Reply List[<span id="reply_count">${boardVO.reply_count}</span>]&nbsp;&nbsp;</span>
 	              </div>
 	              <!-- .time-label의 after 위치 -->
 	              <div id="div_reply" class="collapse timeline">
