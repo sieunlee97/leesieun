@@ -43,6 +43,7 @@ SELECT TABLE_B.* FROM (
     SELECT * FROM TBL_MEMBER
     <include refid="sqlWhere"></include>
     <![CDATA[ 
+    order by reg_date desc
     ) TABLE_A 
     WHERE ROWNUM <= (#{queryStartNo}/#{queryPerPageNum}+1)*#{queryPerPageNum}
 ) TABLE_B

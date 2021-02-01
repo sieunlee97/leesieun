@@ -166,6 +166,7 @@ var printPageVO = function(pageVO, target) {
 		success:function(result){
 			if(typeof result=="undefined" || result=="" || result==null) {
 				$("#div_reply").empty();
+				$("#div_reply").html('<div class="pagination justify-content-center"><ul class="pagination pageVO"></ul></div>');
 				alert("조회된 값이 없습니다.");
 			} else { 
 				printReplyList(result.replyList, $("#div_reply"), $("#template")); //댓글리스트 출력

@@ -86,7 +86,7 @@ select * from tbl_board where bno = #{bno}
 </select>
 
 <update id="updateViewCount">
-update tbl_board set view_count = view_count + 1
+update tbl_board set view_count = NVL(view_count,0) + 1
 where bno = #{bno}
 </update>
 
