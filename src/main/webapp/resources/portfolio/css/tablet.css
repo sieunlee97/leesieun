@@ -248,17 +248,14 @@
 		height:50px;
 	}
 	.ready-page {
-		margin:0 15%;
-		padding:0 10%;
-	}
-	.ready-page .fa-spinner{
-		font-size:80px;
-		margin-right:50px;
+		text-align:center;
 	}
 	 .ready-content {
 	 	width:100%;
 	 	color:white;
 	 	margin-top:150px;
 	 }
+	 .ready-content h3{font-size:50px;}
+	 .ready-content p{font-size:25px;}
 }
 	

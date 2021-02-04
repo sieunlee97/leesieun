@@ -57,7 +57,7 @@ color:white;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding-top:70px;
+  padding-top:60px;
   text-align: center;
 }
 .cover-section .cover-content {  /*커버영역 내의 콘텐츠 영역*/
@@ -73,10 +73,10 @@ color:white;
 /*타이핑 효과 시작*/
 .cover-content p{
   letter-spacing: 3px;
-  animation: typing 3s steps(38);
+  animation: typing 3s steps(30);
   overflow:hidden;
-  white-space: nowrap;;
-  width:44ch;
+  white-space: nowrap;
+  width:100%;
   margin:10px auto;  
 }
 @keyframes typing {
@@ -84,7 +84,7 @@ color:white;
     width:0;
   }
   100%{
-    width:44ch;
+    width:30ch;
   }
 }
 /*타이핑 효과 끝*/
@@ -155,10 +155,10 @@ height: 140px;
 #tbl p, ul {border-left:2px solid gray; padding-left:20px;}
 #tbl ul{line-height: 150%;}
 #tbl .title {
-  width:70%;
+  width:75%;
   vertical-align:top;
   font-size: 15px;
-  padding-left:20px;
+  padding-left:8px;
   color: rgb(24,26,76);
 }
 #tbl .detail {
@@ -199,7 +199,7 @@ height: 140px;
 }
 .info {
 	width:100%;
-	font-size:20px;
+	font-size:15px;
 	color:white;
 	font-weight:bold;
 	padding-top:20%;
@@ -218,12 +218,15 @@ height: 140px;
 	padding-right:5%;
 }
 .info-table .detail {
-	width:70%;
+	width:72%;
 }
 .info-table a {
 	color:white;
 }
-
+.info-table img{
+	width:35px;
+	height:35px;
+}
 
 
 
@@ -237,8 +240,7 @@ height: 140px;
  	margin-top:150px;
  }
  .ready-page {
- 	margin:0 10%;
-    padding:0 10%;
+ 	text-align:center;
 }
 .ready-page .fa-spinner {
 	font-size:50px;

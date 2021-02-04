@@ -24,11 +24,11 @@
     <!-- 헤더 상단 메뉴 영역 끝 -->
 	<!-- 헤더 커버 영역 시작 -->
       <div class="cover-section">
-        <div class="circle-background" OnClick="location.href ='home.html'" style="cursor:pointer;"></div>
+        <div class="circle-background" OnClick="location.href ='/portfolio'" style="cursor:pointer;"></div>
       <div class="cover-content">
         <p>Hi, My name is <b>Lee Si Eun.</b></p>
       </div>
-        <a href="/contact" class="btn_contact">Contact ME</a>
+        <a href="/portfolio/contact" class="btn_contact">Contact ME</a>
       </div>
 <!-- 헤더 커버 영역 끝 -->
       

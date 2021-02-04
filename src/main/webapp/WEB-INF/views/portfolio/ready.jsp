@@ -34,9 +34,7 @@ body{
       
       <section class="ready-content">
       <div class="ready-page">
-        <div><i class="fas fa-spinner" style="float:left; color:white;"></i></div>
-
-        <div class="ready-content" style=" width:100%; padding-left:100px;">
+             <div class="ready-content" style=" width:80%; margin:0 auto;">
           <h3><i class="fas fa-exclamation-triangle text-warning"></i> COMMING SOON </h3>
           <p> 이 페이지는 준비 중입니다. <a href="/portfolio">return to home</a> </p>
         </div>
