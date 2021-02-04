@@ -150,8 +150,8 @@ header {
 .gnb li a {
 	display: block;
 	padding: 0 0 0 65px;
-	height: 60px;
-	line-height: 60px;
+	height: 50px;
+	line-height: 50px;
 	background: url(../img/ico_gnb01.png) no-repeat 10px center;
 	background-size: 49px 56px;
 }

@@ -69,11 +69,11 @@ if('${msg}' != ''){ //자바의 EL표기법 달러{변수명}
 				</ul>	
 				<nav>
 				<ul class="gnb clear">
+					<li><a href="/portfolio">포트폴리오</a></li>
 					<li><a href="/sample" class="openAll1">샘플 홈페이지</a>
 
                         <div class="gnb_depth gnb_depth2_1">
                             <ul class="submenu_list">
-                            	<li><a href="/portfolio">포트폴리오</a></li>
                                 <li><a href="/sample">반응형 홈페이지</a></li>
                             </ul>
                         </div>
