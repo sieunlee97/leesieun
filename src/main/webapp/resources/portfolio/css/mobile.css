@@ -1,0 +1,226 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
+@media all and (max-width:700px){
+.header { /*커버영역*/
+  position: relative;
+  width: 100%;
+  height:300px;
+}
+.menu-toggle-btn { /* toggle : 똑딱이버튼 */
+position:absolute;
+float:right;
+right:20px;
+width:25px;
+margin-top:18px;
+cursor:pointer; /*마우스 커서모양을 손모양으로 변경 */
+}
+.menu-toggle-btn span {
+/* span 태그 : 자리를 차지하지 않는 영역, 한뼘 */
+/* : 콜론(속성:값, Key:Value), ; 세미콜론(문장의 끝), px : 픽셀, 화면에 표시되는 크기의 단위 */
+display:block;height:2px;
+width:100%; /* 여기서 100% = .menu-toggle-btn영역의 가로크기*/
+background-color:#fff;
+margin-bottom: 5px;
+}
+.menu {
+display:none; /* 페이지로딩할 때, 숨겨야하기 때문에 none으로 처리. */
+position:absolute; /* gnb영역의 위치를 절대위치로 지정, 따라서 위치정보 필요 */
+top:60px; /* 화면 상단에서 얼만큼 떨어지게 배치할지 지정 */
+left:0px;
+width:100%;
+background:#000;
+opacity:0.8;
+z-index:21; /* 화면에서 컨텐츠가 겹치는 경우 z인덱스를 이용해서 어느게 앞으로 나올지 결정*/
+}
+.menu li{
+/* border는 테두리, bottom :아래, top:위, left-right:좌-우, 1px(두께), solid(실선), 색상*/
+border-bottom:1px solid black;
+}
+/*가상선택자 사용*/
+.menu li:first-child{
+border-top:1px solid #000;
+}
+.menu li a{
+display:block; /* 1줄 전체자리를 차지하는 영역, inline-block : 본인 크기만큼만 자리 차지*/
+padding:14px 0px 14px 5%;
+font-size:14px;
+color:white;
+}
+.cover-section { /*커버영역*/
+  width:100%;
+  height:300px;
+  background-image: url(/resources/portfolio/img/background.jpg);
+  background-size: cover;
+  background-position:top;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top:70px;
+  text-align: center;
+}
+.cover-section .cover-content {  /*커버영역 내의 콘텐츠 영역*/
+ position: relative;
+ margin:0 auto;
+ color: white;
+ font-size:25px;
+ font-family: 'Open Sans Condensed', sans-serif;
+ font-style: italic;
+ text-align: center !important;
+ width:auto;
+}
+/*타이핑 효과 시작*/
+.cover-content p{
+  letter-spacing: 3px;
+  animation: typing 3s steps(38);
+  overflow:hidden;
+  white-space: nowrap;;
+  width:44ch;
+  margin:10px auto;  
+}
+@keyframes typing {
+  0%{
+    width:0;
+  }
+  100%{
+    width:44ch;
+  }
+}
+/*타이핑 효과 끝*/
+.circle-background { /*커버영역 내의 프로필 사진*/
+margin:0 auto;
+background-image:url(/resources/portfolio/img/profile.png);
+background-size:140px 160px;
+background-repeat: no-repeat;
+border-style:solid;  /*원 테두리 선*/
+border-color: #ECECED;
+border-radius: 50%;  /*원형으로 만들기*/
+width: 140px;
+height: 140px;
+}
+.circle-background a{
+  display: block;
+}
+.btn_contact {
+  display: block;
+  border-radius: 4px;
+  border:2px dashed white;
+  width:130px; height:26px;
+  color:white;
+  font-size: 16px;
+  margin:0px auto 0 auto;
+  transition-duration: 0.4s;
+}
+.btn_contact:hover{
+  background: rgb(252, 240, 242);
+  color:rgb(178, 48, 75);
+}
+.my-my-container {
+  width:100%;
+  position: relative;
+  padding:0 10%;
+}
+.my-my-container .aboutme {
+  text-align: center;
+}
+.aboutme h1{
+  color:rgb(24,26,76);
+  font-size: 30px;
+  text-align: center;
+  margin-top:50px;
+  margin-bottom: 25px;
+  /*color: rgb(218, 48, 75);*/
+}
+.aboutme p{
+  text-align: center;
+  line-height: 150%;
+  font-size: 13px;
+}
+.career {
+  margin-top: 50px;
+}
+.career h2 {
+  font-size: 25px;
+  margin-bottom: 10px;
+  color: rgb(218, 48, 76);
+}
+#tbl {width:100%; margin-bottom:20px;}
+#tbl td {padding-bottom:30px; }
+#tbl .career-time {
+  vertical-align: top;
+  font-size: 15px;
+  color:gray;
+}
+#tbl p, ul {border-left:2px solid gray; padding-left:20px;}
+#tbl ul{line-height: 150%;}
+#tbl .title {
+  width:70%;
+  vertical-align:top;
+  font-size: 15px;
+  padding-left:20px;
+  color: rgb(24,26,76);
+}
+#tbl .detail {
+  font-size: 13px;
+  color:gray;
+}
+#tbl li {
+  font-size:13px;
+  font-weight: normal;
+  color:black;
+}
+
+
+/*skill영역*/
+.skill-section .my-container {
+  padding:5%;
+}
+.skill-section .my-container h1 {
+  font-size:20px;
+  color:rgb(217,48,75);
+  margin-bottom:10px;
+}
+.skill-section .skill-table {
+  width:100%;
+  margin-bottom: 20px;
+}
+
+.skill-section .skill-table td {
+  width:33.3%;
+  font-size:18px;
+}
+
+/*contact영역*/
+.contact-section .header{
+  position: relative;
+  width:100%;
+  height: 50px;
+}
+.info {
+	width:100%;
+	font-size:20px;
+	color:white;
+	font-weight:bold;
+	padding-top:20%;
+}
+.info .circle-background {
+	display:none;
+}
+.info .info-table {
+	width:100%;
+}
+.info tr {
+	height:50px;
+}
+.info-table .title {
+	text-align :right;
+	padding-right:5%;
+}
+.info-table .detail {
+	width:70%;
+}
+.info-table a {
+	color:white;
+}
+}

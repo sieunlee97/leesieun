@@ -1,0 +1,190 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
+/*미디어쿼리:미디어의 가로크기가 768px이상이면 아래 스타일 적용*/
+@media (min-width:1132px) {
+/*헤더 영역  시작*/
+.cover-section { /*커버영역*/
+  width:100%;
+  height:500px;
+  background-image: url("/resources/portfolio/img/background.jpg");
+  background-size: cover;
+  background-position:top;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top:100px;
+  text-align: center;
+}
+.cover-content {  /*커버영역 내의 콘텐츠 영역*/
+  position: relative;
+  margin:10px auto;
+  color: white;
+  font-size:40px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-style: italic;
+  text-align: center;
+  width:100%;
+}
+
+/*타이핑 효과 시작*/
+/*타이핑 효과 끝*/
+.circle-background { /*커버영역 내의 프로필 사진*/
+margin:0 auto;
+background-image:image("/resources/portfolio/img/profile.png");
+background-size:210px 230px;
+background-repeat: no-repeat;
+border-style:solid;  /*원 테두리 선*/
+border-color: #ECECED;
+border-radius: 50%;  /*원형으로 만들기*/
+width: 200px;
+height: 200px;
+}
+/*헤더 영역 끝 */
+/* home 스타일  시작====================================================*/
+.btn_contact {
+  display: block;
+  border-radius: 4px;
+  border:2px dashed white;
+  width:250px; height:50px;
+  color:white;
+  font-size: 30px;
+  margin:15px auto 0 auto;
+  transition-duration: 0.4s;
+}
+.btn_contact:hover{
+  background: rgb(252, 240, 242);
+  color:rgba(178, 48, 75);
+}
+.home-section .my-container {
+  width:100%;
+  position: relative;
+  padding:0 10%;
+}
+/*자기소개 영역 시작*/
+.home-section .my-container .aboutme {
+  text-align: center;
+}
+.aboutme h1{
+  color:rgb(24,26,76);
+  font-size: 35px;
+  text-align: center;
+  margin-top:50px;
+  margin-bottom: 25px;
+  /*color: rgb(218, 48, 75);*/
+}
+/*자기소개 영역 끝*/
+/*경력 영역 시작*/
+.career h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: rgb(218, 48, 76);
+}
+#tbl .career-time {
+  vertical-align: top;
+  font-size: 22px;
+  color:gray;
+}
+#tbl ul{
+	line-height: 150%;
+	border-left:2px solid gray; padding-left:20px;
+}
+#tbl .title {
+  width:70%;
+  vertical-align:top;
+  font-size: 18px;
+  font-weight:bold;
+  padding-left:20px;
+  color: rgb(24,26,76);
+}
+.home-section table .detail {
+  font-size: 15px;
+  color:gray;
+}
+.home-section table li {
+  font-size:16px;
+  font-weight: normal;
+  color:black;
+}
+/*경력 영역 끝*/
+/* home 스타일  끝 ====================================================*/
+/* skill 스타일 시작===================================================*/
+.skill-section .my-container {
+  width:100%;
+  position: relative;
+  padding:0 10%;
+  margin-top:80px;
+}
+.skill-section .my-container h1 {
+  font-size:30px;
+  margin-bottom: 15px;
+}
+.skill-section .my-container .skill-table {
+  width:100%;
+  margin-bottom: 40px;
+}
+.skill-table td {
+  width:33.3%;
+  font-size: 25px;
+  font-weight: 300;
+}
+/* skill 스타일 끝===================================================*/
+
+/*contact 스타일 시작======================================================*/
+.contact-section .my-container {
+  width:100%;
+}
+.contact-section .header{
+  position: relative;
+  width:100%;
+  height: 50px;
+}
+.contact-section .circle-background { /*커버영역 내의 프로필 사진*/
+display:block;
+position:static;
+float:left;
+background-image: url("/resources/portfolio/img/profile.png");
+background-size:300px 330px;
+background-repeat: no-repeat;
+border-style:solid;  /*원 테두리 선*/
+border-color: #ECECED;
+border-radius: 50%;  /*원형으로 만들기*/
+width: 290px;
+height: 290px;
+}
+.info {
+  position: absolute;
+  display:block;
+  width:100%;
+  height:300px;
+  float:right;
+  text-align:left;
+  padding-left: 10%;
+  margin-top:15%;
+}
+.info-table {
+  float:right;
+  width:65%;
+  border-left: 3px solid white;
+  height:300px;
+}
+.info-table .title {
+  float:right;
+  font-size:35px;
+  font-weight:bold;
+  color:white;
+  padding:12px 25px 0 25px;
+}
+ .title img {float:right;width:45px; height:45px;}
+.info-table .detail {
+  font-size: 30px;
+  color:white;
+  width:80%;
+}
+  .info-table .detail p {font-size: 30px; color:white;}
+  .info-table .detail a {font-size: 30px; color:white;}
+/*contact 스타일 끝=================================================================*/
+
+
+}

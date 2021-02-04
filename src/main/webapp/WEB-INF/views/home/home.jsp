@@ -74,7 +74,7 @@ $(document).ready(function(){
 
 		<!-- 갤러리최근게시물영역 -->
 		<div class="about_area">
-			<h2>겔러리 최근 게시물 <b>TOP 3</b></h2>
+			<h2>갤러리 최근 게시물 <b>TOP 3</b></h2>
 			<div class="about_box">
 				<ul class="place_list box_inner clear">
 				<c:forEach var="boardVO" items="${gallery_list}" varStatus="status">
