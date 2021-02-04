@@ -2,7 +2,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
 /*미디어쿼리:미디어의 가로크기가 768px이상이면 아래 스타일 적용*/
-@media all and (min-width:701px) {
+@media all and (min-width:769px) {
 	/*헤더 영역  시작*/
 	.header { /*커버영역부터 category영역까지*/
 	  position: relative;
@@ -242,5 +242,23 @@
 	}
 	  .info-table .detail p {font-size: 22px; color:white;}
 	  .info-table .detail a {font-size: 22px; color:white;}
+	  
+	  
+	.ready-section .header {
+		height:50px;
+	}
+	.ready-page {
+		margin:0 15%;
+		padding:0 10%;
+	}
+	.ready-page .fa-spinner{
+		font-size:80px;
+		margin-right:50px;
+	}
+	 .ready-content {
+	 	width:100%;
+	 	color:white;
+	 	margin-top:150px;
+	 }
 }
 	

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
-@media all and (max-width:700px){
+@media all and (max-width:768px){
 .header { /*커버영역*/
   position: relative;
   width: 100%;
@@ -222,5 +222,25 @@ height: 140px;
 }
 .info-table a {
 	color:white;
+}
+
+
+
+
+ .ready-section .header {
+  	height:50px;
+  }
+
+ .ready-content {
+ 	width:100%;
+ 	color:white;
+ 	margin-top:150px;
+ }
+ .ready-page {
+ 	margin:0 10%;
+    padding:0 10%;
+}
+.ready-page .fa-spinner {
+	font-size:50px;
 }
 }

@@ -11,18 +11,6 @@
 body{
   background-color: rgb(218,48,76);
   }
-  .ready-section .header {
-  height:50px;
-  }
-
- .ready-content {
- 	color:white;
- 	 margin-top:150px;
- }
- .ready-page {
-    margin: 20px auto 0;
-    width: 600px;
-}
 
 </style>
   <section class="ready-section">
@@ -46,16 +34,11 @@ body{
       
       <section class="ready-content">
       <div class="ready-page">
-        <i class="fas fa-spinner" style="float:left;font-size:80px; color:white;"></i>
+        <div><i class="fas fa-spinner" style="float:left; color:white;"></i></div>
 
-        <div class="error-content" style="margin-left:120px !important;">
+        <div class="ready-content" style=" width:100%; padding-left:100px;">
           <h3><i class="fas fa-exclamation-triangle text-warning"></i> COMMING SOON </h3>
-
-          <p>
-            We could not find the page you were looking for.
-            Meanwhile, you may <a href="/portfolio">return to home</a>
-          </p>
-
+          <p> 이 페이지는 준비 중입니다. <a href="/portfolio">return to home</a> </p>
         </div>
         <!-- /.error-content -->
       </div>
