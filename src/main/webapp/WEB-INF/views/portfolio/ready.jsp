@@ -28,6 +28,7 @@ body{
   <section class="ready-section">
     <div class="my-container">
     <section class="header">
+    <a href="/"><i class="fas fa-home"></i></a>
 	    <div class="menu-toggle-btn">
 		<span></span>
 		<span></span>
