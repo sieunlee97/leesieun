@@ -27,6 +27,10 @@ body{
       <div class= "info">
       <span class="circle-background" OnClick="location.href ='/portfolio'" style="cursor:pointer;"></span>
         <table class="info-table">
+       	  <tr>
+            <td class="title">Profile</td>
+            <td class="detail">이시은 / 97.01.27</td>
+          </tr>
           <tr>
             <td class="title">H.P.</td>
             <td class="detail">010-3190-0137</td>
