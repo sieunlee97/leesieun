@@ -41,6 +41,7 @@
     text-align: left;
   }
   /* //상단 로고,메뉴영역 */
+    
   /* 겔러리, 공지사항 최근게시물 영역 */
   .place_list {
     padding: 0px;
@@ -59,6 +60,8 @@
   .bbs_line {
     width: 32%;
   }
+
+  
   /* //겔러리, 공지사항 최근게시물 영역 */
   /* 푸터영역 */
   .foot_area {

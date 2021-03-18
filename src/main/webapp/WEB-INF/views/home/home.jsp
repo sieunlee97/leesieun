@@ -37,21 +37,21 @@ $(document).ready(function(){
                     <li class="imglist0">
                         <div class="roll_content">
                             <a href="javascript:;">
-							<p class="roll_txtline">OOOO OOOOOOOOO OOOOOOOOO OOOOO</p>
+							<p class="roll_txtline"></p>
 							</a>
                         </div>
                     </li>
                     <li class="imglist1">
                         <div class="roll_content">
                             <a href="javascript:;">
-							<p class="roll_txtline">OOOO OOOOOOOOO OOOOOOOOO OOOOO</p>
+							<p class="roll_txtline"></p>
 							</a>
                         </div>
                     </li>
                     <li class="imglist2">
                         <div class="roll_content">
                             <a href="javascript:;">
-							<p class="roll_txtline">OOOO OOOOOOOOO OOOOOOOOO OOOOO</p>
+							<p class="roll_txtline"></p>
 							</a>
                         </div>
                     </li>
@@ -80,7 +80,7 @@ $(document).ready(function(){
 				<c:forEach var="boardVO" items="${gallery_list}" varStatus="status">
 					<c:if test="${status.count<=3}"> 
 					<li class="opacity_hover"><a href="/home/board/board_view?board_type=${boardVO.board_type}&bno=${boardVO.bno}&page=1">
-						<div style="height:300px;" >
+						<div style="height:350px;" >
 							<c:if test="${save_file_names[status.index] eq ''}">
 								<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.8;"/>
 							</c:if>

@@ -197,6 +197,7 @@ header {
     height: 300px;
     line-height: 550px;
     background-size: cover;
+    background-position:center;
     width: 100%;
   }
   .roll_content a img {
