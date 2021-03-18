@@ -390,7 +390,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/member/member_update", method=RequestMethod.POST)
 	public String member_update(@ModelAttribute("pageVO") PageVO pageVO, @Valid MemberVO memberVO) throws Exception {
 		// POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호화시킴
-		if(memberVO.getUser_pw() != null || memberVO.getUser_pw() != "") {
+		if(memberVO.getUser_pw() == null || memberVO.getUser_pw() == "") {
 		
 		}
 		else {

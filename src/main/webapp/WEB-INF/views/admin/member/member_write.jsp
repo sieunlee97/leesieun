@@ -107,6 +107,10 @@ $(document).ready(function(){
 	$("#user_id").bind("blur", function(){
 		//alert("여기까지"+ $(this).val()); 디버그용
 		var p_user_id=$(this).val(); // user_id 저장변수
+		if(p_user_id == ""){
+			alert("아이디는 필수 항목입니다.");
+			return false;
+		}
 		$.ajax({
 			type:'get',
 			url:'/id_check?user_id='+p_user_id, //user_id get방식으로 보내게 된다.

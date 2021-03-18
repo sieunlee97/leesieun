@@ -30,6 +30,7 @@
 					<tr>
 						<th scope="col">번호</th>
 						<th scope="col">제목</th>
+						<th scope="col">작성자</th>
 						<th scope="col">조회수</th>
 						<th scope="col">작성일</th>
 					</tr>
@@ -47,6 +48,7 @@
 							<td class="tit_notice"><a href="/home/board/board_view?bno=${boardVO.bno}&page=${pageVO.page}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}">
 								<c:out value="${boardVO.title}"/><c:if test="${not empty boardVO.reply_count}">[<c:out value="${boardVO.reply_count}"></c:out>]</c:if> 
 							</a></td>
+							<td>${boardVO.writer}</td>
 							<td>${boardVO.view_count}</td>
 							<td>
 								<fmt:formatDate value="${boardVO.reg_date}" pattern="yyyy-MM-dd HH:mm"/>	
