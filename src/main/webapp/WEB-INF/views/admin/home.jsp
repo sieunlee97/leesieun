@@ -44,7 +44,7 @@
            <ul class="users-list clearfix">
            <c:forEach items="${latest_member}" var="memberVO">
              <li>
-               <img src="/resources/dist/img/default-150x150.png" alt="User Image">
+               <img src="/resources/profile/${memberVO.user_id}.jpg" style="width:150px; height:150px;" onerror="this.src='/resources/dist/img/default-150x150.png'" alt="User Profile">
                <a class="users-list-name" href="/admin/member/member_view?user_id=${memberVO.user_id}&page=1">${memberVO.user_name}</a>
                <span class="users-list-date">
                		<c:out value="${memberVO.enabled eq 'true'? '활성':'비할성'}" />

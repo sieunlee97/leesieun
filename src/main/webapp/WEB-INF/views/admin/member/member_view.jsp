@@ -38,6 +38,7 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <strong><i class="fas fa-user mr-1"></i> user_id</strong>
+                <img class="img-circle" style="float:right; width:50px; height:50px;" src="/resources/profile/${memberVO.user_id}.jpg" onerror="this.src='/resources/dist/img/default-150x150.png'">
                 <p class="text-muted">
                 <!-- jsp에서 자바변수(저장소)를 사용하는 방법 Model로 수신한 $ 변수명으로 표시한다. -->
                 <%-- ${user_id2} 아래 보안코딩 적용 --%> 

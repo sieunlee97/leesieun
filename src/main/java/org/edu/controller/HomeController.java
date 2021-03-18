@@ -62,7 +62,18 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/home/board/board_delete", method=RequestMethod.POST)
-	public String board_delete(RedirectAttributes rdat, @RequestParam("bno") Integer bno, @RequestParam("page") Integer page) throws Exception {
+	public String board_delete(HttpServletRequest request, RedirectAttributes rdat, @RequestParam("bno") Integer bno, @RequestParam("page") Integer page) throws Exception {
+		
+		//삭제 시 본인이 작성한 글인지 체크(아래)
+		BoardVO boardVO = boardService.readBoard(bno);
+		String session_userid = (String) request.getSession().getAttribute("session_userid");
+		if(!session_userid.equals(boardVO.getWriter().toString())) {
+			rdat.addFlashAttribute("msg", "본인이 작성한 글만 삭제 가능합니다. \\n이전 페이지로 이동");
+			//redirect 대신에 forward를 사용하면 Model 사용 가능.
+			// forward 새로고침하면, 게시글 테러가 발생가능함.. redirect하면 새로고침해도 게시글 테러가 발생X
+			return "redirect:/home/board/board_view?bno="+bno+"&page="+page;
+		}
+		
 		//부모 게시판에 참부파일이 있다면 첨부파일 삭제 처리 후 게시글 삭제(아래)
 		List<AttachVO> delFiles = boardService.readAttach(bno);
 		if(!delFiles.isEmpty()) {
@@ -157,7 +168,7 @@ public class HomeController {
 		//수정 시 본인이 작성한 글인지 체크(아래)
 		String session_userid = (String) request.getSession().getAttribute("session_userid");
 		if(!session_userid.equals(boardVO.getWriter().toString())) {
-			model.addAttribute("msg", "본인이 작성한 글만 수정 가능합니다. \\n 이전 페이지로 이동");
+			model.addAttribute("msg", "본인이 작성한 글만 수정 가능합니다. \\n이전 페이지로 이동");
 			//redirect 대신에 forward를 사용하면 Model 사용 가능.
 			// forward 새로고침하면, 게시글 테러가 발생가능함.. redirect하면 새로고침해도 게시글 테러가 발생X
 			return "forward:/home/board/board_view?bno="+bno;

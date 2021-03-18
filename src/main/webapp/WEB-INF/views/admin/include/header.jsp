@@ -79,7 +79,8 @@ if('${msg_fail}' != ''){
       <!-- Sidebar user panel (optional), 로그인한 사용자 표시 -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/resources/dist/img/default-150x150.png" class="img-circle elevation-2" alt="User Image">
+          <!-- img src="/resources/dist/img/default-150x150.png" class="img-circle elevation-2" alt="User Image" -->
+          <img src="/resources/profile/${session_userid}.jpg" class="img-circle elevatioin-2" style="width:40px; height:40px;" alter="User profile">
         </div>
         <div class="info">
           <a href="#" class="d-block">${session_username}</a>

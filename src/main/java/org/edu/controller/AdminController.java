@@ -28,6 +28,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -225,6 +227,7 @@ public class AdminController {
 	}
 	@RequestMapping(value="/admin/board/board_write", method=RequestMethod.POST)
 	public String board_write(RedirectAttributes rdat, @RequestParam("file") MultipartFile[] files, BoardVO boardVO) throws Exception {
+		
 		//POST로 받은 boardVO내용을 DB서비스에 입력하면 된다.
 		String[] save_file_names=new String[files.length];
 		String[] real_file_names=new String[files.length];
@@ -360,7 +363,11 @@ public class AdminController {
 	
 	// 메소드 오버로딩(ex. 동영상 로딩중.., 로딩된 매개변수가 다르면, 메소드 이름 중복가능하다. 대표적인 다형성 구현)
 	@RequestMapping(value="/admin/member/member_write", method=RequestMethod.POST)
-	public String member_write(@Valid MemberVO memberVO) throws Exception{
+	public String member_write(HttpServletRequest request, MultipartFile file, @Valid MemberVO memberVO) throws Exception{
+		//프로필 첨부파일 처리
+		if(file.getOriginalFilename() != null) {
+			commonController.profile_upload(memberVO.getUser_id(), request, file);
+		}
 		// POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호화시킴
 		if(memberVO.getUser_pw() != null) {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -388,7 +395,11 @@ public class AdminController {
 		return "admin/member/member_update";
 	}
 	@RequestMapping(value="/admin/member/member_update", method=RequestMethod.POST)
-	public String member_update(@ModelAttribute("pageVO") PageVO pageVO, @Valid MemberVO memberVO) throws Exception {
+	public String member_update(MultipartFile file,HttpServletRequest request, @ModelAttribute("pageVO") PageVO pageVO, @Valid MemberVO memberVO) throws Exception {
+		//프로필 첨부파일 처리
+		if(file.getOriginalFilename() != null) {
+			commonController.profile_upload(memberVO.getUser_id(), request, file);
+		}
 		// POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호화시킴
 		if(memberVO.getUser_pw() == null || memberVO.getUser_pw() == "") {
 		

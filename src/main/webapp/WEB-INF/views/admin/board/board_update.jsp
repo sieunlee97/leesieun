@@ -68,7 +68,7 @@
                 <div class="form-group">
                 	<label for="customFile">attach</label>
                 	<c:forEach var="index" begin="0" end="1">
-                	<div class="div_file_delete">
+                <div class="div_file_delete">
                  <div class="custom-file">
                      <input type="file" name="file" class="custom-file-input" id="customFile_${index}">
                      <label class="custom-file-label" for="customFile">파일을 선택해주세요</label>
