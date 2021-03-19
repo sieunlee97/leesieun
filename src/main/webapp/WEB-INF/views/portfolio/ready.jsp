@@ -36,7 +36,7 @@ body{
       <div class="ready-page">
              <div class="ready-content" style=" width:80%; margin:0 auto;">
           <h3><i class="fas fa-exclamation-triangle text-warning"></i> COMMING SOON </h3>
-          <p> 이 페이지는 준비 중입니다. <a href="/portfolio">return to home</a> </p>
+          <p> 이 페이지는 준비 중입니다. <a href="/portfolio">return to home</a> <a href="/portfolio/work">work</a></p>
         </div>
         <!-- /.error-content -->
       </div>

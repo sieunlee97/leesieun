@@ -17,7 +17,7 @@
         <ul>
           <li class="current"><a href="/portfolio">HOME</a></li>
           <li><a href="/portfolio/skill">SKILL</a></li>
-          <li><a href="/portfolio/mywork">WORK</a></li>
+          <!--li><a href="/portfolio/mywork">WORK</a></li-->
           <li><a href="/portfolio/contact">CONTACT</a></li>
         </ul>
       </nav>
@@ -39,11 +39,7 @@
 <!-- 자기소개글 영역 시작 -->
       <div class="aboutme">
         <h1>ABOUT ME</h1>
-        <p> <1분자기소개와 같은 소개내용 적는 영역> </p>
-        <p>풀이 살 든 청춘의 때문이다. 날카로우나 청춘의 우리의 위하여 찬미를 오아이스도 품고 온갖 끓는 위하여서. 힘차게 되는 이것이야말로 부패뿐이다.
-          인간은 위하여 것은 같지 보라. 가는 원대하고, 그들의 기관과 할지라도 피에 것이다. 유소년에게서 불어 얼마나 찬미를 봄바람이다.
-          품으며, 몸이 가슴에 듣는다. 얼마나 뼈 새가 가치를 사랑의 이것은 있는 거친 쓸쓸하랴? 시들어 석가는 청춘의 것이다.
-          보는 천지는 천자만홍이 품에 싶이 행복스럽고 만물은 때까지 사막이다. 그들의 피어나는 우리는 피어나기 사라지지 이상, 얼마나 황금시대다.
+        <p>"성실한", "꼼꼼한", "긍정적인"
         </p>
       </div>
 <!-- 자기소개글 영역 끝 -->
@@ -60,8 +56,9 @@
                   <ul>
                     <li>- HTML5/CSS, JavaScript 이용한 반응형 웹사이트 구현</li>
                     <li>- Java, Spring Framework에 MyBatis를 사용하여 회원/게시물 관리하는 Admin 사이트 구현</li>
+                    <li>- Spring Security 적용한 사용자단 홈페이지 로그인 기능 구현</li>
                     <li>- RESTful API를 이용한 게시판 댓글 기능 구현</li>
-                    <li>- 스프링 시큐리티 적용한 사용자단 홈페이지 로그인 기능 구현</li>
+                    <li>- 전자정부표준프레임워크 커스터마이징</li>
                   </ul>
               </td>
               <tr>
@@ -87,7 +84,7 @@
                 </td>
             </tr>
           </table>
-        <h2>Language</h2>
+       <!--  <h2>Language</h2>
           <table id="tbl" class="language-table">
                 <tr>
                     <td class="career-time">2021.02.21</td>
@@ -96,7 +93,7 @@
                       <p class="detail">한국TOEIC위원회</p>
                     </td>
                 </tr>
-              </table>
+              </table> -->
         <h2>Education</h2>
           <table id="tbl" class="edu-table">
                 <tr>

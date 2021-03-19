@@ -132,10 +132,11 @@ height: 140px;
   margin-bottom: 25px;
   /*color: rgb(218, 48, 75);*/
 }
-.aboutme p{
+.aboutme p {
   text-align: center;
   line-height: 150%;
-  font-size: 13px;
+  font-size: 20px;
+  font-weight:bold;
 }
 .career {
   margin-top: 50px;

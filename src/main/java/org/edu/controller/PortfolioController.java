@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PortfolioController {
+	@RequestMapping(value="/portfolio/work", method=RequestMethod.GET)
+	public String work() throws Exception {
+		return "portfolio/work";
+	}
 	@RequestMapping(value="/portfolio/mywork", method=RequestMethod.GET)
 	public String ready() throws Exception {
 		return "portfolio/ready";

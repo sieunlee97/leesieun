@@ -17,7 +17,6 @@
         <ul>
           <li><a href="/portfolio">HOME</a></li>
           <li class="current"><a href="/portfolio/skill">SKILL</a></li>
-          <li><a href="/portfolio/mywork">WORK</a></li>
           <li><a href="/portfolio/contact">CONTACT</a></li>
         </ul>
       </nav>  
