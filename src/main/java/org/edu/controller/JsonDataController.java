@@ -14,6 +14,7 @@ import org.jboss.logging.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,21 @@ public class JsonDataController {
 	@Inject
 	private IF_MemberDAO memberDAO;
 	private Logger logger = Logger.getLogger(SimpleLog.class);
-	//RestAPI서버 (아래) - 인증 서버
+		
+	//RestAPI서버 (아래) - 인증 서버 : 안드로이드 앱에서 회원 목록 중 선택한 id 삭제
+	@RequestMapping(value="/android/delete/{user_id}", method=RequestMethod.POST)
+	public ResponseEntity<String> androidDelete(@PathVariable("user_id") String user_id) {
+		ResponseEntity<String> entity = null;
+		try {
+			memberDAO.deleteMember(user_id);
+			entity = new ResponseEntity<>("success", HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
+		}
+		return entity;
+	}
+	
+	//RestAPI서버 (아래) - 인증 서버 : 안드로이드 앱에서 로그인 시 사용
 	@RequestMapping(value="/android/login", method=RequestMethod.POST)
 	public ResponseEntity<MemberVO> androidLogin(@RequestParam("txtUsername") String user_id, @RequestParam("txtPassword") String user_pw) {
 		ResponseEntity<MemberVO> entity = null;
