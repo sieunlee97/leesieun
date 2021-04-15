@@ -1,9 +1,3 @@
-## v11.0.0 애플리케이션 테스트 수행
-### 20210316(월)
-- 관리자단 대시보드 최신 게시물 불러오기
-- 방법1 : 
-- 방법2 :
-
 ##  스프링 작업 순서
 - [X] 스프링  HelloWorld MVC 프로젝트 org.edu.controller 제작 OK
 - [X] 스프링 HelloWorld MVC 프로젝트 edu.org.controller 제작OK.
@@ -26,15 +20,22 @@
 - [X] 관리자단 게시판 화면 CRUD 적용OK.
 - [X] 트랜잭션 @Tansactional추가: root-context.xml에서 dataSource에 트랜잭션 설정추가필수OK.
 - [X] 파일업로드 라이브러리 사용 pom.xml 의존성 추가.
-- [X] 게시판 업로드 화면 구현.
-- [X] Json데이터 사용 pom.xml 의존성 추가.
-- [X] 실제 댓글 화면CRUD적용.(우리가 만들어서 제공 Rest-API백엔드단)
+- [X] 관리자단 게시판 업로드 화면 구현.
+- [X] 댓글 기능에 Json 데이터 사용. pom.xml 의존성 추가.
+- > 보통 jackson, Gson 외부라이브러리를 사용할 때는 pom.xml에 모듈을 추가해야하지만, Rest컨트롤러 클래스 안에 ResponseEntity를 사용해서 Json 데이터로 반환.
+- [X] jackson-databind 모듈 추가.
+- [X] 실제 댓글 화면 CRUD적용.(우리가 만들어서 제공 Rest-API백엔드단)
 - [X] 사용자단 html(https://miniplugin.github.io/) 소스를 커스터마이징 후 jsp로 만들기.
+- [X] 스프링 시큐리티 로그인 구현 pom.xml 의존성 추가.
+- [X] web.xml에 스프링 시큐리티 설정 추가.
+- [X] security-context.xml 생성 및 설정 추가.
 - [X] 스프링시큐리티 로그인 구현 pom.xml 의존성 추가(회원가입시 패스워드 암호화 추가).
 - [X] 헤로쿠 클라우드로 배포(Hsql데이터베이스사용).
-- [X] 사용자단 CRUD 구현.
+- [X] 사용자단 CRUD 구현. RestAPI 댓글 포함.
 - [X] 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
+- [X] 게시판 분리(공지사항, 갤러리게시판) : 부모테이블과 필드 추가를 이용해서 다중 게시판 생성
 - [X] 오라클로 마이그레이션 작업.
+
 
 ### 오라클로 마이그레이션
 - 수정1. now() -> sysdate
@@ -42,6 +43,22 @@
 - 수정3. limit 사용된 조회 쿼리 -> 제거 후 기능 변경 (TOP 예약어 사용)
 - 수정4. <부등호 들어있는 쿼리 : <![CDATA[ 부등호가 있는 쿼리 ]]>
 - 수정5.  insert의 AI(자동증가) 부분 처리 : 마이바티스의 selectKey태그를 이용해서 시퀀스 처리
+
+## v11.0.0 애플리케이션 테스트 수행
+### 20210413(화)
+- @RequestMapping으로 변수값을 받는 방법
+- 1. @RequestParam 클래스 사용 : 값을 불러올 때 **?변수명1=값1**
+- 2. @PathVariable 클래스 사용 : 값을 불러올 때 **/변수값/변수값2** => 트렌드
+
+### 20210316(월)
+- 홈페이지 상단의 로그아웃 시 세션 날리기
+-ㅁㄹㅇ 사 
+- 관리자단 대시보드 최신 게시물 불러오기
+- 방법1 : import 방법  - 효율적
+- > <c:import url="~do?board_type=${boardTypeVO.board_type}" />
+- 방법2 : ModelMap 방법 - 비효율적
+- > <key,Object> 3개 반복
+
 
 ## v6.0.0 UI구현
 ### 20210201(월)
