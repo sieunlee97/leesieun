@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>오픈차트 시작</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js"></script>
 </head>
 <body>
 <canvas id="myChart" width="400" height="400"></canvas>
 <script>
-var jsonData = {Red:12, Blue:19, Yellow:3, Green:5, Purple:2, Orange:3};
-//alert(jsonSample.Blue); //디버그
-//var javascriptArray = [12, 19, 3, 5, 2, 3]; //자바스크립트 배열값
+var jsonData = {"red":12,"blue":19,"yellow":3,"green":5,"purple":2,"orange":3};
+//alert(jsonData.Blue);//디버그
+//var jsonData = [12, 19, 3, 5, 2, 3];//자바스크립트의 배열값
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: [],
         datasets: [{
             label: '본인이 좋아하는 색상 설문조사',
+            data: jsonData,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -41,69 +43,171 @@ var myChart = new Chart(ctx, {
         scales: {
             y: {
                 beginAtZero: true
-                
             }
         }
     }
 });
 </script>
 <select id="selVote">
-	<option value="Red">Red</option>
-	<option value="Blue">Blue</option>
-	<option value="Yellow">Yellow</option>
-	<option value="Green">Green</option>
-	<option value="Purple">Purple</option>
-	<option value="Orange">Orange</option>
+	<option value="red">Red</option>
+	<option value="blue">Blue</option>
+	<option value="yellow">Yellow</option>
+	<option value="green">Green</option>
+	<option value="purple">Purple</option>
+	<option value="orange">Orange</option>
 </select>
-<button id="btnVote">투표</button>
+<button id="btnVote">투표하기</button>
+<button id="btnVoteDel">초기화</button>
 <script>
 var btnVote = document.getElementById('btnVote');
 var selVote = document.getElementById('selVote');
-btnVote.onclick = function() {
-	var voteIdx = document.getElementById('selVote').options.selectedIndex;
-	//alert(selVote[voteIdx].value);
-	//alert(jsonData);
-	//jsonData[voteIdx] += 1; //누적시킨다. 자바스크립트의 배열방식
-	//alert(Object.keys(jsonData).length); //json데이터 길이 구할 때
-	switch(voteIdx){
-		case 0:
-			jsonData.Red += 1;
-			break;
-		case 1:
-			jsonData.Blue += 1;
-			break;
-		case 2:
-			jsonData.Yellow += 1;
-			break;
-		case 3:
-			jsonData.Green += 1;
-			break;
-		case 4:
-			jsonData.Purple += 1;
-			break;
-		case 5:
-			jsonData.Orange += 1;
-			break;	
+//jQuery
+$("#btnVoteDel").on("click", function(){
+	if(confirm("정말로 초기화 하시겠습니까? 투표한 DB자료가 모두 삭제됩니다.")){
+		$.ajax({
+			type:'post',
+			url : "/chart/deldata",
+			data:'text',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST"
+			},
+			success:function(result){
+				if(result=="success"){
+					alert("모든 투표 자료가 삭제되었습니다.");
+					jsonData = {"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};
+					myChart.data.datasets[0].data = jsonData;
+					myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+				}
+			},
+			error:function(result){
+				alert("API서버가 작동하지 않습니다. 다음에 이용해 주세요");
+			}
+		});
 	}
-	myChart.data.datasets[0].data = jsonData;
-	myChart.update(); // chart.js에 내장된 함수로 그래프를 재생 시킴.
+});
+
+//오리지널 자바스크립트
+btnVote.onclick = function() {
+var voteIdx = document.getElementById('selVote').options.selectedIndex;
+	//alert(selVote[voteIdx].value);
+	//jsonData[voteIdx] += 1;//누적시킵니다. 자바스크립트의 배열방식
+	//alert(Object.keys(jsonData).length);//Json데이터의 길이구할때
+	
+	//DB초기값이 없을 경우 초기화
+	if(jsonData.red==""){jsonData.red=0;}
+	if(jsonData.blue==""){jsonData.blue=0;}
+	if(jsonData.yellow==""){jsonData.yellow=0;}
+	if(jsonData.green==""){jsonData.green=0;}
+	if(jsonData.purple==""){jsonData.purple=0;}
+	if(jsonData.orange==""){jsonData.orange=0;}
+	
+	//화면의 select태그를 선택한 인덱스 번호에 해당하는 값을 누적(아래)
+	//투표버튼을 클릭했을때 해당 버튼의 값만 +1 하는 스위치문
+	switch(voteIdx) {
+	case 0:
+		jsonData.red += 1;//Json데이터 방식 = jsonData.blue
+		break;
+	case 1:
+		jsonData.blue += 1;
+		break;
+	case 2:
+		jsonData.yellow += 1;
+		break;
+	case 3:
+		jsonData.green += 1;
+		break;
+	case 4:
+		jsonData.purple += 1;
+		break;
+	case 5:
+		jsonData.orange += 1;
+		break;
+	}
+	//기존 값과, 변경된 값 변수로 지정 - DB입력을 위한 변수값 생성
+	for(var i=0;i<Object.keys(jsonData).length;i++){
+		switch(selVote[i].value) {
+		case "red":
+			var red = jsonData.red;
+			break;
+		case "blue":
+			var blue = jsonData.blue;
+			break;
+		case "yellow":
+			var yellow = jsonData.yellow;
+			break;
+		case "green":
+			var green = jsonData.green;
+			break;
+		case "purple":
+			var purple = jsonData.purple;
+			break;
+		case "orange":
+			var orange = jsonData.orange;
+			break;
+		}
+	}
+	//alert(red+blue+yellow+green+purple+orange);
+	$.ajax({
+		type:'post',
+		url:'/chart/setdata',
+		dataType:'text',
+		headers:{
+			"Content-Type":"application/json",
+			"X-HTTP-Method-Override":"POST"
+		},
+		data:JSON.stringify({//json데이터를 post전송할 text로 변경.
+			"red":red,
+			"blue":blue,
+			"yellow":yellow,
+			"green":green,
+			"purple":purple,
+			"orange":orange
+		}),
+		success:function(result) {
+			myChart.data.datasets[0].data = jsonData;
+			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+		},
+		error:function(result) {
+			alert("API서버가 작동하지 않습니다. 다음에 이용해 주세요");
+		}
+	});	
 }
+//예전에 실시간 대시보드를 구현했던 방법(푸시-카카오톡알림처럼)
+/*
+var i=1;
+var interval = setInterval(function(){
+	var jsonData = {red:i,blue:19,yellow:3,green:5,purple:2,orange:3};
+	myChart.data.datasets[0].data = jsonData;
+	myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+	i++;
+	console.log("자동으로 "+i+" 초 실행");
+},1000);//1초마다 DB에 접근해서 새로운 데이터를 받음.
+*/
 </script>
 <script>
-$(document).ready(function(){
-	//alert('제이쿼리 작동 확인');
+$(document).ready(function() {
+	//alert('제이쿼리 작동확인');아래 ajax는 무조건실행
 	$.ajax({
 		type:'get',
-		url:'/resources/chart/start.html', //RestAPI 생성 후 변경
-		dataType:'text', //RestAPI에서 받는 데이터 형식 -> result
+		url:'/chart/getdata',//RestAPI생성후변경
+		dataType:'text',//RestAPI에서 받는 데이터 형식 -> 아래 result
 		success:function(result){
-			//jsonData = [0,0,0,0,0,0]; //자바스크립트 배열일때
-			jsonData = {Red:0, Blue:0, Yellow:0, Green:0, Purple:0, Orange:0};
+			//jsonData = [0,0,0,0,0,0];//자바스크립트 배열일때
+			if(result == "") {
+				result={"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};
+				jsonData = result;
+			}else{ //result값이 있으면, text로 받기 때문에 json파싱 필요
+				jsonData = JSON.parse(result); //text데이터를 Json데이터로 변경
+			}
+			//alert(result);
+			//json 데이터로 파싱하는 작업(아래2줄)
+			//jsonData = JSON.stringify(result);//Json데이터형식을 text로 변경
 			myChart.data.datasets[0].data = jsonData;
-			myChart.update();
+			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 		},
 		error:function(result){
-			alert('RestAPI 서버에 문제가 있습니다.');
+			alert("API서버가 작동하지 않습니다. 다음에 이용해 주세요");
 		}
 	});
 });

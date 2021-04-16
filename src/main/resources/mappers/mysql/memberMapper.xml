@@ -33,6 +33,30 @@ user_id LIKE '%user_2020%
 		</if>
 	</if>
 </sql>
+<delete id="delData">
+delete from tbl_chart where 1=1
+</delete>
+<insert id="insertData">
+insert into tbl_chart(red,blue,yellow,green,purple,orange) 
+values (
+#{red},#{blue},#{yellow},#{green},#{purple},#{orange}
+)
+</insert>
+<update id="updateData">
+update tbl_chart set 
+red=#{red}, 
+blue=#{blue}, 
+yellow=#{yellow},
+green=#{green},
+purple=#{purple},
+orange=${orange}
+where 1=1
+</update>
+
+<select id="getData" resultType="org.edu.vo.ChartVO">
+select * from tbl_chart
+</select>
+
 <select id="countMember" resultType="int">
 select count(*) from tbl_member
 <include refid="sqlWhere"></include>
