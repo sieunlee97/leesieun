@@ -7,47 +7,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js"></script>
 </head>
 <body>
-<canvas id="myChart" width="400" height="400"></canvas>
-<script>
-var jsonData = {"red":12,"blue":19,"yellow":3,"green":5,"purple":2,"orange":3};
-//alert(jsonData.Blue);//디버그
-//var jsonData = [12, 19, 3, 5, 2, 3];//자바스크립트의 배열값
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [],
-        datasets: [{
-            label: '본인이 좋아하는 색상 설문조사',
-            data: jsonData,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
 <select id="selVote">
 	<option value="red">Red</option>
 	<option value="blue">Blue</option>
@@ -58,9 +17,107 @@ var myChart = new Chart(ctx, {
 </select>
 <button id="btnVote">투표하기</button>
 <button id="btnVoteDel">초기화</button>
+<canvas id="myChart" width="400" height="400"></canvas>
+<canvas id="myChart2" width="400" height="400"></canvas>
 <script>
+var jsonData = {"red":12,"blue":19,"yellow":3,"green":5,"purple":2,"orange":3};
 var btnVote = document.getElementById('btnVote');
 var selVote = document.getElementById('selVote');
+//alert(jsonData.Blue);//디버그
+//var jsonData = [12, 19, 3, 5, 2, 3];//자바스크립트의 배열값
+var ctx = document.getElementById('myChart').getContext('2d');
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var datasets_line_bar = [{
+    label: '본인이 좋아하는 색상 설문조사',
+    data: jsonData,
+    backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+    ],
+    borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+    ],
+    borderWidth: 1
+}];
+var options_line_bar = {
+		scales : {
+			y: {
+				beginAtZero: true
+			}
+		}
+};
+var myChart = new Chart(ctx, {
+    type: 'bar', //radar, doughnut, pie, polar, bubble, scatter, area
+    data: {
+    	labels: [],
+        datasets:datasets_line_bar 
+    },
+    options: options_line_bar
+});
+var datasets_radar = [{
+    label: "본인이 좋아하는 색상 설문조사",
+    data: [jsonData.red,jsonData.blue,jsonData.yellow,jsonData.green,jsonData.purple,jsonData.orange],
+    fill: true,
+    radius:6, //각 data항목이 6개의 이미지가 원형이고, 그 크기를 반지름으로 지정
+    pointRadius:6,
+    pointBorderWidth:6,
+    pointBackgroundColor:[
+    	'rgb(255,99,132,0.2)',
+    	'rgb(54,162,235,0.2)',
+    	'rgb(255,206,86,0.2)',
+    	'rgb(75,192,192,0.2)',
+    	'rgb(153,102,255,0.2)',
+    	'rgb(255,159,64,0.2)' 	
+    ],
+    pointBorderColor:[
+    	'rgb(255,99,132,1)',
+    	'rgb(54,162,235,1',
+    	'rgb(255,206,86,1)',
+    	'rgb(75,192,192,1)',
+    	'rgb(153,102,255,1)',
+    	'rgb(255,159,64,1)' 	
+    ],
+   	pointHoverRadius: 10
+}];
+var options_radar = 
+{
+		scale: {
+			gridLines: {
+				color:"black",
+				lineWidth: 3
+			},
+			angleLines: {
+				display:true
+			},
+			ticks:{
+				beginAtZero: true,
+				stepSize: 1
+			}
+		},
+		legend: {//범례
+			position: 'left'
+		}
+};
+var myChart2 = new Chart(ctx2, {
+	type:'radar',
+	data: {
+    	labels: [selVote[0].value,selVote[1].value,selVote[2].value,selVote[3].value,selVote[4].value,selVote[5].value],
+        datasets:datasets_radar
+    },
+	options: options_radar
+});
+</script>
+<script>
+
 //jQuery
 $("#btnVoteDel").on("click", function(){
 	if(confirm("정말로 초기화 하시겠습니까? 투표한 DB자료가 모두 삭제됩니다.")){
@@ -78,6 +135,8 @@ $("#btnVoteDel").on("click", function(){
 					jsonData = {"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};
 					myChart.data.datasets[0].data = jsonData;
 					myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+					myChart2.data.datasets[0].data = [jsonData.red,jsonData.blue,jsonData.yellow,jsonData.green,jsonData.purple,jsonData.orange];
+					myChart2.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 				}
 			},
 			error:function(result){
@@ -167,6 +226,8 @@ var voteIdx = document.getElementById('selVote').options.selectedIndex;
 		success:function(result) {
 			myChart.data.datasets[0].data = jsonData;
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+			myChart2.data.datasets[0].data = [jsonData.red,jsonData.blue,jsonData.yellow,jsonData.green,jsonData.purple,jsonData.orange];
+			myChart2.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 		},
 		error:function(result) {
 			alert("API서버가 작동하지 않습니다. 다음에 이용해 주세요");
@@ -205,6 +266,9 @@ $(document).ready(function() {
 			//jsonData = JSON.stringify(result);//Json데이터형식을 text로 변경
 			myChart.data.datasets[0].data = jsonData;
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+			//두번째 차트 출력하기- 레이더 차트는 위 막대/라인차트처럼 jsonData사용불가
+			myChart2.data.datasets[0].data = [jsonData.red,jsonData.blue,jsonData.yellow,jsonData.green,jsonData.purple,jsonData.orange];
+			myChart2.update();
 		},
 		error:function(result){
 			alert("API서버가 작동하지 않습니다. 다음에 이용해 주세요");
