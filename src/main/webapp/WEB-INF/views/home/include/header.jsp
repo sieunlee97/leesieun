@@ -81,7 +81,7 @@ if('${msg}' != ''){ //자바의 EL표기법 달러{변수명}
 					<li><a href="/resources/chart/start.html" class="openAll2">RestAPI서비스</a>
                         <div class="gnb_depth gnb_depth2_2">
                             <ul class="submenu_list">
-                                <li><a href="/resources/chart/start.html">오픈차트</a></li>
+                                <li><a href="/resources/chart/start.html">차트실시간렌더링(소켓통신)</a></li>
                             </ul>
                         </div>
 					</li>

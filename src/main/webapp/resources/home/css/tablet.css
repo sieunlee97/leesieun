@@ -84,6 +84,47 @@
     padding-right: 0px;
   }
   /* //상단로고와 메뉴스타일 */
+    /* PC영역:테블릿영역에서 2차메뉴가 나오지 않어서 PC영역것을 복사 붙여넣습니다. */
+  /* 상단 로고,메뉴영역 */
+  .header_area h1 {
+    padding-left: 0px;
+  }
+  .header_cont {
+    width: 60%;
+    padding-right: 10px;
+  }
+  .gnb li a {
+    padding: 26px 20px;
+  }
+  .gnb_depth {
+    position: absolute;
+    left: 0;
+    top: 113px;
+    width: 100%;
+    background: rgba(189, 194, 187, 0.9);
+    z-index: 100;
+    /* display: block; 서브메뉴 확인용 */
+  }
+  .gnb_depth2_1 .submenu_list {
+    padding-left: 430px;
+  }
+  .gnb_depth2_2 .submenu_list {
+    padding-left: 500px;
+  }
+  .gnb_depth2_3 .submenu_list {
+    padding-left: 530px;
+  }
+  .gnb_depth2_4 .submenu_list {
+    padding-left: 600px;
+  }
+  .submenu_list {
+    box-sizing: border-box;
+    width: 818px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  /* //상단 로고,메뉴영역 */
+  
 
   /* 컨테이너영역 */
   #container {

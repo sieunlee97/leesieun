@@ -17,6 +17,7 @@
 </select>
 <button id="btnVote">투표하기</button>
 <button id="btnVoteDel">초기화</button>
+<button id="btnHome">홈페이지로 이동</button>
 <canvas id="myChart" width="400" height="400"></canvas>
 <canvas id="myChart2" width="400" height="400"></canvas>
 <!--script src="http://localhost:5000/socket.io/socket.io.js" -->
@@ -291,6 +292,10 @@ $(document).ready(function() { //페이지 로딩시 최초 1회만 실행
 		}
 	});
 	getData(); //차트에 초기 데이터 바인딩.
+	//홈페이지로 이동
+	$("#btnHome").on("click", function(){
+		location.replace('/');
+	});
 });
 </script>
 </body>

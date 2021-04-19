@@ -18,7 +18,7 @@
     left: 0;
     top: 113px;
     width: 100%;
-    background: rgba(189, 194, 187, 0.85);
+    background: rgba(189, 194, 187, 0.9);
     z-index: 100;
     /* display: block; 서브메뉴 확인용 */
   }
