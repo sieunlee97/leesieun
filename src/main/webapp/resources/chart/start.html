@@ -19,6 +19,13 @@
 <button id="btnVoteDel">초기화</button>
 <canvas id="myChart" width="400" height="400"></canvas>
 <canvas id="myChart2" width="400" height="400"></canvas>
+<script src="http://localhost:5000/socket.io/socket.io.js">
+// nodejs에서 발생시킨 socket.io.js 호출
+</script>
+<script>
+var serverUrl = 'http://localhost:5000';
+var socket = io.connect(serverUrl);
+</script>
 <script>
 var jsonData = {"red":12,"blue":19,"yellow":3,"green":5,"purple":2,"orange":3};
 var btnVote = document.getElementById('btnVote');
@@ -133,10 +140,8 @@ $("#btnVoteDel").on("click", function(){
 				if(result=="success"){
 					alert("모든 투표 자료가 삭제되었습니다.");
 					jsonData = {"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};
-					myChart.data.datasets[0].data = jsonData;
-					myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
-					myChart2.data.datasets[0].data = [jsonData.red,jsonData.blue,jsonData.yellow,jsonData.green,jsonData.purple,jsonData.orange];
-					myChart2.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+					updateRender();
+					socket.emit("OnOff", {msg:'updateRender'}); //1:1통신. nodejs로 문자를 OnOff에 담아서 보낸다.
 				}
 			},
 			error:function(result){
@@ -224,10 +229,8 @@ var voteIdx = document.getElementById('selVote').options.selectedIndex;
 			"orange":orange
 		}),
 		success:function(result) {
-			myChart.data.datasets[0].data = jsonData;
-			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
-			myChart2.data.datasets[0].data = [jsonData.red,jsonData.blue,jsonData.yellow,jsonData.green,jsonData.purple,jsonData.orange];
-			myChart2.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+			updateRender();
+			socket.emit("OnOff", {msg:'updateRender'}); //1:1통신. nodejs로 문자를 OnOff에 담아서 보낸다.
 		},
 		error:function(result) {
 			alert("API서버가 작동하지 않습니다. 다음에 이용해 주세요");
@@ -247,7 +250,17 @@ var interval = setInterval(function(){
 */
 </script>
 <script>
-$(document).ready(function() {
+var updateRender = function() {
+	//alert(result);
+	//json 데이터로 파싱하는 작업(아래2줄)
+	//jsonData = JSON.stringify(result);//Json데이터형식을 text로 변경
+	myChart.data.datasets[0].data = jsonData;
+	myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+	//두번째 차트 출력하기- 레이더 차트는 위 막대/라인차트처럼 jsonData사용불가
+	myChart2.data.datasets[0].data = [jsonData.red,jsonData.blue,jsonData.yellow,jsonData.green,jsonData.purple,jsonData.orange];
+	myChart2.update();
+};
+var getData = function(){
 	//alert('제이쿼리 작동확인');아래 ajax는 무조건실행
 	$.ajax({
 		type:'get',
@@ -261,19 +274,22 @@ $(document).ready(function() {
 			}else{ //result값이 있으면, text로 받기 때문에 json파싱 필요
 				jsonData = JSON.parse(result); //text데이터를 Json데이터로 변경
 			}
-			//alert(result);
-			//json 데이터로 파싱하는 작업(아래2줄)
-			//jsonData = JSON.stringify(result);//Json데이터형식을 text로 변경
-			myChart.data.datasets[0].data = jsonData;
-			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
-			//두번째 차트 출력하기- 레이더 차트는 위 막대/라인차트처럼 jsonData사용불가
-			myChart2.data.datasets[0].data = [jsonData.red,jsonData.blue,jsonData.yellow,jsonData.green,jsonData.purple,jsonData.orange];
-			myChart2.update();
+			updateRender();
 		},
 		error:function(result){
 			alert("API서버가 작동하지 않습니다. 다음에 이용해 주세요");
 		}
 	});
+};
+$(document).ready(function() { //페이지 로딩시 최초 1회만 실행
+	socket.on("OnOff", function(jsonMsg){
+		//msg = JSON.stringify(msg); //JSON데이터를 스트링데이터로 변경
+		console.log(socket.id+"가 받은 메세지는 "+jsonMsg.msg);
+		if(jsonMsg.msg =='updateRender'){
+			getData();
+		}
+	});
+	getData(); //차트에 초기 데이터 바인딩.
 });
 </script>
 </body>
