@@ -17,9 +17,9 @@
         <property name="locations">
             <list>
             	<!-- 로컬개발일 때 사용 (아래) -->
-                <value>classpath:/properties/local.properties</value>
+                <!-- <value>classpath:/properties/local.properties</value> -->
                	<!-- 운영서버개발일 때 사용 (아래) -->
-                <!-- <value>classpath:/properties/prod.properties</value> -->
+                <value>classpath:/properties/prod.properties</value>
             	
             	<!-- Junit실행시 에러나서 여기로 위치 변경 -->
     			<value>classpath:/properties/sns.properties</value>
@@ -48,9 +48,9 @@
 	</bean>
 	
 	<!-- CREATE TABLE 초기 1회만 실행 -->
-	 <!-- <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
+	 <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
 		<jdbc:script location="classpath:/db/embeded_hsql_file.sql" /> 
-	</jdbc:initialize-database>  -->
+	</jdbc:initialize-database> 
 	
 	 
 	<!-- jdbc:hsqldb:mem:dataSource / jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db -->
