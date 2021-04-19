@@ -78,7 +78,7 @@ if('${msg}' != ''){ //자바의 EL표기법 달러{변수명}
                             </ul>
                         </div>
 					</li>
-					<li><a href="#" class="openAll2">RestAPI서비스</a>
+					<li><a href="/resources/chart/start.html" class="openAll2">RestAPI서비스</a>
                         <div class="gnb_depth gnb_depth2_2">
                             <ul class="submenu_list">
                                 <li><a href="/resources/chart/start.html">오픈차트</a></li>
