@@ -1,3 +1,109 @@
+# 회원 및 게시판 관리 웹사이트
+스프링을 이용한 회원관리와 게시판 관리 사이트 제작
+
+## :high_brightness: 개요
+**기간** : 2020.11.30 - 2021.02.01 <br>
+**인원** : 1명 <br>
+**산출물** : 사용매뉴얼, 아키텍처 구조도<br>
+
+**<개발환경>** <br>
+**OS** : Windows <br>
+**IDE** : Eclipse 2020-06 <br>
+**DB Tool** : Workbench, Sql-developer <br>
+
+**<사용기술>** <br>
+**Language** : Java, Spring+maven, JQuery <br>
+**Database** : MyBatis, MySQL(MariaDB), Oracle <br>
+
+-----
+
+## :mag_right: 설명
+
+### 메인화면
+- 게시판 조회는 비회원도 가능하며, 게시글 작성 및 수정은 회원가입 후 로그인 시 가능합니다. <br>
+<figure>
+	<img src="https://user-images.githubusercontent.com/63999784/133189721-90f107c1-4288-426b-a63e-be7f4ddabf83.PNG">
+</figure>
+
+### 1. 회원가입
+
+<figure>
+	<img src="https://user-images.githubusercontent.com/63999784/133190767-38b5590d-9ace-4b61-9432-8bf79062a8b5.PNG">
+</figure>
+
+:bangbang: 모든 항목은 **유효성 검사**가 적용되어있고 필수항목입니다.<br>
+
+
+### 2. 로그인
+#### 2-1 사용자 로그인
+<figure>
+	<img src="https://user-images.githubusercontent.com/63999784/133189934-9dd0c883-c044-46e2-86cd-0d6709f9305e.PNG">
+</figure>
+
+:bangbang: **Oauth2를 이용한 네이버 로그인**이 가능합니다<br>
+
+
+#### 2-2 관리자 로그인
+
+- ID/PW는 **admin/user02**로 로그인 시, **관리자 권한**으로 이용이 가능합니다.<br>
+
+<figure>
+	<img src="https://user-images.githubusercontent.com/63999784/133191496-66cca54b-d8e1-464f-a4b9-fdd4b824886e.PNG">
+</figure>
+<br>
+
+### 3. 게시판 이용
+- 로그인 시, 작성과 수정 및 삭제가 가능하며, 비회원은 조회만 가능합니다.
+#### 3-1 게시글 등록
+<figure>
+	<img src="https://user-images.githubusercontent.com/63999784/133194941-3bab1e08-fc43-4402-9079-1b34b1a1b688.PNG">
+</figure>
+<br>
+:bangbang: 첨부파일은 이미지, 문서 등 최대 2개까지 등록이 가능합니다.<br>
+
+#### 3-2 게시글 상세보기
+<figure>
+	<p align="center"><img src="https://user-images.githubusercontent.com/63999784/133195274-33486466-c650-412b-8f63-d7f08a026868.PNG"></p>
+</figure>
+:bangbang: 첨부파일 다운로드가 가능합니다. <br>
+:bangbang: 댓글 등록이 가능하며, ajax로 구현했습니다.<br>
+
+### 4. 관리자 페이지
+- 관리자로 로그인 시, AdminLTE 관리자 페이지로 접근이 가능합니다.
+
+<figure>
+	<img src="https://user-images.githubusercontent.com/63999784/133191750-019e9e2c-519d-4dbe-a2f2-6d36495055db.PNG">
+</figure>
+<br>
+
+#### 4-1 회원관리(구 관리자관리)
+<figure>
+	<img src="https://user-images.githubusercontent.com/63999784/133192157-43e5ad34-a0a7-4c95-bac3-d71356f8b513.PNG">
+</figure>
+<br>
+:bangbang: 회원의 권한과 가입 승인, 탈퇴 승인, 포인트를 수정 가능합니다.<br>
+<br>
+
+#### 4-2 게시글 카테고리 관리
+<figure>
+	<img src="https://user-images.githubusercontent.com/63999784/133196001-0266ad73-537d-4f61-b12c-4216dcd1969e.PNG">
+</figure>
+<br>
+
+#### 4-3 게시글 관리
+<figure>
+	<img src="https://user-images.githubusercontent.com/63999784/133193770-d5ee6f54-79df-47ff-9917-833917dfb2c6.PNG">
+</figure>
+<br>
+:bangbang: 작성자와 상관없이 관리자 권한으로 게시글 수정 및 삭제가 가능합니다.
+<br>
+<br>
+
+
+---
+
+# TIL (2020.11 - 2021.04)
+
 ##  스프링 작업 순서
 - [X] 스프링  HelloWorld MVC 프로젝트 org.edu.controller 제작 OK
 - [X] 스프링 HelloWorld MVC 프로젝트 edu.org.controller 제작OK.
