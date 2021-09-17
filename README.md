@@ -12,7 +12,8 @@
 **DB Tool** : Workbench, Sql-developer <br>
 
 **<사용기술>** <br>
-**Language** : Java, Spring+maven, JQuery <br>
+**Front-end Language** : HTML5, CSS, Bootstrap5, Thymeleaf, JavaScript <br>
+**Back-end Language** : Java, Spring+maven<br>
 **Database** : MyBatis, MySQL(MariaDB), Oracle <br>
 
 -----
