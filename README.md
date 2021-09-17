@@ -5,6 +5,8 @@
 **기간** : 2020.11.30 - 2021.02.01 <br>
 **인원** : 1명 <br>
 **산출물** : 사용매뉴얼, 아키텍처 구조도<br>
+**URL**: <a href="https://leesieun.herokuapp.com">https://leesieun.herokuapp.com</a>
+
 
 **<개발환경>** <br>
 **OS** : Windows <br>
